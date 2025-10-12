@@ -13,6 +13,8 @@ const getLinkIcon = (linkType: string) => {
       return FaPlay
     case "documentation":
       return FaBook
+    case "company":
+      return FaExternalLinkAlt
     default:
       return FaExternalLinkAlt
   }
@@ -32,6 +34,12 @@ export default function ProjectCard({
   onLinkClick,
 }: ProjectCardProps) {
   const availableLinks = Object.entries(project.links).filter(([_, url]) => url && url !== "")
+
+  // Add company link if available
+  const allLinks = availableLinks
+  if (project.companyUrl) {
+    allLinks.push(["company", project.companyUrl])
+  }
 
   return (
     <Box
@@ -108,13 +116,6 @@ export default function ProjectCard({
         </Box>
       </Box>
 
-      {/* Company */}
-      {project.company && (
-        <Text color="accent.teal" fontSize="xs" mb={1} wordWrap="break-word" whiteSpace="normal">
-          {project.company}
-        </Text>
-      )}
-
       {/* Description */}
       <Text
         fontSize="xs"
@@ -178,15 +179,16 @@ export default function ProjectCard({
       )}
 
       {/* Links */}
-      {availableLinks.length > 0 && (
+      {allLinks.length > 0 && (
         <Box display="flex" justifyContent="flex-end" gap={1} mt="auto" pt={2}>
-          {availableLinks.map(([linkType, url]) => {
+          {allLinks.map(([linkType, url]) => {
             const IconComponent = getLinkIcon(linkType)
             const linkLabels = {
               github: "View on GitHub",
               website: "Visit Website",
               demo: "View Demo",
               documentation: "View Documentation",
+              company: project.company || "Visit Company Website",
             }
             return (
               <Tooltip
