@@ -1,8 +1,34 @@
 import HourglassGrid from "./components/HourglassGrid"
 import InterfaceFrame from "./components/InterfaceFrame"
-import { Text, Box, Heading, Grid } from "@chakra-ui/react"
+import Navigation from "./components/Navigation"
+import { Box, Grid } from "@chakra-ui/react"
+import { useNavigationStore } from "./store/navigationStore"
+import HomePage from "./pages/HomePage"
+import ProjectsPage from "./pages/ProjectsPage"
+import ExperimentsPage from "./pages/ExperimentsPage"
+import AboutPage from "./pages/AboutPage"
+import ContactPage from "./pages/ContactPage"
 
 function App() {
+  const currentPage = useNavigationStore((state) => state.currentPage)
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "home":
+        return <HomePage />
+      case "projects":
+        return <ProjectsPage />
+      case "experiments":
+        return <ExperimentsPage />
+      case "about":
+        return <AboutPage />
+      case "contact":
+        return <ContactPage />
+      default:
+        return <HomePage />
+    }
+  }
+
   return (
     <>
       <HourglassGrid />
@@ -20,21 +46,14 @@ function App() {
           gridTemplateAreas={`"main main navigation" "main main navigation" "footer footer footer"`}
           gridTemplateColumns="1fr 1fr 0.5fr"
           gridTemplateRows="1fr 1fr 0.25fr"
-          minHeight="calc(100vh - 4rem)" // Subtract padding and gap
+          minHeight="calc(100vh - 4rem)"
           gap={4}
         >
           <InterfaceFrame gridArea="main" depthLevel="deep">
-            <Box minHeight="100%">Hello</Box>
+            {renderPage()}
           </InterfaceFrame>
           <InterfaceFrame gridArea="navigation" depthLevel="medium">
-            <>
-              <Heading>Navigation</Heading>
-              <Text>Home</Text>
-              <Text>Projects</Text>
-              <Text>Experiments</Text>
-              <Text>About</Text>
-              <Text>Contact</Text>
-            </>
+            <Navigation />
           </InterfaceFrame>
           <InterfaceFrame gridArea="footer" depthLevel="shallow">
             <></>
