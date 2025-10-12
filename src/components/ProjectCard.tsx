@@ -1,4 +1,5 @@
 import { Box, Text, Image, Icon } from "@chakra-ui/react"
+import { Tooltip } from "./ui/tooltip"
 import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook } from "react-icons/fa"
 import { type Project } from "../data/projects"
 
@@ -48,7 +49,6 @@ export default function ProjectCard({
         borderColor: "accent.teal",
         transform: "translateY(-4px)",
         boxShadow: "0 8px 25px rgba(91, 192, 190, 0.15)",
-        cursor: "pointer",
       }}
       animation={`float ${6 + index}s ease-in-out infinite`}
       style={{
@@ -131,36 +131,41 @@ export default function ProjectCard({
       {project.technologies.length > 0 && (
         <Box mb={2}>
           {project.technologies.slice(0, 2).map((tech, techIndex) => (
-            <Box
-              key={techIndex}
-              as="span"
-              px={1.5}
-              py={0.5}
-              bg="bg.dark"
-              border="1px solid"
-              borderColor="border.inner"
-              borderRadius="sm"
-              fontSize="xs"
-              color="accent.teal"
-              mr={1}
-            >
-              {tech}
-            </Box>
+            <Tooltip key={techIndex} content={tech}>
+              <Box
+                as="span"
+                px={1.5}
+                py={0.5}
+                bg="bg.dark"
+                border="1px solid"
+                borderColor="border.inner"
+                borderRadius="sm"
+                fontSize="xs"
+                color="accent.teal"
+                mr={1}
+                cursor="default"
+              >
+                {tech}
+              </Box>
+            </Tooltip>
           ))}
           {project.technologies.length > 2 && (
-            <Box
-              as="span"
-              px={1.5}
-              py={0.5}
-              bg="bg.dark"
-              border="1px solid"
-              borderColor="border.outer"
-              borderRadius="sm"
-              fontSize="xs"
-              color="text.muted"
-            >
-              +{project.technologies.length - 2}
-            </Box>
+            <Tooltip content={`${project.technologies.slice(2).join(", ")}`}>
+              <Box
+                as="span"
+                px={1.5}
+                py={0.5}
+                bg="bg.dark"
+                border="1px solid"
+                borderColor="border.outer"
+                borderRadius="sm"
+                fontSize="xs"
+                color="text.muted"
+                cursor="default"
+              >
+                +{project.technologies.length - 2}
+              </Box>
+            </Tooltip>
           )}
         </Box>
       )}
@@ -177,24 +182,35 @@ export default function ProjectCard({
         <Box display="flex" justifyContent="flex-end" gap={1} mt="auto" pt={2}>
           {availableLinks.map(([linkType, url]) => {
             const IconComponent = getLinkIcon(linkType)
+            const linkLabels = {
+              github: "View on GitHub",
+              website: "Visit Website",
+              demo: "View Demo",
+              documentation: "View Documentation",
+            }
             return (
-              <Box
+              <Tooltip
                 key={linkType}
-                as="button"
-                onClick={(e) => onLinkClick(url!, e)}
-                p={1}
-                borderRadius="sm"
-                bg="bg.dark"
-                border="1px solid"
-                borderColor="border.inner"
-                _hover={{
-                  bg: "bg.steel",
-                  borderColor: "accent.teal",
-                }}
-                transition="all 0.2s ease"
+                content={linkLabels[linkType as keyof typeof linkLabels] || "Open Link"}
               >
-                <Icon as={IconComponent} boxSize={3} color="accent.teal" />
-              </Box>
+                <Box
+                  as="button"
+                  onClick={(e) => onLinkClick(url!, e)}
+                  p={1}
+                  borderRadius="sm"
+                  bg="bg.dark"
+                  border="1px solid"
+                  borderColor="border.inner"
+                  _hover={{
+                    bg: "bg.steel",
+                    borderColor: "accent.teal",
+                  }}
+                  transition="all 0.2s ease"
+                  cursor="pointer"
+                >
+                  <Icon as={IconComponent} boxSize={3} color="accent.teal" />
+                </Box>
+              </Tooltip>
             )
           })}
         </Box>
