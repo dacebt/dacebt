@@ -1,7 +1,8 @@
 import { Box, Text, Image, Icon, Badge, Flex } from "@chakra-ui/react"
 import { Tooltip } from "./ui/tooltip"
-import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaTimes, FaBuilding } from "react-icons/fa"
+import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaBuilding } from "react-icons/fa"
 import { type Project } from "../data/projects"
+import { FaXmark } from "react-icons/fa6"
 
 const getLinkIcon = (linkType: string) => {
   switch (linkType) {
@@ -96,7 +97,7 @@ export default function ProjectCard({
           {/* Currently contributing indicator */}
           {!project.currentlyContributing && (
             <Tooltip content="Currently not contributing">
-              <Icon as={FaTimes} boxSize={2.5} color="red.400" opacity={0.7} />
+              <Icon as={FaXmark} boxSize={2.5} color="red.400" opacity={0.7} />
             </Tooltip>
           )}
         </Box>
