@@ -33,7 +33,7 @@ export default function ContactPage() {
 
   // Inject keyframes into document head
   useEffect(() => {
-    const style = document.createElement('style')
+    const style = document.createElement("style")
     style.textContent = `${float} ${pulse}`
     document.head.appendChild(style)
     return () => {
@@ -44,10 +44,10 @@ export default function ContactPage() {
   }, [])
 
   return (
-    <Box 
-      minHeight="100%" 
-      display="flex" 
-      alignItems="center" 
+    <Box
+      minHeight="100%"
+      display="flex"
+      alignItems="center"
       justifyContent="center"
       position="relative"
       overflow="hidden"
@@ -88,7 +88,14 @@ export default function ContactPage() {
         filter="blur(2px)"
       />
 
-      <Box display="flex" flexDirection="column" gap={8} alignItems="center" position="relative" zIndex={1}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={8}
+        alignItems="center"
+        position="relative"
+        zIndex={1}
+      >
         {/* Page title */}
         <Box display="flex" flexDirection="column" gap={2} textAlign="center">
           <Text
@@ -103,12 +110,7 @@ export default function ContactPage() {
           >
             Get In Touch
           </Text>
-          <Text
-            fontSize="lg"
-            color="text.muted"
-            maxW="400px"
-            lineHeight="1.6"
-          >
+          <Text fontSize="lg" color="text.muted" maxW="400px" lineHeight="1.6">
             Connect with me through any of these platforms
           </Text>
         </Box>
@@ -122,7 +124,7 @@ export default function ContactPage() {
         >
           {contactData.map((contact, index) => {
             const Icon = iconMap[contact.icon as keyof typeof iconMap]
-            
+
             return (
               <Tooltip key={contact.name} content={contact.url}>
                 <Button
@@ -158,7 +160,7 @@ export default function ContactPage() {
                   gap={4}
                   animation={`float ${6 + index}s ease-in-out infinite`}
                   style={{
-                    animationDelay: `${index * 0.5}s`
+                    animationDelay: `${index * 0.5}s`,
                   }}
                 >
                   {/* Shimmer effect overlay */}
@@ -175,7 +177,7 @@ export default function ContactPage() {
                       transform: "translateX(100%)",
                     }}
                   />
-                  
+
                   {/* Icon container with enhanced styling */}
                   <Box
                     position="relative"
@@ -190,14 +192,14 @@ export default function ContactPage() {
                     }}
                     transition="all 0.3s ease"
                   >
-                    <Icon 
-                      size={32} 
+                    <Icon
+                      size={32}
                       style={{
-                        filter: "drop-shadow(0 2px 4px rgba(91, 192, 190, 0.3))"
+                        filter: "drop-shadow(0 2px 4px rgba(91, 192, 190, 0.3))",
                       }}
                     />
                   </Box>
-                  
+
                   {/* Enhanced text styling */}
                   <Box
                     fontSize="md"
