@@ -43,16 +43,16 @@ function App() {
         color="text.primary"
       >
         <Grid
-          gridTemplateAreas={`"main main navigation" "main main navigation" "footer footer footer"`}
-          gridTemplateColumns="1fr 1fr 0.5fr"
-          gridTemplateRows="1fr 1fr 0.25fr"
+          gridTemplateAreas={`"main navigation" "footer footer"`}
+          gridTemplateColumns="1fr 0.3fr"
+          gridTemplateRows="1fr 150px"
           minHeight="calc(100vh - 4rem)"
           gap={4}
         >
-          <InterfaceFrame gridArea="main" depthLevel="deep">
+          <InterfaceFrame gridArea="main" depthLevel="deep" minH="100%">
             {renderPage()}
           </InterfaceFrame>
-          <InterfaceFrame gridArea="navigation" depthLevel="medium">
+          <InterfaceFrame gridArea="navigation" depthLevel="medium" alignSelf="start" w="280px">
             <Navigation />
           </InterfaceFrame>
           <InterfaceFrame gridArea="footer" depthLevel="shallow">

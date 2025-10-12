@@ -68,6 +68,31 @@ interface InterfaceFrameProps extends BoxProps {
   depthLevel?: "shallow" | "medium" | "deep"
 }
 
+const boltStyle = {
+  w: "12px",
+  h: "12px",
+  borderRadius: "50%",
+  bg: "linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, var(--chakra-colors-accent-teal) 30%, var(--chakra-colors-border-inner) 70%, rgba(0, 0, 0, 0.3) 100%)",
+  boxShadow: "inset 0 1px 2px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.2)",
+  _before: {
+    content: '""',
+    position: "absolute",
+    top: "2px",
+    left: "2px",
+    w: "8px",
+    h: "8px",
+    borderRadius: "50%",
+    bg: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
+  },
+}
+
+const cornerPositions = [
+  { top: "12px", left: "12px" },
+  { top: "12px", right: "12px" },
+  { bottom: "12px", left: "12px" },
+  { bottom: "12px", right: "12px" },
+]
+
 const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
   ({ children, isActive = false, maxWidth = "1200px", depthLevel = "medium", ...props }, ref) => {
     const bgColor = "bg.steel"
@@ -113,20 +138,19 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
           borderRadius="md"
           position="relative"
           transform={config.transform}
-          transition="all 0.3s ease"
+          transition="box-shadow 0.3s ease"
           _hover={{
-            transform: `${config.transform} translateY(-2px)`,
             boxShadow: `
-              inset 0 0 0 2px rgba(255, 255, 255, ${config.innerGlow + 0.05}),
+              inset 0 0 0 2px rgba(255, 255, 255, ${config.innerGlow + 0.03}),
               inset 0 0 0 4px ${borderInner},
               inset 0 0 0 8px ${borderOuter},
               0 0 0 4px ${isActive ? accentColor : borderInner},
               ${
                 isActive
                   ? `0 0 20px rgba(91, 192, 190, 0.1)`
-                  : `0 6px 30px rgba(0, 0, 0, ${
-                      config.shadowIntensity + 0.1
-                    }), 0 12px 50px rgba(0, 0, 0, ${config.shadowIntensity})`
+                  : `0 4px 20px rgba(0, 0, 0, ${config.shadowIntensity}), 0 8px 40px rgba(0, 0, 0, ${
+                      config.shadowIntensity * 0.7
+                    }), 0 16px 60px rgba(0, 0, 0, ${config.shadowIntensity * 0.4})`
               }
             `,
           }}
@@ -177,123 +201,10 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
           p={6}
           {...props}
         >
-          {/* Enhanced corner screws/bolts with depth */}
-          <Box
-            position="absolute"
-            top="12px"
-            left="12px"
-            w="12px"
-            h="12px"
-            borderRadius="50%"
-            bg="linear-gradient(135deg, 
-              rgba(255, 255, 255, 0.3) 0%, 
-              var(--chakra-colors-accent-teal) 30%, 
-              var(--chakra-colors-border-inner) 70%, 
-              rgba(0, 0, 0, 0.3) 100%)"
-            boxShadow={`
-              inset 0 1px 2px rgba(255, 255, 255, 0.4),
-              inset 0 -1px 2px rgba(0, 0, 0, 0.6),
-              0 2px 4px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(0, 0, 0, 0.2)
-            `}
-            _before={{
-              content: '""',
-              position: "absolute",
-              top: "2px",
-              left: "2px",
-              w: "8px",
-              h: "8px",
-              borderRadius: "50%",
-              bg: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
-            }}
-          />
-          <Box
-            position="absolute"
-            top="12px"
-            right="12px"
-            w="12px"
-            h="12px"
-            borderRadius="50%"
-            bg="linear-gradient(135deg, 
-              rgba(255, 255, 255, 0.3) 0%, 
-              var(--chakra-colors-accent-teal) 30%, 
-              var(--chakra-colors-border-inner) 70%, 
-              rgba(0, 0, 0, 0.3) 100%)"
-            boxShadow={`
-              inset 0 1px 2px rgba(255, 255, 255, 0.4),
-              inset 0 -1px 2px rgba(0, 0, 0, 0.6),
-              0 2px 4px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(0, 0, 0, 0.2)
-            `}
-            _before={{
-              content: '""',
-              position: "absolute",
-              top: "2px",
-              left: "2px",
-              w: "8px",
-              h: "8px",
-              borderRadius: "50%",
-              bg: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
-            }}
-          />
-          <Box
-            position="absolute"
-            bottom="12px"
-            left="12px"
-            w="12px"
-            h="12px"
-            borderRadius="50%"
-            bg="linear-gradient(135deg, 
-              rgba(255, 255, 255, 0.3) 0%, 
-              var(--chakra-colors-accent-teal) 30%, 
-              var(--chakra-colors-border-inner) 70%, 
-              rgba(0, 0, 0, 0.3) 100%)"
-            boxShadow={`
-              inset 0 1px 2px rgba(255, 255, 255, 0.4),
-              inset 0 -1px 2px rgba(0, 0, 0, 0.6),
-              0 2px 4px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(0, 0, 0, 0.2)
-            `}
-            _before={{
-              content: '""',
-              position: "absolute",
-              top: "2px",
-              left: "2px",
-              w: "8px",
-              h: "8px",
-              borderRadius: "50%",
-              bg: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
-            }}
-          />
-          <Box
-            position="absolute"
-            bottom="12px"
-            right="12px"
-            w="12px"
-            h="12px"
-            borderRadius="50%"
-            bg="linear-gradient(135deg, 
-              rgba(255, 255, 255, 0.3) 0%, 
-              var(--chakra-colors-accent-teal) 30%, 
-              var(--chakra-colors-border-inner) 70%, 
-              rgba(0, 0, 0, 0.3) 100%)"
-            boxShadow={`
-              inset 0 1px 2px rgba(255, 255, 255, 0.4),
-              inset 0 -1px 2px rgba(0, 0, 0, 0.6),
-              0 2px 4px rgba(0, 0, 0, 0.3),
-              0 0 0 1px rgba(0, 0, 0, 0.2)
-            `}
-            _before={{
-              content: '""',
-              position: "absolute",
-              top: "2px",
-              left: "2px",
-              w: "8px",
-              h: "8px",
-              borderRadius: "50%",
-              bg: "linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%)",
-            }}
-          />
+          {/* Corner bolts */}
+          {cornerPositions.map((position, i) => (
+            <Box key={i} position="absolute" {...position} {...boltStyle} />
+          ))}
 
           {children}
         </Box>

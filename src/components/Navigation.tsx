@@ -13,7 +13,7 @@ export default function Navigation() {
   const { currentPage, navigate } = useNavigationStore()
 
   return (
-    <VStack align="stretch" gap={3}>
+    <VStack align="stretch" gap={3} my={4}>
       {navItems.map(({ label, page }) => {
         const isActive = currentPage === page
         
