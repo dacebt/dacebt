@@ -24,6 +24,7 @@ const system = createSystem(defaultConfig, {
         },
         text: {
           primary: { value: "#E2E8F0" },
+          secondary: { value: "#94A3B8" },
           muted: { value: "#aaa" },
         },
       },

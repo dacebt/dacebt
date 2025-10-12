@@ -158,11 +158,34 @@ export default function ProjectCard({
         </Box>
       )}
 
-      {/* Key feature/metric */}
+      {/* Metrics and Key Features */}
       {(project.metrics.length > 0 || project.keyFeatures.length > 0) && (
-        <Text fontSize="xs" color="text.muted" mb={2} wordWrap="break-word" whiteSpace="normal">
-          • {project.metrics[0] || project.keyFeatures[0]}
-        </Text>
+        <Box mb={2}>
+          {project.metrics.map((metric, idx) => (
+            <Text
+              key={`metric-${idx}`}
+              fontSize="xs"
+              color="rgba(91, 192, 190, 0.8)"
+              mb={0.5}
+              wordWrap="break-word"
+              whiteSpace="normal"
+            >
+              📊 {metric}
+            </Text>
+          ))}
+          {project.keyFeatures.map((feature, idx) => (
+            <Text
+              key={`feature-${idx}`}
+              fontSize="xs"
+              color="text.secondary"
+              mb={0.5}
+              wordWrap="break-word"
+              whiteSpace="normal"
+            >
+              ⭐ {feature}
+            </Text>
+          ))}
+        </Box>
       )}
 
       {/* Links */}
