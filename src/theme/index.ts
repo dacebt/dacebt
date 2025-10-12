@@ -22,6 +22,10 @@ const system = createSystem(defaultConfig, {
         accent: {
           teal: { value: "#5BC0BE" },
         },
+        gradient: {
+          blue: { value: "#3B82F6" },
+          purple: { value: "#8B5CF6" },
+        },
         text: {
           primary: { value: "#E2E8F0" },
           secondary: { value: "#94A3B8" },

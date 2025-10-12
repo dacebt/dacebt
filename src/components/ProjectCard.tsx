@@ -1,4 +1,4 @@
-import { Box, Text, Image, Icon, Badge, Flex } from "@chakra-ui/react"
+import { Box, Text, Icon, Badge, Flex } from "@chakra-ui/react"
 import { Tooltip } from "./ui/tooltip"
 import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaBuilding } from "react-icons/fa"
 import { type Project } from "../data/projects"
@@ -71,36 +71,60 @@ export default function ProjectCard({
       flexDirection="column"
       opacity={project.currentlyContributing ? 1 : 0.85}
     >
-      {/* Project image/icon */}
-      <Box w="100%" h="50px" borderRadius="sm" overflow="hidden" bg="bg.dark" mb={2}>
-        {project.image ? (
-          <Image src={project.image} alt={project.name} maxH="100%" maxW="100%" objectFit="cover" />
-        ) : (
-          <Text color="accent.teal" fontSize="lg" fontWeight="bold" p={2}>
-            {project.name.charAt(0)}
-          </Text>
+      {/* Project banner */}
+      <Box
+        position="relative"
+        bg="bg.dark"
+        borderRadius="md"
+        p={4}
+        mb={3}
+        border="1px solid"
+        borderColor="border.inner"
+      >
+        {/* Personal badge - top left */}
+        {project.type === "personal" && (
+          <Badge
+            position="absolute"
+            top={2}
+            left={2}
+            size="sm"
+            colorScheme="green"
+            variant="solid"
+            fontSize="xs"
+            px={1.5}
+            py={0.5}
+          >
+            personal
+          </Badge>
         )}
-      </Box>
 
-      {/* Project name and badges */}
-      <Box display="flex" alignItems="center" justifyContent="space-between" mb={1}>
-        <Text fontSize="sm" fontWeight="bold" color="text.primary">
+        {/* Currently contributing indicator - top right */}
+        {!project.currentlyContributing && (
+          <Tooltip content="Currently not contributing">
+            <Icon
+              as={FaXmark}
+              position="absolute"
+              top={2}
+              right={2}
+              boxSize={3}
+              color="red.400"
+              opacity={0.7}
+            />
+          </Tooltip>
+        )}
+
+        {/* Project name with gradient */}
+        <Text
+          fontSize="xl"
+          fontWeight="bold"
+          textAlign="center"
+          backgroundImage="linear-gradient(135deg, #3B82F6, #8B5CF6)"
+          backgroundClip="text"
+          color="transparent"
+          lineHeight="1.2"
+        >
           {project.name}
         </Text>
-        <Box display="flex" alignItems="center" gap={1}>
-          {/* Only show badge for personal projects */}
-          {project.type === "personal" && (
-            <Badge size="sm" colorScheme="green" variant="solid" fontSize="xs" px={1.5} py={0.5}>
-              personal
-            </Badge>
-          )}
-          {/* Currently contributing indicator */}
-          {!project.currentlyContributing && (
-            <Tooltip content="Currently not contributing">
-              <Icon as={FaXmark} boxSize={2.5} color="red.400" opacity={0.7} />
-            </Tooltip>
-          )}
-        </Box>
       </Box>
 
       {/* Description */}
