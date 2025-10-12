@@ -2,7 +2,6 @@ import { createSystem, defaultConfig } from "@chakra-ui/react"
 
 const system = createSystem(defaultConfig, {
   theme: {
-    // Fonts will be defined here
     tokens: {
       fonts: {
         // Custom font families will be added here
@@ -10,6 +9,23 @@ const system = createSystem(defaultConfig, {
         // heading: { value: "Inter, sans-serif" },
         // body: { value: "Inter, sans-serif" },
         // mono: { value: "JetBrains Mono, monospace" },
+      },
+      colors: {
+        bg: {
+          dark: { value: "#0a0a0a" },
+          steel: { value: "#1D2126" },
+        },
+        border: {
+          inner: { value: "#4B5663" },
+          outer: { value: "#0E1013" },
+        },
+        accent: {
+          teal: { value: "#5BC0BE" },
+        },
+        text: {
+          primary: { value: "#E2E8F0" },
+          muted: { value: "#aaa" },
+        },
       },
     },
     // Text styles will be defined here
@@ -41,10 +57,6 @@ const system = createSystem(defaultConfig, {
       //   },
       // },
     },
-    // Other theme extensions will go here
-    // colors: {
-    //   // Custom color palette will be added here
-    // },
   },
 })
 

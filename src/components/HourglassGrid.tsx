@@ -49,7 +49,7 @@ const HourglassGrid: React.FC = () => {
         left="0"
         width="100vw"
         height="100vh"
-        bg="#0a0a0a"
+        bg="bg.dark"
         overflow="hidden"
         zIndex="-1"
       >
@@ -68,7 +68,7 @@ const HourglassGrid: React.FC = () => {
         >
           {Array.from({ length: 625 }, (_, i) => (
             <Box key={i} display="flex" alignItems="center" justifyContent="center" opacity="0.3">
-              <Box color="#aaa" style={{ animation: `pulse 3s ease-in-out ${i * 0.1}s infinite` }}>
+              <Box color="text.muted" style={{ animation: `pulse 3s ease-in-out ${i * 0.1}s infinite` }}>
                 <HourglassIcon boxSize="32px" />
               </Box>
             </Box>

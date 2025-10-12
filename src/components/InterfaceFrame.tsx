@@ -19,16 +19,16 @@ const borderGlow = `
   @keyframes borderGlow {
     0%, 100% {
       box-shadow: 
-        inset 0 0 0 4px #4B5663,
-        inset 0 0 0 8px #0E1013,
-        0 0 0 4px #5BC0BE,
+        inset 0 0 0 4px var(--chakra-colors-border-inner),
+        inset 0 0 0 8px var(--chakra-colors-border-outer),
+        0 0 0 4px var(--chakra-colors-accent-teal),
         0 0 20px rgba(91, 192, 190, 0.1);
     }
     50% {
       box-shadow: 
-        inset 0 0 0 4px #4B5663,
-        inset 0 0 0 8px #0E1013,
-        0 0 0 4px #5BC0BE,
+        inset 0 0 0 4px var(--chakra-colors-border-inner),
+        inset 0 0 0 8px var(--chakra-colors-border-outer),
+        0 0 0 4px var(--chakra-colors-accent-teal),
         0 0 30px rgba(91, 192, 190, 0.2);
     }
   }
@@ -42,11 +42,10 @@ interface InterfaceFrameProps extends BoxProps {
 
 const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
   ({ children, isActive = false, maxWidth = "1200px", ...props }, ref) => {
-    // Color scheme - cool tone
-    const bgColor = "#1D2126" // Steel background
-    const borderInner = "#4B5663"
-    const borderOuter = "#0E1013"
-    const accentColor = "#5BC0BE" // Teal accent
+    const bgColor = "bg.steel"
+    const borderInner = "border.inner"
+    const borderOuter = "border.outer"
+    const accentColor = "accent.teal"
 
     return (
       <>
@@ -109,7 +108,7 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
             w="10px"
             h="10px"
             borderRadius="50%"
-            bg={`linear-gradient(135deg, ${accentColor} 0%, ${borderInner} 100%)`}
+            bg="linear-gradient(135deg, var(--chakra-colors-accent-teal) 0%, var(--chakra-colors-border-inner) 100%)"
             boxShadow="inset 0 2px 4px rgba(0, 0, 0, 0.5)"
           />
           <Box
@@ -119,7 +118,7 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
             w="10px"
             h="10px"
             borderRadius="50%"
-            bg={`linear-gradient(135deg, ${accentColor} 0%, ${borderInner} 100%)`}
+            bg="linear-gradient(135deg, var(--chakra-colors-accent-teal) 0%, var(--chakra-colors-border-inner) 100%)"
             boxShadow="inset 0 2px 4px rgba(0, 0, 0, 0.5)"
           />
           <Box
@@ -129,7 +128,7 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
             w="10px"
             h="10px"
             borderRadius="50%"
-            bg={`linear-gradient(135deg, ${accentColor} 0%, ${borderInner} 100%)`}
+            bg="linear-gradient(135deg, var(--chakra-colors-accent-teal) 0%, var(--chakra-colors-border-inner) 100%)"
             boxShadow="inset 0 2px 4px rgba(0, 0, 0, 0.5)"
           />
           <Box
@@ -139,7 +138,7 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
             w="10px"
             h="10px"
             borderRadius="50%"
-            bg={`linear-gradient(135deg, ${accentColor} 0%, ${borderInner} 100%)`}
+            bg="linear-gradient(135deg, var(--chakra-colors-accent-teal) 0%, var(--chakra-colors-border-inner) 100%)"
             boxShadow="inset 0 2px 4px rgba(0, 0, 0, 0.5)"
           />
 

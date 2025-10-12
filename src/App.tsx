@@ -14,7 +14,7 @@ function App() {
         maxWidth="1200px"
         padding="2rem"
         backgroundColor="transparent"
-        color="#E2E8F0" // global text color
+        color="text.primary"
       >
         <Grid
           gridTemplateAreas={`"main main navigation" "main main navigation" "footer footer footer"`}
@@ -23,7 +23,7 @@ function App() {
           minHeight="calc(100vh - 4rem)" // Subtract padding and gap
           gap={4}
         >
-          <InterfaceFrame gridArea="main">
+          <InterfaceFrame gridArea="main" >
             <Box minHeight="100%">Hello</Box>
           </InterfaceFrame>
           <InterfaceFrame gridArea="navigation">
