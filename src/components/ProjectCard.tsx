@@ -1,6 +1,6 @@
-import { Box, Text, Image, Icon } from "@chakra-ui/react"
+import { Box, Text, Image, Icon, Badge } from "@chakra-ui/react"
 import { Tooltip } from "./ui/tooltip"
-import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook } from "react-icons/fa"
+import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaTimes, FaBuilding } from "react-icons/fa"
 import { type Project } from "../data/projects"
 
 const getLinkIcon = (linkType: string) => {
@@ -14,7 +14,7 @@ const getLinkIcon = (linkType: string) => {
     case "documentation":
       return FaBook
     case "company":
-      return FaExternalLinkAlt
+      return FaBuilding
     default:
       return FaExternalLinkAlt
   }
@@ -69,6 +69,7 @@ export default function ProjectCard({
       display="flex"
       flexDirection="column"
       minH="280px"
+      opacity={project.currentlyContributing ? 1 : 0.85}
     >
       {/* Project image/icon */}
       <Box w="100%" h="50px" borderRadius="sm" overflow="hidden" bg="bg.dark" mb={2}>
@@ -81,37 +82,23 @@ export default function ProjectCard({
         )}
       </Box>
 
-      {/* Project name and type indicator */}
+      {/* Project name and badges */}
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={1}>
         <Text fontSize="sm" fontWeight="bold" color="text.primary">
           {project.name}
         </Text>
         <Box display="flex" alignItems="center" gap={1}>
-          {/* Project type indicator */}
-          <Box
-            w="6px"
-            h="6px"
-            borderRadius="full"
-            bg={
-              project.type === "professional"
-                ? "blue.500"
-                : project.type === "personal"
-                ? "green.500"
-                : project.type === "experiment"
-                ? "purple.500"
-                : project.type === "collaboration"
-                ? "orange.500"
-                : "gray.500"
-            }
-          />
-          {project.currentlyContributing && (
-            <Box
-              w="4px"
-              h="4px"
-              borderRadius="full"
-              bg="accent.teal"
-              animation="activePulse 2s ease-in-out infinite"
-            />
+          {/* Only show badge for personal projects */}
+          {project.type === "personal" && (
+            <Badge size="sm" colorScheme="green" variant="solid" fontSize="xs" px={1.5} py={0.5}>
+              personal
+            </Badge>
+          )}
+          {/* Currently contributing indicator */}
+          {!project.currentlyContributing && (
+            <Tooltip content="Currently not contributing">
+              <Icon as={FaTimes} boxSize={2.5} color="red.400" opacity={0.7} />
+            </Tooltip>
           )}
         </Box>
       </Box>
