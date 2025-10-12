@@ -10,14 +10,14 @@ interface PageLayoutProps {
 export default function PageLayout({ title, subtitle, children }: PageLayoutProps) {
   return (
     <Box
-      height="100%"
       display="flex"
-      alignItems="flex-start"
-      justifyContent="center"
+      flexDirection="column"
+      gap={6}
+      alignItems="center"
       position="relative"
-      overflow="hidden"
-      bg="bg.dark"
-      py={8}
+      w="100%"
+      h="100%"
+      py={6}
     >
       {/* Animated background elements */}
       <Box
@@ -54,38 +54,35 @@ export default function PageLayout({ title, subtitle, children }: PageLayoutProp
         filter="blur(2px)"
       />
 
+      {/* Page title */}
+      <Box display="flex" flexDirection="column" gap={2} textAlign="center" position="relative" zIndex={1}>
+        <Text
+          fontSize="4xl"
+          fontWeight="bold"
+          color="text.primary"
+          letterSpacing="0.5px"
+          textTransform="uppercase"
+          bg="linear-gradient(135deg, #E2E8F0 0%, #5BC0BE 100%)"
+          bgClip="text"
+          textShadow="0 0 20px rgba(91, 192, 190, 0.3)"
+        >
+          {title}
+        </Text>
+        <Text fontSize="lg" color="text.muted" maxW="400px" lineHeight="1.6">
+          {subtitle}
+        </Text>
+      </Box>
+
+      {/* Content area - scrollable */}
       <Box
-        display="flex"
-        flexDirection="column"
-        gap={8}
-        alignItems="center"
+        flex="1"
+        w="100%"
+        overflowY="auto"
+        overflowX="hidden"
         position="relative"
         zIndex={1}
-        w="100%"
-        maxW="100%"
         px={4}
-        height="100%"
-        overflow="auto"
       >
-        {/* Page title */}
-        <Box display="flex" flexDirection="column" gap={2} textAlign="center">
-          <Text
-            fontSize="4xl"
-            fontWeight="bold"
-            color="text.primary"
-            letterSpacing="0.5px"
-            textTransform="uppercase"
-            bg="linear-gradient(135deg, #E2E8F0 0%, #5BC0BE 100%)"
-            bgClip="text"
-            textShadow="0 0 20px rgba(91, 192, 190, 0.3)"
-          >
-            {title}
-          </Text>
-          <Text fontSize="lg" color="text.muted" maxW="400px" lineHeight="1.6">
-            {subtitle}
-          </Text>
-        </Box>
-
         {children}
       </Box>
     </Box>

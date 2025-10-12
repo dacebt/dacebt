@@ -29,9 +29,6 @@ export default function ProjectsPage() {
         gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
         gap={4}
         w="100%"
-        maxW="100%"
-        overflow="hidden"
-        px={2}
       >
         {projects.map((project, index) => (
           <ProjectCard

@@ -46,11 +46,13 @@ function App() {
           gridTemplateAreas={`"main navigation" "footer footer"`}
           gridTemplateColumns="1fr 0.3fr"
           gridTemplateRows="1fr 150px"
-          minHeight="calc(100vh - 4rem)"
+          height="calc(100vh - 4rem)"
           gap={4}
         >
-          <InterfaceFrame gridArea="main" depthLevel="deep" minH="100%">
-            {renderPage()}
+          <InterfaceFrame gridArea="main" depthLevel="deep" h="100%" overflow="hidden">
+            <Box h="100%" overflow="auto">
+              {renderPage()}
+            </Box>
           </InterfaceFrame>
           <InterfaceFrame gridArea="navigation" depthLevel="medium" alignSelf="start" w="280px">
             <Navigation />

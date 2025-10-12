@@ -68,7 +68,6 @@ export default function ProjectCard({
       whiteSpace="normal"
       display="flex"
       flexDirection="column"
-      minH="280px"
       opacity={project.currentlyContributing ? 1 : 0.85}
     >
       {/* Project image/icon */}
