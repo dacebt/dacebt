@@ -1,4 +1,4 @@
-import { Box, Text, Image, Icon, Badge } from "@chakra-ui/react"
+import { Box, Text, Image, Icon, Badge, Flex } from "@chakra-ui/react"
 import { Tooltip } from "./ui/tooltip"
 import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaTimes, FaBuilding } from "react-icons/fa"
 import { type Project } from "../data/projects"
@@ -158,34 +158,44 @@ export default function ProjectCard({
       )}
 
       {/* Metrics and Key Features */}
-      {(project.metrics.length > 0 || project.keyFeatures.length > 0) && (
-        <Box mb={2}>
-          {project.metrics.map((metric, idx) => (
-            <Text
-              key={`metric-${idx}`}
-              fontSize="xs"
-              color="rgba(91, 192, 190, 0.8)"
-              mb={0.5}
-              wordWrap="break-word"
-              whiteSpace="normal"
-            >
-              📊 {metric}
-            </Text>
-          ))}
-          {project.keyFeatures.map((feature, idx) => (
-            <Text
-              key={`feature-${idx}`}
-              fontSize="xs"
-              color="text.secondary"
-              mb={0.5}
-              wordWrap="break-word"
-              whiteSpace="normal"
-            >
-              ⭐ {feature}
-            </Text>
-          ))}
-        </Box>
-      )}
+      <Flex flexDirection="column" gap={1} mb={2}>
+        {project.keyFeatures.map((feature, idx) => (
+          <Text
+            key={`feature-${idx}`}
+            fontSize="xs"
+            color="text.secondary"
+            mb={0.5}
+            wordWrap="break-word"
+            whiteSpace="normal"
+          >
+            ⭐ {feature}
+          </Text>
+        ))}
+        {project.metrics.map((metric, idx) => (
+          <Text
+            key={`metric-${idx}`}
+            fontSize="xs"
+            color="rgba(91, 192, 190, 0.8)"
+            mb={0.5}
+            wordWrap="break-word"
+            whiteSpace="normal"
+          >
+            📊 {metric}
+          </Text>
+        ))}
+        {project.contributions.map((contribution, idx) => (
+          <Text
+            key={`contribution-${idx}`}
+            fontSize="xs"
+            color="rgba(148, 163, 184, 0.9)"
+            mb={0.5}
+            wordWrap="break-word"
+            whiteSpace="normal"
+          >
+            🤝 {contribution}
+          </Text>
+        ))}
+      </Flex>
 
       {/* Links */}
       {allLinks.length > 0 && (
