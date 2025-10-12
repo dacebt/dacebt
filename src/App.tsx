@@ -23,10 +23,10 @@ function App() {
           minHeight="calc(100vh - 4rem)" // Subtract padding and gap
           gap={4}
         >
-          <InterfaceFrame gridArea="main" >
+          <InterfaceFrame gridArea="main" depthLevel="deep">
             <Box minHeight="100%">Hello</Box>
           </InterfaceFrame>
-          <InterfaceFrame gridArea="navigation">
+          <InterfaceFrame gridArea="navigation" depthLevel="medium">
             <>
               <Heading>Navigation</Heading>
               <Text>Home</Text>
@@ -36,7 +36,7 @@ function App() {
               <Text>Contact</Text>
             </>
           </InterfaceFrame>
-          <InterfaceFrame gridArea="footer">
+          <InterfaceFrame gridArea="footer" depthLevel="shallow">
             <></>
           </InterfaceFrame>
         </Grid>
