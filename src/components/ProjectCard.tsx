@@ -71,6 +71,30 @@ export default function ProjectCard({
       flexDirection="column"
       opacity={project.currentlyContributing ? 1 : 0.85}
     >
+      {/* Personal badge - bottom left of card */}
+      {project.type === "personal" && (
+        <Badge
+          position="absolute"
+          bottom={0}
+          left={0}
+          size="sm"
+          fontSize="xs"
+          px={2}
+          py={1}
+          bg="rgba(91, 192, 190, 0.15)"
+          color="accent.teal"
+          border="1px solid"
+          borderColor="accent.teal"
+          borderRadius="8px"
+          fontWeight="semibold"
+          backdropFilter="blur(8px)"
+          boxShadow="0 2px 8px rgba(91, 192, 190, 0.2)"
+          zIndex={1}
+        >
+          personal
+        </Badge>
+      )}
+
       {/* Project banner */}
       <Box
         position="relative"
@@ -81,23 +105,6 @@ export default function ProjectCard({
         border="1px solid"
         borderColor="border.inner"
       >
-        {/* Personal badge - top left */}
-        {project.type === "personal" && (
-          <Badge
-            position="absolute"
-            top={2}
-            left={2}
-            size="sm"
-            colorScheme="green"
-            variant="solid"
-            fontSize="xs"
-            px={1.5}
-            py={0.5}
-          >
-            personal
-          </Badge>
-        )}
-
         {/* Currently contributing indicator - top right */}
         {!project.currentlyContributing && (
           <Tooltip content="Currently not contributing">
