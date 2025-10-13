@@ -24,13 +24,15 @@ export default function ContactPage() {
   }, [])
 
   return (
-    <PageLayout title="Get In Touch" subtitle="Connect with me through any of these platforms">
+    <PageLayout title="Get In Touch" subtitle="Connect with me through any of these platforms" centerContent>
       {/* Contact cards grid */}
       <Grid
         gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
         gap={6}
         maxW="600px"
         w="100%"
+        mx="auto"
+        justifyItems="center"
       >
         {contactData.map((contact, index) => {
           const Icon = iconMap[contact.icon as keyof typeof iconMap]

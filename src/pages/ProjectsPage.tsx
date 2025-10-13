@@ -30,6 +30,7 @@ export default function ProjectsPage() {
         gap={4}
         w="100%"
         alignItems="start"
+        pt={4}
       >
         {projects.map((project, index) => (
           <ProjectCard

@@ -5,9 +5,10 @@ interface PageLayoutProps {
   title: string
   subtitle: string
   children: ReactNode
+  centerContent?: boolean
 }
 
-export default function PageLayout({ title, subtitle, children }: PageLayoutProps) {
+export default function PageLayout({ title, subtitle, children, centerContent = false }: PageLayoutProps) {
   return (
     <Box
       display="flex"
@@ -82,6 +83,9 @@ export default function PageLayout({ title, subtitle, children }: PageLayoutProp
         position="relative"
         zIndex={1}
         px={4}
+        display="flex"
+        alignItems={centerContent ? "center" : "flex-start"}
+        justifyContent={centerContent ? "center" : "flex-start"}
       >
         {children}
       </Box>
