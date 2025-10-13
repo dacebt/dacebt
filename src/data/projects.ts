@@ -56,50 +56,25 @@ const decentApp = createProject({
     documentation: "https://docs.decentdao.org/app",
   },
   technologies: ["React", "Chakra UI", "Zustand", "Viem", "Hardhat", "Solidity"],
-  keyFeatures: ["Safe integration", "Multi-chain support", "Onchain organization management"],
+  keyFeatures: [
+    "Safe Treasury Management",
+    "Sub Projects",
+    "Onchain Organization Management",
+    "Compliant Token Launches",
+  ],
   contributions: [
+    "5+ years of contributions",
+    "Core features development",
     "Architecture design",
-    "Core features",
     "Performance optimization",
-    "Frontend development",
     "Smart Contract development",
+    "Third Party Integrations",
   ],
-  metrics: [
-    "Work that directly contributed to the success of several Paid Clients",
-    "Maintained and modernized the app for several years",
-    "Led team of various sizes on feature planning and development",
-    "Managed the app's evolution from a simple proof of concept to a robust, production-ready application",
-  ],
+  metrics: ["$10m in seed funding", "Paid clients on platform"],
   learnings: [],
   challenges: [],
   featured: true,
   tags: ["fullstack", "web3", "decent", ""],
-})
-
-const lumenProtocol = createProject({
-  name: "Lumen Protocol",
-  shortDescription: "A small project to test a new technology.",
-  currentlyContributing: false,
-  fullDescription:
-    "This was a quick experiment to learn about a new framework and see how it compares to existing solutions.",
-  type: "experiment",
-  // todo add image
-  image: "/public/lumen-protocol.png",
-  gallery: [],
-  company: "Decent Labs",
-  companyUrl: "https://decent.build",
-  links: {
-    github: "",
-    demo: "",
-  },
-  technologies: [],
-  keyFeatures: [],
-  contributions: [],
-  metrics: [],
-  learnings: [],
-  challenges: [],
-  featured: false,
-  tags: ["decent", "lumen", "protocol", "experiment"],
 })
 
 const sarcophagusProtocol = createProject({
@@ -204,7 +179,6 @@ export const projects: Project[] = [
   decentApp,
   bitCraftOnlineProjectTool,
   mcpPromptCleaner,
-  lumenProtocol,
   sarcophagusProtocol,
   decentUi,
 ]
