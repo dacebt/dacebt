@@ -20,10 +20,11 @@ interface DialogueBoxProps extends Omit<BoxProps, "position"> {
   content: string
   position?: { top?: string; bottom?: string; left?: string; right?: string }
   hasMore?: boolean
+  onClick?: () => void
 }
 
 const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
-  ({ content, position, hasMore = true, ...props }, ref) => {
+  ({ content, position, hasMore = true, onClick, ...props }, ref) => {
     const defaultPosition = {
       bottom: "0px",
       left: "0px",
@@ -45,6 +46,19 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           minH="80px"
           display="flex"
           alignItems="center"
+          cursor={onClick ? "pointer" : "default"}
+          onClick={onClick}
+          transition="all 0.2s ease"
+          _hover={onClick ? {
+            boxShadow: `
+              inset 0 0 0 2px rgba(255, 255, 255, 0.12),
+              inset 0 0 0 4px var(--chakra-colors-accent-green),
+              inset 0 0 0 6px var(--chakra-colors-border-outer),
+              0 0 0 2px var(--chakra-colors-accent-green),
+              0 4px 24px rgba(16, 185, 129, 0.3),
+              0 8px 40px rgba(0, 0, 0, 0.4)
+            `
+          } : undefined}
           boxShadow={`
             inset 0 0 0 2px rgba(255, 255, 255, 0.08),
             inset 0 0 0 4px var(--chakra-colors-accent-green),
