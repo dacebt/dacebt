@@ -21,15 +21,20 @@ const system = createSystem(defaultConfig, {
         },
         accent: {
           teal: { value: "#5BC0BE" },
+          green: { value: "#10B981" },
+          steel: { value: "#64748B" },
+          steelLight: { value: "#94A3B8" },
         },
         gradient: {
           blue: { value: "#3B82F6" },
           purple: { value: "#8B5CF6" },
+          steel: { value: "#475569" },
+          steelLight: { value: "#64748B" },
         },
         text: {
           primary: { value: "#E2E8F0" },
           secondary: { value: "#94A3B8" },
-          muted: { value: "#aaa" },
+          muted: { value: "#64748B" },
         },
       },
     },
