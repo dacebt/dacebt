@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 import DialogueBox from "../components/DialogueBox"
 import { useDialogue } from "../hooks/useDialogue"
 
@@ -17,7 +17,6 @@ export default function HomePage() {
 
   return (
     <Box minHeight="100%" position="relative" p={6}>
-      <Text>Home page content</Text>
       <DialogueBox
         position={{ bottom: "50px" }}
         content={currentText}
