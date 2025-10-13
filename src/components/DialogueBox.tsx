@@ -21,24 +21,25 @@ interface DialogueBoxProps extends Omit<BoxProps, "position"> {
   position?: { top?: string; bottom?: string; left?: string; right?: string }
   hasMore?: boolean
   onClick?: () => void
+  cssPosition?: "absolute" | "relative" | "static"
 }
 
 const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
-  ({ content, position, hasMore = true, onClick, ...props }, ref) => {
+  ({ content, position, hasMore = true, onClick, cssPosition = "absolute", ...props }, ref) => {
     const defaultPosition = {
       bottom: "0px",
       left: "0px",
       right: "0px",
     }
 
-    const finalPosition = { ...defaultPosition, ...position }
+    const finalPosition = cssPosition === "absolute" ? { ...defaultPosition, ...position } : {}
 
     return (
       <>
         <style>{bounceAnimation}</style>
         <Box
           ref={ref}
-          position="absolute"
+          position={cssPosition}
           {...finalPosition}
           bg="bg.dark"
           borderRadius="8px"
@@ -86,9 +87,9 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           {/* Content */}
           <Text
             color="text.primary"
-            fontSize="lg"
+            fontSize="2xl"
             fontWeight="medium"
-            lineHeight="1.5"
+            lineHeight="1.6"
             textShadow="0 0 12px rgba(16, 185, 129, 0.3)"
             position="relative"
             zIndex={1}

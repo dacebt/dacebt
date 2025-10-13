@@ -58,7 +58,8 @@ export function useDialogue({
     const tagName = element.tagName.toLowerCase()
     const role = element.getAttribute("role")
     const cursor = getComputedStyle(element).cursor
-    const hasOnClick = element.hasAttribute("onclick") || (element as any).onclick !== null
+    const hasOnClick =
+      element.hasAttribute("onclick") || (element as HTMLDivElement).onclick !== null
 
     // Check for interactive HTML elements
     const interactiveTags = ["button", "a", "input", "textarea", "select", "option", "label"]
@@ -158,16 +159,9 @@ export function useDialogue({
     [isInteractiveElement, handleClick]
   )
 
-  // Global keyboard handler
-  const handleGlobalKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === " " || event.code === "Space") {
-        event.preventDefault()
-        handleClick()
-      }
-    },
-    [handleClick]
-  )
+  const handleGlobalKeyDown = useCallback(() => {
+    // No spacebar handling - only handle other keys if needed
+  }, [])
 
   // Start typing when message changes
   useEffect(() => {
