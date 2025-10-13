@@ -13,6 +13,7 @@ export default function HomePage() {
     messages: welcomeMessages,
     speed: 2,
     tickRate: 30,
+    useGlobalInteraction: true,
   })
 
   return (

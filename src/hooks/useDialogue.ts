@@ -9,6 +9,8 @@ interface UseDialogueOptions {
   tickRate?: number
   /** Auto-start typing on mount (default: true) */
   autoStart?: boolean
+  /** Enable global click and spacebar interaction (default: false) */
+  useGlobalInteraction?: boolean
 }
 
 interface UseDialogueReturn {
@@ -37,6 +39,7 @@ export function useDialogue({
   speed = 2,
   tickRate = 30,
   autoStart = true,
+  useGlobalInteraction = false,
 }: UseDialogueOptions): UseDialogueReturn {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [currentText, setCurrentText] = useState("")
@@ -47,6 +50,42 @@ export function useDialogue({
   const currentMessage = messages[currentIndex] || ""
   const hasMore = currentIndex < messages.length - 1
   const isComplete = currentIndex === messages.length - 1 && currentText === currentMessage
+
+  // Helper function to check if element is interactive
+  const isInteractiveElement = useCallback((element: EventTarget | null): boolean => {
+    if (!element || !(element instanceof Element)) return false
+
+    const tagName = element.tagName.toLowerCase()
+    const role = element.getAttribute("role")
+    const cursor = getComputedStyle(element).cursor
+    const hasOnClick = element.hasAttribute("onclick") || (element as any).onclick !== null
+
+    // Check for interactive HTML elements
+    const interactiveTags = ["button", "a", "input", "textarea", "select", "option", "label"]
+    if (interactiveTags.includes(tagName)) return true
+
+    // Check for interactive roles
+    const interactiveRoles = [
+      "button",
+      "link",
+      "menuitem",
+      "tab",
+      "option",
+      "checkbox",
+      "radio",
+      "switch",
+    ]
+    if (role && interactiveRoles.includes(role)) return true
+
+    // Check for pointer cursor or onclick handler
+    if (cursor === "pointer" || hasOnClick) return true
+
+    // Check if element is inside an interactive container
+    const parent = element.closest('button, a, [role="button"], [role="link"], [onclick]')
+    if (parent) return true
+
+    return false
+  }, [])
 
   // Clear interval helper
   const clearTypingInterval = useCallback(() => {
@@ -110,6 +149,26 @@ export function useDialogue({
     }
   }, [isTyping, hasMore, skipTyping, next])
 
+  // Global click handler
+  const handleGlobalClick = useCallback(
+    (event: MouseEvent) => {
+      if (isInteractiveElement(event.target)) return
+      handleClick()
+    },
+    [isInteractiveElement, handleClick]
+  )
+
+  // Global keyboard handler
+  const handleGlobalKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === " " || event.code === "Space") {
+        event.preventDefault()
+        handleClick()
+      }
+    },
+    [handleClick]
+  )
+
   // Start typing when message changes
   useEffect(() => {
     if (autoStart || currentIndex > 0) {
@@ -120,6 +179,19 @@ export function useDialogue({
       clearTypingInterval()
     }
   }, [currentIndex, autoStart, startTyping, clearTypingInterval])
+
+  // Global event listeners
+  useEffect(() => {
+    if (!useGlobalInteraction) return
+
+    document.addEventListener("click", handleGlobalClick)
+    document.addEventListener("keydown", handleGlobalKeyDown)
+
+    return () => {
+      document.removeEventListener("click", handleGlobalClick)
+      document.removeEventListener("keydown", handleGlobalKeyDown)
+    }
+  }, [useGlobalInteraction, handleGlobalClick, handleGlobalKeyDown])
 
   // Cleanup on unmount
   useEffect(() => {
