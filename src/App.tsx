@@ -5,7 +5,6 @@ import { Box, Grid } from "@chakra-ui/react"
 import { useNavigationStore } from "./store/navigationStore"
 import HomePage from "./pages/HomePage"
 import ProjectsPage from "./pages/ProjectsPage"
-import ExperimentsPage from "./pages/ExperimentsPage"
 import AboutPage from "./pages/AboutPage"
 import ContactPage from "./pages/ContactPage"
 
@@ -18,8 +17,7 @@ function App() {
         return <HomePage />
       case "projects":
         return <ProjectsPage />
-      case "experiments":
-        return <ExperimentsPage />
+
       case "about":
         return <AboutPage />
       case "contact":

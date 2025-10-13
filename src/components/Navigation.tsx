@@ -4,7 +4,6 @@ import { useNavigationStore, type Page } from "../store/navigationStore"
 const navItems: { label: string; page: Page }[] = [
   { label: "Home", page: "home" },
   { label: "Projects", page: "projects" },
-  { label: "Experiments", page: "experiments" },
   { label: "About", page: "about" },
   { label: "Contact", page: "contact" },
 ]
@@ -16,7 +15,7 @@ export default function Navigation() {
     <VStack align="stretch" gap={3} my={4}>
       {navItems.map(({ label, page }) => {
         const isActive = currentPage === page
-        
+
         return (
           <Box
             key={page}
