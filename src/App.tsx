@@ -17,7 +17,6 @@ function App() {
         return <HomePage />
       case "projects":
         return <ProjectsPage />
-
       case "about":
         return <AboutPage />
       case "contact":
