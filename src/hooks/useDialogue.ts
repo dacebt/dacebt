@@ -1,8 +1,19 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 
+export interface DialogueMessage {
+  /** The dialogue text content */
+  message: string
+  /** Speaker name for the label */
+  speaker: string
+  /** Path to speaker image */
+  image?: string
+  /** Where to position the speaker image (defaults to 'left') */
+  imagePosition?: "left" | "right" | "center"
+}
+
 interface UseDialogueOptions {
-  /** Array of text messages to display sequentially */
-  messages: string[]
+  /** Array of dialogue messages to display sequentially */
+  messages: DialogueMessage[]
   /** Characters per tick for typing speed (default: 2) */
   speed?: number
   /** Milliseconds between ticks (default: 30) */
@@ -16,6 +27,8 @@ interface UseDialogueOptions {
 interface UseDialogueReturn {
   /** Current text being displayed (may be partial during typing) */
   currentText: string
+  /** Current message object with speaker and image info */
+  currentMessage: DialogueMessage
   /** Whether text is currently being typed */
   isTyping: boolean
   /** Index of current message in the messages array */
@@ -47,7 +60,8 @@ export function useDialogue({
   const charIndexRef = useRef(0)
   const intervalRef = useRef<number | null>(null)
 
-  const currentMessage = messages[currentIndex] || ""
+  const currentMessageObj = messages[currentIndex] || { message: "", speaker: "" }
+  const currentMessage = currentMessageObj.message
   const hasMore = currentIndex < messages.length - 1
   const isComplete = currentIndex === messages.length - 1 && currentText === currentMessage
 
@@ -196,6 +210,7 @@ export function useDialogue({
 
   return {
     currentText,
+    currentMessage: currentMessageObj,
     isTyping,
     currentIndex,
     hasMore,

@@ -1,15 +1,10 @@
 import { Box } from "@chakra-ui/react"
 import DialogueBox from "../components/DialogueBox"
 import { useDialogue } from "../hooks/useDialogue"
-
-const welcomeMessages = [
-  "Welcome to my portfolio!",
-  "I'm a software engineer with a passion for building great products.",
-  "Please navigate to the projects page to see my work, or check out the contact page to get in touch!",
-]
+import { welcomeMessages } from "../data/home"
 
 export default function HomePage() {
-  const { currentText, hasMore, handleClick } = useDialogue({
+  const { currentText, currentMessage, hasMore, handleClick } = useDialogue({
     messages: welcomeMessages,
     speed: 2,
     tickRate: 30,
@@ -21,6 +16,9 @@ export default function HomePage() {
       <DialogueBox
         position={{ bottom: "50px" }}
         content={currentText}
+        speaker={currentMessage.speaker}
+        speakerImage={currentMessage.image}
+        imagePosition={currentMessage.imagePosition}
         hasMore={hasMore}
         onClick={handleClick}
       />

@@ -1,17 +1,16 @@
 import { Dialog, Portal, Box, Button, CloseButton } from "@chakra-ui/react"
 import DialogueBox from "./DialogueBox"
-import { useDialogue } from "../hooks/useDialogue"
+import { useDialogue, type DialogueMessage } from "../hooks/useDialogue"
 
 interface ModalDialogueProps {
   isOpen: boolean
   onClose: () => void
-  messages: string[]
+  messages: DialogueMessage[]
   title?: string
 }
 
 export default function ModalDialogue({ isOpen, onClose, messages }: ModalDialogueProps) {
-
-  const { currentText, hasMore, isComplete, isTyping, handleClick } = useDialogue({
+  const { currentText, currentMessage, hasMore, isComplete, isTyping, handleClick } = useDialogue({
     messages,
     speed: 1,
     tickRate: 40,
@@ -83,12 +82,12 @@ export default function ModalDialogue({ isOpen, onClose, messages }: ModalDialog
             </Dialog.CloseTrigger>
 
             {/* App-sized dialogue */}
-            <Dialog.Body 
-              p={6} 
-              position="relative" 
-              zIndex={1} 
-              flex="1" 
-              w="100%" 
+            <Dialog.Body
+              p={6}
+              position="relative"
+              zIndex={1}
+              flex="1"
+              w="100%"
               h="100%"
               display="flex"
               alignItems="center"
@@ -96,6 +95,9 @@ export default function ModalDialogue({ isOpen, onClose, messages }: ModalDialog
             >
               <DialogueBox
                 content={currentText}
+                speaker={currentMessage.speaker}
+                speakerImage={currentMessage.image}
+                imagePosition={currentMessage.imagePosition}
                 hasMore={hasMore}
                 onClick={handleDialogueClick}
                 cssPosition="relative"
