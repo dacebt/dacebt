@@ -132,12 +132,12 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           {speakerImage && (
             <Box
               position="absolute"
-              bottom="100%"
+              bottom="102%"
               {...(imagePosition === "left" && { left: "0" })}
               {...(imagePosition === "right" && { right: "0" })}
               {...(imagePosition === "center" && { left: "50%", transform: "translateX(-50%)" })}
-              w="120px"
-              h="160px"
+              w="auto"
+              h="320px"
               zIndex={0}
               overflow="hidden"
             >
