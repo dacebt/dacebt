@@ -15,7 +15,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "Career, huh? Everyone's got one, but yours sounds like it's been a few different ones. Where did it actually start?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -29,7 +29,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "From kitchens to code... quite the leap. What was the moment you knew it wasn't just a hobby anymore?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -43,7 +43,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "Smart move. Sometimes one real connection beats a dozen certificates. Did that plan work out the way you hoped?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -57,7 +57,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "Sounds like the right gamble. Every good story needs that first mentor moment. So what came after graduation—straight into the industry?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -71,7 +71,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "From chef to developer—quite the arc. Seems like every bold step paid off. Guess this is where the adventure really begins.",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
     ],
@@ -83,7 +83,7 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "Full stack... what do you mean?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -96,7 +96,7 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "Impressive confidence. But surely you favor one side over the other?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -110,7 +110,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "Great! Being able to tackle problems without being limited by technology is essential. Just don't forget—the foundations of programming always matter.",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -129,7 +129,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "So, before the code—there were knives, heat, and a kitchen full of chaos. What kept you in that world for a decade?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -143,7 +143,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "That sounds like trial by fire—and grease. What pushed you to keep climbing instead of burning out like most do in that industry?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -157,7 +157,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "That's the mark of an engineer hiding in a chef's coat—caring more about systems than seasoning. So when did you know it was time to hang up the apron?",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -171,7 +171,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "From sauté pans to spreadsheets—that's quite the pivot. Sounds like that data-entry job was the bridge that turned frustration into momentum.",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
     ],
@@ -226,7 +226,7 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "So let's talk family...",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
@@ -238,7 +238,7 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "By all means...",
         speaker: "Narrator",
-        image: "/images/avatar.png", // TODO: Replace with narrator.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
