@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react"
-import SimpleDialogueBox from "../components/SimpleDialogueBox"
+import DialogueBox from "../components/DialogueBox"
 import { useSimpleDialogue } from "../hooks/useSimpleDialogue"
 import { welcomeMessages } from "../data/home"
 
@@ -10,7 +10,8 @@ export default function HomePage() {
 
   return (
     <Box minHeight="100%" position="relative" p={6}>
-      <SimpleDialogueBox
+      <DialogueBox
+        variant="home"
         position={{ bottom: "50px" }}
         content={currentMessage.message}
         speaker={currentMessage.speaker}

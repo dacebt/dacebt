@@ -1,4 +1,5 @@
-import { Dialog, Portal, Button, CloseButton, Text, Box } from "@chakra-ui/react"
+import { Dialog, Portal, Button, CloseButton, Box } from "@chakra-ui/react"
+import DialogueBox from "./DialogueBox"
 import { useSimpleDialogue, type DialogueMessage } from "../hooks/useSimpleDialogue"
 import { useEffect } from "react"
 
@@ -127,136 +128,17 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
             )}
 
             {/* Main dialogue content */}
-            <Box
-              bg="bg.dark"
-              borderRadius="8px"
-              p={8}
-              minH="200px"
-              w="100%"
-              maxW="800px"
-              display="flex"
-              alignItems="center"
-              gap={6}
-              cursor="pointer"
+            <DialogueBox
+              variant="modal"
+              content={currentMessage.message}
+              speaker={currentMessage.speaker}
+              speakerImage={currentMessage.image}
+              imagePosition={currentMessage.imagePosition}
+              hasMore={hasMore}
               onClick={handleContentClick}
-              transition="all 0.2s ease"
-              _hover={{
-                boxShadow: `
-                  inset 0 0 0 2px rgba(255, 255, 255, 0.12),
-                  inset 0 0 0 4px var(--chakra-colors-accent-green),
-                  inset 0 0 0 6px var(--chakra-colors-border-outer),
-                  0 0 0 2px var(--chakra-colors-accent-green),
-                  0 4px 24px rgba(16, 185, 129, 0.3),
-                  0 8px 40px rgba(0, 0, 0, 0.4)
-                `,
-              }}
-              boxShadow={`
-                inset 0 0 0 2px rgba(255, 255, 255, 0.08),
-                inset 0 0 0 4px var(--chakra-colors-accent-green),
-                inset 0 0 0 6px var(--chakra-colors-border-outer),
-                0 0 0 2px var(--chakra-colors-accent-green),
-                0 4px 20px rgba(16, 185, 129, 0.2),
-                0 8px 40px rgba(0, 0, 0, 0.4)
-              `}
-              _before={{
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                borderRadius: "8px",
-                background: `linear-gradient(135deg, 
-                  rgba(16, 185, 129, 0.05) 0%, 
-                  transparent 30%, 
-                  rgba(0, 0, 0, 0.3) 100%)`,
-                pointerEvents: "none",
-              }}
-              position="relative"
-            >
-              {/* Speaker Label */}
-              {currentMessage.speaker && (
-                <Box
-                  position="absolute"
-                  top="-12px"
-                  left="16px"
-                  bg="bg.dark"
-                  color="accent.green"
-                  px={3}
-                  py={1}
-                  borderRadius="md"
-                  fontSize="sm"
-                  fontWeight="bold"
-                  textTransform="uppercase"
-                  letterSpacing="0.5px"
-                  border="1px solid"
-                  borderColor="accent.green"
-                  boxShadow="0 0 8px rgba(16, 185, 129, 0.3)"
-                  zIndex={2}
-                >
-                  {currentMessage.speaker}
-                </Box>
-              )}
-
-              {/* Speaker Avatar */}
-              {currentMessage.image && (
-                <Box
-                  w="64px"
-                  h="64px"
-                  borderRadius="full"
-                  bg="bg.steel"
-                  border="2px solid"
-                  borderColor="accent.green"
-                  boxShadow="0 0 8px rgba(16, 185, 129, 0.3)"
-                  flexShrink={0}
-                  overflow="hidden"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <img
-                    src={currentMessage.image}
-                    alt={currentMessage.speaker || "Speaker"}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      borderRadius: "50%",
-                    }}
-                  />
-                </Box>
-              )}
-
-              {/* Message Content */}
-              <Text
-                color="text.primary"
-                fontSize="2xl"
-                fontWeight="medium"
-                lineHeight="1.6"
-                textShadow="0 0 12px rgba(16, 185, 129, 0.3)"
-                position="relative"
-                zIndex={1}
-                flex={1}
-              >
-                {currentMessage.message}
-              </Text>
-
-              {/* Continue indicator */}
-              {hasMore && (
-                <Box
-                  w="0"
-                  h="0"
-                  borderLeft="8px solid transparent"
-                  borderRight="8px solid transparent"
-                  borderTop="10px solid"
-                  borderTopColor="accent.green"
-                  opacity={0.8}
-                  flexShrink={0}
-                  animation="bounce 1.5s ease-in-out infinite"
-                  transition="all 0.3s ease"
-                />
-              )}
-            </Box>
+              w="100%"
+              maxW="900px"
+            />
 
             {/* Close button at bottom */}
             {isComplete && (

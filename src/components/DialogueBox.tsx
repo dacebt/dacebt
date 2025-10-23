@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, Text, type BoxProps } from "@chakra-ui/react"
 
-interface SimpleDialogueBoxProps extends Omit<BoxProps, "position"> {
+interface DialogueBoxProps extends Omit<BoxProps, "position"> {
   content: string
   speaker?: string
   speakerImage?: string
@@ -10,9 +10,10 @@ interface SimpleDialogueBoxProps extends Omit<BoxProps, "position"> {
   hasMore?: boolean
   onClick?: () => void
   cssPosition?: "absolute" | "relative" | "static"
+  variant?: "home" | "modal"
 }
 
-const SimpleDialogueBox = React.forwardRef<HTMLDivElement, SimpleDialogueBoxProps>(
+const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
   (
     {
       content,
@@ -23,6 +24,7 @@ const SimpleDialogueBox = React.forwardRef<HTMLDivElement, SimpleDialogueBoxProp
       hasMore = true,
       onClick,
       cssPosition = "absolute",
+      variant = "home",
       ...props
     },
     ref
@@ -35,42 +37,52 @@ const SimpleDialogueBox = React.forwardRef<HTMLDivElement, SimpleDialogueBoxProp
 
     const finalPosition = cssPosition === "absolute" ? { ...defaultPosition, ...position } : {}
 
+    // Variant-specific styling
+    const isModal = variant === "modal"
+    const avatarSize = isModal ? "100px" : "80px"
+    const padding = isModal ? 10 : 10
+    const minHeight = isModal ? "250px" : "140px"
+    const gap = isModal ? 8 : 8
+
     return (
       <Box
         ref={ref}
         position={cssPosition}
         {...finalPosition}
-        bg="bg.dark"
-        borderRadius="8px"
-        p={6}
-        minH="80px"
+        bg="linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(29, 33, 38, 0.9) 100%)"
+        borderRadius="16px"
+        p={padding}
+        minH={minHeight}
         display="flex"
         alignItems="center"
-        gap={4}
+        gap={gap}
         cursor={onClick ? "pointer" : "default"}
         onClick={onClick}
-        transition="all 0.2s ease"
+        transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
         _hover={
           onClick
             ? {
+                transform: "translateY(-2px)",
                 boxShadow: `
-              inset 0 0 0 2px rgba(255, 255, 255, 0.12),
-              inset 0 0 0 4px var(--chakra-colors-accent-green),
-              inset 0 0 0 6px var(--chakra-colors-border-outer),
-              0 0 0 2px var(--chakra-colors-accent-green),
-              0 4px 24px rgba(16, 185, 129, 0.3),
-              0 8px 40px rgba(0, 0, 0, 0.4)
-            `,
+                  inset 0 0 0 2px rgba(255, 255, 255, 0.15),
+                  inset 0 0 0 4px var(--chakra-colors-accent-green),
+                  inset 0 0 0 6px var(--chakra-colors-border-outer),
+                  0 0 0 3px var(--chakra-colors-accent-green),
+                  0 8px 32px rgba(16, 185, 129, 0.4),
+                  0 16px 64px rgba(0, 0, 0, 0.6),
+                  0 0 0 1px rgba(255, 255, 255, 0.1)
+                `,
               }
             : undefined
         }
         boxShadow={`
-          inset 0 0 0 2px rgba(255, 255, 255, 0.08),
+          inset 0 0 0 2px rgba(255, 255, 255, 0.1),
           inset 0 0 0 4px var(--chakra-colors-accent-green),
           inset 0 0 0 6px var(--chakra-colors-border-outer),
           0 0 0 2px var(--chakra-colors-accent-green),
-          0 4px 20px rgba(16, 185, 129, 0.2),
-          0 8px 40px rgba(0, 0, 0, 0.4)
+          0 6px 24px rgba(16, 185, 129, 0.25),
+          0 12px 48px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.05)
         `}
         _before={{
           content: '""',
@@ -79,7 +91,7 @@ const SimpleDialogueBox = React.forwardRef<HTMLDivElement, SimpleDialogueBoxProp
           left: 0,
           right: 0,
           bottom: 0,
-          borderRadius: "8px",
+          borderRadius: "16px",
           background: `linear-gradient(135deg, 
             rgba(16, 185, 129, 0.05) 0%, 
             transparent 30%, 
@@ -115,18 +127,30 @@ const SimpleDialogueBox = React.forwardRef<HTMLDivElement, SimpleDialogueBoxProp
         {/* Speaker Avatar */}
         {speakerImage && (
           <Box
-            w="48px"
-            h="48px"
+            w={avatarSize}
+            h={avatarSize}
             borderRadius="full"
             bg="bg.steel"
-            border="2px solid"
+            border="3px solid"
             borderColor="accent.green"
-            boxShadow="0 0 8px rgba(16, 185, 129, 0.3)"
+            boxShadow="0 0 12px rgba(16, 185, 129, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1)"
             flexShrink={0}
             overflow="hidden"
             display="flex"
             alignItems="center"
             justifyContent="center"
+            position="relative"
+            _before={{
+              content: '""',
+              position: "absolute",
+              top: "-3px",
+              left: "-3px",
+              right: "-3px",
+              bottom: "-3px",
+              borderRadius: "full",
+              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(91, 192, 190, 0.3) 100%)",
+              zIndex: -1,
+            }}
           >
             <img
               src={speakerImage}
@@ -144,13 +168,15 @@ const SimpleDialogueBox = React.forwardRef<HTMLDivElement, SimpleDialogueBoxProp
         {/* Content */}
         <Text
           color="text.primary"
-          fontSize="2xl"
-          fontWeight="medium"
+          fontSize={isModal ? "3xl" : "2xl"}
+          fontWeight="500"
           lineHeight="1.6"
-          textShadow="0 0 12px rgba(16, 185, 129, 0.3)"
+          textShadow="0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(16, 185, 129, 0.3)"
           position="relative"
           zIndex={1}
           flex={1}
+          letterSpacing="0.2px"
+          fontFamily="system-ui, -apple-system, sans-serif"
         >
           {content}
         </Text>
@@ -175,6 +201,6 @@ const SimpleDialogueBox = React.forwardRef<HTMLDivElement, SimpleDialogueBoxProp
   }
 )
 
-SimpleDialogueBox.displayName = "SimpleDialogueBox"
+DialogueBox.displayName = "DialogueBox"
 
-export default SimpleDialogueBox
+export default DialogueBox
