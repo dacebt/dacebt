@@ -1,21 +1,18 @@
 import { Box } from "@chakra-ui/react"
-import DialogueBox from "../components/DialogueBox"
-import { useDialogue } from "../hooks/useDialogue"
+import SimpleDialogueBox from "../components/SimpleDialogueBox"
+import { useSimpleDialogue } from "../hooks/useSimpleDialogue"
 import { welcomeMessages } from "../data/home"
 
 export default function HomePage() {
-  const { currentText, currentMessage, hasMore, handleClick } = useDialogue({
+  const { currentMessage, hasMore, handleClick } = useSimpleDialogue({
     messages: welcomeMessages,
-    speed: 2,
-    tickRate: 30,
-    useGlobalInteraction: true,
   })
 
   return (
     <Box minHeight="100%" position="relative" p={6}>
-      <DialogueBox
+      <SimpleDialogueBox
         position={{ bottom: "50px" }}
-        content={currentText}
+        content={currentMessage.message}
         speaker={currentMessage.speaker}
         speakerImage={currentMessage.image}
         imagePosition={currentMessage.imagePosition}

@@ -1,4 +1,4 @@
-import { type DialogueMessage } from "../hooks/useDialogue"
+import { type DialogueMessage } from "../hooks/useSimpleDialogue"
 
 // TODO: Replace with actual speaker images when available
 // Current speakers: narrator, you

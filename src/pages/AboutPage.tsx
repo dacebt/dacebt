@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Box, Button, Grid, Text } from "@chakra-ui/react"
 import PageLayout from "../components/PageLayout"
-import ModalDialogue from "../components/ModalDialogue"
+import ConversationModal from "../components/ConversationModal"
 import { aboutTopics, type AboutTopic } from "../data/about"
 import { injectAnimations } from "../utils/animations"
 
@@ -154,7 +154,7 @@ export default function AboutPage() {
 
       {/* Modal for dialogue */}
       {selectedTopic && isModalOpen && (
-        <ModalDialogue
+        <ConversationModal
           isOpen={isModalOpen}
           onClose={handleModalClose}
           messages={selectedTopic.messages}
