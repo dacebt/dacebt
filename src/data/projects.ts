@@ -129,25 +129,73 @@ const mcpPromptCleaner = createProject({
 })
 
 const bitCraftOnlineProjectTool = createProject({
-  name: "BitCraft Online Project Tool",
+  name: "BitCraft Project Planner & Recipe Calculator",
   currentlyContributing: true,
-  shortDescription: "A tool to manage projects for Massively Multiplayer game BitCraft Online",
-  fullDescription: "",
+  shortDescription:
+    "A sophisticated web application designed as the ultimate companion tool for BitCraft Online players",
+  fullDescription:
+    "A sophisticated web application designed as the ultimate companion tool for BitCraft Online players. The app provides intelligent recipe calculation, unified inventory management, and project planning capabilities. It integrates with the BitJita API to pull real-time player data and uses the official BitCraft GameData to provide accurate recipe calculations. The system features a two-pass algorithm that builds complete recipe trees and applies inventory reductions with dependency awareness, allowing players to see exactly what materials they need after accounting for their current inventory across personal storage, bank vaults, claim buildings, and recovery stashes.",
   type: "personal",
   // todo add image
   image: "/public/bitcraftonline-project-tool.png",
   gallery: [],
   links: {
     github: "https://github.com/Da-Colon/bitcraftonline-project-tool",
+    website: "https://bitcraftonlinetools.netlify.app/",
   },
-  technologies: ["Remix", "Cursor", "Cascade (Windsurf)"],
-  keyFeatures: ["Recipe Calculator", "Inventory Management"],
+  technologies: [
+    "React 18.2",
+    "Remix 2.12",
+    "Vite 5.1",
+    "TypeScript 5.1",
+    "Chakra UI 2.8",
+    "Emotion 11",
+    "Netlify",
+    "Zod",
+    "ioredis",
+    "Vitest",
+    "ESLint",
+  ],
+  keyFeatures: [
+    "Deep Recipe Breakdown with recursive material calculations",
+    "Multi-Source Inventory Tracking across personal, banks, storage, and claims",
+    "Persistent Selections that track inventories across sessions",
+  ],
   contributions: [],
-  metrics: ["Created a tool to help the Online Team build projects faster"],
-  learnings: ["Wanted to learn a different framework (Remix)", "First full Vibe coded project"],
-  challenges: [],
+  metrics: [
+    "Handles complex recipe trees with 100+ items across 10+ tiers",
+    "Processes inventory data from multiple sources (personal, claims, banks)",
+    "Supports 1,000+ game items with complete recipe database",
+    "Sub-5 second calculation times for complex recipes",
+  ],
+  learnings: [
+    "Advanced algorithm design for dependency-aware recipe calculations",
+    "Performance optimization for large dataset processing",
+    "Modern React patterns with Remix SSR and client-side hydration",
+  ],
+  challenges: [
+    "Complex Recipe Dependencies: Building algorithms to handle multi-tier recipe trees with circular dependency detection",
+    "Inventory Aggregation: Combining data from multiple sources with different data formats",
+    "Performance Optimization: Ensuring sub-5 second calculations for recipes with 100+ items across 10+ tiers",
+  ],
   featured: true,
-  tags: ["remix", "cursor", "cascade", "windsurf"],
+  tags: [
+    "react",
+    "remix",
+    "typescript",
+    "chakra-ui",
+    "bitcraft",
+    "gaming",
+    "recipe-calculator",
+    "inventory-management",
+    "real-time-api",
+    "netlify",
+    "vite",
+    "testing",
+    "algorithm",
+    "data-processing",
+    "mmo-tools",
+  ],
 })
 
 const decentUi = createProject({
