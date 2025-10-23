@@ -1,22 +1,19 @@
 import { Box } from "@chakra-ui/react"
-import DialogueBox from "../components/DialogueBox"
+import StackedDialogueBox from "../components/StackedDialogueBox"
 import { useSimpleDialogue } from "../hooks/useSimpleDialogue"
 import { welcomeMessages } from "../data/home"
 
 export default function HomePage() {
-  const { currentMessage, hasMore, handleClick } = useSimpleDialogue({
+  const { visibleMessages, hasMore, handleClick } = useSimpleDialogue({
     messages: welcomeMessages,
   })
 
   return (
     <Box minHeight="100%" position="relative" p={6}>
-      <DialogueBox
+      <StackedDialogueBox
         variant="home"
         position={{ bottom: "50px" }}
-        content={currentMessage.message}
-        speaker={currentMessage.speaker}
-        speakerImage={currentMessage.image}
-        imagePosition={currentMessage.imagePosition}
+        messages={visibleMessages}
         hasMore={hasMore}
         onClick={handleClick}
       />

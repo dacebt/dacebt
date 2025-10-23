@@ -1,5 +1,5 @@
 import { Dialog, Portal, Button, CloseButton, Box } from "@chakra-ui/react"
-import DialogueBox from "./DialogueBox"
+import StackedDialogueBox from "./StackedDialogueBox"
 import { useSimpleDialogue, type DialogueMessage } from "../hooks/useSimpleDialogue"
 import { useEffect } from "react"
 
@@ -12,8 +12,8 @@ interface ConversationModalProps {
 
 export default function ConversationModal({ isOpen, onClose, messages }: ConversationModalProps) {
   const { 
-    currentMessage, 
-    currentIndex, 
+    visibleMessages,
+    visibleCount,
     totalMessages, 
     hasMore, 
     isComplete, 
@@ -102,7 +102,7 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
               fontSize="sm"
               fontWeight="medium"
             >
-              Message {currentIndex + 1} of {totalMessages}
+              Message {visibleCount} of {totalMessages}
             </Box>
 
             {/* Skip to End button */}
@@ -128,12 +128,9 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
             )}
 
             {/* Main dialogue content */}
-            <DialogueBox
+            <StackedDialogueBox
               variant="modal"
-              content={currentMessage.message}
-              speaker={currentMessage.speaker}
-              speakerImage={currentMessage.image}
-              imagePosition={currentMessage.imagePosition}
+              messages={visibleMessages}
               hasMore={hasMore}
               onClick={handleContentClick}
               w="100%"

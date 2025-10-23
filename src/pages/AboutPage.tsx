@@ -9,7 +9,6 @@ export default function AboutPage() {
   const [selectedTopic, setSelectedTopic] = useState<AboutTopic | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  console.log("AboutPage render - selectedTopic:", selectedTopic?.id, "isModalOpen:", isModalOpen)
 
   // Inject animations into document head
   useEffect(() => {

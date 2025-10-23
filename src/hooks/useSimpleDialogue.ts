@@ -17,10 +17,12 @@ interface UseSimpleDialogueOptions {
 }
 
 interface UseSimpleDialogueReturn {
-  /** Current message object with speaker and image info */
-  currentMessage: DialogueMessage
-  /** Index of current message in the messages array */
-  currentIndex: number
+  /** Array of visible messages to display */
+  visibleMessages: DialogueMessage[]
+  /** Latest visible message object with speaker and image info */
+  latestMessage: DialogueMessage
+  /** Number of currently visible messages */
+  visibleCount: number
   /** Total number of messages */
   totalMessages: number
   /** Whether there are more messages after current */
@@ -40,28 +42,29 @@ interface UseSimpleDialogueReturn {
 export function useSimpleDialogue({
   messages,
 }: UseSimpleDialogueOptions): UseSimpleDialogueReturn {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(1)
 
-  const currentMessage = messages[currentIndex] || { message: "", speaker: "" }
+  const visibleMessages = messages.slice(0, visibleCount)
+  const latestMessage = visibleMessages[visibleMessages.length - 1] || { message: "", speaker: "" }
   const totalMessages = messages.length
-  const hasMore = currentIndex < messages.length - 1
-  const isComplete = currentIndex === messages.length - 1
+  const hasMore = visibleCount < messages.length
+  const isComplete = visibleCount === messages.length
 
   // Advance to next message
   const next = useCallback(() => {
     if (hasMore) {
-      setCurrentIndex((prev) => prev + 1)
+      setVisibleCount((prev) => Math.min(prev + 1, messages.length))
     }
-  }, [hasMore])
+  }, [hasMore, messages.length])
 
   // Skip to the last message
   const skipToEnd = useCallback(() => {
-    setCurrentIndex(messages.length - 1)
+    setVisibleCount(messages.length)
   }, [messages.length])
 
   // Reset to first message
   const reset = useCallback(() => {
-    setCurrentIndex(0)
+    setVisibleCount(1)
   }, [])
 
   // Handle click - advance to next message
@@ -70,8 +73,9 @@ export function useSimpleDialogue({
   }, [next])
 
   return {
-    currentMessage,
-    currentIndex,
+    visibleMessages,
+    latestMessage,
+    visibleCount,
     totalMessages,
     hasMore,
     isComplete,
