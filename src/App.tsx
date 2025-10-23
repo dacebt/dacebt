@@ -1,6 +1,7 @@
 import HourglassGrid from "./components/HourglassGrid"
 import InterfaceFrame from "./components/InterfaceFrame"
 import Navigation from "./components/Navigation"
+import PlayerStatsCard from "./components/PlayerStatsCard"
 import { Box, Grid } from "@chakra-ui/react"
 import { useNavigationStore } from "./store/navigationStore"
 import HomePage from "./pages/HomePage"
@@ -55,7 +56,7 @@ function App() {
             <Navigation />
           </InterfaceFrame>
           <InterfaceFrame gridArea="footer" depthLevel="shallow">
-            <></>
+            <PlayerStatsCard />
           </InterfaceFrame>
         </Grid>
       </Box>
