@@ -1,4 +1,4 @@
-import { Dialog, Portal, Box, Button, CloseButton } from "@chakra-ui/react"
+import { Dialog, Portal, Button, CloseButton } from "@chakra-ui/react"
 import DialogueBox from "./DialogueBox"
 import { useDialogue, type DialogueMessage } from "../hooks/useDialogue"
 
@@ -17,27 +17,16 @@ export default function ModalDialogue({ isOpen, onClose, messages }: ModalDialog
     useGlobalInteraction: false, // We'll handle clicks manually
   })
 
-  const handleDialogueClick = () => {
+  const handleContentClick = () => {
     if (isTyping || hasMore) {
-      // If typing or more messages, advance the dialogue
       handleClick()
     } else {
-      // If dialogue is complete, clicking closes the modal
       onClose()
     }
   }
 
-  const handleModalClick = () => {
-    // Clicking anywhere in the modal advances the dialogue
-    handleDialogueClick()
-  }
-
-  const handleClose = () => {
-    onClose()
-  }
-
   return (
-    <Dialog.Root open={isOpen} onOpenChange={() => handleClose()}>
+    <Dialog.Root open={isOpen} onOpenChange={onClose}>
       <Portal>
         <Dialog.Backdrop
           bg="blackAlpha.600"
@@ -46,29 +35,25 @@ export default function ModalDialogue({ isOpen, onClose, messages }: ModalDialog
         />
         <Dialog.Positioner>
           <Dialog.Content
-            w="100%"
             maxW="1200px"
             h="calc(100vh - 4rem)"
             m="2rem"
-            p="0"
+            p={6}
             bg="transparent"
             border="none"
-            borderRadius="0"
             boxShadow="none"
-            position="relative"
             display="flex"
-            flexDirection="column"
-            overflow="hidden"
-            onClick={handleModalClick}
+            alignItems="center"
+            justifyContent="center"
+            onClick={handleContentClick}
           >
-            {/* Close button - always visible */}
+            {/* Close button */}
             <Dialog.CloseTrigger asChild>
               <CloseButton
                 color="text.muted"
                 position="absolute"
                 top={6}
                 right={6}
-                zIndex={10}
                 size="lg"
                 bg="rgba(0, 0, 0, 0.5)"
                 borderRadius="full"
@@ -81,64 +66,45 @@ export default function ModalDialogue({ isOpen, onClose, messages }: ModalDialog
               />
             </Dialog.CloseTrigger>
 
-            {/* App-sized dialogue */}
-            <Dialog.Body
-              p={6}
-              position="relative"
-              zIndex={1}
-              flex="1"
-              w="100%"
-              h="100%"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <DialogueBox
-                content={currentText}
-                speaker={currentMessage.speaker}
-                speakerImage={currentMessage.image}
-                imagePosition={currentMessage.imagePosition}
-                hasMore={hasMore}
-                onClick={handleDialogueClick}
-                cssPosition="relative"
-                w="100%"
-              />
-            </Dialog.Body>
+            {/* Centered dialogue box */}
+            <DialogueBox
+              content={currentText}
+              speaker={currentMessage.speaker}
+              speakerImage={currentMessage.image}
+              imagePosition={currentMessage.imagePosition}
+              hasMore={hasMore}
+            />
 
-            {/* Close button at bottom - appears when dialogue is complete */}
+            {/* Close button at bottom */}
             {isComplete && (
-              <Box
+              <Button
                 position="absolute"
                 bottom={6}
                 left="50%"
                 transform="translateX(-50%)"
-                zIndex={10}
+                onClick={onClose}
+                bg="linear-gradient(135deg, rgba(91, 192, 190, 0.1) 0%, rgba(29, 33, 38, 0.8) 100%)"
+                color="text.primary"
+                border="1px solid"
+                borderColor="accent.teal"
+                borderRadius="lg"
+                px={8}
+                py={3}
+                fontWeight="bold"
+                textTransform="uppercase"
+                letterSpacing="0.5px"
+                transition="all 0.3s ease"
+                _hover={{
+                  bg: "linear-gradient(135deg, rgba(91, 192, 190, 0.2) 0%, rgba(29, 33, 38, 0.9) 100%)",
+                  transform: "translateY(-2px)",
+                  boxShadow: "0 8px 25px rgba(91, 192, 190, 0.3)",
+                }}
+                _active={{
+                  transform: "translateY(0)",
+                }}
               >
-                <Button
-                  onClick={handleClose}
-                  bg="linear-gradient(135deg, rgba(91, 192, 190, 0.1) 0%, rgba(29, 33, 38, 0.8) 100%)"
-                  color="text.primary"
-                  border="1px solid"
-                  borderColor="accent.teal"
-                  borderRadius="lg"
-                  px={8}
-                  py={3}
-                  fontWeight="bold"
-                  textTransform="uppercase"
-                  letterSpacing="0.5px"
-                  transition="all 0.3s ease"
-                  _hover={{
-                    bg: "linear-gradient(135deg, rgba(91, 192, 190, 0.2) 0%, rgba(29, 33, 38, 0.9) 100%)",
-                    transform: "translateY(-2px)",
-                    boxShadow: "0 8px 25px rgba(91, 192, 190, 0.3)",
-                  }}
-                  _active={{
-                    transform: "translateY(0)",
-                  }}
-                >
-                  Close
-                </Button>
-              </Box>
+                Close
+              </Button>
             )}
           </Dialog.Content>
         </Dialog.Positioner>
