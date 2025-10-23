@@ -109,8 +109,8 @@ const sarcophagusProtocol = createProject({
 const mcpPromptCleaner = createProject({
   name: "MCP Prompt Cleaner",
   currentlyContributing: true,
-  shortDescription: "A small project to learn about MCP by building a prompt cleaner",
-  fullDescription: "",
+  shortDescription: "A Model Context Protocol (MCP) server that uses AI to enhance and clean raw prompts",
+  fullDescription: "A Model Context Protocol (MCP) server that uses AI to enhance and clean raw prompts, making them more clear, actionable, and effective. This Python implementation is an enhancement to the original TypeScript version, serving as a 'rosetta stone' project for Python development. The server provides AI-powered prompt enhancement with a two-level retry strategy, comprehensive error handling, and full MCP protocol compliance.",
   type: "personal",
   // todo add image
   image: "/public/mcp-prompt-cleaner.png",
@@ -118,14 +118,35 @@ const mcpPromptCleaner = createProject({
   links: {
     github: "https://github.com/Da-Colon/prompt-cleaner-mcp",
   },
-  technologies: [],
-  keyFeatures: [],
-  contributions: [],
-  metrics: [],
-  learnings: [],
-  challenges: [],
+  technologies: ["Python 3.11+", "MCP Python SDK", "httpx", "pydantic", "pytest"],
+  keyFeatures: [
+    "AI-Powered Enhancement using large language models",
+    "Two-Level Retry Strategy with HTTP and content-level retries",
+    "Local LLM Support (LMStudio) with no API key required",
+    "Production Ready with comprehensive test coverage"
+  ],
+  contributions: [
+    "Complete Python implementation of MCP prompt cleaner server",
+    "Two-level retry strategy implementation (HTTP + content level)",
+    "Extensive test suite with 43 passing tests covering all functionality"
+  ],
+  metrics: [
+    "43 passing tests with comprehensive coverage",
+    "1,160+ lines of Python code across 9 Python files",
+    "100% test pass rate"
+  ],
+  learnings: [
+    "Deep understanding of MCP (Model Context Protocol) implementation",
+    "Advanced Python async/await patterns and error handling",
+    "Two-level retry strategies for robust API interactions"
+  ],
+  challenges: [
+    "Implementing robust JSON extraction from AI responses that may contain prose or malformed JSON",
+    "Creating a two-level retry system that handles both network and content quality issues",
+    "Managing async operations with proper error handling and timeout management"
+  ],
   featured: true,
-  tags: ["mcp", "prompt", "cleaner"],
+  tags: ["python", "mcp", "ai", "prompt-engineering", "llm", "async", "retry-logic", "testing"],
 })
 
 const bitCraftOnlineProjectTool = createProject({
