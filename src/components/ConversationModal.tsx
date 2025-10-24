@@ -73,7 +73,7 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
             display="flex"
             flexDirection="column"
             alignItems="center"
-            justifyContent="center"
+            justifyContent="flex-end"
           >
             {/* Close button */}
             <Dialog.CloseTrigger asChild>
@@ -129,7 +129,7 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
             )}
 
             {/* Main dialogue content */}
-            <Box w="100%" maxW="700px" minH="400px">
+            <Box w="100%" maxW="700px" maxH="calc(100vh - 12rem)" display="flex" flexDirection="column" justifyContent="flex-end">
               <StackedDialogueBox
                 variant="modal"
                 messages={visibleMessages}
