@@ -78,6 +78,7 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
                   speakerImage={message.image}
                   hasMore={isLatest ? hasMore : false}
                   onClick={isLatest ? onClick : undefined}
+                  enableStreaming={isLatest}
                 />
               )
             })}

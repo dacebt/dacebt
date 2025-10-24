@@ -32,6 +32,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
     useEffect(() => {
       if (!enableStreaming) {
         setDisplayedText(content)
+        setIsStreaming(false)
         return
       }
 
