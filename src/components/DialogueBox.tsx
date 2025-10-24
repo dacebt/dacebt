@@ -1,16 +1,15 @@
-import React from "react"
-import { Box, Text, type BoxProps } from "@chakra-ui/react"
+import React, { useState, useEffect } from "react"
+import { Box, Text } from "@chakra-ui/react"
 
-interface DialogueBoxProps extends Omit<BoxProps, "position"> {
+interface DialogueBoxProps {
   content: string
   speaker?: string
   speakerImage?: string
-  imagePosition?: "left" | "right" | "center"
-  position?: { top?: string; bottom?: string; left?: string; right?: string }
   hasMore?: boolean
   onClick?: () => void
-  cssPosition?: "absolute" | "relative" | "static"
   variant?: "home" | "modal"
+  enableStreaming?: boolean
+  streamingSpeed?: number
 }
 
 const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
@@ -19,23 +18,39 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       content,
       speaker,
       speakerImage,
-      imagePosition = "left",
-      position,
       hasMore = true,
       onClick,
-      cssPosition = "absolute",
       variant = "home",
-      ...props
+      enableStreaming = true,
+      streamingSpeed = 30,
     },
     ref
   ) => {
-    const defaultPosition = {
-      bottom: "0px",
-      left: "0px",
-      right: "0px",
-    }
+    const [displayedText, setDisplayedText] = useState("")
+    const [isStreaming, setIsStreaming] = useState(false)
 
-    const finalPosition = cssPosition === "absolute" ? { ...defaultPosition, ...position } : {}
+    useEffect(() => {
+      if (!enableStreaming) {
+        setDisplayedText(content)
+        return
+      }
+
+      setDisplayedText("")
+      setIsStreaming(true)
+      
+      let currentIndex = 0
+      const interval = setInterval(() => {
+        if (currentIndex < content.length) {
+          setDisplayedText(content.slice(0, currentIndex + 1))
+          currentIndex++
+        } else {
+          setIsStreaming(false)
+          clearInterval(interval)
+        }
+      }, streamingSpeed)
+
+      return () => clearInterval(interval)
+    }, [content, enableStreaming, streamingSpeed])
 
     // Variant-specific styling
     const isModal = variant === "modal"
@@ -47,8 +62,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
     return (
       <Box
         ref={ref}
-        position={cssPosition}
-        {...finalPosition}
+        position="relative"
         bg="linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(29, 33, 38, 0.9) 100%)"
         borderRadius="16px"
         p={padding}
@@ -59,6 +73,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
         cursor={onClick ? "pointer" : "default"}
         onClick={onClick}
         transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+        role="group"
         _hover={
           onClick
             ? {
@@ -98,8 +113,8 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
             rgba(0, 0, 0, 0.3) 100%)`,
           pointerEvents: "none",
         }}
-        {...props}
       >
+
         {/* Speaker Label */}
         {speaker && (
           <Box
@@ -119,6 +134,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
             borderColor="accent.green"
             boxShadow="0 0 8px rgba(16, 185, 129, 0.3)"
             zIndex={2}
+            opacity={1}
           >
             {speaker}
           </Box>
@@ -168,7 +184,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
         {/* Content */}
         <Text
           color="text.primary"
-          fontSize={isModal ? "3xl" : "2xl"}
+          fontSize={isModal ? "lg" : "lg"}
           fontWeight="500"
           lineHeight="1.6"
           textShadow="0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(16, 185, 129, 0.3)"
@@ -178,7 +194,19 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           letterSpacing="0.2px"
           fontFamily="system-ui, -apple-system, sans-serif"
         >
-          {content}
+          {displayedText}
+          {isStreaming && (
+            <Box
+              as="span"
+              w="2px"
+              h="1.2em"
+              bg="accent.green"
+              ml="2px"
+              display="inline-block"
+              animation="blink 1s infinite"
+              verticalAlign="text-bottom"
+            />
+          )}
         </Text>
 
         {/* Bottom right arrow indicator */}

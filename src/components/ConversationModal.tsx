@@ -62,9 +62,10 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
         />
         <Dialog.Positioner>
           <Dialog.Content
-            maxW="1200px"
+            maxW="800px"
+            w="90vw"
             h="calc(100vh - 4rem)"
-            m="2rem"
+            m="2rem auto"
             p={6}
             bg="transparent"
             border="none"
@@ -128,14 +129,14 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
             )}
 
             {/* Main dialogue content */}
-            <StackedDialogueBox
-              variant="modal"
-              messages={visibleMessages}
-              hasMore={hasMore}
-              onClick={handleContentClick}
-              w="100%"
-              maxW="900px"
-            />
+            <Box w="100%" maxW="700px" minH="400px">
+              <StackedDialogueBox
+                variant="modal"
+                messages={visibleMessages}
+                hasMore={hasMore}
+                onClick={handleContentClick}
+              />
+            </Box>
 
             {/* Close button at bottom */}
             {isComplete && (

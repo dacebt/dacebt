@@ -9,14 +9,15 @@ export default function HomePage() {
   })
 
   return (
-    <Box minHeight="100%" position="relative" p={6}>
-      <StackedDialogueBox
-        variant="home"
-        position={{ bottom: "50px" }}
-        messages={visibleMessages}
-        hasMore={hasMore}
-        onClick={handleClick}
-      />
+    <Box height="100%" display="flex" flexDirection="column" justifyContent="flex-end" p={6}>
+      <Box maxH="70vh">
+        <StackedDialogueBox
+          variant="home"
+          messages={visibleMessages}
+          hasMore={hasMore}
+          onClick={handleClick}
+        />
+      </Box>
     </Box>
   )
 }
