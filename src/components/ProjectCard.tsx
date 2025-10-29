@@ -24,14 +24,12 @@ const getLinkIcon = (linkType: string) => {
 interface ProjectCardProps {
   project: Project
   index: number
-  onProjectClick: (project: Project) => void
   onLinkClick: (url: string, event: React.MouseEvent) => void
 }
 
 export default function ProjectCard({
   project,
   index,
-  onProjectClick,
   onLinkClick,
 }: ProjectCardProps) {
   const availableLinks = Object.entries(project.links).filter(([_, url]) => url && url !== "")
@@ -44,7 +42,6 @@ export default function ProjectCard({
 
   return (
     <Box
-      onClick={() => onProjectClick(project)}
       p={3}
       bg="bg.steel"
       color="text.primary"

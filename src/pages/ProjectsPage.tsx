@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { Grid } from "@chakra-ui/react"
 import { projects } from "../data/projects"
-import { type Project } from "../data/projects"
 import PageLayout from "../components/PageLayout"
 import ProjectCard from "../components/ProjectCard"
 import { injectAnimations } from "../utils/animations"
@@ -11,11 +10,6 @@ export default function ProjectsPage() {
   useEffect(() => {
     return injectAnimations(["float", "pulse", "activePulse"])
   }, [])
-
-  const handleProjectClick = (project: Project) => {
-    // Prepared for future detail view
-    console.log("Project clicked:", project.name)
-  }
 
   const handleLinkClick = (url: string, event: React.MouseEvent) => {
     event.stopPropagation()
@@ -37,7 +31,6 @@ export default function ProjectsPage() {
             key={project.name}
             project={project}
             index={index}
-            onProjectClick={handleProjectClick}
             onLinkClick={handleLinkClick}
           />
         ))}
