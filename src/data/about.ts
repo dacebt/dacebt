@@ -22,7 +22,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "In what feels like a former life, I spent over ten years living the chef's life—but I'll save those details for another time. After discovering coding lessons on freeCodeCamp, I decided to change direction. From that point on, every decision needed to move me closer to becoming a programmer.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
@@ -36,7 +36,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "Passing my first major test on freeCodeCamp.org. I picked things up quickly, but then hit a roadblock—what now? How do I share? Who do I talk to? With no connections in the industry, I knew I had to break in. I enrolled in a full-stack bootcamp with one clear goal: make a friend.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
@@ -50,7 +50,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "More than I could've imagined. The financial Hail-Mary paid off—I excelled in the course, made several connections, and built a great relationship with the instructor who became my first mentor in tech.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
@@ -64,7 +64,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "Things moved fast. I stayed on to assist at the program after graduation to reinforce my fundamentals and stay connected. Not long after, I met Parker from Decent Labs. A short client contract with them turned into a full-time role—and that's where my career really launched.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
@@ -90,7 +90,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "I mean I'm a full-stack developer—comfortable using any technology to get the job done. JavaScript, TypeScript, Python, Go, Solidity, backend or frontend—you name it, I'll figure it out.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
@@ -103,7 +103,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "Hard to say. Most of my work has leaned frontend, but in the web3 space the frontend often *is* the backend. You end up working across the whole stack whether you mean to or not.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png", 
         imagePosition: "right",
       },
       {
@@ -116,7 +116,7 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "Agreed.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
     ],
@@ -136,7 +136,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "The challenge. I started as a dishwasher in a pizza place but didn't stay there long before I was tossing dough like the best of them. From there I worked at bars, family restaurants, and mom-and-pops before moving up to AMC Fork & Screen—probably my favorite job. Restaurant plus movie theater? Hard to beat.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
@@ -150,7 +150,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "Curiosity. I was never satisfied with 'that's how it's always been.' I loved finding ways to make things more efficient and prevent mistakes through preparation and organization. But that curiosity also revealed a truth—I cared more about the process than the food itself.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
@@ -164,7 +164,7 @@ export const aboutTopics: AboutTopic[] = [
         message:
           "In a small, hot Pittsburgh kitchen. I wasn't happy. I wanted to code, to be part of a different culture. I found a data-entry job—anything to get me in front of a computer. Best decision I ever made. It gave me time to code on the side, sharpen my typing, and learn office culture. When we moved back to Georgia, I finally had the confidence to apply to the bootcamp.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
@@ -183,38 +183,38 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "Oh, you want to talk about Odin? You mean the goodest developer assistant?",
         speaker: "Wife",
-        image: "/images/narrator.png", // TODO: Replace with wife.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
         message: "100% I will always talk about our 95lb Moose.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
         message:
           "Ninety-five pounds of pure drama. You'd think he was coding your site himself with how serious he gets about attention.",
         speaker: "Wife",
-        image: "/images/narrator.png", // TODO: Replace with wife.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
         message: "Arf! Woof!",
         speaker: "Odin",
-        image: "/images/narrator.png", // TODO: Replace with odin.png
+        image: "/images/narrator.png",
         imagePosition: "center",
       },
       {
         message: "Like that.",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "right",
       },
       {
         message: "Exactly.",
         speaker: "Wife",
-        image: "/images/narrator.png", // TODO: Replace with wife.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
     ],
@@ -232,7 +232,7 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "...How about I help out with this one?",
         speaker: "Wife",
-        image: "/images/narrator.png", // TODO: Replace with wife.png
+        image: "/images/narrator.png",
         imagePosition: "right",
       },
       {
@@ -244,37 +244,37 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "We are Married!",
         speaker: "Wife",
-        image: "/images/narrator.png", // TODO: Replace with wife.png
+        image: "/images/narrator.png",
         imagePosition: "right",
       },
       {
         message: "We sure are! Locked down since 2019!",
         speaker: "David",
-        image: "/images/avatar.png", // TODO: Replace with you.png
+        image: "/images/avatar.png",
         imagePosition: "left",
       },
       {
         message: "We have been together a lot longer than that!",
         speaker: "Wife",
-        image: "/images/narrator.png", // TODO: Replace with wife.png
+        image: "/images/narrator.png",
         imagePosition: "right",
       },
       {
         message: "You are right 2012 was when we met! and here we are still going strong!",
         speaker: "David",
-        image: "/images/narrator.png", // TODO: Replace with you.png
+        image: "/images/narrator.png",
         imagePosition: "left",
       },
       {
         message: "Arf! Woof!",
         speaker: "Odin",
-        image: "/images/narrator.png", // TODO: Replace with odin.png
+        image: "/images/narrator.png",
         imagePosition: "center",
       },
       {
         message: "Odin is right!",
         speaker: "Wife",
-        image: "/images/narrator.png", // TODO: Replace with wife.png
+        image: "/images/narrator.png",
         imagePosition: "right",
       },
     ],
