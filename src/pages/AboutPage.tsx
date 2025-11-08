@@ -1,19 +1,12 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Box, Button, Grid, Text } from "@chakra-ui/react"
 import PageLayout from "../components/PageLayout"
 import ConversationModal from "../components/ConversationModal"
 import { aboutTopics, type AboutTopic } from "../data/about"
-import { injectAnimations } from "../utils/animations"
 
 export default function AboutPage() {
   const [selectedTopic, setSelectedTopic] = useState<AboutTopic | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-
-  // Inject animations into document head
-  useEffect(() => {
-    return injectAnimations(["float", "pulse"])
-  }, [])
 
   const handleTopicClick = (topic: AboutTopic) => {
     setSelectedTopic(topic)

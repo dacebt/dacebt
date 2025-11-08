@@ -1,10 +1,8 @@
-import { useEffect } from "react"
 import { Box, Button, Grid } from "@chakra-ui/react"
 import { Tooltip } from "../components/ui/tooltip"
 import { FaLinkedin, FaGithub, FaDiscord, FaXTwitter } from "react-icons/fa6"
 import contactData from "../data/contact.json"
 import PageLayout from "../components/PageLayout"
-import { injectAnimations } from "../utils/animations"
 
 const iconMap = {
   linkedin: FaLinkedin,
@@ -17,11 +15,6 @@ export default function ContactPage() {
   const handleClick = (url: string) => {
     window.open(url, "_blank", "noopener,noreferrer")
   }
-
-  // Inject animations into document head
-  useEffect(() => {
-    return injectAnimations(["float", "pulse"])
-  }, [])
 
   return (
     <PageLayout title="Get In Touch" subtitle="Connect with me through any of these platforms" centerContent>

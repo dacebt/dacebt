@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import HourglassGrid from "./components/HourglassGrid"
 import InterfaceFrame from "./components/InterfaceFrame"
 import Navigation from "./components/Navigation"
@@ -8,9 +9,15 @@ import HomePage from "./pages/HomePage"
 import ProjectsPage from "./pages/ProjectsPage"
 import AboutPage from "./pages/AboutPage"
 import ContactPage from "./pages/ContactPage"
+import { injectAllAnimations } from "./utils/animations"
 
 function App() {
   const currentPage = useNavigationStore((state) => state.currentPage)
+
+  // Inject all animations once on mount
+  useEffect(() => {
+    injectAllAnimations()
+  }, [])
 
   const renderPage = () => {
     switch (currentPage) {

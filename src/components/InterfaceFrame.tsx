@@ -1,66 +1,6 @@
 import React from "react"
 import { Box, type BoxProps } from "@chakra-ui/react"
 
-// Animation keyframes using CSS-in-JS
-const slideIn = `
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px) scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-`
-
-const borderGlow = `
-  @keyframes borderGlow {
-    0%, 100% {
-      box-shadow: 
-        inset 0 0 0 4px var(--chakra-colors-border-inner),
-        inset 0 0 0 8px var(--chakra-colors-border-outer),
-        0 0 0 4px var(--chakra-colors-accent-teal),
-        0 0 20px rgba(91, 192, 190, 0.1);
-    }
-    50% {
-      box-shadow: 
-        inset 0 0 0 4px var(--chakra-colors-border-inner),
-        inset 0 0 0 8px var(--chakra-colors-border-outer),
-        0 0 0 4px var(--chakra-colors-accent-teal),
-        0 0 30px rgba(91, 192, 190, 0.2);
-    }
-  }
-`
-
-const depthPulse = `
-  @keyframes depthPulse {
-    0%, 100% {
-      transform: translateZ(0);
-      box-shadow: 
-        inset 0 0 0 2px rgba(255, 255, 255, 0.1),
-        inset 0 0 0 4px var(--chakra-colors-border-inner),
-        inset 0 0 0 8px var(--chakra-colors-border-outer),
-        0 0 0 4px var(--chakra-colors-border-inner),
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 8px 40px rgba(0, 0, 0, 0.2),
-        0 16px 60px rgba(0, 0, 0, 0.1);
-    }
-    50% {
-      transform: translateZ(2px);
-      box-shadow: 
-        inset 0 0 0 2px rgba(255, 255, 255, 0.15),
-        inset 0 0 0 4px var(--chakra-colors-border-inner),
-        inset 0 0 0 8px var(--chakra-colors-border-outer),
-        0 0 0 4px var(--chakra-colors-border-inner),
-        0 6px 30px rgba(0, 0, 0, 0.4),
-        0 12px 50px rgba(0, 0, 0, 0.3),
-        0 20px 80px rgba(0, 0, 0, 0.2);
-    }
-  }
-`
-
 interface InterfaceFrameProps extends BoxProps {
   children: React.ReactNode
   isActive?: boolean
@@ -125,13 +65,7 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
     const config = depthConfig[depthLevel]
 
     return (
-      <>
-        <style>
-          {slideIn}
-          {borderGlow}
-          {depthPulse}
-        </style>
-        <Box
+      <Box
           ref={ref}
           maxW={maxWidth}
           bg={bgColor}
@@ -208,7 +142,6 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
 
           {children}
         </Box>
-      </>
     )
   }
 )

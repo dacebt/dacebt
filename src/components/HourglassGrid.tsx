@@ -23,59 +23,38 @@ const HourglassIcon: React.FC<{ boxSize?: string }> = ({ boxSize = "24px" }) => 
 
 const HourglassGrid: React.FC = () => {
   return (
-    <>
-      <style>
-        {`
-          @keyframes infiniteScroll {
-            0% { transform: translate(-50vw, 50vh); }
-            50% { transform: translate(50vw, -50vh); }
-            100% { transform: translate(-50vw, 50vh); }
-          }
-          @keyframes pulse {
-            0%, 100% {
-              opacity: 0.3;
-              transform: scale(1);
-            }
-            50% {
-              opacity: 0.6;
-              transform: scale(1.1);
-            }
-          }
-        `}
-      </style>
+    <Box
+      position="fixed"
+      top="0"
+      left="0"
+      width="100vw"
+      height="100vh"
+      bg="bg.dark"
+      overflow="hidden"
+      zIndex="-1"
+    >
       <Box
-        position="fixed"
-        top="0"
-        left="0"
-        width="100vw"
-        height="100vh"
-        bg="bg.dark"
-        overflow="hidden"
-        zIndex="-1"
+        position="absolute"
+        top="-100vh"
+        left="-100vw"
+        width="400vw"
+        height="400vh"
+        transform="skew(-20deg, -10deg)"
+        display="grid"
+        gridTemplateColumns="repeat(25, 1fr)"
+        gridTemplateRows="repeat(25, 1fr)"
+        gap="2rem"
+        style={{ animation: "infiniteScroll 30s linear infinite" }}
       >
-        <Box
-          position="absolute"
-          top="-100vh"
-          left="-100vw"
-          width="400vw"
-          height="400vh"
-          transform="skew(-20deg, -10deg)"
-          display="grid"
-          gridTemplateColumns="repeat(25, 1fr)"
-          gridTemplateRows="repeat(25, 1fr)"
-          gap="2rem"
-          style={{ animation: "infiniteScroll 30s linear infinite" }}
-        >
-          {Array.from({ length: 625 }, (_, i) => (
-            <Box key={i} display="flex" alignItems="center" justifyContent="center" opacity="0.3">
-              <Box color="text.muted" style={{ animation: `pulse 3s ease-in-out ${i * 0.1}s infinite` }}>
-                <HourglassIcon boxSize="32px" />
-              </Box>
+        {Array.from({ length: 625 }, (_, i) => (
+          <Box key={i} display="flex" alignItems="center" justifyContent="center" opacity="0.3">
+            <Box color="text.muted" style={{ animation: `pulseScale 3s ease-in-out ${i * 0.1}s infinite` }}>
+              <HourglassIcon boxSize="32px" />
             </Box>
-          ))}
-        </Box>
+          </Box>
+        ))}
       </Box>
-    </>
+    </Box>
   )
 }
 

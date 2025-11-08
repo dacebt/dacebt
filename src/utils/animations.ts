@@ -14,6 +14,19 @@ export const animations = {
     }
   `,
 
+  pulseScale: `
+    @keyframes pulseScale {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+      }
+    }
+  `,
+
   activePulse: `
     @keyframes activePulse {
       0%, 100% { 
@@ -33,16 +46,105 @@ export const animations = {
       100% { transform: translateX(100%); }
     }
   `,
+
+  infiniteScroll: `
+    @keyframes infiniteScroll {
+      0% { transform: translate(-50vw, 50vh); }
+      50% { transform: translate(50vw, -50vh); }
+      100% { transform: translate(-50vw, 50vh); }
+    }
+  `,
+
+  slideIn: `
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  `,
+
+  borderGlow: `
+    @keyframes borderGlow {
+      0%, 100% {
+        box-shadow: 
+          inset 0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 8px var(--chakra-colors-border-outer),
+          0 0 0 4px var(--chakra-colors-accent-teal),
+          0 0 20px rgba(91, 192, 190, 0.1);
+      }
+      50% {
+        box-shadow: 
+          inset 0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 8px var(--chakra-colors-border-outer),
+          0 0 0 4px var(--chakra-colors-accent-teal),
+          0 0 30px rgba(91, 192, 190, 0.2);
+      }
+    }
+  `,
+
+  depthPulse: `
+    @keyframes depthPulse {
+      0%, 100% {
+        transform: translateZ(0);
+        box-shadow: 
+          inset 0 0 0 2px rgba(255, 255, 255, 0.1),
+          inset 0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 8px var(--chakra-colors-border-outer),
+          0 0 0 4px var(--chakra-colors-border-inner),
+          0 4px 20px rgba(0, 0, 0, 0.3),
+          0 8px 40px rgba(0, 0, 0, 0.2),
+          0 16px 60px rgba(0, 0, 0, 0.1);
+      }
+      50% {
+        transform: translateZ(2px);
+        box-shadow: 
+          inset 0 0 0 2px rgba(255, 255, 255, 0.15),
+          inset 0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 8px var(--chakra-colors-border-outer),
+          0 0 0 4px var(--chakra-colors-border-inner),
+          0 6px 30px rgba(0, 0, 0, 0.4),
+          0 12px 50px rgba(0, 0, 0, 0.3),
+          0 20px 80px rgba(0, 0, 0, 0.2);
+      }
+    }
+  `,
 }
 
-// Helper to inject animations into document head
+// Track injected animations to prevent duplicates
+const injectedAnimationIds = new Set<string>()
+
+// Helper to inject animations into document head with deduplication
 export const injectAnimations = (animationKeys: (keyof typeof animations)[]) => {
+  const styleId = `animations-${animationKeys.sort().join("-")}`
+  
+  // Skip if already injected
+  if (injectedAnimationIds.has(styleId)) {
+    return () => {
+      // No-op cleanup if already injected
+    }
+  }
+
   const style = document.createElement("style")
+  style.id = styleId
   style.textContent = animationKeys.map((key) => animations[key]).join("\n")
   document.head.appendChild(style)
+  injectedAnimationIds.add(styleId)
+
   return () => {
     if (document.head.contains(style)) {
       document.head.removeChild(style)
+      injectedAnimationIds.delete(styleId)
     }
   }
+}
+
+// Inject all app-wide animations at once
+export const injectAllAnimations = () => {
+  const allAnimationKeys = Object.keys(animations) as Array<keyof typeof animations>
+  return injectAnimations(allAnimationKeys)
 }
