@@ -1,4 +1,4 @@
-import { Box, Text, Image, HStack, VStack, Badge, Flex } from "@chakra-ui/react"
+import { Box, Text, Image, Badge, Flex } from "@chakra-ui/react"
 import { useMemo } from "react"
 
 const PlayerStatsCard = () => {
@@ -50,12 +50,12 @@ const PlayerStatsCard = () => {
           borderColor="border.inner"
           bg="bg.steel"
           boxShadow={`
-            inset 0 0 0 2px rgba(255, 255, 255, 0.15),
+            inset 0 0 0 2px white.alpha.15,
             inset 0 0 0 4px border.outer,
             0 0 0 2px border.outer,
             0 0 0 4px border.inner,
-            0 2px 8px rgba(0, 0, 0, 0.3),
-            0 4px 16px rgba(0, 0, 0, 0.2)
+            0 2px 8px black.alpha.30,
+            0 4px 16px black.alpha.20
           `}
           _before={{
             content: '""',
@@ -80,7 +80,7 @@ const PlayerStatsCard = () => {
         </Box>
 
         {/* Player Details */}
-        <VStack align="start" gap={1}>
+        <Box display="flex" flexDirection="column" alignItems="start" gap={1}>
           <Text fontSize="lg" fontWeight="bold" color="text.primary">
             David
           </Text>
@@ -93,15 +93,15 @@ const PlayerStatsCard = () => {
           <Text fontSize="xs" color="text.muted">
             Georgia, US • Remote
           </Text>
-        </VStack>
+        </Box>
       </Flex>
 
       {/* Right Side - Tech Stack */}
-      <VStack align="end" gap={2}>
+      <Box display="flex" flexDirection="column" alignItems="end" gap={2}>
         <Text fontSize="xs" color="text.muted" mb={1}>
           Adaptable Stack
         </Text>
-        <HStack gap={2} flexWrap="wrap" justify="end">
+        <Box display="flex" gap={2} flexWrap="wrap" justifyContent="end">
           {techStack.map((tech, index) => (
             <Badge
               key={index}
@@ -112,9 +112,9 @@ const PlayerStatsCard = () => {
               fontSize="xs"
               borderColor="accent.teal"
               color="accent.teal"
-              bg="rgba(91, 192, 190, 0.1)"
+              bg="accent.tealAlpha.10"
               _hover={{
-                bg: "rgba(91, 192, 190, 0.2)",
+                bg: "accent.tealAlpha.20",
                 transform: "scale(1.05)",
               }}
               transition="all 0.2s ease"
@@ -122,8 +122,8 @@ const PlayerStatsCard = () => {
               {tech.name}
             </Badge>
           ))}
-        </HStack>
-      </VStack>
+        </Box>
+      </Box>
     </Flex>
   )
 }

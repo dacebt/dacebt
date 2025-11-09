@@ -28,7 +28,7 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
         w="200px"
         h="200px"
         borderRadius="full"
-        bg="linear-gradient(135deg, rgba(91, 192, 190, 0.1) 0%, rgba(91, 192, 190, 0.05) 100%)"
+        bg="linear-gradient(135deg, accent.tealAlpha.10 0%, accent.tealAlpha.5 100%)"
         animation="float 6s ease-in-out infinite"
         filter="blur(1px)"
       />
@@ -39,7 +39,7 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
         w="150px"
         h="150px"
         borderRadius="full"
-        bg="linear-gradient(45deg, rgba(91, 192, 190, 0.08) 0%, rgba(91, 192, 190, 0.03) 100%)"
+        bg="linear-gradient(45deg, accent.tealAlpha.8 0%, accent.tealAlpha.3 100%)"
         animation="float 8s ease-in-out infinite reverse"
         filter="blur(1px)"
       />
@@ -50,7 +50,7 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
         w="100px"
         h="100px"
         borderRadius="full"
-        bg="linear-gradient(225deg, rgba(91, 192, 190, 0.06) 0%, rgba(91, 192, 190, 0.02) 100%)"
+        bg="linear-gradient(225deg, accent.tealAlpha.6 0%, accent.tealAlpha.2 100%)"
         animation="pulse 4s ease-in-out infinite"
         filter="blur(2px)"
       />
@@ -63,9 +63,9 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
           color="text.primary"
           letterSpacing="0.5px"
           textTransform="uppercase"
-          bg="linear-gradient(135deg, #E2E8F0 0%, #5BC0BE 100%)"
+          bg="linear-gradient(135deg, text.primary 0%, accent.teal 100%)"
           bgClip="text"
-          textShadow="0 0 20px rgba(91, 192, 190, 0.3)"
+          textShadow="0 0 20px accent.tealAlpha.30"
         >
           {title}
         </Text>

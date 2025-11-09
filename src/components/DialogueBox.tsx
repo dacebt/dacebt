@@ -56,21 +56,19 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
     // Variant-specific styling
     const isModal = variant === "modal"
     const avatarSize = isModal ? "100px" : "80px"
-    const padding = isModal ? 10 : 10
     const minHeight = isModal ? "250px" : "140px"
-    const gap = isModal ? 8 : 8
 
     return (
       <Box
         ref={ref}
         position="relative"
-        bg="linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(29, 33, 38, 0.9) 100%)"
+        bg="linear-gradient(135deg, bg.darkAlpha.95 0%, bg.steelAlpha.90 100%)"
         borderRadius="16px"
-        p={padding}
+        p={10}
         minH={minHeight}
         display="flex"
         alignItems="center"
-        gap={gap}
+        gap={8}
         cursor={onClick ? "pointer" : "default"}
         onClick={onClick}
         transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -81,9 +79,9 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
                 transform: "translateY(-2px)",
                 boxShadow: `
                   inset 0 0 0 2px rgba(255, 255, 255, 0.15),
-                  inset 0 0 0 4px var(--chakra-colors-accent-green),
-                  inset 0 0 0 6px var(--chakra-colors-border-outer),
-                  0 0 0 3px var(--chakra-colors-accent-green),
+                  inset 0 0 0 4px #10B981,
+                  inset 0 0 0 6px #0E1013,
+                  0 0 0 3px #10B981,
                   0 8px 32px rgba(16, 185, 129, 0.4),
                   0 16px 64px rgba(0, 0, 0, 0.6),
                   0 0 0 1px rgba(255, 255, 255, 0.1)
@@ -93,9 +91,9 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
         }
         boxShadow={`
           inset 0 0 0 2px rgba(255, 255, 255, 0.1),
-          inset 0 0 0 4px var(--chakra-colors-accent-green),
-          inset 0 0 0 6px var(--chakra-colors-border-outer),
-          0 0 0 2px var(--chakra-colors-accent-green),
+          inset 0 0 0 4px #10B981,
+          inset 0 0 0 6px #0E1013,
+          0 0 0 2px #10B981,
           0 6px 24px rgba(16, 185, 129, 0.25),
           0 12px 48px rgba(0, 0, 0, 0.5),
           0 0 0 1px rgba(255, 255, 255, 0.05)
@@ -109,9 +107,9 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           bottom: 0,
           borderRadius: "16px",
           background: `linear-gradient(135deg, 
-            rgba(16, 185, 129, 0.05) 0%, 
+            accent.greenAlpha.5 0%, 
             transparent 30%, 
-            rgba(0, 0, 0, 0.3) 100%)`,
+            black.alpha.30 100%)`,
           pointerEvents: "none",
         }}
       >
@@ -133,7 +131,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
             letterSpacing="0.5px"
             border="1px solid"
             borderColor="accent.green"
-            boxShadow="0 0 8px rgba(16, 185, 129, 0.3)"
+            boxShadow="0 0 8px accent.greenAlpha.30"
             zIndex={2}
             opacity={1}
           >
@@ -150,7 +148,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
             bg="bg.steel"
             border="3px solid"
             borderColor="accent.green"
-            boxShadow="0 0 12px rgba(16, 185, 129, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1)"
+            boxShadow="0 0 12px accent.greenAlpha.40, inset 0 0 0 1px white.alpha.10"
             flexShrink={0}
             overflow="hidden"
             display="flex"
@@ -165,7 +163,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
               right: "-3px",
               bottom: "-3px",
               borderRadius: "full",
-              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(91, 192, 190, 0.3) 100%)",
+              background: "linear-gradient(135deg, accent.greenAlpha.40 0%, accent.tealAlpha.30 100%)",
               zIndex: -1,
             }}
           >
@@ -185,10 +183,10 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
         {/* Content */}
         <Text
           color="text.primary"
-          fontSize={isModal ? "lg" : "lg"}
+          fontSize="lg"
           fontWeight="500"
           lineHeight="1.6"
-          textShadow="0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(16, 185, 129, 0.3)"
+          textShadow="0 2px 8px black.alpha.80, 0 0 20px accent.greenAlpha.30"
           position="relative"
           zIndex={1}
           flex={1}

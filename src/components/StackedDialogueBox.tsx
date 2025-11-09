@@ -48,15 +48,15 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
               width: "6px",
             },
             "&::-webkit-scrollbar-track": {
-              background: "rgba(255, 255, 255, 0.05)",
+              background: "white.alpha.5",
               borderRadius: "3px",
             },
             "&::-webkit-scrollbar-thumb": {
-              background: "rgba(16, 185, 129, 0.3)",
+              background: "accent.greenAlpha.30",
               borderRadius: "3px",
             },
             "&::-webkit-scrollbar-thumb:hover": {
-              background: "rgba(16, 185, 129, 0.5)",
+              background: "accent.greenAlpha.50",
             },
           }}
         >

@@ -72,16 +72,16 @@ export const animations = {
     @keyframes borderGlow {
       0%, 100% {
         box-shadow: 
-          inset 0 0 0 4px var(--chakra-colors-border-inner),
-          inset 0 0 0 8px var(--chakra-colors-border-outer),
-          0 0 0 4px var(--chakra-colors-accent-teal),
+          inset 0 0 0 4px #4B5663,
+          inset 0 0 0 8px #0E1013,
+          0 0 0 4px #5BC0BE,
           0 0 20px rgba(91, 192, 190, 0.1);
       }
       50% {
         box-shadow: 
-          inset 0 0 0 4px var(--chakra-colors-border-inner),
-          inset 0 0 0 8px var(--chakra-colors-border-outer),
-          0 0 0 4px var(--chakra-colors-accent-teal),
+          inset 0 0 0 4px #4B5663,
+          inset 0 0 0 8px #0E1013,
+          0 0 0 4px #5BC0BE,
           0 0 30px rgba(91, 192, 190, 0.2);
       }
     }
@@ -93,9 +93,9 @@ export const animations = {
         transform: translateZ(0);
         box-shadow: 
           inset 0 0 0 2px rgba(255, 255, 255, 0.1),
-          inset 0 0 0 4px var(--chakra-colors-border-inner),
-          inset 0 0 0 8px var(--chakra-colors-border-outer),
-          0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 4px #4B5663,
+          inset 0 0 0 8px #0E1013,
+          0 0 0 4px #4B5663,
           0 4px 20px rgba(0, 0, 0, 0.3),
           0 8px 40px rgba(0, 0, 0, 0.2),
           0 16px 60px rgba(0, 0, 0, 0.1);
@@ -104,9 +104,9 @@ export const animations = {
         transform: translateZ(2px);
         box-shadow: 
           inset 0 0 0 2px rgba(255, 255, 255, 0.15),
-          inset 0 0 0 4px var(--chakra-colors-border-inner),
-          inset 0 0 0 8px var(--chakra-colors-border-outer),
-          0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 4px #4B5663,
+          inset 0 0 0 8px #0E1013,
+          0 0 0 4px #4B5663,
           0 6px 30px rgba(0, 0, 0, 0.4),
           0 12px 50px rgba(0, 0, 0, 0.3),
           0 20px 80px rgba(0, 0, 0, 0.2);
@@ -143,8 +143,12 @@ export const injectAnimations = (animationKeys: (keyof typeof animations)[]) => 
   }
 }
 
+// Helper to get all animation keys with proper typing
+const getAllAnimationKeys = (): Array<keyof typeof animations> => {
+  return Object.keys(animations) as Array<keyof typeof animations>
+}
+
 // Inject all app-wide animations at once
 export const injectAllAnimations = () => {
-  const allAnimationKeys = Object.keys(animations) as Array<keyof typeof animations>
-  return injectAnimations(allAnimationKeys)
+  return injectAnimations(getAllAnimationKeys())
 }

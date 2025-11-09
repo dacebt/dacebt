@@ -37,7 +37,7 @@ export default function ContactPage() {
                 size="lg"
                 h="140px"
                 w="100%"
-                bg="linear-gradient(135deg, rgba(91, 192, 190, 0.08) 0%, rgba(29, 33, 38, 0.6) 100%)"
+                bg="linear-gradient(135deg, accent.tealAlpha.8 0%, bg.steelAlpha.60 100%)"
                 color="text.primary"
                 border="1px solid"
                 borderColor="border.inner"
@@ -47,14 +47,14 @@ export default function ContactPage() {
                 backdropFilter="blur(10px)"
                 transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
                 _hover={{
-                  bg: "linear-gradient(135deg, rgba(91, 192, 190, 0.15) 0%, rgba(29, 33, 38, 0.8) 100%)",
+                  bg: "linear-gradient(135deg, accent.tealAlpha.15 0%, bg.steelAlpha.80 100%)",
                   borderColor: "accent.teal",
                   transform: "translateY(-8px) scale(1.02)",
                   boxShadow: `
-                    0 20px 40px rgba(91, 192, 190, 0.15),
-                    0 8px 16px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                    inset 0 -1px 0 rgba(0, 0, 0, 0.1)
+                    0 20px 40px accent.tealAlpha.15,
+                    0 8px 16px black.alpha.30,
+                    inset 0 1px 0 white.alpha.10,
+                    inset 0 -1px 0 black.alpha.10
                   `,
                 }}
                 _active={{
@@ -75,7 +75,7 @@ export default function ContactPage() {
                   left={0}
                   right={0}
                   bottom={0}
-                  bg="linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%)"
+                  bg="linear-gradient(90deg, transparent 0%, white.alpha.10 50%, transparent 100%)"
                   transform="translateX(-100%)"
                   transition="transform 0.6s ease"
                   _groupHover={{
@@ -88,12 +88,12 @@ export default function ContactPage() {
                   position="relative"
                   p={3}
                   borderRadius="lg"
-                  bg="rgba(91, 192, 190, 0.1)"
+                  bg="accent.tealAlpha.10"
                   border="1px solid"
-                  borderColor="rgba(91, 192, 190, 0.2)"
+                  borderColor="accent.tealAlpha.20"
                   _groupHover={{
-                    bg: "rgba(91, 192, 190, 0.2)",
-                    borderColor: "rgba(91, 192, 190, 0.4)",
+                    bg: "accent.tealAlpha.20",
+                    borderColor: "accent.tealAlpha.40",
                   }}
                   transition="all 0.3s ease"
                 >
@@ -112,7 +112,7 @@ export default function ContactPage() {
                   letterSpacing="0.5px"
                   textTransform="uppercase"
                   textAlign="center"
-                  textShadow="0 1px 2px rgba(0, 0, 0, 0.5)"
+                  textShadow="0 1px 2px black.alpha.50"
                   _groupHover={{
                     color: "accent.teal",
                   }}
@@ -129,7 +129,7 @@ export default function ContactPage() {
                   right="-2px"
                   bottom="-2px"
                   borderRadius="xl"
-                  bg="linear-gradient(135deg, rgba(91, 192, 190, 0.1), transparent, rgba(91, 192, 190, 0.1))"
+                  bg="linear-gradient(135deg, accent.tealAlpha.10, transparent, accent.tealAlpha.10)"
                   opacity={0}
                   transition="opacity 0.3s ease"
                   _groupHover={{

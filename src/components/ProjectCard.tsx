@@ -54,7 +54,7 @@ export default function ProjectCard({
       _hover={{
         borderColor: "accent.teal",
         transform: "translateY(-4px)",
-        boxShadow: "0 8px 25px rgba(91, 192, 190, 0.15)",
+        boxShadow: "0 8px 25px accent.tealAlpha.15",
       }}
       animation={`float ${6 + index}s ease-in-out infinite`}
       style={{
@@ -78,14 +78,14 @@ export default function ProjectCard({
           fontSize="xs"
           px={2}
           py={1}
-          bg="rgba(91, 192, 190, 0.15)"
+          bg="accent.tealAlpha.15"
           color="accent.teal"
           border="1px solid"
           borderColor="accent.teal"
           borderRadius="8px"
           fontWeight="semibold"
           backdropFilter="blur(8px)"
-          boxShadow="0 2px 8px rgba(91, 192, 190, 0.2)"
+          boxShadow="0 2px 8px accent.tealAlpha.20"
           zIndex={1}
         >
           personal
@@ -122,7 +122,7 @@ export default function ProjectCard({
           fontSize="xl"
           fontWeight="bold"
           textAlign="center"
-          backgroundImage="linear-gradient(135deg, #3B82F6, #8B5CF6)"
+          backgroundImage="linear-gradient(135deg, gradient.blue, gradient.purple)"
           backgroundClip="text"
           color="transparent"
           lineHeight="1.2"
@@ -204,7 +204,7 @@ export default function ProjectCard({
           <Text
             key={`metric-${idx}`}
             fontSize="xs"
-            color="rgba(91, 192, 190, 0.8)"
+            color="accent.tealAlpha.80"
             mb={0.5}
             wordWrap="break-word"
             whiteSpace="normal"
@@ -216,7 +216,7 @@ export default function ProjectCard({
           <Text
             key={`contribution-${idx}`}
             fontSize="xs"
-            color="rgba(148, 163, 184, 0.9)"
+            color="text.secondaryAlpha.90"
             mb={0.5}
             wordWrap="break-word"
             whiteSpace="normal"

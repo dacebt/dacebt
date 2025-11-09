@@ -39,7 +39,7 @@ export default function AboutPage() {
               size="lg"
               h="120px"
               w="100%"
-              bg="linear-gradient(135deg, rgba(91, 192, 190, 0.08) 0%, rgba(29, 33, 38, 0.6) 100%)"
+              bg="linear-gradient(135deg, accent.tealAlpha.8 0%, bg.steelAlpha.60 100%)"
               color="text.primary"
               border="1px solid"
               borderColor="border.inner"
@@ -49,14 +49,14 @@ export default function AboutPage() {
               backdropFilter="blur(10px)"
               transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
               _hover={{
-                bg: "linear-gradient(135deg, rgba(91, 192, 190, 0.15) 0%, rgba(29, 33, 38, 0.8) 100%)",
+                bg: "linear-gradient(135deg, accent.tealAlpha.15 0%, bg.steelAlpha.80 100%)",
                 borderColor: "accent.teal",
                 transform: "translateY(-8px) scale(1.02)",
                 boxShadow: `
-                  0 20px 40px rgba(91, 192, 190, 0.15),
-                  0 8px 16px rgba(0, 0, 0, 0.3),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                  inset 0 -1px 0 rgba(0, 0, 0, 0.1)
+                  0 20px 40px accent.tealAlpha.15,
+                  0 8px 16px black.alpha.30,
+                  inset 0 1px 0 white.alpha.10,
+                  inset 0 -1px 0 black.alpha.10
                 `,
               }}
               _active={{
@@ -77,7 +77,7 @@ export default function AboutPage() {
                 left={0}
                 right={0}
                 bottom={0}
-                bg="linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%)"
+                bg="linear-gradient(90deg, transparent 0%, white.alpha.10 50%, transparent 100%)"
                 transform="translateX(-100%)"
                 transition="transform 0.6s ease"
                 _groupHover={{
@@ -101,9 +101,9 @@ export default function AboutPage() {
                   w="24px"
                   h="24px"
                   borderRadius="full"
-                  bg="rgba(91, 192, 190, 0.2)"
+                  bg="accent.tealAlpha.20"
                   border="1px solid"
-                  borderColor="rgba(91, 192, 190, 0.3)"
+                  borderColor="accent.tealAlpha.30"
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
@@ -131,7 +131,7 @@ export default function AboutPage() {
                 right="-2px"
                 bottom="-2px"
                 borderRadius="xl"
-                bg="linear-gradient(135deg, rgba(91, 192, 190, 0.1), transparent, rgba(91, 192, 190, 0.1))"
+                bg="linear-gradient(135deg, accent.tealAlpha.10, transparent, accent.tealAlpha.10)"
                 opacity={0}
                 transition="opacity 0.3s ease"
                 _groupHover={{

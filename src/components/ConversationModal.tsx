@@ -83,11 +83,11 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
                 top={6}
                 right={6}
                 size="lg"
-                bg="rgba(0, 0, 0, 0.5)"
+                bg="black.alpha.50"
                 borderRadius="full"
                 _hover={{
                   color: "text.primary",
-                  bg: "rgba(91, 192, 190, 0.2)",
+                  bg: "accent.tealAlpha.20",
                 }}
                 border="1px solid"
                 borderColor="border.inner"
@@ -115,13 +115,13 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
                 transform="translateX(-50%)"
                 onClick={skipToEnd}
                 size="sm"
-                bg="rgba(91, 192, 190, 0.1)"
+                bg="accent.tealAlpha.10"
                 color="text.primary"
                 border="1px solid"
                 borderColor="accent.teal"
                 borderRadius="md"
                 _hover={{
-                  bg: "rgba(91, 192, 190, 0.2)",
+                  bg: "accent.tealAlpha.20",
                 }}
               >
                 Skip to End
@@ -146,7 +146,7 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
                 left="50%"
                 transform="translateX(-50%)"
                 onClick={onClose}
-                bg="linear-gradient(135deg, rgba(91, 192, 190, 0.1) 0%, rgba(29, 33, 38, 0.8) 100%)"
+                bg="linear-gradient(135deg, accent.tealAlpha.10 0%, bg.steelAlpha.80 100%)"
                 color="text.primary"
                 border="1px solid"
                 borderColor="accent.teal"
@@ -158,9 +158,9 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
                 letterSpacing="0.5px"
                 transition="all 0.3s ease"
                 _hover={{
-                  bg: "linear-gradient(135deg, rgba(91, 192, 190, 0.2) 0%, rgba(29, 33, 38, 0.9) 100%)",
+                  bg: "linear-gradient(135deg, accent.tealAlpha.20 0%, bg.steelAlpha.90 100%)",
                   transform: "translateY(-2px)",
-                  boxShadow: "0 8px 25px rgba(91, 192, 190, 0.3)",
+                  boxShadow: "0 8px 25px accent.tealAlpha.30",
                 }}
                 _active={{
                   transform: "translateY(0)",
