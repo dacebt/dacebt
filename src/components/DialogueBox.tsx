@@ -53,10 +53,11 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       return () => clearInterval(interval)
     }, [content, enableStreaming, streamingSpeed])
 
-    // Variant-specific styling
-    const isModal = variant === "modal"
-    const avatarSize = isModal ? "100px" : "80px"
-    const minHeight = isModal ? "250px" : "140px"
+    // Shared styling for all variants
+    const avatarWidth = "90px"
+    const avatarHeight = "110px"
+    const paddingTop = 4
+    const paddingBottom = 3
 
     return (
       <Box
@@ -64,10 +65,11 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
         position="relative"
         bg="linear-gradient(135deg, bg.darkAlpha.95 0%, bg.steelAlpha.90 100%)"
         borderRadius="16px"
-        p={10}
-        minH={minHeight}
+        px={10}
+        pt={paddingTop}
+        pb={paddingBottom}
         display="flex"
-        alignItems="center"
+        alignItems="flex-end"
         gap={8}
         cursor={onClick ? "pointer" : "default"}
         onClick={onClick}
@@ -142,30 +144,15 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
         {/* Speaker Avatar */}
         {speakerImage && (
           <Box
-            w={avatarSize}
-            h={avatarSize}
-            borderRadius="full"
-            bg="bg.steel"
-            border="3px solid"
-            borderColor="accent.green"
-            boxShadow="0 0 12px accent.greenAlpha.40, inset 0 0 0 1px white.alpha.10"
+            w={avatarWidth}
+            h={avatarHeight}
+            borderRadius="md"
             flexShrink={0}
             overflow="hidden"
             display="flex"
             alignItems="center"
             justifyContent="center"
             position="relative"
-            _before={{
-              content: '""',
-              position: "absolute",
-              top: "-3px",
-              left: "-3px",
-              right: "-3px",
-              bottom: "-3px",
-              borderRadius: "full",
-              background: "linear-gradient(135deg, accent.greenAlpha.40 0%, accent.tealAlpha.30 100%)",
-              zIndex: -1,
-            }}
           >
             <img
               src={speakerImage}
@@ -174,7 +161,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                borderRadius: "50%",
+                borderRadius: "8px",
               }}
             />
           </Box>
