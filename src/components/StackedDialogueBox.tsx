@@ -16,7 +16,6 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
       messages,
       hasMore = true,
       onClick,
-      variant = "home",
     },
     ref
   ) => {
@@ -72,7 +71,6 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
               return (
                 <DialogueBox
                   key={`${message.speaker}-${index}`}
-                  variant={variant}
                   content={message.message}
                   speaker={message.speaker}
                   speakerImage={message.image}

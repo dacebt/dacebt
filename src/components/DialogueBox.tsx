@@ -7,7 +7,6 @@ interface DialogueBoxProps {
   speakerImage?: string
   hasMore?: boolean
   onClick?: () => void
-  variant?: "home" | "modal"
   enableStreaming?: boolean
   streamingSpeed?: number
 }
@@ -20,7 +19,6 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       speakerImage,
       hasMore = true,
       onClick,
-      variant = "home",
       enableStreaming = true,
       streamingSpeed = 30,
     },
