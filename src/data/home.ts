@@ -7,7 +7,7 @@ export const welcomeMessages: DialogueMessage[] = [
     image: "/images/avatar.png",
   },
   {
-    message: "I could go on and on about my passion for development, or my obsession with using the latest ai tools to 10x my creations and ideas. But let's save that for the proper pages.",
+    message: "I could go on and on about my passion for development, or my obsession with using the latest AI tools to 10x my creations and ideas. But let's save that for the proper pages.",
     speaker: "David",
     image: "/images/avatar.png",
   },
