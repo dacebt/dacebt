@@ -121,8 +121,8 @@ export default function ProjectCard({
           fontSize="xl"
           fontWeight="bold"
           textAlign="center"
-          backgroundImage="linear-gradient(135deg, gradient.blue, gradient.purple)"
-          backgroundClip="text"
+          bgGradient="linear-gradient(135deg, var(--chakra-colors-gradient-blue), var(--chakra-colors-gradient-purple))"
+          bgClip="text"
           color="transparent"
           lineHeight="1.2"
         >
