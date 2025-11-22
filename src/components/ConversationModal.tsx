@@ -129,7 +129,15 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
             )}
 
             {/* Main dialogue content */}
-            <Box w="100%" maxW="700px" maxH="calc(100vh - 12rem)" display="flex" flexDirection="column" justifyContent="flex-end">
+            <Box 
+              w="100%" 
+              maxW="700px" 
+              maxH="calc(100vh - 12rem)" 
+              display="flex" 
+              flexDirection="column" 
+              justifyContent="flex-end"
+              mb={isComplete ? 20 : 0}
+            >
               <StackedDialogueBox
                 variant="modal"
                 messages={visibleMessages}

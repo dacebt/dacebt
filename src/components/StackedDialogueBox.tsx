@@ -16,6 +16,7 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
       messages,
       hasMore = true,
       onClick,
+      variant = "home",
     },
     ref
   ) => {
@@ -27,6 +28,9 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight
       }
     }, [messages.length])
+
+    // Variant-based spacing: modal gets larger gaps for better visual separation
+    const gap = variant === "modal" ? 10 : 8
 
     return (
       <Box
@@ -62,9 +66,9 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
           <Box
             display="flex"
             flexDirection="column"
-            gap={6}
+            gap={gap}
             pt={4}
-            pb={4}
+            pb={6}
           >
             {messages.map((message, index) => {
               const isLatest = index === messages.length - 1
