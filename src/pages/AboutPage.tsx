@@ -22,12 +22,12 @@ export default function AboutPage() {
   return (
     <>
       <PageLayout title="About Me" subtitle="Click on any topic to learn more about me">
-        {/* 3x3 Grid of floating buttons */}
+        {/* Responsive grid of floating buttons */}
         <Grid
-          gridTemplateColumns="repeat(3, 1fr)"
-          gap={6}
+          gridTemplateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }}
+          gap={{ base: 4, md: 6 }}
           w="100%"
-          maxW="800px"
+          maxW={{ base: "100%", md: "800px" }}
           mx="auto"
           alignItems="start"
           pt={4}
@@ -37,7 +37,7 @@ export default function AboutPage() {
               key={topic.id}
               onClick={() => handleTopicClick(topic)}
               size="lg"
-              h="120px"
+              h={{ base: "100px", md: "120px" }}
               w="100%"
               bg="linear-gradient(135deg, accent.tealAlpha.8 0%, bg.steelAlpha.60 100%)"
               color="text.primary"

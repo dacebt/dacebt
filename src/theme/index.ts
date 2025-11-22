@@ -3,6 +3,26 @@ import { createSystem, defaultConfig } from "@chakra-ui/react"
 const system = createSystem(defaultConfig, {
   theme: {
     tokens: {
+      breakpoints: {
+        sm: { value: "640px" },
+        md: { value: "768px" },
+        lg: { value: "1024px" },
+        xl: { value: "1280px" },
+        "2xl": { value: "1536px" },
+      },
+      spacing: {
+        container: {
+          sm: { value: "640px" },
+          md: { value: "768px" },
+          lg: { value: "1024px" },
+          xl: { value: "1280px" },
+          "2xl": { value: "1536px" },
+        },
+        sidebar: {
+          base: { value: "100%" },
+          md: { value: "280px" },
+        },
+      },
       fonts: {
         // Custom font families will be added here
         // Example:
@@ -139,43 +159,50 @@ const system = createSystem(defaultConfig, {
         },
       },
     },
-    // Text styles will be defined here
     textStyles: {
-      // Custom text styles will be added here
-      // Example:
-      // heading: {
-      //   description: "Main heading text style",
-      //   value: {
-      //     fontFamily: "heading",
-      //     fontWeight: "bold",
-      //     fontSize: "2xl",
-      //     lineHeight: "1.2",
-      //   },
-      // },
-      // body: {
-      //   description: "Body text style",
-      //   value: {
-      //     fontFamily: "body",
-      //     fontSize: "md",
-      //     lineHeight: "1.6",
-      //   },
-      // },
-      // mono: {
-      //   description: "Monospace text style",
-      //   value: {
-      //     fontFamily: "mono",
-      //     fontSize: "sm",
-      //   },
-      // },
+      heading: {
+        description: "Main heading text style",
+        value: {
+          fontSize: { base: "2xl", md: "3xl", lg: "4xl" },
+          fontWeight: "bold",
+          lineHeight: "1.2",
+          letterSpacing: "tight",
+        },
+      },
+      subtitle: {
+        description: "Subtitle text style",
+        value: {
+          fontSize: { base: "lg", md: "xl", lg: "2xl" },
+          fontWeight: "medium",
+          lineHeight: "1.4",
+          color: "text.secondary",
+        },
+      },
+      body: {
+        description: "Body text style",
+        value: {
+          fontSize: { base: "sm", md: "md" },
+          lineHeight: "1.6",
+        },
+      },
       buttonLabel: {
         description: "Floating button label text style",
         value: {
-          fontSize: "md",
+          fontSize: { base: "sm", md: "md" },
           fontWeight: "bold",
           letterSpacing: "0.5px",
           textTransform: "uppercase",
           textAlign: "center",
-          textShadow: "0 1px 2px rgba(0, 0, 0, 0.5)", // black.alpha.50
+          textShadow: "0 1px 2px rgba(0, 0, 0, 0.5)",
+        },
+      },
+      dialogue: {
+        description: "Dialogue box text style",
+        value: {
+          fontSize: { base: "sm", md: "lg" },
+          fontWeight: "500",
+          lineHeight: "1.6",
+          letterSpacing: "0.2px",
         },
       },
     },

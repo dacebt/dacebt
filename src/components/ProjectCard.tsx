@@ -1,8 +1,10 @@
 import { Box, Text, Icon, Badge, Flex } from "@chakra-ui/react"
 import { Tooltip } from "./ui/tooltip"
 import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaBuilding } from "react-icons/fa"
-import { type Project } from "../data/projects"
 import { FaXmark } from "react-icons/fa6"
+import { type Project } from "../data/projects"
+
+const MAX_VISIBLE_TECH = 2
 
 const getLinkIcon = (linkType: string) => {
   switch (linkType) {
@@ -32,17 +34,18 @@ export default function ProjectCard({
   index,
   onLinkClick,
 }: ProjectCardProps) {
-  const availableLinks = Object.entries(project.links).filter(([_, url]) => url && url !== "")
-
-  // Add company link if available
-  const allLinks = availableLinks
+  const availableLinks = Object.entries(project.links).filter(([, url]) => Boolean(url))
+  const allLinks: Array<[string, string]> = [...availableLinks] as Array<[string, string]>
   if (project.companyUrl) {
     allLinks.push(["company", project.companyUrl])
   }
 
+  const visibleTech = project.technologies.slice(0, MAX_VISIBLE_TECH)
+  const remainingTechCount = project.technologies.length - visibleTech.length
+
   return (
     <Box
-      p={3}
+      p={{ base: 3, md: 4 }}
       bg="bg.steel"
       color="text.primary"
       border="1px solid"
@@ -68,7 +71,6 @@ export default function ProjectCard({
       flexDirection="column"
       opacity={project.currentlyContributing ? 1 : 0.85}
     >
-      {/* Personal badge - bottom left of card */}
       {project.type === "personal" && (
         <Badge
           position="absolute"
@@ -92,17 +94,15 @@ export default function ProjectCard({
         </Badge>
       )}
 
-      {/* Project banner */}
       <Box
         position="relative"
         bg="bg.dark"
         borderRadius="md"
-        p={4}
+        p={{ base: 3, md: 4 }}
         mb={3}
         border="1px solid"
         borderColor="border.inner"
       >
-        {/* Currently contributing indicator - top right */}
         {!project.currentlyContributing && (
           <Tooltip content="Currently not contributing">
             <Icon
@@ -117,7 +117,6 @@ export default function ProjectCard({
           </Tooltip>
         )}
 
-        {/* Project name with gradient */}
         <Text
           fontSize="xl"
           fontWeight="bold"
@@ -131,7 +130,6 @@ export default function ProjectCard({
         </Text>
       </Box>
 
-      {/* Description */}
       <Text
         fontSize="xs"
         color="text.muted"
@@ -143,11 +141,10 @@ export default function ProjectCard({
         {project.shortDescription}
       </Text>
 
-      {/* Technologies */}
-      {project.technologies.length > 0 && (
+      {visibleTech.length > 0 && (
         <Box mb={2}>
-          {project.technologies.slice(0, 2).map((tech, techIndex) => (
-            <Tooltip key={techIndex} content={tech}>
+          {visibleTech.map((tech: string, techIndex: number) => (
+            <Tooltip key={`${project.name}-tech-${techIndex}`} content={tech}>
               <Box
                 as="span"
                 px={1.5}
@@ -165,8 +162,8 @@ export default function ProjectCard({
               </Box>
             </Tooltip>
           ))}
-          {project.technologies.length > 2 && (
-            <Tooltip content={`${project.technologies.slice(2).join(", ")}`}>
+          {remainingTechCount > 0 && (
+            <Tooltip content={project.technologies.slice(MAX_VISIBLE_TECH).join(", ")}>
               <Box
                 as="span"
                 px={1.5}
@@ -179,18 +176,17 @@ export default function ProjectCard({
                 color="text.muted"
                 cursor="default"
               >
-                +{project.technologies.length - 2}
+                +{remainingTechCount}
               </Box>
             </Tooltip>
           )}
         </Box>
       )}
 
-      {/* Metrics and Key Features */}
       <Flex flexDirection="column" gap={1} mb={2}>
-        {project.keyFeatures.map((feature, idx) => (
+        {project.keyFeatures.map((feature: string, featureIndex: number) => (
           <Text
-            key={`feature-${idx}`}
+            key={`feature-${featureIndex}`}
             fontSize="xs"
             color="text.secondary"
             mb={0.5}
@@ -200,9 +196,9 @@ export default function ProjectCard({
             ⭐ {feature}
           </Text>
         ))}
-        {project.metrics.map((metric, idx) => (
+        {project.metrics.map((metric: string, metricIndex: number) => (
           <Text
-            key={`metric-${idx}`}
+            key={`metric-${metricIndex}`}
             fontSize="xs"
             color="accent.tealAlpha.80"
             mb={0.5}
@@ -212,9 +208,9 @@ export default function ProjectCard({
             📊 {metric}
           </Text>
         ))}
-        {project.contributions.map((contribution, idx) => (
+        {project.contributions.map((contribution: string, contributionIndex: number) => (
           <Text
-            key={`contribution-${idx}`}
+            key={`contribution-${contributionIndex}`}
             fontSize="xs"
             color="text.secondaryAlpha.90"
             mb={0.5}
@@ -226,26 +222,26 @@ export default function ProjectCard({
         ))}
       </Flex>
 
-      {/* Links */}
       {allLinks.length > 0 && (
         <Box display="flex" justifyContent="flex-end" gap={1} mt="auto" pt={2}>
           {allLinks.map(([linkType, url]) => {
             const IconComponent = getLinkIcon(linkType)
-            const linkLabels = {
+            const linkLabels: Record<string, string> = {
               github: "View on GitHub",
               website: "Visit Website",
               demo: "View Demo",
               documentation: "View Documentation",
               company: project.company || "Visit Company Website",
             }
+
             return (
               <Tooltip
-                key={linkType}
-                content={linkLabels[linkType as keyof typeof linkLabels] || "Open Link"}
+                key={`${project.name}-${linkType}`}
+                content={linkLabels[linkType] || "Open Link"}
               >
                 <Box
                   as="button"
-                  onClick={(e) => onLinkClick(url!, e)}
+                  onClick={(e) => onLinkClick(url, e)}
                   p={1}
                   borderRadius="sm"
                   bg="bg.dark"

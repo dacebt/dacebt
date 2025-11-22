@@ -9,8 +9,8 @@ export default function HomePage() {
   })
 
   return (
-    <Box height="100%" display="flex" flexDirection="column" justifyContent="flex-end" p={6}>
-      <Box maxH="70vh">
+    <Box height="100%" display="flex" flexDirection="column" justifyContent="flex-end" p={{ base: 4, md: 6 }}>
+      <Box maxH={{ base: "60vh", md: "70vh" }}>
         <StackedDialogueBox
           variant="home"
           messages={visibleMessages}

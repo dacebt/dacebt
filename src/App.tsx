@@ -11,6 +11,8 @@ import AboutPage from "./pages/AboutPage"
 import ContactPage from "./pages/ContactPage"
 import { injectAllAnimations } from "./utils/animations"
 
+const NAV_COLUMN_WIDTH = "280px"
+
 function App() {
   const currentPage = useNavigationStore((state) => state.currentPage)
 
@@ -42,27 +44,52 @@ function App() {
         zIndex={1}
         margin="0 auto"
         minHeight="100vh"
-        maxWidth="1200px"
-        padding="2rem"
+        maxWidth={{ base: "100%", md: "spacing.container.md", lg: "spacing.container.lg", xl: "spacing.container.xl" }}
+        padding={{ base: "1rem", md: "2rem" }}
         backgroundColor="transparent"
         color="text.primary"
       >
         <Grid
-          gridTemplateAreas={`"main navigation" "footer footer"`}
-          gridTemplateColumns="1fr 0.3fr"
-          gridTemplateRows="1fr 150px"
-          height="calc(100vh - 4rem)"
-          gap={4}
+          templateAreas={{
+            base: '"main" "navigation" "footer"',
+            lg: '"main navigation" "footer footer"',
+          }}
+          templateColumns={{ base: "1fr", lg: `minmax(0, 1fr) ${NAV_COLUMN_WIDTH}` }}
+          templateRows={{ base: "auto", lg: "1fr 180px" }}
+          gap={{ base: 4, lg: 5 }}
+          alignItems="start"
+          height={{ base: "auto", lg: "calc(100vh - 4rem)" }}
         >
-          <InterfaceFrame gridArea="main" depthLevel="deep" h="100%" overflow="hidden">
+          {/* Main content area */}
+          <InterfaceFrame 
+            depthLevel="deep" 
+            overflow="hidden"
+            minH={0}
+            gridArea="main"
+            h="100%"
+          >
             <Box h="100%" overflow="auto">
               {renderPage()}
             </Box>
           </InterfaceFrame>
-          <InterfaceFrame gridArea="navigation" depthLevel="medium" alignSelf="start" w="280px">
+
+          {/* Navigation sidebar */}
+          <InterfaceFrame 
+            depthLevel="medium" 
+            gridArea="navigation"
+            minW={{ base: "100%", lg: NAV_COLUMN_WIDTH }}
+            maxW={{ base: "100%", lg: NAV_COLUMN_WIDTH }}
+            alignSelf="start"
+          >
             <Navigation />
           </InterfaceFrame>
-          <InterfaceFrame gridArea="footer" depthLevel="shallow">
+
+          {/* Player stats card */}
+          <InterfaceFrame 
+            depthLevel="shallow" 
+            gridArea="footer"
+            mt={{ base: 0, lg: 4 }}
+          >
             <PlayerStatsCard />
           </InterfaceFrame>
         </Grid>

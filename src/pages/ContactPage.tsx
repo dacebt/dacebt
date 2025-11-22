@@ -20,9 +20,9 @@ export default function ContactPage() {
     <PageLayout title="Get In Touch" subtitle="Connect with me through any of these platforms" centerContent>
       {/* Contact cards grid */}
       <Grid
-        gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
-        gap={6}
-        maxW="600px"
+        gridTemplateColumns={{ base: "1fr", sm: "repeat(2, 1fr)" }}
+        gap={{ base: 4, md: 6 }}
+        maxW={{ base: "100%", md: "600px" }}
         w="100%"
         mx="auto"
         justifyItems="center"
@@ -35,7 +35,7 @@ export default function ContactPage() {
               <Button
                 onClick={() => handleClick(contact.url)}
                 size="lg"
-                h="140px"
+                h={{ base: "120px", md: "140px" }}
                 w="100%"
                 bg="linear-gradient(135deg, accent.tealAlpha.8 0%, bg.steelAlpha.60 100%)"
                 color="text.primary"

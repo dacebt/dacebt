@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { Box, Text } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
+import DialogueBoxSpeaker from "./ui/DialogueBoxSpeaker"
+import DialogueBoxAvatar from "./ui/DialogueBoxAvatar"
+import DialogueBoxContent from "./ui/DialogueBoxContent"
+import DialogueBoxArrow from "./ui/DialogueBoxArrow"
 
 interface DialogueBoxProps {
   content: string
@@ -51,24 +55,18 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       return () => clearInterval(interval)
     }, [content, enableStreaming, streamingSpeed])
 
-    // Shared styling for all variants
-    const avatarWidth = "90px"
-    const avatarHeight = "110px"
-    const paddingTop = 4
-    const paddingBottom = 3
-
     return (
       <Box
         ref={ref}
         position="relative"
         bg="linear-gradient(135deg, bg.darkAlpha.95 0%, bg.steelAlpha.90 100%)"
         borderRadius="16px"
-        px={10}
-        pt={paddingTop}
-        pb={paddingBottom}
+        px={{ base: 6, md: 10 }}
+        pt={{ base: 3, md: 4 }}
+        pb={{ base: 2, md: 3 }}
         display="flex"
         alignItems="flex-end"
-        gap={8}
+        gap={{ base: 4, md: 8 }}
         cursor={onClick ? "pointer" : "default"}
         onClick={onClick}
         transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -113,101 +111,10 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           pointerEvents: "none",
         }}
       >
-
-        {/* Speaker Label */}
-        {speaker && (
-          <Box
-            position="absolute"
-            top="-12px"
-            left="16px"
-            bg="bg.dark"
-            color="accent.green"
-            px={3}
-            py={1}
-            borderRadius="md"
-            fontSize="sm"
-            fontWeight="bold"
-            textTransform="uppercase"
-            letterSpacing="0.5px"
-            border="1px solid"
-            borderColor="accent.green"
-            boxShadow="0 0 8px accent.greenAlpha.30"
-            zIndex={2}
-            opacity={1}
-          >
-            {speaker}
-          </Box>
-        )}
-
-        {/* Speaker Avatar */}
-        {speakerImage && (
-          <Box
-            w={avatarWidth}
-            h={avatarHeight}
-            borderRadius="md"
-            flexShrink={0}
-            overflow="hidden"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            position="relative"
-          >
-            <img
-              src={speakerImage}
-              alt={speaker || "Speaker"}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "8px",
-              }}
-            />
-          </Box>
-        )}
-
-        {/* Content */}
-        <Text
-          color="text.primary"
-          fontSize="lg"
-          fontWeight="500"
-          lineHeight="1.6"
-          textShadow="0 2px 8px black.alpha.80, 0 0 20px accent.greenAlpha.30"
-          position="relative"
-          zIndex={1}
-          flex={1}
-          letterSpacing="0.2px"
-          fontFamily="system-ui, -apple-system, sans-serif"
-        >
-          {displayedText}
-          {isStreaming && (
-            <Box
-              as="span"
-              w="2px"
-              h="1.2em"
-              bg="accent.green"
-              ml="2px"
-              display="inline-block"
-              animation="blink 1s infinite"
-              verticalAlign="text-bottom"
-            />
-          )}
-        </Text>
-
-        {/* Bottom right arrow indicator */}
-        {hasMore && (
-          <Box
-            w="0"
-            h="0"
-            borderLeft="8px solid transparent"
-            borderRight="8px solid transparent"
-            borderTop="10px solid"
-            borderTopColor="accent.green"
-            opacity={0.8}
-            flexShrink={0}
-            animation="bounce 1.5s ease-in-out infinite"
-            transition="all 0.3s ease"
-          />
-        )}
+        <DialogueBoxSpeaker speaker={speaker} />
+        <DialogueBoxAvatar speakerImage={speakerImage} speaker={speaker} />
+        <DialogueBoxContent displayedText={displayedText} isStreaming={isStreaming} />
+        <DialogueBoxArrow hasMore={hasMore} />
       </Box>
     )
   }
