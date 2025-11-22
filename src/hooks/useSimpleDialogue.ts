@@ -7,8 +7,6 @@ export interface DialogueMessage {
   speaker: string
   /** Path to speaker image */
   image?: string
-  /** Where to position the speaker image (defaults to 'left') */
-  imagePosition?: "left" | "right" | "center"
 }
 
 interface UseSimpleDialogueOptions {
