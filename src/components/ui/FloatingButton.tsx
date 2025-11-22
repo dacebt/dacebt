@@ -31,9 +31,9 @@ export default function FloatingButton({
 
   const variantConfig = {
     primary: {
-      bg: "linear-gradient(135deg, accent.tealAlpha.8 0%, bg.steelAlpha.60 100%)",
+      bg: "linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-8) 0%, var(--chakra-colors-bg-steelAlpha-60) 100%)",
       borderColor: "border.inner",
-      hoverBg: "linear-gradient(135deg, accent.tealAlpha.15 0%, bg.steelAlpha.80 100%)",
+      hoverBg: "linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-15) 0%, var(--chakra-colors-bg-steelAlpha-80) 100%)",
       hoverBorderColor: "accent.teal",
     },
     secondary: {
@@ -100,7 +100,7 @@ export default function FloatingButton({
         left={0}
         right={0}
         bottom={0}
-        bg="linear-gradient(90deg, transparent 0%, white.alpha.10 50%, transparent 100%)"
+        bg="linear-gradient(90deg, transparent 0%, var(--chakra-colors-white-alpha-10) 50%, transparent 100%)"
         transform="translateX(-100%)"
         transition="transform 0.6s ease"
         _groupHover={{
@@ -130,7 +130,7 @@ export default function FloatingButton({
         right="-2px"
         bottom="-2px"
         borderRadius="xl"
-        bg="linear-gradient(135deg, accent.tealAlpha.10, transparent, accent.tealAlpha.10)"
+        bg="linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-10), transparent, var(--chakra-colors-accent-tealAlpha-10))"
         opacity={0}
         transition="opacity 0.3s ease"
         _hover={

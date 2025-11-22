@@ -146,7 +146,7 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
                 left="50%"
                 transform="translateX(-50%)"
                 onClick={onClose}
-                bg="linear-gradient(135deg, accent.tealAlpha.10 0%, bg.steelAlpha.80 100%)"
+                bg="linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-10) 0%, var(--chakra-colors-bg-steelAlpha-80) 100%)"
                 color="text.primary"
                 border="1px solid"
                 borderColor="accent.teal"
@@ -158,7 +158,7 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
                 letterSpacing="0.5px"
                 transition="all 0.3s ease"
                 _hover={{
-                  bg: "linear-gradient(135deg, accent.tealAlpha.20 0%, bg.steelAlpha.90 100%)",
+                  bg: "linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-20) 0%, var(--chakra-colors-bg-steelAlpha-90) 100%)",
                   transform: "translateY(-2px)",
                   boxShadow: "0 8px 25px accent.tealAlpha.30",
                 }}

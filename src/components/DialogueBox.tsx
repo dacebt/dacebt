@@ -59,7 +59,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       <Box
         ref={ref}
         position="relative"
-        bg="linear-gradient(135deg, bg.darkAlpha.95 0%, bg.steelAlpha.90 100%)"
+        bg="linear-gradient(135deg, var(--chakra-colors-bg-darkAlpha-95) 0%, var(--chakra-colors-bg-steelAlpha-90) 100%)"
         borderRadius="16px"
         px={{ base: 6, md: 10 }}
         pt={{ base: 3, md: 4 }}
@@ -105,9 +105,9 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           bottom: 0,
           borderRadius: "16px",
           background: `linear-gradient(135deg, 
-            accent.greenAlpha.5 0%, 
+            var(--chakra-colors-accent-greenAlpha-5) 0%, 
             transparent 30%, 
-            black.alpha.30 100%)`,
+            var(--chakra-colors-black-alpha-30) 100%)`,
           pointerEvents: "none",
         }}
       >
