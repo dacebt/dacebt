@@ -35,7 +35,7 @@ const decentApp = createProject({
   type: "professional",
   company: "Decent Labs",
   companyUrl: "https://decent.build",
-  currentlyContributing: true,
+  currentlyContributing: false,
   links: {
     github: "https://github.com/decentdao/decent-app",
     website: "https://www.app.decent.org",
@@ -110,14 +110,14 @@ const mcpPromptCleaner = createProject({
 })
 
 const bitCraftOnlineProjectTool = createProject({
-  name: "BitCraft Project Planner & Recipe Calculator",
+  name: "bccodex",
   currentlyContributing: true,
   shortDescription:
-    "A sophisticated web application designed as the ultimate companion tool for BitCraft Online players",
+    "A web application designed as the ultimate companion tool for BitCraft Online players",
   type: "personal",
   links: {
     github: "https://github.com/Da-Colon/bitcraftonline-project-tool",
-    website: "https://bitcraftonlinetools.netlify.app/",
+    website: "https://bccodex.com",
   },
   technologies: [
     "React 18.2",
@@ -136,6 +136,7 @@ const bitCraftOnlineProjectTool = createProject({
     "Deep Recipe Breakdown with recursive material calculations",
     "Multi-Source Inventory Tracking across personal, banks, storage, and claims",
     "Persistent Selections that track inventories across sessions",
+    "Supports 5,000+ game items with complete recipe database",
   ],
   contributions: [],
   metrics: [
