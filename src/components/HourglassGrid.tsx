@@ -1,6 +1,14 @@
 import React from "react"
 import { Box } from "@chakra-ui/react"
 
+const GRID_COLUMNS = 13
+const GRID_ROWS = 13
+const TOTAL_CELLS = GRID_COLUMNS * GRID_ROWS
+const ANIMATED_CELL_INTERVAL = 4
+
+// Precompute cell indices once to avoid recreating large arrays on each render
+const hourglassCellIndices = Array.from({ length: TOTAL_CELLS }, (_, index) => index)
+
 const HourglassIcon: React.FC<{ boxSize?: string }> = ({ boxSize = "24px" }) => (
   <svg
     width={boxSize}
@@ -21,7 +29,7 @@ const HourglassIcon: React.FC<{ boxSize?: string }> = ({ boxSize = "24px" }) => 
   </svg>
 )
 
-const HourglassGrid: React.FC = () => {
+const HourglassGridComponent: React.FC = () => {
   return (
     <Box
       position="fixed"
@@ -41,21 +49,34 @@ const HourglassGrid: React.FC = () => {
         height="400vh"
         transform="skew(-20deg, -10deg)"
         display="grid"
-        gridTemplateColumns="repeat(25, 1fr)"
-        gridTemplateRows="repeat(25, 1fr)"
+        gridTemplateColumns={`repeat(${GRID_COLUMNS}, 1fr)`}
+        gridTemplateRows={`repeat(${GRID_ROWS}, 1fr)`}
         gap="2rem"
-        style={{ animation: "infiniteScroll 30s linear infinite" }}
+        style={{ animation: "infiniteScroll 40s linear infinite" }}
       >
-        {Array.from({ length: 625 }, (_, i) => (
-          <Box key={i} display="flex" alignItems="center" justifyContent="center" opacity="0.3">
-            <Box color="text.muted" style={{ animation: `pulseScale 3s ease-in-out ${i * 0.1}s infinite` }}>
-              <HourglassIcon boxSize="32px" />
+        {hourglassCellIndices.map((index) => {
+          const isAnimated = index % ANIMATED_CELL_INTERVAL === 0
+
+          return (
+            <Box key={index} display="flex" alignItems="center" justifyContent="center" opacity="0.3">
+              <Box
+                color="text.muted"
+                style={
+                  isAnimated
+                    ? { animation: `pulseScale 4s ease-in-out ${index * 0.15}s infinite` }
+                    : undefined
+                }
+              >
+                <HourglassIcon boxSize="32px" />
+              </Box>
             </Box>
-          </Box>
-        ))}
+          )
+        })}
       </Box>
     </Box>
   )
 }
+
+const HourglassGrid = React.memo(HourglassGridComponent)
 
 export default HourglassGrid
