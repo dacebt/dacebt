@@ -167,11 +167,11 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
                 transition="all 0.3s ease"
                 _hover={{
                   bg: "linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-20) 0%, var(--chakra-colors-bg-steelAlpha-90) 100%)",
-                  transform: "translateY(-2px)",
                   boxShadow: "0 8px 25px accent.tealAlpha.30",
+                  transform: "translateX(-50%) scale(1.02)",
                 }}
                 _active={{
-                  transform: "translateY(0)",
+                  transform: "translateX(-50%) scale(0.98)",
                 }}
               >
                 Close
