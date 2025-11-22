@@ -1,24 +1,30 @@
 import { Box, Text } from "@chakra-ui/react"
-import { useNavigationStore, type Page } from "../store/navigationStore"
+import { useLocation, useNavigate } from "react-router-dom"
 
-const navItems: { label: string; page: Page }[] = [
-  { label: "Home", page: "home" },
-  { label: "Projects", page: "projects" },
-  { label: "About", page: "about" },
-  { label: "Contact", page: "contact" },
+interface NavItem {
+  label: string
+  path: string
+}
+
+const navItems: NavItem[] = [
+  { label: "Home", path: "/" },
+  { label: "Projects", path: "/projects" },
+  { label: "About", path: "/about" },
+  { label: "Contact", path: "/contact" },
 ]
 
 export default function Navigation() {
-  const { currentPage, navigate } = useNavigationStore()
+  const location = useLocation()
+  const navigate = useNavigate()
 
   return (
     <Box display="flex" flexDirection="column" alignItems="stretch" gap={3} my={4}>
-      {navItems.map(({ label, page }) => {
-        const isActive = currentPage === page
+      {navItems.map(({ label, path }) => {
+        const isActive = location.pathname === path
 
         return (
           <Box
-            key={page}
+            key={path}
             cursor="pointer"
             px={4}
             py={3}
@@ -40,7 +46,7 @@ export default function Navigation() {
                 ? "inset 0 1px 0 white.alpha.15, 0 2px 12px accent.tealAlpha.25"
                 : "inset 0 1px 0 white.alpha.5, 0 2px 6px black.alpha.10",
             }}
-            onClick={() => navigate(page)}
+            onClick={() => navigate(path)}
           >
             <Text
               fontSize="md"
