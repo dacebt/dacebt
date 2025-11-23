@@ -30,7 +30,7 @@ A decentralized protocol for managing and operating onchain organizations. Led c
 ### [bccodex](https://bccodex.com)
 A web application designed as the ultimate companion tool for BitCraft Online players. Features deep recipe breakdowns, multi-source inventory tracking, and supports 5,000+ game items.
 
-**Tech:** React, Remix, TypeScript, Chakra UI, Netlify  
+**Tech:** React, Remix, TypeScript, Chakra UI, Cloudflare  
 **Features:** Complex recipe trees with 100+ items, sub-5 second calculation times
 
 ### [MCP Prompt Cleaner](https://github.com/dacebt/prompt-cleaner-mcp)
