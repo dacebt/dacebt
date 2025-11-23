@@ -14,7 +14,7 @@ export default function ProjectCardBadge({ project }: ProjectCardBadgeProps) {
       bottom={0}
       left={0}
       size="sm"
-      fontSize="xs"
+      textStyle="badgeText"
       px={2}
       py={1}
       bg="accent.tealAlpha.15"
@@ -22,9 +22,8 @@ export default function ProjectCardBadge({ project }: ProjectCardBadgeProps) {
       border="1px solid"
       borderColor="accent.teal"
       borderRadius="8px"
-      fontWeight="semibold"
       backdropFilter="blur(8px)"
-      boxShadow="0 2px 8px accent.tealAlpha.20"
+      boxShadow="badge.personal"
       zIndex={1}
     >
       personal

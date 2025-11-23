@@ -31,9 +31,9 @@ export default function FloatingButton({
 
   const variantConfig = {
     primary: {
-      bg: "linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-8) 0%, var(--chakra-colors-bg-steelAlpha-60) 100%)",
+      bg: "linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-8) 0%, var(--chakra-colors-bg-steel-alpha-60) 100%)",
       borderColor: "border.inner",
-      hoverBg: "linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-15) 0%, var(--chakra-colors-bg-steelAlpha-80) 100%)",
+      hoverBg: "linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-15) 0%, var(--chakra-colors-bg-steel-alpha-80) 100%)",
       hoverBorderColor: "accent.teal",
     },
     secondary: {
@@ -69,12 +69,7 @@ export default function FloatingButton({
               bg: variantStyle.hoverBg,
               borderColor: variantStyle.hoverBorderColor,
               transform: "translateY(-8px) scale(1.02)",
-              boxShadow: `
-                0 20px 40px accent.tealAlpha.15,
-                0 8px 16px black.alpha.30,
-                inset 0 1px 0 white.alpha.10,
-                inset 0 -1px 0 black.alpha.10
-              `,
+              boxShadow: "button.primaryHover",
             }
           : undefined
       }
@@ -130,7 +125,7 @@ export default function FloatingButton({
         right="-2px"
         bottom="-2px"
         borderRadius="xl"
-        bg="linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-10), transparent, var(--chakra-colors-accent-tealAlpha-10))"
+        bg="linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-10), transparent, var(--chakra-colors-accent-teal-alpha-10))"
         opacity={0}
         transition="opacity 0.3s ease"
         _hover={

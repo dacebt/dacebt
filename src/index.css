@@ -1,8 +1,9 @@
 /* Global scrollbar styles */
 /* Note: Colors correspond to theme tokens: accent.tealAlpha.30, accent.tealAlpha.50, accent.tealAlpha.70 */
+/* CSS variables: --chakra-colors-accent-teal-alpha-30, --chakra-colors-accent-teal-alpha-50, --chakra-colors-accent-teal-alpha-70 */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(91, 192, 190, 0.3) transparent; /* accent.tealAlpha.30 */
+  scrollbar-color: var(--chakra-colors-accent-teal-alpha-30) transparent;
 }
 
 /* Webkit browsers (Chrome, Safari, Edge) */
@@ -16,19 +17,19 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(91, 192, 190, 0.3); /* accent.tealAlpha.30 */
+  background: var(--chakra-colors-accent-teal-alpha-30);
   border-radius: 5px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(91, 192, 190, 0.5); /* accent.tealAlpha.50 - Note: not in theme, consider adding */
+  background: var(--chakra-colors-accent-teal-alpha-50);
   background-clip: padding-box;
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background: rgba(91, 192, 190, 0.7); /* accent.tealAlpha.70 - Note: not in theme, consider adding */
+  background: var(--chakra-colors-accent-teal-alpha-70);
   background-clip: padding-box;
 }
 

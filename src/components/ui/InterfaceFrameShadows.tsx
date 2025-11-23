@@ -7,37 +7,39 @@ interface InterfaceFrameShadowsProps {
 }
 
 export default function InterfaceFrameShadows({ isActive, config }: InterfaceFrameShadowsProps) {
-  const accentColor = "accent.teal"
-  const borderInner = "border.inner"
-  const borderOuter = "border.outer"
+  const accentColor = "var(--chakra-colors-accent-teal)"
+  const borderInner = "var(--chakra-colors-border-inner)"
+  const borderOuter = "var(--chakra-colors-border-outer)"
+  const whiteBase = "255, 255, 255"
+  const blackBase = "0, 0, 0"
 
   return {
     _hover: {
       boxShadow: `
-        inset 0 0 0 2px rgba(255, 255, 255, ${config.innerGlow + 0.03}),
+        inset 0 0 0 2px rgba(${whiteBase}, ${config.innerGlow + 0.03}),
         inset 0 0 0 4px ${borderInner},
         inset 0 0 0 8px ${borderOuter},
         0 0 0 4px ${isActive ? accentColor : borderInner},
         ${
           isActive
-            ? `0 0 20px accent.tealAlpha.10`
-            : `0 4px 20px rgba(0, 0, 0, ${config.shadowIntensity}), 0 8px 40px rgba(0, 0, 0, ${
+            ? `0 0 20px var(--chakra-colors-accent-teal-alpha-10)`
+            : `0 4px 20px rgba(${blackBase}, ${config.shadowIntensity}), 0 8px 40px rgba(${blackBase}, ${
                 config.shadowIntensity * 0.7
-              }), 0 16px 60px rgba(0, 0, 0, ${config.shadowIntensity * 0.4})`
+              }), 0 16px 60px rgba(${blackBase}, ${config.shadowIntensity * 0.4})`
         }
       `,
     },
     boxShadow: `
-      inset 0 0 0 2px rgba(255, 255, 255, ${config.innerGlow}),
+      inset 0 0 0 2px rgba(${whiteBase}, ${config.innerGlow}),
       inset 0 0 0 4px ${borderInner},
       inset 0 0 0 8px ${borderOuter},
       0 0 0 4px ${isActive ? accentColor : borderInner},
       ${
         isActive
-          ? `0 0 20px accent.tealAlpha.10`
-          : `0 4px 20px rgba(0, 0, 0, ${config.shadowIntensity}), 0 8px 40px rgba(0, 0, 0, ${
+          ? `0 0 20px var(--chakra-colors-accent-teal-alpha-10)`
+          : `0 4px 20px rgba(${blackBase}, ${config.shadowIntensity}), 0 8px 40px rgba(${blackBase}, ${
               config.shadowIntensity * 0.7
-            }), 0 16px 60px rgba(0, 0, 0, ${config.shadowIntensity * 0.4})`
+            }), 0 16px 60px rgba(${blackBase}, ${config.shadowIntensity * 0.4})`
       }
     `,
   }

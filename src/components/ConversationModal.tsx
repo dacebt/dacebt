@@ -100,8 +100,7 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
               top={6}
               left={6}
               color="text.muted"
-              fontSize="sm"
-              fontWeight="medium"
+              textStyle="progressText"
             >
               Message {visibleCount} of {totalMessages}
             </Box>
@@ -154,20 +153,18 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
                 left="50%"
                 transform="translateX(-50%)"
                 onClick={onClose}
-                bg="linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-10) 0%, var(--chakra-colors-bg-steelAlpha-80) 100%)"
+                bg="linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-10) 0%, var(--chakra-colors-bg-steel-alpha-80) 100%)"
                 color="text.primary"
                 border="1px solid"
                 borderColor="accent.teal"
                 borderRadius="lg"
                 px={8}
                 py={3}
-                fontWeight="bold"
-                textTransform="uppercase"
-                letterSpacing="0.5px"
+                textStyle="buttonLabel"
                 transition="all 0.3s ease"
                 _hover={{
-                  bg: "linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-20) 0%, var(--chakra-colors-bg-steelAlpha-90) 100%)",
-                  boxShadow: "0 8px 25px accent.tealAlpha.30",
+                  bg: "linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-20) 0%, var(--chakra-colors-bg-steel-alpha-90) 100%)",
+                  boxShadow: "button.closeHover",
                   transform: "translateX(-50%) scale(1.02)",
                 }}
                 _active={{

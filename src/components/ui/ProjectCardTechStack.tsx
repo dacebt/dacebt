@@ -20,8 +20,7 @@ export default function ProjectCardTechStack({ techStack }: ProjectCardTechStack
           border="1px solid"
           borderColor="accent.tealAlpha.15"
           borderRadius="4px"
-          fontSize="xs"
-          fontWeight="medium"
+          textStyle="smallTextMedium"
         >
           {tech}
         </Badge>

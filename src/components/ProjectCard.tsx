@@ -1,8 +1,9 @@
-import { Box, Text, Icon, Badge, Flex } from "@chakra-ui/react"
+import { Box, Text, Icon, Flex } from "@chakra-ui/react"
 import { Tooltip } from "./ui/tooltip"
 import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaBuilding } from "react-icons/fa"
 import { FaXmark } from "react-icons/fa6"
 import { type Project } from "../data/projects"
+import ProjectCardBadge from "./ui/ProjectCardBadge"
 
 const MAX_VISIBLE_TECH = 2
 
@@ -57,7 +58,7 @@ export default function ProjectCard({
       _hover={{
         borderColor: "accent.teal",
         transform: "translateY(-4px)",
-        boxShadow: "0 8px 25px accent.tealAlpha.15",
+        boxShadow: "card.projectHover",
       }}
       animation={`float ${6 + index}s ease-in-out infinite`}
       style={{
@@ -72,26 +73,9 @@ export default function ProjectCard({
       opacity={project.currentlyContributing ? 1 : 0.85}
     >
       {project.type === "personal" && (
-        <Badge
-          position="absolute"
-          bottom={0}
-          left={0}
-          size="sm"
-          fontSize="xs"
-          px={2}
-          py={1}
-          bg="accent.tealAlpha.15"
-          color="accent.teal"
-          border="1px solid"
-          borderColor="accent.teal"
-          borderRadius="8px"
-          fontWeight="semibold"
-          backdropFilter="blur(8px)"
-          boxShadow="0 2px 8px accent.tealAlpha.20"
-          zIndex={1}
-        >
-          personal
-        </Badge>
+        <Box position="absolute" bottom={0} left={0} zIndex={1}>
+          <ProjectCardBadge project={project} />
+        </Box>
       )}
 
       <Box
@@ -118,23 +102,20 @@ export default function ProjectCard({
         )}
 
         <Text
-          fontSize="xl"
-          fontWeight="bold"
+          textStyle="projectTitle"
           textAlign="center"
           bgGradient="linear-gradient(135deg, var(--chakra-colors-gradient-blue), var(--chakra-colors-gradient-purple))"
           bgClip="text"
           color="transparent"
-          lineHeight="1.2"
         >
           {project.name}
         </Text>
       </Box>
 
       <Text
-        fontSize="xs"
+        textStyle="smallText"
         color="text.muted"
         mb={2}
-        lineHeight="1.3"
         wordWrap="break-word"
         whiteSpace="normal"
       >
@@ -145,39 +126,41 @@ export default function ProjectCard({
         <Box mb={2}>
           {visibleTech.map((tech: string, techIndex: number) => (
             <Tooltip key={`${project.name}-tech-${techIndex}`} content={tech}>
-              <Box
+              <Text
                 as="span"
+                textStyle="smallText"
                 px={1.5}
                 py={0.5}
                 bg="bg.dark"
                 border="1px solid"
                 borderColor="border.inner"
                 borderRadius="sm"
-                fontSize="xs"
                 color="accent.teal"
                 mr={1}
                 cursor="default"
+                display="inline-block"
               >
                 {tech}
-              </Box>
+              </Text>
             </Tooltip>
           ))}
           {remainingTechCount > 0 && (
             <Tooltip content={project.technologies.slice(MAX_VISIBLE_TECH).join(", ")}>
-              <Box
+              <Text
                 as="span"
+                textStyle="smallText"
                 px={1.5}
                 py={0.5}
                 bg="bg.dark"
                 border="1px solid"
                 borderColor="border.outer"
                 borderRadius="sm"
-                fontSize="xs"
                 color="text.muted"
                 cursor="default"
+                display="inline-block"
               >
                 +{remainingTechCount}
-              </Box>
+              </Text>
             </Tooltip>
           )}
         </Box>
@@ -187,7 +170,7 @@ export default function ProjectCard({
         {project.keyFeatures.map((feature: string, featureIndex: number) => (
           <Text
             key={`feature-${featureIndex}`}
-            fontSize="xs"
+            textStyle="smallText"
             color="text.secondary"
             mb={0.5}
             wordWrap="break-word"
@@ -199,7 +182,7 @@ export default function ProjectCard({
         {project.metrics.map((metric: string, metricIndex: number) => (
           <Text
             key={`metric-${metricIndex}`}
-            fontSize="xs"
+            textStyle="smallText"
             color="accent.tealAlpha.80"
             mb={0.5}
             wordWrap="break-word"
@@ -211,7 +194,7 @@ export default function ProjectCard({
         {project.contributions.map((contribution: string, contributionIndex: number) => (
           <Text
             key={`contribution-${contributionIndex}`}
-            fontSize="xs"
+            textStyle="smallText"
             color="text.secondaryAlpha.90"
             mb={0.5}
             wordWrap="break-word"

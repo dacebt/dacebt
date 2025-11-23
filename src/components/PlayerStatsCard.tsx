@@ -49,14 +49,7 @@ const PlayerStatsCard = () => {
           border="5px solid"
           borderColor="border.inner"
           bg="bg.steel"
-          boxShadow={`
-            inset 0 0 0 2px white.alpha.15,
-            inset 0 0 0 4px border.outer,
-            0 0 0 2px border.outer,
-            0 0 0 4px border.inner,
-            0 2px 8px black.alpha.30,
-            0 4px 16px black.alpha.20
-          `}
+          boxShadow="avatar.frame"
           _before={{
             content: '""',
             position: "absolute",
@@ -81,16 +74,16 @@ const PlayerStatsCard = () => {
 
         {/* Player Details */}
         <Box display="flex" flexDirection="column" alignItems="start" gap={1}>
-          <Text fontSize="lg" fontWeight="bold" color="text.primary">
+          <Text textStyle="playerName" color="text.primary">
             David
           </Text>
-          <Text fontSize="sm" color="text.muted">
+          <Text textStyle="playerRole" color="text.muted">
             Senior Web Developer
           </Text>
-          <Text fontSize="xs" color="accent.teal" fontWeight="medium">
+          <Text textStyle="smallTextMedium" color="accent.teal">
             {experience} experience
           </Text>
-          <Text fontSize="xs" color="text.muted">
+          <Text textStyle="smallText" color="text.muted">
             Georgia, US • Remote
           </Text>
         </Box>
@@ -98,7 +91,7 @@ const PlayerStatsCard = () => {
 
       {/* Right Side - Tech Stack */}
       <Box display="flex" flexDirection="column" alignItems="end" gap={2}>
-        <Text fontSize="xs" color="text.muted" mb={1}>
+        <Text textStyle="smallText" color="text.muted" mb={1}>
           Adaptable Stack
         </Text>
         <Box display="flex" gap={2} flexWrap="wrap" justifyContent="end">
@@ -109,7 +102,7 @@ const PlayerStatsCard = () => {
               colorScheme="teal"
               px={2}
               py={1}
-              fontSize="xs"
+              textStyle="smallText"
               borderColor="accent.teal"
               color="accent.teal"
               bg="accent.tealAlpha.10"

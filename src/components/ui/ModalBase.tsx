@@ -49,11 +49,7 @@ export default function ModalBase({
         border="1px solid"
         borderColor="border.inner"
         borderRadius="lg"
-        boxShadow={`
-          0 20px 60px black.alpha.60,
-          0 8px 25px black.alpha.40,
-          inset 0 0 0 1px border.inner.glow
-        `}
+        boxShadow="modal.content"
         maxW={config.maxW}
         maxH={config.maxH}
         w="90%"

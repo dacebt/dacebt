@@ -28,7 +28,7 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
         w="200px"
         h="200px"
         borderRadius="full"
-        bg="linear-gradient(135deg, var(--chakra-colors-accent-tealAlpha-10) 0%, var(--chakra-colors-accent-tealAlpha-5) 100%)"
+        bg="linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-10) 0%, var(--chakra-colors-accent-teal-alpha-5) 100%)"
         animation="float 6s ease-in-out infinite"
         filter="blur(1px)"
       />
@@ -39,7 +39,7 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
         w="150px"
         h="150px"
         borderRadius="full"
-        bg="linear-gradient(45deg, var(--chakra-colors-accent-tealAlpha-8) 0%, var(--chakra-colors-accent-tealAlpha-3) 100%)"
+        bg="linear-gradient(45deg, var(--chakra-colors-accent-teal-alpha-8) 0%, var(--chakra-colors-accent-teal-alpha-3) 100%)"
         animation="float 8s ease-in-out infinite reverse"
         filter="blur(1px)"
       />
@@ -50,7 +50,7 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
         w="100px"
         h="100px"
         borderRadius="full"
-        bg="linear-gradient(225deg, var(--chakra-colors-accent-tealAlpha-6) 0%, var(--chakra-colors-accent-tealAlpha-2) 100%)"
+        bg="linear-gradient(225deg, var(--chakra-colors-accent-teal-alpha-6) 0%, var(--chakra-colors-accent-teal-alpha-2) 100%)"
         animation="pulse 4s ease-in-out infinite"
         filter="blur(2px)"
       />
@@ -58,18 +58,15 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
       {/* Page title */}
       <Box display="flex" flexDirection="column" gap={2} textAlign="center" position="relative" zIndex={1}>
         <Text
-          fontSize="4xl"
-          fontWeight="bold"
+          textStyle="pageTitle"
           color="text.primary"
-          letterSpacing="0.5px"
-          textTransform="uppercase"
           bg="linear-gradient(135deg, var(--chakra-colors-text-primary) 0%, var(--chakra-colors-accent-teal) 100%)"
           bgClip="text"
           textShadow="0 0 20px accent.tealAlpha.30"
         >
           {title}
         </Text>
-        <Text fontSize="lg" color="text.muted" maxW="400px" lineHeight="1.6">
+        <Text textStyle="pageSubtitle" maxW="400px">
           {subtitle}
         </Text>
       </Box>

@@ -59,7 +59,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       <Box
         ref={ref}
         position="relative"
-        bg="linear-gradient(135deg, var(--chakra-colors-bg-darkAlpha-95) 0%, var(--chakra-colors-bg-steelAlpha-90) 100%)"
+        bg="linear-gradient(135deg, var(--chakra-colors-bg-dark-alpha-95) 0%, var(--chakra-colors-bg-steel-alpha-90) 100%)"
         borderRadius="16px"
         px={{ base: 6, md: 10 }}
         pt={{ base: 3, md: 4 }}
@@ -75,27 +75,11 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           onClick
             ? {
                 transform: "translateY(-2px)",
-                boxShadow: `
-                  inset 0 0 0 2px rgba(255, 255, 255, 0.15),
-                  inset 0 0 0 4px #10B981,
-                  inset 0 0 0 6px #0E1013,
-                  0 0 0 3px #10B981,
-                  0 8px 32px rgba(16, 185, 129, 0.4),
-                  0 16px 64px rgba(0, 0, 0, 0.6),
-                  0 0 0 1px rgba(255, 255, 255, 0.1)
-                `,
+                boxShadow: "dialogue.hover",
               }
             : undefined
         }
-        boxShadow={`
-          inset 0 0 0 2px rgba(255, 255, 255, 0.1),
-          inset 0 0 0 4px #10B981,
-          inset 0 0 0 6px #0E1013,
-          0 0 0 2px #10B981,
-          0 6px 24px rgba(16, 185, 129, 0.25),
-          0 12px 48px rgba(0, 0, 0, 0.5),
-          0 0 0 1px rgba(255, 255, 255, 0.05)
-        `}
+        boxShadow="dialogue.default"
         _before={{
           content: '""',
           position: "absolute",
@@ -105,7 +89,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
           bottom: 0,
           borderRadius: "16px",
           background: `linear-gradient(135deg, 
-            var(--chakra-colors-accent-greenAlpha-5) 0%, 
+            var(--chakra-colors-accent-green-alpha-5) 0%, 
             transparent 30%, 
             var(--chakra-colors-black-alpha-30) 100%)`,
           pointerEvents: "none",

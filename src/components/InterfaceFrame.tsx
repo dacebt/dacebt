@@ -12,24 +12,19 @@ interface InterfaceFrameProps extends BoxProps {
 
 const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
   ({ children, isActive = false, maxWidth = "1200px", depthLevel = "medium", ...props }, ref) => {
-    const bgColor = "bg.steel"
-
     // Depth configuration based on depthLevel
     const depthConfig = {
       shallow: {
-        shadowLayers: 2,
         shadowIntensity: 0.2,
         innerGlow: 0.05,
         transform: "translateZ(0)",
       },
       medium: {
-        shadowLayers: 4,
         shadowIntensity: 0.4,
         innerGlow: 0.1,
         transform: "translateZ(1px)",
       },
       deep: {
-        shadowLayers: 6,
         shadowIntensity: 0.6,
         innerGlow: 0.15,
         transform: "translateZ(2px)",
@@ -43,7 +38,7 @@ const InterfaceFrame = React.forwardRef<HTMLDivElement, InterfaceFrameProps>(
       <Box
           ref={ref}
           maxW={maxWidth}
-          bg={bgColor}
+          bg="bg.steel"
           borderRadius="md"
           position="relative"
           transform={config.transform}

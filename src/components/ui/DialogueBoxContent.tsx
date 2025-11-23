@@ -14,7 +14,7 @@ export default function DialogueBoxContent({ displayedText, isStreaming }: Dialo
       position="relative"
       zIndex={1}
       flex={1}
-      fontFamily="system-ui, -apple-system, sans-serif"
+      fontFamily="var(--chakra-fonts-body)"
     >
       {displayedText}
       {isStreaming && (

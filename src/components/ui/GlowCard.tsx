@@ -43,10 +43,7 @@ export default function GlowCard({
       _hover={{
         borderColor: glowColor === "teal" ? "accent.teal" : "accent.green",
         transform: "translateY(-2px)",
-        boxShadow: `
-          0 8px 25px ${glowColor === "teal" ? "accent.tealAlpha.15" : "accent.greenAlpha.15"},
-          inset 0 0 0 1px ${config.glow}
-        `,
+        boxShadow: glowColor === "teal" ? "glowCard.tealHover" : "glowCard.greenHover",
       }}
       _before={{
         content: '""',

@@ -72,17 +72,17 @@ export const animations = {
     @keyframes borderGlow {
       0%, 100% {
         box-shadow: 
-          inset 0 0 0 4px #4B5663,
-          inset 0 0 0 8px #0E1013,
-          0 0 0 4px #5BC0BE,
-          0 0 20px rgba(91, 192, 190, 0.1);
+          inset 0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 8px var(--chakra-colors-border-outer),
+          0 0 0 4px var(--chakra-colors-accent-teal),
+          0 0 20px var(--chakra-colors-accent-teal-alpha-10);
       }
       50% {
         box-shadow: 
-          inset 0 0 0 4px #4B5663,
-          inset 0 0 0 8px #0E1013,
-          0 0 0 4px #5BC0BE,
-          0 0 30px rgba(91, 192, 190, 0.2);
+          inset 0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 8px var(--chakra-colors-border-outer),
+          0 0 0 4px var(--chakra-colors-accent-teal),
+          0 0 30px var(--chakra-colors-accent-teal-alpha-20);
       }
     }
   `,
@@ -92,24 +92,24 @@ export const animations = {
       0%, 100% {
         transform: translateZ(0);
         box-shadow: 
-          inset 0 0 0 2px rgba(255, 255, 255, 0.1),
-          inset 0 0 0 4px #4B5663,
-          inset 0 0 0 8px #0E1013,
-          0 0 0 4px #4B5663,
-          0 4px 20px rgba(0, 0, 0, 0.3),
-          0 8px 40px rgba(0, 0, 0, 0.2),
-          0 16px 60px rgba(0, 0, 0, 0.1);
+          inset 0 0 0 2px var(--chakra-colors-white-alpha-10),
+          inset 0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 8px var(--chakra-colors-border-outer),
+          0 0 0 4px var(--chakra-colors-border-inner),
+          0 4px 20px var(--chakra-colors-black-alpha-30),
+          0 8px 40px var(--chakra-colors-black-alpha-20),
+          0 16px 60px var(--chakra-colors-black-alpha-10);
       }
       50% {
         transform: translateZ(2px);
         box-shadow: 
-          inset 0 0 0 2px rgba(255, 255, 255, 0.15),
-          inset 0 0 0 4px #4B5663,
-          inset 0 0 0 8px #0E1013,
-          0 0 0 4px #4B5663,
-          0 6px 30px rgba(0, 0, 0, 0.4),
-          0 12px 50px rgba(0, 0, 0, 0.3),
-          0 20px 80px rgba(0, 0, 0, 0.2);
+          inset 0 0 0 2px var(--chakra-colors-white-alpha-15),
+          inset 0 0 0 4px var(--chakra-colors-border-inner),
+          inset 0 0 0 8px var(--chakra-colors-border-outer),
+          0 0 0 4px var(--chakra-colors-border-inner),
+          0 6px 30px var(--chakra-colors-black-alpha-40),
+          0 12px 50px var(--chakra-colors-black-alpha-30),
+          0 20px 80px var(--chakra-colors-black-alpha-20);
       }
     }
   `,
