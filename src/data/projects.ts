@@ -87,7 +87,7 @@ const mcpPromptCleaner = createProject({
   shortDescription: "A Model Context Protocol (MCP) server that uses AI to enhance and clean raw prompts",
   type: "personal",
   links: {
-    github: "https://github.com/Da-Colon/prompt-cleaner-mcp",
+    github: "https://github.com/dacebt/prompt-cleaner-mcp",
   },
   technologies: ["Python 3.11+", "MCP Python SDK", "httpx", "pydantic", "pytest"],
   keyFeatures: [
@@ -116,7 +116,7 @@ const bitCraftOnlineProjectTool = createProject({
     "A web application designed as the ultimate companion tool for BitCraft Online players",
   type: "personal",
   links: {
-    github: "https://github.com/Da-Colon/bitcraftonline-project-tool",
+    github: "https://github.com/dacebt/bitcraftonline-project-tool",
     website: "https://bccodex.com",
   },
   technologies: [
