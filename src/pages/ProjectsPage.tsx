@@ -4,11 +4,6 @@ import PageLayout from "../components/PageLayout"
 import ProjectCard from "../components/ProjectCard"
 
 export default function ProjectsPage() {
-  const handleLinkClick = (url: string, event: React.MouseEvent) => {
-    event.stopPropagation()
-    window.open(url, "_blank", "noopener,noreferrer")
-  }
-
   return (
     <PageLayout title="My Projects" subtitle="A collection of my work and experiments">
       {/* Projects grid */}
@@ -24,7 +19,6 @@ export default function ProjectsPage() {
             key={project.name}
             project={project}
             index={index}
-            onLinkClick={handleLinkClick}
           />
         ))}
       </Grid>

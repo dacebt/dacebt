@@ -1,6 +1,7 @@
-import { createSystem, defaultConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { linkRecipe } from "./link"
 
-const system = createSystem(defaultConfig, {
+const customConfig = defineConfig({
   theme: {
     tokens: {
       breakpoints: {
@@ -425,7 +426,12 @@ const system = createSystem(defaultConfig, {
         },
       },
     },
+    recipes: {
+      link: linkRecipe,
+    },
   },
 })
+
+const system = createSystem(defaultConfig, customConfig)
 
 export default system

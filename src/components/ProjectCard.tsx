@@ -1,4 +1,4 @@
-import { Box, Text, Icon, Flex } from "@chakra-ui/react"
+import { Box, Text, Icon, Flex, Link } from "@chakra-ui/react"
 import { Tooltip } from "./ui/tooltip"
 import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaBuilding } from "react-icons/fa"
 import { FaXmark } from "react-icons/fa6"
@@ -27,13 +27,11 @@ const getLinkIcon = (linkType: string) => {
 interface ProjectCardProps {
   project: Project
   index: number
-  onLinkClick: (url: string, event: React.MouseEvent) => void
 }
 
 export default function ProjectCard({
   project,
   index,
-  onLinkClick,
 }: ProjectCardProps) {
   const availableLinks = Object.entries(project.links).filter(([, url]) => Boolean(url))
   const allLinks: Array<[string, string]> = [...availableLinks] as Array<[string, string]>
@@ -222,23 +220,15 @@ export default function ProjectCard({
                 key={`${project.name}-${linkType}`}
                 content={linkLabels[linkType] || "Open Link"}
               >
-                <Box
-                  as="button"
-                  onClick={(e) => onLinkClick(url, e)}
-                  p={1}
-                  borderRadius="sm"
-                  bg="bg.dark"
-                  border="1px solid"
-                  borderColor="border.inner"
-                  _hover={{
-                    bg: "bg.steel",
-                    borderColor: "accent.teal",
-                  }}
-                  transition="all 0.2s ease"
-                  cursor="pointer"
+                <Link
+                  href={url}
+                  variant="iconSmall"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={linkLabels[linkType] || "Open Link"}
                 >
                   <Icon as={IconComponent} boxSize={3} color="accent.teal" />
-                </Box>
+                </Link>
               </Tooltip>
             )
           })}
