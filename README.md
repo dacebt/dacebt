@@ -1,6 +1,6 @@
 # Hi there, I'm David Colon
 
-**Senior Web Engineer** | Full-Stack Developer | Web3 Enthusiast
+**Senior Web Engineer** | Full-Stack Developer | Game/Tech/AI Enthusiast
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://your-portfolio-url.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/david-a-colon/)
@@ -10,9 +10,9 @@
 
 ## About Me
 
-I'm a **Senior Web Engineer** with a passion for building exceptional digital experiences. After a decade in the culinary world, I made the leap to software development and haven't looked back. I'm a full-stack developer comfortable working across the entire stack—from React frontends, to microservices, to Solidity smart contracts, and everything in between.
+I'm a **Senior Web Engineer** with a passion for building, period. After a decade in the culinary world, I made the leap to software development and haven't looked back. I'm a full-stack developer comfortable working across the entire stack—from React frontends, to microservices, to Solidity smart contracts, and everything in between.
 
-**What drives me:**
+**What drives me:** (What the AI thinks anyway, It's close enough)
 - Building scalable, performant applications
 - Solving complex problems with elegant solutions
 - Leveraging AI tools to 10x my development workflow
