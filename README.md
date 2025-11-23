@@ -1,4 +1,4 @@
-# **Senior Web Engineer** | Full-Stack Developer | Game/Tech/AI Enthusiast
+# Full-Stack Developer | Game/Tech/AI Enthusiast
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://your-portfolio-url.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/david-a-colon/)
