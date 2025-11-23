@@ -228,7 +228,7 @@ export const aboutTopics: AboutTopic[] = [
       {
         message: "You are right 2012 was when we met! and here we are still going strong!",
         speaker: "David",
-        image: "/images/narrator.png",
+        image: "/images/avatar.png",
       },
       {
         message: "Arf! Woof!",
