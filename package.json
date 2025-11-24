@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run typegen && tsc -b && vite build",
+    "typegen": "chakra typegen src/theme/index.ts",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -20,6 +21,7 @@
     "react-router-dom": "^7.9.6"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "^3.30.0",
     "@eslint/js": "^9.36.0",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
