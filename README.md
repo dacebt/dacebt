@@ -1,6 +1,6 @@
 # Full-Stack Developer | Game/Tech/AI Enthusiast
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://your-portfolio-url.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://davidacolon.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/david-a-colon/)
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-1DA1F2)](https://x.com/epicbadtiming)
 
