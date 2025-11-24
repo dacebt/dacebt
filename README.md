@@ -18,7 +18,7 @@ I'm a **Senior Web Engineer** with a passion for building, period. After a decad
 ## Notable Projects
 
 ### [Decent App](https://decent.build)
-A decentralized protocol for managing and operating onchain organizations. Led core features development, architecture design, and smart contract development over 5+ years.
+A decentralized protocol for managing and operating onchain organizations. Led core features development for decentalized application while collaborating with design for over 5+ years.
 
 **Tech:** React, Chakra UI, Zustand, Viem, Hardhat, Solidity  
 
