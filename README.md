@@ -34,14 +34,6 @@ A Model Context Protocol (MCP) server that uses AI to enhance and clean raw prom
 **Tech:** Python 3.11+, MCP Python SDK, pytest  
 **Metrics:** 43 passing tests, 1,160+ lines of code, 100% test pass rate
 
----
-
-## 📊 GitHub Stats
-
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=dacebt&layout=compact&theme=radical&hide_border=true)
-
----
 
 ## Portfolio Preview
 
