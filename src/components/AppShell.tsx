@@ -39,6 +39,7 @@ function AppShell() {
         <GlassPanel
           gridArea="top"
           elevation="medium"
+          role="container"
           p={{ base: 3, md: 4 }}
           display="flex"
           alignItems="center"
@@ -75,6 +76,7 @@ function AppShell() {
         >
           <GlassPanel
             elevation="medium"
+            role="container"
             p={2}
             display="flex"
             flexDirection="column"
@@ -97,6 +99,7 @@ function AppShell() {
         >
           <GlassPanel
             elevation="strong"
+            role="container"
             p={2}
             display="flex"
             flexDirection="row"
@@ -112,26 +115,20 @@ function AppShell() {
         <GlassPanel
           gridArea="main"
           elevation="strong"
-          p={{ base: 4, md: 6, lg: 8 }}
+          role="container"
+          p={{ base: 4, md: 6 }}
           minH={0}
-          overflow="hidden"
-          display="flex"
-          flexDirection="column"
+          overflowY="auto"
+          overflowX="hidden"
         >
-          <Box
-            flex="1"
-            overflowY="auto"
-            overflowX="hidden"
-            h="100%"
-          >
-            <Outlet />
-          </Box>
+          <Outlet />
         </GlassPanel>
 
         {/* Footer / Bottom Panel */}
         <GlassPanel
           gridArea="footer"
           elevation="medium"
+          role="container"
           p={{ base: 3, md: 4 }}
           minH={{ base: "auto", md: "120px" }}
         >

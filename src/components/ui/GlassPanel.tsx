@@ -4,6 +4,7 @@ interface GlassPanelProps extends BoxProps {
   children: React.ReactNode
   disabled?: boolean
   elevation?: "subtle" | "medium" | "strong"
+  role?: "container" | "surface"
 }
 
 const elevationConfig = {
@@ -18,9 +19,10 @@ const elevationConfig = {
   },
 }
 
-export default function GlassPanel({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", ...props }: GlassPanelProps) {
+export default function GlassPanel({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", role = "surface", ...props }: GlassPanelProps) {
   const boxProps = as === "button" && disabled !== undefined ? { disabled } : {}
   const elevationStyle = elevationConfig[elevation]
+  const isSurface = role === "surface"
   
   return (
     <Box
@@ -30,10 +32,37 @@ export default function GlassPanel({ children, bg, border, borderColor, borderRa
       borderColor={borderColor || "border.inner"}
       borderRadius={borderRadius || "xl"}
       backdropFilter={backdropFilter || "blur(10px)"}
+      position="relative"
+      _before={isSurface ? {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        borderRadius: borderRadius || "xl",
+        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%)",
+        pointerEvents: "none",
+        zIndex: 0,
+      } : undefined}
+      _after={isSurface ? {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        borderRadius: borderRadius || "xl",
+        background: "radial-gradient(circle at top left, transparent 0%, rgba(0, 0, 0, 0.1) 100%)",
+        pointerEvents: "none",
+        zIndex: 0,
+      } : undefined}
       {...boxProps}
       {...props}
     >
-      {children}
+      <Box position="relative" zIndex={1}>
+        {children}
+      </Box>
     </Box>
   )
 }

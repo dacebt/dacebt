@@ -46,7 +46,7 @@ export default function ProjectCard({
 
   return (
     <GlassPanel
-      p={{ base: 3, md: 4 }}
+      p={{ base: 2, md: 3 }}
       color="text.primary"
       position="relative"
       overflow="hidden"
@@ -78,8 +78,8 @@ export default function ProjectCard({
         position="relative"
         bg="bg.dark"
         borderRadius="md"
-        p={{ base: 3, md: 4 }}
-        mb={3}
+        p={{ base: 2, md: 3 }}
+        mb={2}
         border="1px solid"
         borderColor="border.inner"
       >
@@ -111,7 +111,7 @@ export default function ProjectCard({
       <Text
         textStyle="smallText"
         color="text.muted"
-        mb={2}
+        mb={1.5}
         wordWrap="break-word"
         whiteSpace="normal"
       >
@@ -119,7 +119,7 @@ export default function ProjectCard({
       </Text>
 
       {visibleTech.length > 0 && (
-        <Box mb={2}>
+        <Box mb={1.5}>
           {visibleTech.map((tech: string, techIndex: number) => (
             <Tooltip key={`${project.name}-tech-${techIndex}`} content={tech}>
               <Text
@@ -162,13 +162,13 @@ export default function ProjectCard({
         </Box>
       )}
 
-      <Flex flexDirection="column" gap={1} mb={2}>
+      <Flex flexDirection="column" gap={0.5} mb={1.5}>
         {project.keyFeatures.map((feature: string, featureIndex: number) => (
           <Text
             key={`feature-${featureIndex}`}
             textStyle="smallText"
             color="text.secondary"
-            mb={0.5}
+            mb={0.25}
             wordWrap="break-word"
             whiteSpace="normal"
           >
@@ -180,7 +180,7 @@ export default function ProjectCard({
             key={`metric-${metricIndex}`}
             textStyle="smallText"
             color="accent.tealAlpha.80"
-            mb={0.5}
+            mb={0.25}
             wordWrap="break-word"
             whiteSpace="normal"
           >
@@ -192,7 +192,7 @@ export default function ProjectCard({
             key={`contribution-${contributionIndex}`}
             textStyle="smallText"
             color="text.secondaryAlpha.90"
-            mb={0.5}
+            mb={0.25}
             wordWrap="break-word"
             whiteSpace="normal"
           >
@@ -202,7 +202,7 @@ export default function ProjectCard({
       </Flex>
 
       {allLinks.length > 0 && (
-        <Box display="flex" justifyContent="flex-end" gap={1} mt="auto" pt={2}>
+        <Box display="flex" justifyContent="flex-end" gap={1} mt="auto" pt={1.5}>
           {allLinks.map(([linkType, url]) => {
             const IconComponent = getLinkIcon(linkType)
             const linkLabels: Record<string, string> = {
