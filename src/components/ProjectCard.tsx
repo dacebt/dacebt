@@ -4,6 +4,8 @@ import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaBuilding } from "react-i
 import { FaXmark } from "react-icons/fa6"
 import { type Project } from "../data/projects"
 import ProjectCardBadge from "./ui/ProjectCardBadge"
+import GlassPanel from "./ui/GlassPanel"
+import { getAnimation } from "../utils/motion"
 
 const MAX_VISIBLE_TECH = 2
 
@@ -43,13 +45,9 @@ export default function ProjectCard({
   const remainingTechCount = project.technologies.length - visibleTech.length
 
   return (
-    <Box
+    <GlassPanel
       p={{ base: 3, md: 4 }}
-      bg="bg.steel"
       color="text.primary"
-      border="1px solid"
-      borderColor="border.inner"
-      borderRadius="lg"
       position="relative"
       overflow="hidden"
       transition="all 0.3s ease"
@@ -58,7 +56,7 @@ export default function ProjectCard({
         transform: "translateY(-4px)",
         boxShadow: "card.projectHover",
       }}
-      animation={`float ${6 + index}s ease-in-out infinite`}
+      animation={getAnimation(`float ${6 + index}s ease-in-out infinite`)}
       style={{
         animationDelay: `${index * 0.2}s`,
       }}
@@ -234,6 +232,6 @@ export default function ProjectCard({
           })}
         </Box>
       )}
-    </Box>
+    </GlassPanel>
   )
 }

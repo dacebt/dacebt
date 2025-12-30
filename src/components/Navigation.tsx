@@ -1,6 +1,7 @@
 import { Box, Link, Text } from "@chakra-ui/react"
 import { Link as RouterLink, useLocation } from "react-router-dom"
 import type { LinkProps as RouterLinkProps } from "react-router-dom"
+import { getAnimation } from "../utils/motion"
 
 interface NavItem {
   label: string
@@ -62,7 +63,7 @@ export default function Navigation() {
             {isActive && (
               <Box
                 position="absolute"
-                right="12px"
+                left="16px"
                 top="50%"
                 transform="translateY(-50%)"
                 w="6px"
@@ -70,7 +71,7 @@ export default function Navigation() {
                 borderRadius="full"
                 bg="accent.teal"
                 boxShadow="nav.indicator"
-                animation="pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite"
+                animation={getAnimation("pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite")}
               />
             )}
           </NavLink>

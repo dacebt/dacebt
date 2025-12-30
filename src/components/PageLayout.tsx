@@ -20,41 +20,6 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
       h="100%"
       py={6}
     >
-      {/* Animated background elements */}
-      <Box
-        position="absolute"
-        top="10%"
-        left="10%"
-        w="200px"
-        h="200px"
-        borderRadius="full"
-        bg="linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-10) 0%, var(--chakra-colors-accent-teal-alpha-5) 100%)"
-        animation="float 6s ease-in-out infinite"
-        filter="blur(1px)"
-      />
-      <Box
-        position="absolute"
-        bottom="15%"
-        right="15%"
-        w="150px"
-        h="150px"
-        borderRadius="full"
-        bg="linear-gradient(45deg, var(--chakra-colors-accent-teal-alpha-8) 0%, var(--chakra-colors-accent-teal-alpha-3) 100%)"
-        animation="float 8s ease-in-out infinite reverse"
-        filter="blur(1px)"
-      />
-      <Box
-        position="absolute"
-        top="50%"
-        left="5%"
-        w="100px"
-        h="100px"
-        borderRadius="full"
-        bg="linear-gradient(225deg, var(--chakra-colors-accent-teal-alpha-6) 0%, var(--chakra-colors-accent-teal-alpha-2) 100%)"
-        animation="pulse 4s ease-in-out infinite"
-        filter="blur(2px)"
-      />
-
       {/* Page title */}
       <Box display="flex" flexDirection="column" gap={2} textAlign="center" position="relative" zIndex={1}>
         <Text

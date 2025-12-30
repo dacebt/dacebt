@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { Box, Grid } from "@chakra-ui/react"
 import { Outlet } from "react-router-dom"
-import HourglassGrid from "./HourglassGrid"
 import InterfaceFrame from "./InterfaceFrame"
 import Navigation from "./Navigation"
 import PlayerStatsCard from "./PlayerStatsCard"
@@ -16,7 +15,6 @@ function AppLayout() {
 
   return (
     <>
-      <HourglassGrid />
       <Box
         position="relative"
         zIndex={1}
@@ -30,9 +28,9 @@ function AppLayout() {
         <Grid
           templateAreas={{
             base: '"main" "navigation" "footer"',
-            lg: '"main navigation" "footer footer"',
+            lg: '"navigation main" "footer footer"',
           }}
-          templateColumns={{ base: "1fr", lg: `minmax(0, 1fr) ${NAV_COLUMN_WIDTH}` }}
+          templateColumns={{ base: "1fr", lg: `${NAV_COLUMN_WIDTH} minmax(0, 1fr)` }}
           templateRows={{ base: "auto", lg: "1fr 180px" }}
           gap={{ base: 4, lg: 5 }}
           alignItems="start"

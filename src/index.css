@@ -1,3 +1,14 @@
+/* Global background - static dark gradient */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1f24 50%, #0f1419 100%);
+  background-attachment: fixed;
+}
+
 /* Global scrollbar styles */
 /* Note: Colors correspond to theme tokens: accent.tealAlpha.30, accent.tealAlpha.50, accent.tealAlpha.70 */
 /* CSS variables: --chakra-colors-accent-teal-alpha-30, --chakra-colors-accent-teal-alpha-50, --chakra-colors-accent-teal-alpha-70 */

@@ -14,19 +14,6 @@ export const animations = {
     }
   `,
 
-  pulseScale: `
-    @keyframes pulseScale {
-      0%, 100% {
-        opacity: 0.3;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.6;
-        transform: scale(1.1);
-      }
-    }
-  `,
-
   activePulse: `
     @keyframes activePulse {
       0%, 100% { 
@@ -44,14 +31,6 @@ export const animations = {
     @keyframes shimmer {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
-    }
-  `,
-
-  infiniteScroll: `
-    @keyframes infiniteScroll {
-      0% { transform: translate(-50vw, 50vh); }
-      50% { transform: translate(50vw, -50vh); }
-      100% { transform: translate(-50vw, 50vh); }
     }
   `,
 

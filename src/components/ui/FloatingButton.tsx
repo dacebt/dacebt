@@ -1,4 +1,6 @@
-import { Box, Button } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
+import GlassPanel from "./GlassPanel"
+import { getAnimation } from "../../utils/motion"
 
 interface FloatingButtonProps {
   children: React.ReactNode
@@ -48,21 +50,20 @@ export default function FloatingButton({
   const variantStyle = variantConfig[variant]
 
   return (
-    <Button
+    <GlassPanel
+      as="button"
       onClick={onClick}
       disabled={disabled}
-      size={size}
       {...config}
       w={width}
       bg={variantStyle.bg}
       color="text.primary"
-      border="1px solid"
       borderColor={variantStyle.borderColor}
-      borderRadius="xl"
       position="relative"
       overflow="hidden"
-      backdropFilter="blur(10px)"
       transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+      cursor={disabled ? "not-allowed" : "pointer"}
+      opacity={disabled ? 0.6 : 1}
       _hover={
         !disabled
           ? {
@@ -83,7 +84,7 @@ export default function FloatingButton({
       display="flex"
       flexDirection="column"
       gap={3}
-      animation={`float ${6 + index}s ease-in-out infinite`}
+      animation={getAnimation(`float ${6 + index}s ease-in-out infinite`)}
       style={{
         animationDelay: `${(animationDelay || 0) + index * 0.3}s`,
       }}
@@ -137,6 +138,6 @@ export default function FloatingButton({
         }
         zIndex={-1}
       />
-    </Button>
+    </GlassPanel>
   )
 }
