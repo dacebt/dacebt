@@ -10,7 +10,7 @@ export default function HomePage() {
 
   return (
     <Box minH="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center" p={{ base: 4, md: 6 }}>
-      <Box w="100%" maxW="800px">
+      <Box w="100%" maxW="800px" overflow="visible">
         <StackedDialogueBox
           variant="dashboard"
           messages={visibleMessages}

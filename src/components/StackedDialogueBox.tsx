@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import { Box } from "@chakra-ui/react"
 import DialogueBox from "./DialogueBox"
-import GlassPanel from "./ui/GlassPanel"
 import { type DialogueMessage } from "../hooks/useSimpleDialogue"
 
 interface StackedDialogueBoxProps {
@@ -38,7 +37,7 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
       <Box
         ref={scrollRef}
         overflowY="auto"
-        overflowX="hidden"
+        overflowX="visible"
         pr={isDashboard ? 0 : 2}
         css={{
           "&::-webkit-scrollbar": {
@@ -61,7 +60,7 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
           display="flex"
           flexDirection="column"
           gap={gap}
-          pt={isDashboard ? 3 : 4}
+          pt={isDashboard ? 8 : 4}
           pb={isDashboard ? 3 : 6}
           px={isDashboard ? 2 : 0}
         >
@@ -85,21 +84,7 @@ const StackedDialogueBox = React.forwardRef<HTMLDivElement, StackedDialogueBoxPr
     )
 
     if (isDashboard) {
-      return (
-        <GlassPanel
-          ref={ref}
-          role="surface"
-          elevation="medium"
-          p={4}
-          display="flex"
-          flexDirection="column"
-          justifyContent="flex-end"
-          height="100%"
-          overflow="hidden"
-        >
-          {content}
-        </GlassPanel>
-      )
+      return content
     }
 
     return (
