@@ -37,6 +37,7 @@ export default function NavRail() {
             <Link
               as={RouterLink}
               {...({ to: path } as RouterLinkProps)}
+              aria-label={label}
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -53,10 +54,17 @@ export default function NavRail() {
                 borderColor: "accent.teal",
                 transform: "scale(1.1)",
               }}
+              _focus={{
+                outline: "2px solid",
+                outlineColor: "accent.teal",
+                outlineOffset: "2px",
+                bg: isActive ? "accent.tealAlpha.30" : "accent.tealAlpha.10",
+                borderColor: "accent.teal",
+              }}
               boxShadow={isActive ? "nav.indicator" : "none"}
               textDecoration="none"
             >
-              <Icon as={icon} boxSize={5} />
+              <Icon as={icon} boxSize={5} aria-hidden="true" />
             </Link>
           </Tooltip>
         )

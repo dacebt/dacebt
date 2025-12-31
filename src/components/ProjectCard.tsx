@@ -108,10 +108,11 @@ export default function ProjectCard({
 
       <Text
         textStyle="smallText"
-        color="text.muted"
+        color="text.secondary"
         mb={1.5}
         wordWrap="break-word"
         whiteSpace="normal"
+        lineHeight="1.5"
       >
         {project.shortDescription}
       </Text>
@@ -169,32 +170,41 @@ export default function ProjectCard({
             mb={0.25}
             wordWrap="break-word"
             whiteSpace="normal"
+            lineHeight="1.4"
+            fontSize="xs"
           >
-            ⭐ {feature}
+            <Text as="span" opacity={0.6} fontSize="xs" mr={1}>⭐</Text>
+            {feature}
           </Text>
         ))}
         {project.metrics.map((metric: string, metricIndex: number) => (
           <Text
             key={`metric-${metricIndex}`}
             textStyle="smallText"
-            color="accent.tealAlpha.80"
+            color="accent.tealAlpha.90"
             mb={0.25}
             wordWrap="break-word"
             whiteSpace="normal"
+            lineHeight="1.4"
+            fontSize="xs"
           >
-            📊 {metric}
+            <Text as="span" opacity={0.6} fontSize="xs" mr={1}>📊</Text>
+            {metric}
           </Text>
         ))}
         {project.contributions.map((contribution: string, contributionIndex: number) => (
           <Text
             key={`contribution-${contributionIndex}`}
             textStyle="smallText"
-            color="text.secondaryAlpha.90"
+            color="text.secondary"
             mb={0.25}
             wordWrap="break-word"
             whiteSpace="normal"
+            lineHeight="1.4"
+            fontSize="xs"
           >
-            🤝 {contribution}
+            <Text as="span" opacity={0.6} fontSize="xs" mr={1}>🤝</Text>
+            {contribution}
           </Text>
         ))}
       </Flex>

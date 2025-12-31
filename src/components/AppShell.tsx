@@ -1,12 +1,25 @@
 import { useEffect } from "react"
 import { Box, Grid, Flex, Text, Image } from "@chakra-ui/react"
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import GlassPanel from "./ui/GlassPanel"
 import NavRail from "./NavRail"
 import PlayerStatsCard from "./PlayerStatsCard"
 import { injectAllAnimations } from "../utils/animations"
 
+const getPageLabel = (pathname: string): string => {
+  const mapping: Record<string, string> = {
+    "/": "Home",
+    "/projects": "Projects",
+    "/about": "About",
+    "/contact": "Contact",
+  }
+  return mapping[pathname] || "Home"
+}
+
 function AppShell() {
+  const location = useLocation()
+  const activePageLabel = getPageLabel(location.pathname)
+
   useEffect(() => {
     injectAllAnimations()
   }, [])
@@ -78,7 +91,14 @@ function AppShell() {
             </Box>
           </Flex>
           <Box display={{ base: "none", md: "block" }}>
-            {/* Reserved for future actions */}
+            <Text
+              textStyle="subtitle"
+              color="text.muted"
+              fontSize="sm"
+              fontWeight="normal"
+            >
+              {activePageLabel}
+            </Text>
           </Box>
         </GlassPanel>
 
