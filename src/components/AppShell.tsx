@@ -14,9 +14,10 @@ function AppShell() {
 
   return (
     <Box
-      minHeight="100vh"
-      padding={{ base: 3, md: 4, lg: 6 }}
+      h="100vh"
+      overflow="hidden"
       position="relative"
+      p={{ base: 3, md: 4, lg: 6 }}
     >
       <Grid
         templateAreas={{
@@ -32,7 +33,7 @@ function AppShell() {
           md: "auto 1fr auto",
         }}
         gap={{ base: 3, md: 4, lg: 6 }}
-        height={{ base: "auto", md: "calc(100vh - 2rem)" }}
+        h="100%"
         maxWidth={{ base: "100%", lg: "1600px" }}
         margin="0 auto"
       >

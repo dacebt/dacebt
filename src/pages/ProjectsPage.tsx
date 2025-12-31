@@ -12,7 +12,7 @@ export default function ProjectsPage() {
         gap={{ base: 4, md: 6 }}
         w="100%"
         alignItems="stretch"
-        pt={4}
+        pt={3}
       >
         {projects.map((project, index) => (
           <ProjectCard
