@@ -10,8 +10,8 @@ export default function DialogueBoxSpeaker({ speaker }: DialogueBoxSpeakerProps)
   return (
     <Box
       position="absolute"
-      top="-12px"
-      left="16px"
+      top="-28px"
+      left="-8px"
       bg="bg.dark"
       color="accent.green"
       px={3}

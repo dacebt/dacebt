@@ -62,10 +62,10 @@ export default function ConversationModal({ isOpen, onClose, messages }: Convers
         />
         <Dialog.Positioner>
           <Dialog.Content
-            maxW="800px"
-            w="90vw"
-            h="calc(100vh - 4rem)"
-            m="2rem auto"
+            maxW="1000px"
+            w="95vw"
+            h="calc(100vh - 3rem)"
+            m="1.5rem auto"
             p={6}
             bg="transparent"
             border="none"

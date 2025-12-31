@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Image } from "@chakra-ui/react"
 
 interface DialogueBoxAvatarProps {
   speakerImage?: string
@@ -23,15 +23,14 @@ export default function DialogueBoxAvatar({ speakerImage, speaker }: DialogueBox
       justifyContent="center"
       position="relative"
     >
-      <img
+      <Image
         src={speakerImage}
         alt={speaker || "Speaker"}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          borderRadius: "8px",
-        }}
+        w="100%"
+        h="100%"
+        objectFit="cover"
+        borderRadius="md"
+        fallback={<Box w="100%" h="100%" bg="bg.steel" borderRadius="md" />}
       />
     </Box>
   )

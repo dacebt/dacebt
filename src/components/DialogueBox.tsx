@@ -63,11 +63,12 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       return (
         <Box
           ref={ref}
+          position="relative"
           px={{ base: 6, md: 10 }}
           pt={{ base: 3, md: 4 }}
           pb={{ base: 2, md: 3 }}
           display="flex"
-          alignItems="flex-end"
+          alignItems="flex-start"
           gap={{ base: 4, md: 8 }}
           cursor={onClick ? "pointer" : "default"}
           onClick={onClick}
@@ -86,11 +87,12 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       <GlassPanel
         ref={ref}
         role="surface"
+        position="relative"
         px={{ base: 6, md: 10 }}
         pt={{ base: 3, md: 4 }}
         pb={{ base: 2, md: 3 }}
         display="flex"
-        alignItems="flex-end"
+        alignItems="flex-start"
         gap={{ base: 4, md: 8 }}
         cursor={onClick ? "pointer" : "default"}
         onClick={onClick}
