@@ -40,7 +40,6 @@ export default function AboutPage() {
               size="lg"
               height="120px"
               width="100%"
-              variant="primary"
               index={index}
               animationDelay={index * 0.3}
               density="tight"

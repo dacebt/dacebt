@@ -83,22 +83,26 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
             : undefined
         }
         boxShadow={isFlat ? "none" : "dialogue.default"}
-        border={isFlat ? "1px solid" : undefined}
-        borderColor={isFlat ? "border.inner" : undefined}
-        _before={isFlat ? undefined : {
-          content: '""',
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          borderRadius: "16px",
-          background: `linear-gradient(135deg, 
+        border={isFlat ? "1px solid" : "none"}
+        borderColor={isFlat ? "border.inner" : "transparent"}
+        _before={
+          isFlat
+            ? undefined
+            : {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                borderRadius: "16px",
+                background: `linear-gradient(135deg, 
             var(--chakra-colors-accent-green-alpha-5) 0%, 
             transparent 30%, 
             var(--chakra-colors-black-alpha-30) 100%)`,
-          pointerEvents: "none",
-        }}
+                pointerEvents: "none",
+              }
+        }
       >
         <DialogueBoxSpeaker speaker={speaker} />
         <DialogueBoxAvatar speakerImage={speakerImage} speaker={speaker} />

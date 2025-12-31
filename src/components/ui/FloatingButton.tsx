@@ -6,7 +6,6 @@ interface FloatingButtonProps {
   children: React.ReactNode
   onClick?: () => void
   size?: "sm" | "md" | "lg"
-  variant?: "primary" | "secondary"
   disabled?: boolean
   height?: string | number
   width?: string | number
@@ -19,7 +18,6 @@ export default function FloatingButton({
   children,
   onClick,
   size = "lg",
-  variant = "primary",
   disabled = false,
   height,
   width = "100%",
@@ -40,35 +38,18 @@ export default function FloatingButton({
   
   const densityStyle = densityConfig[density]
 
-  const variantConfig = {
-    primary: {
-      bg: "linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-8) 0%, var(--chakra-colors-bg-steel-alpha-60) 100%)",
-      borderColor: "border.inner",
-      hoverBg: "linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-15) 0%, var(--chakra-colors-bg-steel-alpha-80) 100%)",
-      hoverBorderColor: "accent.teal",
-    },
-    secondary: {
-      bg: "bg.steel",
-      borderColor: "border.inner",
-      hoverBg: "bg.steelAlpha.80",
-      hoverBorderColor: "accent.tealAlpha.50",
-    },
-  }
-
   const config = sizeConfig[size]
-  const variantStyle = variantConfig[variant]
 
   return (
     <GlassPanel
       as="button"
       onClick={onClick}
       disabled={disabled}
+      role="surface"
       {...config}
       p={densityStyle.p}
       w={width}
-      bg={variantStyle.bg}
       color="text.primary"
-      borderColor={variantStyle.borderColor}
       position="relative"
       overflow="hidden"
       transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -77,17 +58,15 @@ export default function FloatingButton({
       _hover={
         !disabled
           ? {
-              bg: variantStyle.hoverBg,
-              borderColor: variantStyle.hoverBorderColor,
-              transform: density === "tight" ? "translateY(-2px)" : "translateY(-8px) scale(1.02)",
-              boxShadow: density === "tight" ? "none" : "button.primaryHover",
+              borderColor: "accent.teal",
+              transform: density === "tight" ? "translateY(-2px)" : "translateY(-4px)",
             }
           : undefined
       }
       _active={
         !disabled
           ? {
-              transform: density === "tight" ? "translateY(-1px)" : "translateY(-4px) scale(1.01)",
+              transform: density === "tight" ? "translateY(-1px)" : "translateY(-2px)",
             }
           : undefined
       }
@@ -99,21 +78,6 @@ export default function FloatingButton({
         animationDelay: `${(animationDelay || 0) + index * 0.3}s`,
       }}
     >
-      {/* Shimmer effect overlay */}
-      <Box
-        position="absolute"
-        top={0}
-        left={0}
-        right={0}
-        bottom={0}
-        bg="linear-gradient(90deg, transparent 0%, var(--chakra-colors-white-alpha-10) 50%, transparent 100%)"
-        transform="translateX(-100%)"
-        transition="transform 0.6s ease"
-        _groupHover={{
-          transform: "translateX(100%)",
-        }}
-      />
-
       {/* Button content */}
       <Box
         position="relative"
@@ -127,27 +91,6 @@ export default function FloatingButton({
       >
         {children}
       </Box>
-
-      {/* Subtle glow effect */}
-      <Box
-        position="absolute"
-        top="-2px"
-        left="-2px"
-        right="-2px"
-        bottom="-2px"
-        borderRadius="xl"
-        bg="linear-gradient(135deg, var(--chakra-colors-accent-teal-alpha-10), transparent, var(--chakra-colors-accent-teal-alpha-10))"
-        opacity={0}
-        transition="opacity 0.3s ease"
-        _hover={
-          !disabled
-            ? {
-                opacity: 1,
-              }
-            : undefined
-        }
-        zIndex={-1}
-      />
     </GlassPanel>
   )
 }

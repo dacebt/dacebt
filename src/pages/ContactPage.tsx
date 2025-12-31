@@ -41,7 +41,6 @@ export default function ContactPage() {
                   size="lg"
                   height="140px"
                   width="100%"
-                  variant="primary"
                   index={index}
                   animationDelay={index * 0.5}
                   density="tight"

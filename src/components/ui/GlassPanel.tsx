@@ -6,7 +6,6 @@ interface GlassPanelProps extends BoxProps {
   disabled?: boolean
   elevation?: "subtle" | "medium" | "strong"
   role?: "container" | "surface"
-  effects?: "glass" | "none"
 }
 
 const elevationConfig = {
@@ -22,11 +21,10 @@ const elevationConfig = {
 }
 
 const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
-  ({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", role = "surface", effects = "glass", ...props }, ref) => {
+  ({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", role = "surface", ...props }, ref) => {
   const boxProps = as === "button" && disabled !== undefined ? { disabled } : {}
   const elevationStyle = elevationConfig[elevation]
   const isSurface = role === "surface"
-  const showEffects = effects === "glass" && isSurface
   
     return (
       <Box
@@ -38,7 +36,7 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
       borderRadius={borderRadius || "xl"}
       backdropFilter={backdropFilter || "blur(10px)"}
       position="relative"
-      _before={showEffects ? {
+      _before={isSurface ? {
         content: '""',
         position: "absolute",
         top: 0,
@@ -46,11 +44,11 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
         right: 0,
         bottom: 0,
         borderRadius: borderRadius || "xl",
-        background: "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%)",
+        background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 50%)",
         pointerEvents: "none",
         zIndex: 0,
       } : undefined}
-      _after={showEffects ? {
+      _after={isSurface ? {
         content: '""',
         position: "absolute",
         top: 0,
@@ -58,7 +56,7 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
         right: 0,
         bottom: 0,
         borderRadius: borderRadius || "xl",
-        background: "radial-gradient(circle at top left, transparent 0%, rgba(0, 0, 0, 0.1) 100%)",
+        background: "radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.05) 0%, transparent 50%)",
         pointerEvents: "none",
         zIndex: 0,
       } : undefined}
@@ -76,4 +74,3 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
 GlassPanel.displayName = "GlassPanel"
 
 export default GlassPanel
-
