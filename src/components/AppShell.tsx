@@ -1,24 +1,12 @@
 import { useEffect } from "react"
-import { Box, Grid, Flex, Text, Image } from "@chakra-ui/react"
-import { Outlet, useLocation } from "react-router-dom"
+import { Box, Grid, Text, Image } from "@chakra-ui/react"
+import { Outlet } from "react-router-dom"
 import GlassPanel from "./ui/GlassPanel"
 import NavRail from "./NavRail"
 import PlayerStatsCard from "./PlayerStatsCard"
 import { injectAllAnimations } from "../utils/animations"
 
-const getPageLabel = (pathname: string): string => {
-  const mapping: Record<string, string> = {
-    "/": "Home",
-    "/projects": "Projects",
-    "/about": "About",
-    "/contact": "Contact",
-  }
-  return mapping[pathname] || "Home"
-}
-
 function AppShell() {
-  const location = useLocation()
-  const activePageLabel = getPageLabel(location.pathname)
 
   useEffect(() => {
     injectAllAnimations()
@@ -54,51 +42,41 @@ function AppShell() {
           elevation="medium"
           role="container"
           p={{ base: 3, md: 4 }}
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          flexWrap="wrap"
-          gap={4}
         >
-          <Flex alignItems="baseline" gap={2}>
-            <Image
-              src="/images/logo_unsized.png"
-              alt="Logo"
-              h={{ base: "32px", md: "40px" }}
-              w="auto"
-            />
+          <Box display="flex" flexDirection="row" alignItems="center" gap={3}>
+            <Box
+              w={10}
+              h={10}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              flexShrink={0}
+            >
+              <Image
+                src="/images/logo_unsized.png"
+                alt="Logo"
+                h="100%"
+                w="auto"
+              />
+            </Box>
             <Box>
               <Text
-                textStyle="heading"
                 color="text.primary"
-                fontSize={{ base: "lg", md: "xl" }}
-                fontWeight="bold"
+                fontSize={{ base: "xl", md: "2xl" }}
+                fontWeight="700"
                 lineHeight="1.2"
-                mb={0}
+                mb={1}
               >
                 David Colon
               </Text>
               <Text
-                textStyle="subtitle"
                 color="text.muted"
-                fontSize={{ base: "xs", md: "sm" }}
-                fontWeight="normal"
-                lineHeight="1.4"
-                mt={0.5}
+                fontSize={{ base: "sm", md: "md" }}
+                lineHeight="1.2"
               >
                 Senior Web Engineer
               </Text>
             </Box>
-          </Flex>
-          <Box display={{ base: "none", md: "block" }}>
-            <Text
-              textStyle="subtitle"
-              color="text.muted"
-              fontSize="sm"
-              fontWeight="normal"
-            >
-              {activePageLabel}
-            </Text>
           </Box>
         </GlassPanel>
 

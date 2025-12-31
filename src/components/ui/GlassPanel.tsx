@@ -6,6 +6,7 @@ interface GlassPanelProps extends BoxProps {
   disabled?: boolean
   elevation?: "subtle" | "medium" | "strong"
   role?: "container" | "surface"
+  effects?: "glass" | "none"
 }
 
 const elevationConfig = {
@@ -21,10 +22,11 @@ const elevationConfig = {
 }
 
 const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
-  ({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", role = "surface", ...props }, ref) => {
+  ({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", role = "surface", effects = "glass", ...props }, ref) => {
   const boxProps = as === "button" && disabled !== undefined ? { disabled } : {}
   const elevationStyle = elevationConfig[elevation]
   const isSurface = role === "surface"
+  const showEffects = effects === "glass" && isSurface
   
     return (
       <Box
@@ -36,7 +38,7 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
       borderRadius={borderRadius || "xl"}
       backdropFilter={backdropFilter || "blur(10px)"}
       position="relative"
-      _before={isSurface ? {
+      _before={showEffects ? {
         content: '""',
         position: "absolute",
         top: 0,
@@ -48,7 +50,7 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
         pointerEvents: "none",
         zIndex: 0,
       } : undefined}
-      _after={isSurface ? {
+      _after={showEffects ? {
         content: '""',
         position: "absolute",
         top: 0,

@@ -53,6 +53,7 @@ export default function ProjectCard({
       position="relative"
       overflow="hidden"
       transition="all 0.3s ease"
+      effects="none"
       _hover={{
         borderColor: "accent.teal",
         transform: "translateY(-2px)",
