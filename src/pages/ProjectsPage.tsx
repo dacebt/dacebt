@@ -11,7 +11,7 @@ export default function ProjectsPage() {
         gridTemplateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
         gap={{ base: 4, md: 6 }}
         w="100%"
-        alignItems="start"
+        alignItems="stretch"
         pt={4}
       >
         {projects.map((project, index) => (

@@ -56,13 +56,14 @@ export default function ProjectCard({
       _hover={{
         borderColor: "accent.teal",
         transform: "translateY(-2px)",
-        boxShadow: "card.projectHover",
+        boxShadow: "0 4px 12px var(--chakra-colors-black-alpha-20)",
       }}
       animation={enableFloat ? getAnimation(`float ${6 + index}s ease-in-out infinite`) : undefined}
       style={enableFloat ? {
         animationDelay: `${index * 0.2}s`,
       } : undefined}
       w="100%"
+      h="100%"
       textAlign="left"
       wordWrap="break-word"
       whiteSpace="normal"
@@ -86,9 +87,8 @@ export default function ProjectCard({
         <Text
           textStyle="projectTitle"
           textAlign="left"
-          bgGradient="linear-gradient(135deg, var(--chakra-colors-gradient-blue), var(--chakra-colors-gradient-purple))"
-          bgClip="text"
-          color="transparent"
+          color="text.primary"
+          fontWeight="bold"
           flex="1"
           minW={0}
         >
