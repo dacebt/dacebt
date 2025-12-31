@@ -12,6 +12,7 @@ interface FloatingButtonProps {
   width?: string | number
   animationDelay?: number
   index?: number
+  density?: "comfortable" | "tight"
 }
 
 export default function FloatingButton({
@@ -24,12 +25,20 @@ export default function FloatingButton({
   width = "100%",
   animationDelay,
   index = 0,
+  density = "comfortable",
 }: FloatingButtonProps) {
-  const sizeConfig = {
-    sm: { h: height || "80px", p: 3 },
-    md: { h: height || "100px", p: 4 },
-    lg: { h: height || "120px", p: 4 },
+  const densityConfig = {
+    comfortable: { p: { base: 4, md: 4 }, gap: 3 },
+    tight: { p: { base: 2, md: 3 }, gap: 2 },
   }
+  
+  const sizeConfig = {
+    sm: { h: height || "80px" },
+    md: { h: height || "100px" },
+    lg: { h: height || "120px" },
+  }
+  
+  const densityStyle = densityConfig[density]
 
   const variantConfig = {
     primary: {
@@ -55,6 +64,7 @@ export default function FloatingButton({
       onClick={onClick}
       disabled={disabled}
       {...config}
+      p={densityStyle.p}
       w={width}
       bg={variantStyle.bg}
       color="text.primary"
@@ -69,21 +79,21 @@ export default function FloatingButton({
           ? {
               bg: variantStyle.hoverBg,
               borderColor: variantStyle.hoverBorderColor,
-              transform: "translateY(-8px) scale(1.02)",
-              boxShadow: "button.primaryHover",
+              transform: density === "tight" ? "translateY(-2px)" : "translateY(-8px) scale(1.02)",
+              boxShadow: density === "tight" ? "none" : "button.primaryHover",
             }
           : undefined
       }
       _active={
         !disabled
           ? {
-              transform: "translateY(-4px) scale(1.01)",
+              transform: density === "tight" ? "translateY(-1px)" : "translateY(-4px) scale(1.01)",
             }
           : undefined
       }
       display="flex"
       flexDirection="column"
-      gap={3}
+      gap={densityStyle.gap}
       animation={getAnimation(`float ${6 + index}s ease-in-out infinite`)}
       style={{
         animationDelay: `${(animationDelay || 0) + index * 0.3}s`,
@@ -113,7 +123,7 @@ export default function FloatingButton({
         alignItems="center"
         justifyContent="center"
         h="100%"
-        gap={2}
+        gap={density === "tight" ? 1.5 : 2}
       >
         {children}
       </Box>

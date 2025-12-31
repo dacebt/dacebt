@@ -29,11 +29,13 @@ const getLinkIcon = (linkType: string) => {
 interface ProjectCardProps {
   project: Project
   index: number
+  enableFloat?: boolean
 }
 
 export default function ProjectCard({
   project,
   index,
+  enableFloat = true,
 }: ProjectCardProps) {
   const availableLinks = Object.entries(project.links).filter(([, url]) => Boolean(url))
   const allLinks: Array<[string, string]> = [...availableLinks] as Array<[string, string]>
@@ -53,13 +55,13 @@ export default function ProjectCard({
       transition="all 0.3s ease"
       _hover={{
         borderColor: "accent.teal",
-        transform: "translateY(-4px)",
+        transform: "translateY(-2px)",
         boxShadow: "card.projectHover",
       }}
-      animation={getAnimation(`float ${6 + index}s ease-in-out infinite`)}
-      style={{
+      animation={enableFloat ? getAnimation(`float ${6 + index}s ease-in-out infinite`) : undefined}
+      style={enableFloat ? {
         animationDelay: `${index * 0.2}s`,
-      }}
+      } : undefined}
       w="100%"
       textAlign="left"
       wordWrap="break-word"
@@ -74,39 +76,35 @@ export default function ProjectCard({
         </Box>
       )}
 
-      <Box
-        position="relative"
-        bg="bg.dark"
-        borderRadius="md"
-        p={{ base: 2, md: 3 }}
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
         mb={2}
-        border="1px solid"
-        borderColor="border.inner"
+        gap={2}
+        flexWrap="wrap"
       >
+        <Text
+          textStyle="projectTitle"
+          textAlign="left"
+          bgGradient="linear-gradient(135deg, var(--chakra-colors-gradient-blue), var(--chakra-colors-gradient-purple))"
+          bgClip="text"
+          color="transparent"
+          flex="1"
+          minW={0}
+        >
+          {project.name}
+        </Text>
         {!project.currentlyContributing && (
           <Tooltip content="Currently not contributing">
             <Icon
               as={FaXmark}
-              position="absolute"
-              top={2}
-              right={2}
               boxSize={3}
-              color="red.400"
-              opacity={0.7}
+              color="text.muted"
+              opacity={0.6}
             />
           </Tooltip>
         )}
-
-        <Text
-          textStyle="projectTitle"
-          textAlign="center"
-          bgGradient="linear-gradient(135deg, var(--chakra-colors-gradient-blue), var(--chakra-colors-gradient-purple))"
-          bgClip="text"
-          color="transparent"
-        >
-          {project.name}
-        </Text>
-      </Box>
+      </Flex>
 
       <Text
         textStyle="smallText"

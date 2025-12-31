@@ -19,6 +19,7 @@ export default function ProjectsPage() {
             key={project.name}
             project={project}
             index={index}
+            enableFloat={false}
           />
         ))}
       </Grid>

@@ -43,6 +43,7 @@ export default function AboutPage() {
               variant="primary"
               index={index}
               animationDelay={index * 0.3}
+              density="tight"
             >
               {/* Subtle icon placeholder */}
               <Box

@@ -13,6 +13,7 @@ interface DialogueBoxProps {
   onClick?: () => void
   enableStreaming?: boolean
   streamingSpeed?: number
+  variant?: "default" | "flat"
 }
 
 const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
@@ -25,9 +26,11 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       onClick,
       enableStreaming = true,
       streamingSpeed = 30,
+      variant = "default",
     },
     ref
   ) => {
+    const isFlat = variant === "flat"
     const [displayedText, setDisplayedText] = useState("")
     const [isStreaming, setIsStreaming] = useState(false)
 
@@ -59,8 +62,8 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
       <Box
         ref={ref}
         position="relative"
-        bg="linear-gradient(135deg, var(--chakra-colors-bg-dark-alpha-95) 0%, var(--chakra-colors-bg-steel-alpha-90) 100%)"
-        borderRadius="16px"
+        bg={isFlat ? "transparent" : "linear-gradient(135deg, var(--chakra-colors-bg-dark-alpha-95) 0%, var(--chakra-colors-bg-steel-alpha-90) 100%)"}
+        borderRadius={isFlat ? "md" : "16px"}
         px={{ base: 6, md: 10 }}
         pt={{ base: 3, md: 4 }}
         pb={{ base: 2, md: 3 }}
@@ -72,15 +75,17 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
         transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
         role="group"
         _hover={
-          onClick
+          onClick && !isFlat
             ? {
                 transform: "translateY(-2px)",
                 boxShadow: "dialogue.hover",
               }
             : undefined
         }
-        boxShadow="dialogue.default"
-        _before={{
+        boxShadow={isFlat ? "none" : "dialogue.default"}
+        border={isFlat ? "1px solid" : undefined}
+        borderColor={isFlat ? "border.inner" : undefined}
+        _before={isFlat ? undefined : {
           content: '""',
           position: "absolute",
           top: 0,

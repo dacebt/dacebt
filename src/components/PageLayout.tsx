@@ -26,6 +26,8 @@ export default function PageLayout({ title, subtitle, children, centerContent = 
           color="text.primary"
           bg="linear-gradient(135deg, var(--chakra-colors-text-primary) 0%, var(--chakra-colors-accent-teal) 100%)"
           bgClip="text"
+          letterSpacing="normal"
+          textTransform="none"
         >
           {title}
         </Text>

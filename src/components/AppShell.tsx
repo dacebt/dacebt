@@ -47,25 +47,38 @@ function AppShell() {
           flexWrap="wrap"
           gap={4}
         >
-          <Flex alignItems="center" gap={3}>
+          <Flex alignItems="baseline" gap={2}>
             <Image
               src="/images/logo_unsized.png"
               alt="Logo"
               h={{ base: "32px", md: "40px" }}
               w="auto"
             />
-            <Text
-              textStyle="heading"
-              color="text.primary"
-              fontSize={{ base: "lg", md: "xl" }}
-            >
-              David Colon
-            </Text>
+            <Box>
+              <Text
+                textStyle="heading"
+                color="text.primary"
+                fontSize={{ base: "lg", md: "xl" }}
+                fontWeight="bold"
+                lineHeight="1.2"
+                mb={0}
+              >
+                David Colon
+              </Text>
+              <Text
+                textStyle="subtitle"
+                color="text.muted"
+                fontSize={{ base: "xs", md: "sm" }}
+                fontWeight="normal"
+                lineHeight="1.4"
+                mt={0.5}
+              >
+                Senior Web Engineer
+              </Text>
+            </Box>
           </Flex>
           <Box display={{ base: "none", md: "block" }}>
-            <Text textStyle="subtitle" color="text.muted" fontSize="sm">
-              Senior Web Engineer
-            </Text>
+            {/* Reserved for future actions */}
           </Box>
         </GlassPanel>
 
@@ -127,7 +140,7 @@ function AppShell() {
         {/* Footer / Bottom Panel */}
         <GlassPanel
           gridArea="footer"
-          elevation="medium"
+          elevation="subtle"
           role="container"
           p={{ base: 3, md: 4 }}
           minH={{ base: "auto", md: "120px" }}

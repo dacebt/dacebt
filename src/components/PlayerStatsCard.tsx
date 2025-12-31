@@ -41,26 +41,15 @@ const PlayerStatsCard = () => {
     >
       {/* Left Side - Player Info */}
       <Flex align="center" gap={4}>
-        {/* Mega Man Style Avatar Frame */}
+        {/* Avatar Frame */}
         <Box
           position="relative"
           w="90px"
           h="90px"
-          border="5px solid"
+          border="2px solid"
           borderColor="border.inner"
-          bg="bg.steel"
-          boxShadow="avatar.frame"
-          _before={{
-            content: '""',
-            position: "absolute",
-            top: "-3px",
-            left: "-3px",
-            right: "-3px",
-            bottom: "-3px",
-            border: "2px solid",
-            borderColor: "accent.teal",
-            opacity: 0.7,
-          }}
+          bg="bg.steelAlpha.60"
+          borderRadius="md"
         >
           <Image
             src="/images/avatar.png"
@@ -103,12 +92,13 @@ const PlayerStatsCard = () => {
               px={2}
               py={1}
               textStyle="smallText"
-              borderColor="accent.teal"
-              color="accent.teal"
-              bg="accent.tealAlpha.10"
+              borderColor="border.inner"
+              color="text.secondary"
+              bg="transparent"
               _hover={{
-                bg: "accent.tealAlpha.20",
-                transform: "scale(1.05)",
+                bg: "accent.tealAlpha.10",
+                borderColor: "accent.teal",
+                color: "accent.teal",
               }}
               transition="all 0.2s ease"
             >

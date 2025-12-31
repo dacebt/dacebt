@@ -1,3 +1,4 @@
+import React from "react"
 import { Box, type BoxProps } from "@chakra-ui/react"
 
 interface GlassPanelProps extends BoxProps {
@@ -19,15 +20,17 @@ const elevationConfig = {
   },
 }
 
-export default function GlassPanel({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", role = "surface", ...props }: GlassPanelProps) {
+const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
+  ({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", role = "surface", ...props }, ref) => {
   const boxProps = as === "button" && disabled !== undefined ? { disabled } : {}
   const elevationStyle = elevationConfig[elevation]
   const isSurface = role === "surface"
   
-  return (
-    <Box
-      as={as}
-      bg={bg || elevationStyle.bg}
+    return (
+      <Box
+        ref={ref}
+        as={as}
+        bg={bg || elevationStyle.bg}
       border={border || "1px solid"}
       borderColor={borderColor || "border.inner"}
       borderRadius={borderRadius || "xl"}
@@ -64,6 +67,11 @@ export default function GlassPanel({ children, bg, border, borderColor, borderRa
         {children}
       </Box>
     </Box>
-  )
-}
+    )
+  }
+)
+
+GlassPanel.displayName = "GlassPanel"
+
+export default GlassPanel
 

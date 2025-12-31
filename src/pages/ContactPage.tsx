@@ -44,12 +44,13 @@ export default function ContactPage() {
                   variant="primary"
                   index={index}
                   animationDelay={index * 0.5}
+                  density="tight"
                 >
                   {/* Icon container with enhanced styling */}
                   <Box
                     position="relative"
-                    p={3}
-                    borderRadius="lg"
+                    p={2}
+                    borderRadius="md"
                     bg="accent.tealAlpha.10"
                     border="1px solid"
                     borderColor="accent.tealAlpha.20"
@@ -60,10 +61,7 @@ export default function ContactPage() {
                     transition="all 0.3s ease"
                   >
                     <Icon
-                      size={32}
-                      style={{
-                        filter: "drop-shadow(0 2px 4px var(--chakra-colors-accent-teal-alpha-30))",
-                      }}
+                      size={24}
                     />
                   </Box>
 
