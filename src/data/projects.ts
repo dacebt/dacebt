@@ -164,6 +164,59 @@ const bitCraftOnlineProjectTool = createProject({
   ],
 })
 
+const bcCodexNews = createProject({
+  name: "BC Codex News",
+  currentlyContributing: false,
+  shortDescription: "Automated newspaper generation system that transforms BitCraft Online game chat into daily regional news editions with vintage newspaper aesthetic",
+  type: "personal",
+  links: {
+    github: "https://github.com/dacebt/bc-news-worker",
+    website: "https://news.bccodex.com",
+  },
+  technologies: [
+    "Cloudflare Workers",
+    "D1 SQL",
+    "React 18",
+    "Vite",
+    "TypeScript",
+    "Chakra UI",
+    "Docker",
+    "GitHub Actions",
+  ],
+  keyFeatures: [
+    "Cursor-based polling of BitJita chat API every minute with automatic backlog catch-up",
+    "Multi-provider LLM pipeline (Google/OpenAI/Anthropic) for content generation",
+    "Idempotent message ingestion with burst deduplication across 9 game regions",
+    "Vintage newspaper layout with CSS multi-column layouts and custom paper texture system",
+  ],
+  contributions: [
+    "Architected end-to-end system with separate ingest and generator Cloudflare Workers",
+    "Designed Docker-based local development workflow with shared D1 persistence",
+    "Implemented strict chrome/paper token separation achieving WCAG AA contrast standards",
+    "Built automated CI/CD pipeline via GitHub Actions for zero-downtime deployments",
+  ],
+  metrics: [
+    "Processes 100+ messages per poll with 99%+ uptime",
+    "Generates daily editions for 9 regions at 10 AM UTC",
+    "Sub-100ms frontend render times with vintage newspaper aesthetic",
+    "Zero duplicate message processing via PRIMARY KEY deduplication",
+  ],
+  tags: [
+    "cloudflare-workers",
+    "d1-database",
+    "react",
+    "typescript",
+    "llm",
+    "bitcraft",
+    "newspaper-generation",
+    "cursor-based-polling",
+    "docker",
+    "ci-cd",
+    "chakra-ui",
+    "serverless",
+  ],
+})
+
 const decentUi = createProject({
   name: "Decent UI",
   currentlyContributing: false,
@@ -185,6 +238,7 @@ const decentUi = createProject({
 export const projects: Project[] = [
   decentApp,
   bitCraftOnlineProjectTool,
+  bcCodexNews,
   mcpPromptCleaner,
   sarcophagusProtocol,
   decentUi,
