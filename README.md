@@ -17,13 +17,13 @@ I'm a **Senior Web Engineer** with a passion for building, period. After a decad
 
 ## Notable Projects
 
-### [bccodex](https://bccodex.com)
+### [Bitcraft Codex](https://bccodex.com)
 A web application designed as the ultimate companion tool for BitCraft Online players. Features deep recipe breakdowns, multi-source inventory tracking, and supports 5,000+ game items.
 
 **Tech:** React, Remix, TypeScript, Chakra UI, Cloudflare  
 **Features:** Complex recipe trees with 100+ items, sub-5 second calculation times
 
-### [BC Codex News](https://news.bccodex.com)
+### [Bitcraft Codex News](https://news.bccodex.com)
 Automated newspaper generation system that transforms BitCraft Online game chat into daily regional news editions with vintage newspaper aesthetic.
 
 **Tech:** Cloudflare Workers, D1 SQL, React, TypeScript, Chakra UI, Docker  
