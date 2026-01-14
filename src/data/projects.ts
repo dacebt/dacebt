@@ -236,10 +236,10 @@ const decentUi = createProject({
 
 // Projects data
 export const projects: Project[] = [
-  decentApp,
   bitCraftOnlineProjectTool,
   bcCodexNews,
   mcpPromptCleaner,
+  decentApp,
   sarcophagusProtocol,
   decentUi,
 ]
