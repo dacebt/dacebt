@@ -17,16 +17,17 @@ I'm a **Senior Web Engineer** with a passion for building, period. After a decad
 
 ## Notable Projects
 
-### [Decent App](https://decent.build)
-A decentralized protocol for managing and operating onchain organizations. Led core features development for decentalized application while collaborating with design for over 5+ years.
-
-**Tech:** React, Chakra UI, Zustand, Viem, Hardhat, Solidity  
-
 ### [bccodex](https://bccodex.com)
 A web application designed as the ultimate companion tool for BitCraft Online players. Features deep recipe breakdowns, multi-source inventory tracking, and supports 5,000+ game items.
 
 **Tech:** React, Remix, TypeScript, Chakra UI, Cloudflare  
 **Features:** Complex recipe trees with 100+ items, sub-5 second calculation times
+
+### [BC Codex News](https://news.bccodex.com)
+Automated newspaper generation system that transforms BitCraft Online game chat into daily regional news editions with vintage newspaper aesthetic.
+
+**Tech:** Cloudflare Workers, D1 SQL, React, TypeScript, Chakra UI, Docker  
+**Features:** Cursor-based polling every minute, multi-provider LLM pipeline, idempotent ingestion across 9 regions, sub-100ms render times
 
 ### [MCP Prompt Cleaner](https://github.com/dacebt/prompt-cleaner-mcp)
 A Model Context Protocol (MCP) server that uses AI to enhance and clean raw prompts. Production-ready with comprehensive test coverage.
@@ -43,5 +44,3 @@ A Model Context Protocol (MCP) server that uses AI to enhance and clean raw prom
 
 
 ---
-
-*"From kitchens to code—every bold step paid off."*
