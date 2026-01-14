@@ -15,6 +15,7 @@ export default function DialogueBoxContent({ displayedText, isStreaming }: Dialo
       zIndex={1}
       flex={1}
       fontFamily="var(--chakra-fonts-body)"
+      whiteSpace="pre-wrap"
     >
       {displayedText}
       {isStreaming && (
