@@ -21,12 +21,6 @@ export default function AboutPage() {
 		window.history.back()
 	}, [])
 
-	const handleComplete = useCallback(() => {
-		// Auto-return to grid after dialogue completes
-		setSelectedTopic(null)
-		// Replace state to remove topic hash without adding history entry
-		window.history.replaceState(null, "", window.location.pathname)
-	}, [])
 
 	// Handle browser back button
 	useEffect(() => {
@@ -87,7 +81,6 @@ export default function AboutPage() {
 						messages={selectedTopic.messages}
 						autoAdvanceDelay={1500}
 						autoPlay={true}
-						onComplete={handleComplete}
 						transcriptTitle={selectedTopic.label}
 					/>
 				</Box>

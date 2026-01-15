@@ -20,10 +20,19 @@ export default function TranscriptModal({
 	title = "Transcript",
 }: TranscriptModalProps) {
 	const scrollRef = useRef<HTMLDivElement>(null)
+	const hasUserScrolledRef = useRef(false)
 
 	// Scroll to current message when opened
 	useEffect(() => {
-		if (isOpen && scrollRef.current && currentIndex !== undefined) {
+		if (isOpen) {
+			hasUserScrolledRef.current = false
+		}
+	}, [isOpen])
+
+	useEffect(() => {
+		if (!isOpen || hasUserScrolledRef.current) return
+
+		if (scrollRef.current && currentIndex !== undefined) {
 			const element = scrollRef.current.children[currentIndex] as HTMLElement | undefined
 			if (element) {
 				setTimeout(() => {
@@ -77,6 +86,7 @@ export default function TranscriptModal({
 				zIndex={2001}
 				w="90vw"
 				maxW="800px"
+				h="85vh"
 				maxH="85vh"
 				overflow="hidden"
 				animation="fadeIn 0.2s ease-out"
@@ -123,6 +133,12 @@ export default function TranscriptModal({
 					minH={0}
 					overflowY="auto"
 					p={4}
+					onWheel={() => {
+						hasUserScrolledRef.current = true
+					}}
+					onTouchMove={() => {
+						hasUserScrolledRef.current = true
+					}}
 					css={{
 						"&::-webkit-scrollbar": {
 							width: "8px",
