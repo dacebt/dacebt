@@ -79,9 +79,14 @@ export default function TranscriptModal({
 				maxW="800px"
 				maxH="85vh"
 				overflow="hidden"
-				display="flex"
-				flexDirection="column"
-				animation="slideIn 0.3s ease-out"
+				animation="fadeIn 0.2s ease-out"
+				css={{
+					"& > div": {
+						display: "flex",
+						flexDirection: "column",
+						height: "100%",
+					},
+				}}
 			>
 				{/* Header */}
 				<Box
@@ -115,6 +120,7 @@ export default function TranscriptModal({
 				<Box
 					ref={scrollRef}
 					flex={1}
+					minH={0}
 					overflowY="auto"
 					p={4}
 					css={{

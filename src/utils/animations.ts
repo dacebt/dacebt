@@ -34,6 +34,13 @@ export const animations = {
     }
   `,
 
+  fadeIn: `
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  `,
+
   slideIn: `
     @keyframes slideIn {
       from {
