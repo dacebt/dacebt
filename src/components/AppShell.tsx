@@ -88,6 +88,8 @@ function AppShell() {
           minH={0}
           overflowY="auto"
           overflowX="hidden"
+          display="flex"
+          flexDirection="column"
         >
           <Outlet />
         </GlassPanel>

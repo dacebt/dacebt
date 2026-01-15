@@ -1,4 +1,4 @@
-import { type DialogueMessage } from "../hooks/useSimpleDialogue"
+import { type DialogueMessage } from "../hooks/useRPGDialogue"
 
 export interface AboutTopic {
   id: string
