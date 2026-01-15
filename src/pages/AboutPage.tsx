@@ -11,8 +11,8 @@ export default function AboutPage() {
 
 	const handleTopicClick = useCallback((topic: AboutTopic) => {
 		setSelectedTopic(topic)
-		// Push state so browser back returns to grid
-		window.history.pushState({ topicId: topic.id }, "", `#${topic.id}`)
+		// Push state so browser back returns to grid without modifying the URL
+		window.history.pushState({ topicId: topic.id }, "", window.location.pathname)
 	}, [])
 
 	const handleBack = useCallback(() => {
@@ -31,6 +31,8 @@ export default function AboutPage() {
 		window.addEventListener("popstate", handlePopState)
 		return () => window.removeEventListener("popstate", handlePopState)
 	}, [])
+
+
 
 	// Handle Escape key to go back
 	useEffect(() => {
