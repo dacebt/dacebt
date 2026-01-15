@@ -111,7 +111,6 @@ export default function RPGDialogueScene({
 						hasMore={hasMore}
 						onTranscriptOpen={handleTranscriptOpen}
 						onSkip={handleSkip}
-						onSkipToEnd={skipToEnd}
 					/>
 				)}
 			</Box>

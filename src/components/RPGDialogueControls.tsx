@@ -9,7 +9,6 @@ interface RPGDialogueControlsProps {
 	hasMore: boolean
 	onTranscriptOpen: () => void
 	onSkip: () => void
-	onSkipToEnd: () => void
 }
 
 export default function RPGDialogueControls({
@@ -20,7 +19,6 @@ export default function RPGDialogueControls({
 	hasMore,
 	onTranscriptOpen,
 	onSkip,
-	onSkipToEnd,
 }: RPGDialogueControlsProps) {
 	const showSkipButton = isStreaming || hasMore
 	const skipLabel = isStreaming ? "Skip" : "Next"
@@ -68,29 +66,6 @@ export default function RPGDialogueControls({
 
 			{/* Skip buttons - right */}
 			<Box display="flex" gap={2}>
-				{/* Skip to End button - only show if not complete and more than current message */}
-				{!isComplete && hasMore && !isStreaming && (
-					<Button
-						onClick={onSkipToEnd}
-						size="sm"
-						bg="transparent"
-						color="text.muted"
-						border="1px solid"
-						borderColor="border.inner"
-						borderRadius="md"
-						_hover={{
-							bg: "accent.tealAlpha.10",
-							color: "text.secondary",
-						}}
-						transition="all 0.2s ease"
-					>
-						<Text as="span" display={{ base: "none", md: "inline" }} mr={1}>
-							Skip All
-						</Text>
-						<FiChevronsRight />
-					</Button>
-				)}
-
 				{/* Skip/Next button */}
 				{showSkipButton && (
 					<Button
