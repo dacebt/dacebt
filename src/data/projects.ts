@@ -110,7 +110,7 @@ const mcpPromptCleaner = createProject({
 })
 
 const bitCraftOnlineProjectTool = createProject({
-  name: "bccodex",
+  name: "Bitcraft Codex",
   currentlyContributing: true,
   shortDescription:
     "A web application designed as the ultimate companion tool for BitCraft Online players",
@@ -165,8 +165,8 @@ const bitCraftOnlineProjectTool = createProject({
 })
 
 const bcCodexNews = createProject({
-  name: "BC Codex News",
-  currentlyContributing: false,
+  name: "Bitcraft Codex News",
+  currentlyContributing: true,
   shortDescription: "Automated newspaper generation system that transforms BitCraft Online game chat into daily regional news editions with vintage newspaper aesthetic",
   type: "personal",
   links: {
