@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Box } from "@chakra-ui/react"
+import { Box, Image } from "@chakra-ui/react"
 import GlassPanel from "./ui/GlassPanel"
 import DialogueBoxContent from "./ui/DialogueBoxContent"
 
@@ -98,16 +98,15 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
 					>
 						{speakerImage && !imageError && (
 							<Box
-							w="64px"
-							h="64px"
+								w="64px"
+								h="64px"
 								borderRadius="md"
 								overflow="hidden"
 								border="1px solid"
 								borderColor="border.inner"
 								flexShrink={0}
 							>
-								<Box
-									as="img"
+								<Image
 									src={speakerImage}
 									alt={speaker || "Speaker"}
 									w="100%"
@@ -182,8 +181,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
 							flexShrink={0}
 						>
 							{speakerImage && !imageError ? (
-								<Box
-									as="img"
+								<Image
 									src={speakerImage}
 									alt={speaker || "Speaker"}
 									w="100%"

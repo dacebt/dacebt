@@ -5,7 +5,6 @@ interface RPGDialogueControlsProps {
 	currentIndex: number
 	totalMessages: number
 	isStreaming: boolean
-	isComplete: boolean
 	hasMore: boolean
 	onTranscriptOpen: () => void
 	onSkip: () => void
@@ -15,7 +14,6 @@ export default function RPGDialogueControls({
 	currentIndex,
 	totalMessages,
 	isStreaming,
-	isComplete,
 	hasMore,
 	onTranscriptOpen,
 	onSkip,

@@ -32,11 +32,9 @@ export default function RPGDialogueScene({
 		totalMessages,
 		displayedText,
 		isStreaming,
-		isComplete,
 		hasMore,
 		allMessages,
 		skipStreaming,
-		skipToEnd,
 		handleClick,
 	} = useRPGDialogue({
 		messages,
@@ -107,7 +105,6 @@ export default function RPGDialogueScene({
 						currentIndex={currentIndex}
 						totalMessages={totalMessages}
 						isStreaming={isStreaming}
-						isComplete={isComplete}
 						hasMore={hasMore}
 						onTranscriptOpen={handleTranscriptOpen}
 						onSkip={handleSkip}
