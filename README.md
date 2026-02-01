@@ -4,6 +4,13 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/david-a-colon/)
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-1DA1F2)](https://x.com/epicbadtiming)
 
+## My GitHub Contribution History as a Game
+
+![GitHub Breakout Game](./public/images/github-breakout.gif)
+
+*Powered by [gh-brickbreak](https://github.com/dacebt/gh-brickbreak) - Auto-updates daily*
+
+---
 
 I'm a **Senior Web Engineer** with a passion for building, period. After a decade in the culinary world, I made the leap to software development and haven't looked back. I'm a full-stack developer comfortable working across the entire stack—from React frontends, to microservices, to Solidity smart contracts, and everything in between.
 
