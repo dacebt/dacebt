@@ -27,7 +27,7 @@ jobs:
           gh-brickbreak dacebt \
             --token ${{ secrets.GITHUB_TOKEN }} \
             --output public/images/github-breakout.gif \
-            --strategy random \
+            --strategy follow \
             --fps 40
 
       - name: Commit and push if changed
