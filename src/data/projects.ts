@@ -217,6 +217,50 @@ const bcCodexNews = createProject({
   ],
 })
 
+const ghBrickbreak = createProject({
+  name: "gh-brickbreak",
+  currentlyContributing: true,
+  shortDescription: "Transform your GitHub contribution graph into an animated Breakout-style brick-breaking game",
+  type: "personal",
+  links: {
+    github: "https://github.com/dacebt/gh-brickbreak",
+  },
+  technologies: ["Python 3.10+", "Pillow", "requests", "python-dotenv", "GitHub GraphQL API"],
+  keyFeatures: [
+    "Fetches GitHub contribution data via GraphQL API",
+    "Maps contributions to game bricks with strength based on commit intensity",
+    "Autonomous paddle AI with 4 distinct strategies (follow, column, row, random)",
+    "Physics-based ball and collision system with realistic bouncing",
+    "Generates animated GIF visualization with configurable FPS",
+    "GitHub Actions automation for daily profile updates",
+  ],
+  contributions: [
+    "Built complete physics engine from scratch using Python and Pillow",
+    "Implemented 4 AI strategies for autonomous paddle control",
+    "Created GitHub GraphQL API integration for contribution data",
+    "Designed CLI with comprehensive options (strategies, FPS, watermarks, token support)",
+    "Developed raw data save/load system to minimize API calls",
+  ],
+  metrics: [
+    "Supports 365+ days of contribution history visualization",
+    "4 distinct AI strategies for varied gameplay",
+    "Configurable 20-60 FPS for GIF generation",
+    "Zero-dependency game engine built with pure Python",
+  ],
+  tags: [
+    "python",
+    "github-api",
+    "visualization",
+    "game-dev",
+    "animation",
+    "pillow",
+    "cli-tool",
+    "github-actions",
+    "graphql",
+    "ai-strategies",
+  ],
+})
+
 const decentUi = createProject({
   name: "Decent UI",
   currentlyContributing: false,
@@ -238,6 +282,7 @@ const decentUi = createProject({
 export const projects: Project[] = [
   bitCraftOnlineProjectTool,
   bcCodexNews,
+  ghBrickbreak,
   mcpPromptCleaner,
   decentApp,
   sarcophagusProtocol,
