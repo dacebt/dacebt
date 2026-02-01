@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: breakout-output
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -26,14 +29,15 @@ jobs:
         run: |
           gh-brickbreak dacebt \
             --token ${{ secrets.GITHUB_TOKEN }} \
-            --output public/images/github-breakout.gif \
+            --output github-breakout.gif \
             --strategy follow \
             --fps 40
 
-      - name: Commit and push if changed
+      - name: Push to output branch (keeps main clean)
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add public/images/github-breakout.gif
-          git diff --quiet && git diff --staged --quiet || \
-            (git commit -m "Update GitHub breakout game [skip ci]" && git push)
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add github-breakout.gif
+          git diff --staged --quiet && exit 0
+          git commit -m "Update breakout game [skip ci]"
+          git push --force origin HEAD:breakout-output

@@ -4,7 +4,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/david-a-colon/)
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-1DA1F2)](https://x.com/epicbadtiming)
 
-![GitHub Breakout Game](./public/images/github-breakout.gif)
+![GitHub Breakout Game](https://raw.githubusercontent.com/dacebt/dacebt/breakout-output/github-breakout.gif)
 
 *Powered by [gh-brickbreak](https://github.com/dacebt/gh-brickbreak) - Auto-updates daily*
 
