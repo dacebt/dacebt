@@ -34,11 +34,29 @@ Automated newspaper generation system that transforms BitCraft Online game chat 
 **Tech:** Cloudflare Workers, D1 SQL, React, TypeScript, Chakra UI, Docker  
 **Features:** Cursor-based polling every minute, multi-provider LLM pipeline, idempotent ingestion across 9 regions, sub-100ms render times
 
-### [MCP Prompt Cleaner](https://github.com/dacebt/prompt-cleaner-mcp)
-A Model Context Protocol (MCP) server that uses AI to enhance and clean raw prompts. Production-ready with comprehensive test coverage.
+### [EBT Agent Skills](https://github.com/dacebt/ebt-agent-skills)
+A curated set of portable coding-agent skills for review, release workflows, and subagent collaboration across multiple AI coding environments.
 
-**Tech:** Python 3.11+, MCP Python SDK, pytest  
-**Metrics:** 43 passing tests, 1,160+ lines of code, 100% test pass rate
+**Tech:** Claude Code, Cursor, Codex CLI, Gemini CLI, SKILL.md, Marketplace JSON  
+**Features:** Reusable skill catalog, cross-platform install paths, safety-focused skill conventions, collaboration/review/release workflows
+
+### [EBT Games Design Library](https://github.com/dacebt/ebtgames-theme)
+A Chakra-based design system that powers EBT Games projects with shared tokens, recipes, animations, and Storybook-documented UI patterns.
+
+**Tech:** TypeScript, React, Chakra UI, Storybook, tsup, CSS variables  
+**Features:** Semantic design tokens, recipe and slot-recipe components, accessibility-aware contrast utilities, branded global styles
+
+### [Ninefold](https://ninefold.epicbadtiming.com)
+A polished 9x9 number-logic puzzle game focused on deterministic generation, clean UX, and reliable local persistence for resume-friendly play sessions.
+
+**Tech:** React, TypeScript, Vite, Chakra UI, Framer Motion  
+**Features:** Unique-solution puzzle generation by difficulty, keyboard/mobile controls, autosave with local progress and stats
+
+### [Wordtrace](https://wordtrace.epicbadtiming.com)
+A WebGL-powered word tracing game with dictionary validation, score-focused timed sessions, and responsive controls across desktop and mobile.
+
+**Tech:** React, TypeScript, Vite, Chakra UI, Three.js, React Three Fiber  
+**Features:** 3D interactive board, seeded board/path validation engine, timed and untimed modes with persistent stats
 
 
 ## Portfolio Preview

@@ -81,34 +81,6 @@ const sarcophagusProtocol = createProject({
   tags: ["decent", "sarcophagus", "dead mans switch", "arweave"],
 })
 
-const mcpPromptCleaner = createProject({
-  name: "MCP Prompt Cleaner",
-  currentlyContributing: true,
-  shortDescription: "A Model Context Protocol (MCP) server that uses AI to enhance and clean raw prompts",
-  type: "personal",
-  links: {
-    github: "https://github.com/dacebt/prompt-cleaner-mcp",
-  },
-  technologies: ["Python 3.11+", "MCP Python SDK", "httpx", "pydantic", "pytest"],
-  keyFeatures: [
-    "AI-Powered Enhancement using large language models",
-    "Two-Level Retry Strategy with HTTP and content-level retries",
-    "Local LLM Support (LMStudio) with no API key required",
-    "Production Ready with comprehensive test coverage"
-  ],
-  contributions: [
-    "Complete Python implementation of MCP prompt cleaner server",
-    "Two-level retry strategy implementation (HTTP + content level)",
-    "Extensive test suite with 43 passing tests covering all functionality"
-  ],
-  metrics: [
-    "43 passing tests with comprehensive coverage",
-    "1,160+ lines of Python code across 9 Python files",
-    "100% test pass rate"
-  ],
-  tags: ["python", "mcp", "ai", "prompt-engineering", "llm", "async", "retry-logic", "testing"],
-})
-
 const bitCraftOnlineProjectTool = createProject({
   name: "Bitcraft Codex",
   currentlyContributing: true,
@@ -217,6 +189,180 @@ const bcCodexNews = createProject({
   ],
 })
 
+const ebtAgentSkills = createProject({
+  name: "EBT Agent Skills",
+  currentlyContributing: true,
+  shortDescription:
+    "A curated set of portable coding-agent skills for cleanup review, release notes, and subagent collaboration",
+  type: "personal",
+  links: {
+    github: "https://github.com/dacebt/ebt-agent-skills",
+  },
+  technologies: [
+    "Claude Code",
+    "Cursor",
+    "Codex CLI",
+    "Gemini CLI",
+    "SKILL.md",
+    "Marketplace JSON",
+  ],
+  keyFeatures: [
+    "Cross-platform install workflows for major coding-agent CLIs",
+    "Consistent SKILL.md structure with safety and usage guidance",
+    "Portable skill catalog for cleanup-review, subagent-collab, and release-notes",
+  ],
+  contributions: [
+    "Defined and documented install patterns across multiple agent ecosystems",
+    "Packaged and maintained a focused, reusable skill catalog",
+    "Established safety-first conventions for reviewing skill behavior before install",
+  ],
+  metrics: [
+    "3 curated skills in the catalog",
+    "Supports 4 coding-agent platforms",
+    "Marketplace schema published and versioned",
+  ],
+  tags: [
+    "agent-skills",
+    "developer-productivity",
+    "code-review",
+    "release-workflow",
+    "claude-code",
+    "cursor",
+    "codex-cli",
+    "gemini-cli",
+    "marketplace",
+  ],
+})
+
+const ebtGamesDesignLibrary = createProject({
+  name: "EBT Games Design Library",
+  currentlyContributing: true,
+  shortDescription:
+    "A Chakra-based design system with shared tokens, recipes, animations, and Storybook docs for EBT Games projects",
+  type: "personal",
+  links: {
+    github: "https://github.com/dacebt/ebtgames-theme",
+  },
+  technologies: [
+    "TypeScript",
+    "React 19",
+    "Chakra UI",
+    "Storybook",
+    "tsup",
+    "CSS variables",
+  ],
+  keyFeatures: [
+    "Centralized semantic tokens for color, spacing, typography, and shadows",
+    "Recipe and slot-recipe component patterns for reusable UI primitives",
+    "WCAG-aware contrast utilities with branded global visual styling",
+  ],
+  contributions: [
+    "Built shared token foundations consumed across game interfaces",
+    "Authored component recipes and slot recipes for consistent UX",
+    "Documented design primitives and components through Storybook coverage",
+  ],
+  metrics: [
+    "8 core recipes exported",
+    "5 slot recipes exported",
+    "Versioned package ready for reuse across projects",
+  ],
+  tags: [
+    "design-system",
+    "chakra-ui",
+    "storybook",
+    "typescript",
+    "design-tokens",
+    "css-variables",
+    "component-library",
+    "animations",
+    "accessibility",
+  ],
+})
+
+const ninefoldProject = createProject({
+  name: "Ninefold",
+  currentlyContributing: true,
+  shortDescription:
+    "A polished 9x9 number-logic puzzle game with deterministic generation, responsive controls, and local save support",
+  type: "personal",
+  links: {
+    website: "https://ninefold.epicbadtiming.com",
+  },
+  technologies: ["React 19", "TypeScript 5", "Vite 7", "Chakra UI", "Framer Motion"],
+  keyFeatures: [
+    "Deterministic puzzle generation with unique-solution validation",
+    "Difficulty-tuned gameplay with targeted clue ranges",
+    "Keyboard and mobile-friendly controls with pause and resume flow",
+  ],
+  contributions: [
+    "Implemented generator and validator pipeline for reliable puzzle quality",
+    "Built core game-state orchestration with autosave and conflict handling",
+    "Delivered responsive game UI across board, controls, and overlays",
+  ],
+  metrics: [
+    "4 difficulty tiers with configured clue ranges",
+    "Autosave cadence every 500ms",
+    "Persistent stats and best times tracked locally",
+  ],
+  tags: [
+    "puzzle-game",
+    "react",
+    "typescript",
+    "vite",
+    "chakra-ui",
+    "framer-motion",
+    "game-state",
+    "localstorage",
+    "responsive-ui",
+  ],
+})
+
+const wordtraceProject = createProject({
+  name: "Wordtrace",
+  currentlyContributing: true,
+  shortDescription:
+    "A WebGL-powered word tracing game with dictionary validation, timed scoring, and responsive desktop/mobile play",
+  type: "personal",
+  links: {
+    website: "https://wordtrace.epicbadtiming.com",
+  },
+  technologies: [
+    "React 19",
+    "TypeScript",
+    "Vite 7",
+    "Chakra UI",
+    "Three.js",
+    "react-three-fiber",
+  ],
+  keyFeatures: [
+    "Interactive 3D board rendered with WebGL",
+    "Seeded board generation with adjacency and path validation",
+    "Timed and untimed modes with score tracking and feedback",
+  ],
+  contributions: [
+    "Implemented gameplay orchestration for timing, scoring, and persistence",
+    "Built engine modules for board generation, path checks, and lexicon validation",
+    "Created responsive interfaces spanning desktop sidebar and mobile action panels",
+  ],
+  metrics: [
+    "Default timed mode set to 3 minutes",
+    "Exponential score model based on word length",
+    "Persistent stats for played games, scores, and words found",
+  ],
+  tags: [
+    "word-game",
+    "webgl",
+    "three-js",
+    "react",
+    "typescript",
+    "vite",
+    "chakra-ui",
+    "game-engine",
+    "localstorage",
+    "responsive-ui",
+  ],
+})
+
 const ghBrickbreak = createProject({
   name: "gh-brickbreak",
   currentlyContributing: true,
@@ -282,8 +428,11 @@ const decentUi = createProject({
 export const projects: Project[] = [
   bitCraftOnlineProjectTool,
   bcCodexNews,
+  ebtAgentSkills,
+  ebtGamesDesignLibrary,
+  ninefoldProject,
+  wordtraceProject,
   ghBrickbreak,
-  mcpPromptCleaner,
   decentApp,
   sarcophagusProtocol,
   decentUi,
