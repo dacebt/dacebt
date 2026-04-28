@@ -48,7 +48,7 @@ const PlayerStatsCard = () => {
           h="90px"
           border="2px solid"
           borderColor="border.inner"
-          bg="bg.steelAlpha.60"
+          bg="#181c22"
           borderRadius="md"
         >
           <Image

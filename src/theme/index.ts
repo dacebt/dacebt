@@ -34,10 +34,11 @@ const customConfig = defineConfig({
           darkAlpha: {
             95: { value: "rgba(10, 10, 10, 0.95)" },
           },
+          // Opaque panel backgrounds (JRPG-style, no transparency)
           steelAlpha: {
-            60: { value: "rgba(29, 33, 38, 0.6)" },
-            80: { value: "rgba(29, 33, 38, 0.8)" },
-            90: { value: "rgba(29, 33, 38, 0.9)" },
+            60: { value: "#181c22" },
+            80: { value: "#1d2228" },
+            90: { value: "#222830" },
           },
         },
         border: {
@@ -127,6 +128,17 @@ const customConfig = defineConfig({
         },
       },
       shadows: {
+        panel: {
+          subtle: {
+            value: "1px 1px 0 0 #3a4250, -1px -1px 0 0 #0a0c10, 0 0 0 1px #2a3040",
+          },
+          medium: {
+            value: "1px 1px 0 0 #4a5568, -1px -1px 0 0 #0a0c10, 0 0 0 1px #2a3040, inset 1px 1px 0 0 rgba(255, 255, 255, 0.06)",
+          },
+          strong: {
+            value: "2px 2px 0 0 #4a5568, -2px -2px 0 0 #0a0c10, 0 0 0 2px #2a3040, inset 1px 1px 0 0 rgba(255, 255, 255, 0.08)",
+          },
+        },
         dialogue: {
           default: {
             value: "inset 0 0 0 2px {colors.white.alpha.10}, inset 0 0 0 4px {colors.accent.green}, inset 0 0 0 6px {colors.border.outer}, 0 0 0 2px {colors.accent.green}, 0 6px 24px {colors.accent.greenAlpha.25}, 0 12px 48px {colors.black.alpha.50}, 0 0 0 1px {colors.white.alpha.5}",

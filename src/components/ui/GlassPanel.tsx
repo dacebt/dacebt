@@ -5,68 +5,43 @@ interface GlassPanelProps extends BoxProps {
   children: React.ReactNode
   disabled?: boolean
   elevation?: "subtle" | "medium" | "strong"
-  role?: "container" | "surface"
 }
 
 const elevationConfig = {
   subtle: {
     bg: "bg.steelAlpha.60",
+    shadow: "panel.subtle",
   },
   medium: {
     bg: "bg.steelAlpha.80",
+    shadow: "panel.medium",
   },
   strong: {
     bg: "bg.steelAlpha.90",
+    shadow: "panel.strong",
   },
 }
 
 const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
-  ({ children, bg, border, borderColor, borderRadius, backdropFilter, disabled, as, elevation = "medium", role = "surface", ...props }, ref) => {
-  const boxProps = as === "button" && disabled !== undefined ? { disabled } : {}
-  const elevationStyle = elevationConfig[elevation]
-  const isSurface = role === "surface"
-  
+  ({ children, bg, border, borderColor, borderRadius, disabled, as, elevation = "medium", ...props }, ref) => {
+    const boxProps = as === "button" && disabled !== undefined ? { disabled } : {}
+    const elevationStyle = elevationConfig[elevation]
+
     return (
       <Box
         ref={ref}
         as={as}
         bg={bg || elevationStyle.bg}
-      border={border || "1px solid"}
-      borderColor={borderColor || "border.inner"}
-      borderRadius={borderRadius || "xl"}
-      backdropFilter={backdropFilter || "blur(10px)"}
-      position="relative"
-      _before={isSurface ? {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        borderRadius: borderRadius || "xl",
-        background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 50%)",
-        pointerEvents: "none",
-        zIndex: 0,
-      } : undefined}
-      _after={isSurface ? {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        borderRadius: borderRadius || "xl",
-        background: "radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.05) 0%, transparent 50%)",
-        pointerEvents: "none",
-        zIndex: 0,
-      } : undefined}
-      {...boxProps}
-      {...props}
-    >
-      <Box position="relative" zIndex={1}>
+        border={border || "1px solid"}
+        borderColor={borderColor || "border.inner"}
+        borderRadius={borderRadius || "4px"}
+        boxShadow={elevationStyle.shadow}
+        position="relative"
+        {...boxProps}
+        {...props}
+      >
         {children}
       </Box>
-    </Box>
     )
   }
 )

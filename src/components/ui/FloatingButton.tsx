@@ -45,7 +45,6 @@ export default function FloatingButton({
       as="button"
       onClick={onClick}
       disabled={disabled}
-      role="surface"
       {...config}
       p={densityStyle.p}
       w={width}

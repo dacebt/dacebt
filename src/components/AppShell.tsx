@@ -44,7 +44,6 @@ function AppShell() {
         >
           <GlassPanel
             elevation="medium"
-            role="container"
             p={2}
             display="flex"
             flexDirection="column"
@@ -67,7 +66,6 @@ function AppShell() {
         >
           <GlassPanel
             elevation="strong"
-            role="container"
             p={2}
             display="flex"
             flexDirection="row"
@@ -83,7 +81,6 @@ function AppShell() {
         <GlassPanel
           gridArea="main"
           elevation="strong"
-          role="container"
           p={{ base: 4, md: 6 }}
           minH={0}
           overflowY="auto"
@@ -98,7 +95,6 @@ function AppShell() {
         <GlassPanel
           gridArea="footer"
           elevation="subtle"
-          role="container"
           p={{ base: 3, md: 4 }}
           minH={{ base: "auto", md: "120px" }}
         >

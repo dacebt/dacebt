@@ -69,7 +69,6 @@ export default function TranscriptModal({
 				right={0}
 				bottom={0}
 				bg="black.alpha.80"
-				backdropFilter="blur(8px)"
 				zIndex={2000}
 				onClick={onClose}
 				animation="fadeIn 0.2s ease-out"
@@ -78,7 +77,6 @@ export default function TranscriptModal({
 			{/* Content - z-index 2001 */}
 			<GlassPanel
 				elevation="strong"
-				role="container"
 				position="fixed"
 				top="50%"
 				left="50%"
@@ -90,13 +88,8 @@ export default function TranscriptModal({
 				maxH="85vh"
 				overflow="hidden"
 				animation="fadeIn 0.2s ease-out"
-				css={{
-					"& > div": {
-						display: "flex",
-						flexDirection: "column",
-						height: "100%",
-					},
-				}}
+				display="flex"
+				flexDirection="column"
 			>
 				{/* Header */}
 				<Box
