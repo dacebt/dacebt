@@ -12,19 +12,19 @@ const elevationConfig = {
     bg: "bg.steelAlpha.60",
     shadow: "panel.subtle",
     blur: "blur(6px)",
-    gradient: "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 35%, rgba(0,0,0,0.08) 100%)",
+    gradient: "linear-gradient(180deg, rgba(70, 110, 180, 0.12) 0%, rgba(40, 70, 130, 0.04) 30%, transparent 60%, rgba(0, 0, 0, 0.18) 100%)",
   },
   medium: {
     bg: "bg.steelAlpha.80",
     shadow: "panel.medium",
     blur: "blur(10px)",
-    gradient: "linear-gradient(180deg, rgba(91,192,190,0.07) 0%, rgba(91,192,190,0.02) 20%, transparent 50%, rgba(0,0,0,0.12) 100%)",
+    gradient: "linear-gradient(180deg, rgba(80, 130, 200, 0.16) 0%, rgba(50, 90, 160, 0.06) 25%, transparent 55%, rgba(0, 0, 0, 0.22) 100%)",
   },
   strong: {
     bg: "bg.steelAlpha.90",
     shadow: "panel.strong",
     blur: "blur(14px)",
-    gradient: "linear-gradient(180deg, rgba(91,192,190,0.08) 0%, rgba(91,192,190,0.03) 15%, transparent 45%, rgba(0,0,0,0.18) 100%)",
+    gradient: "linear-gradient(180deg, rgba(90, 140, 220, 0.18) 0%, rgba(55, 100, 180, 0.07) 20%, transparent 50%, rgba(0, 0, 0, 0.25) 100%)",
   },
 }
 

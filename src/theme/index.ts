@@ -48,9 +48,9 @@ const customConfig = defineConfig({
           },
           // Semi-transparent panel backgrounds — lets starfield show through
           steelAlpha: {
-            60: { value: "rgba(20, 28, 38, 0.70)" },
-            80: { value: "rgba(22, 30, 42, 0.83)" },
-            90: { value: "rgba(24, 32, 46, 0.93)" },
+            60: { value: "rgba(18, 32, 60, 0.72)" },
+            80: { value: "rgba(22, 40, 75, 0.84)" },
+            90: { value: "rgba(28, 50, 92, 0.92)" },
           },
         },
         border: {
@@ -99,7 +99,7 @@ const customConfig = defineConfig({
         text: {
           primary: { value: "#E2E8F0" },
           secondary: { value: "#94A3B8" },
-          muted: { value: "#64748B" },
+          muted: { value: "#9ba6bb" },
           secondaryAlpha: {
             90: { value: "rgba(148, 163, 184, 0.9)" },
           },
@@ -142,13 +142,13 @@ const customConfig = defineConfig({
       shadows: {
         panel: {
           subtle: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.15), inset 0 0 16px rgba(91, 192, 190, 0.02), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.7), 0 4px 12px rgba(0, 0, 0, 0.5)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.15), inset 0 0 16px rgba(60, 100, 160, 0.02), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.7), 0 4px 12px rgba(0, 0, 0, 0.5)",
           },
           medium: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.17), inset 0 0 24px rgba(91, 192, 190, 0.04), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.78), 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 0, 0, 0.2)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.17), inset 0 0 24px rgba(60, 100, 160, 0.04), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.78), 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 0, 0, 0.2)",
           },
           strong: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 0 30px rgba(91, 192, 190, 0.05), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.85), 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 0, 0, 0.25)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 0 30px rgba(60, 100, 160, 0.05), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.85), 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 0, 0, 0.25)",
           },
         },
         dialogue: {
