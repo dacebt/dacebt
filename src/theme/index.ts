@@ -48,13 +48,13 @@ const customConfig = defineConfig({
           },
           // Semi-transparent panel backgrounds — lets starfield show through
           steelAlpha: {
-            60: { value: "rgba(20, 28, 38, 0.65)" },
-            80: { value: "rgba(22, 30, 42, 0.8)" },
-            90: { value: "rgba(24, 32, 46, 0.88)" },
+            60: { value: "rgba(20, 28, 38, 0.70)" },
+            80: { value: "rgba(22, 30, 42, 0.83)" },
+            90: { value: "rgba(24, 32, 46, 0.93)" },
           },
         },
         border: {
-          inner: { value: "#4a6278" },
+          inner: { value: "#5d7a94" },
           outer: { value: "#0E1013" },
         },
         accent: {
@@ -142,13 +142,13 @@ const customConfig = defineConfig({
       shadows: {
         panel: {
           subtle: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 0 16px rgba(91, 192, 190, 0.02), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(74, 98, 120, 0.4), 0 4px 12px rgba(0, 0, 0, 0.5)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.15), inset 0 0 16px rgba(91, 192, 190, 0.02), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.7), 0 4px 12px rgba(0, 0, 0, 0.5)",
           },
           medium: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.1), inset 0 0 24px rgba(91, 192, 190, 0.04), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(74, 98, 120, 0.5), 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 0, 0, 0.2)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.17), inset 0 0 24px rgba(91, 192, 190, 0.04), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.78), 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 0, 0, 0.2)",
           },
           strong: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.12), inset 0 0 30px rgba(91, 192, 190, 0.05), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(74, 98, 120, 0.6), 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 0, 0, 0.25)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 0 30px rgba(91, 192, 190, 0.05), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.85), 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 0, 0, 0.25)",
           },
         },
         dialogue: {
