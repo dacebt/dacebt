@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom"
 import GlassPanel from "./ui/GlassPanel"
 import NavRail from "./NavRail"
 import PlayerStatsCard from "./PlayerStatsCard"
+import Starfield from "./Starfield"
 import { injectAllAnimations } from "../utils/animations"
 
 function AppShell() {
@@ -19,7 +20,10 @@ function AppShell() {
       position="relative"
       p={{ base: 3, md: 4, lg: 6 }}
     >
+      <Starfield />
       <Grid
+        position="relative"
+        zIndex={1}
         templateAreas={{
           base: '"main" "footer"',
           md: '"rail main" "footer footer"',

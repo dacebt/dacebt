@@ -44,7 +44,7 @@ export default function NavRail() {
               w="48px"
               h="48px"
               borderRadius="full"
-              bg={isActive ? "accent.tealAlpha.20" : "#181c22"}
+              bg={isActive ? "accent.tealAlpha.20" : "rgba(20, 28, 38, 0.6)"}
               border="1px solid"
               borderColor={isActive ? "accent.teal" : "border.inner"}
               color={isActive ? "accent.teal" : "text.secondary"}

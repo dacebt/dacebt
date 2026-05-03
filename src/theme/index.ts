@@ -2,6 +2,18 @@ import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 import { linkRecipe } from "./link"
 
 const customConfig = defineConfig({
+  globalCss: {
+    "html, body": {
+      height: "100%",
+      margin: 0,
+      overflow: "hidden",
+      background: "colors.bg.dark",
+    },
+    "#root": {
+      height: "100%",
+      overflow: "hidden",
+    },
+  },
   theme: {
     tokens: {
       breakpoints: {
@@ -34,15 +46,15 @@ const customConfig = defineConfig({
           darkAlpha: {
             95: { value: "rgba(10, 10, 10, 0.95)" },
           },
-          // Opaque panel backgrounds (JRPG-style, no transparency)
+          // Semi-transparent panel backgrounds — lets starfield show through
           steelAlpha: {
-            60: { value: "#181c22" },
-            80: { value: "#1d2228" },
-            90: { value: "#222830" },
+            60: { value: "rgba(20, 28, 38, 0.65)" },
+            80: { value: "rgba(22, 30, 42, 0.8)" },
+            90: { value: "rgba(24, 32, 46, 0.88)" },
           },
         },
         border: {
-          inner: { value: "#4B5663" },
+          inner: { value: "#3d4f5f" },
           outer: { value: "#0E1013" },
         },
         accent: {
@@ -130,13 +142,13 @@ const customConfig = defineConfig({
       shadows: {
         panel: {
           subtle: {
-            value: "1px 1px 0 0 #3a4250, -1px -1px 0 0 #0a0c10, 0 0 0 1px #2a3040",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 0 0 1px #0a0c10, 0 2px 8px rgba(0, 0, 0, 0.4)",
           },
           medium: {
-            value: "1px 1px 0 0 #4a5568, -1px -1px 0 0 #0a0c10, 0 0 0 1px #2a3040, inset 1px 1px 0 0 rgba(255, 255, 255, 0.06)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.09), inset 0 0 12px rgba(91, 192, 190, 0.03), 0 0 0 1px #0a0c10, 0 0 0 2px #2a3545, 0 4px 16px rgba(0, 0, 0, 0.5)",
           },
           strong: {
-            value: "2px 2px 0 0 #4a5568, -2px -2px 0 0 #0a0c10, 0 0 0 2px #2a3040, inset 1px 1px 0 0 rgba(255, 255, 255, 0.08)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(91, 192, 190, 0.04), 0 0 0 1px #0a0c10, 0 0 0 2px #344050, 0 8px 24px rgba(0, 0, 0, 0.6)",
           },
         },
         dialogue: {
