@@ -54,7 +54,7 @@ const customConfig = defineConfig({
           },
         },
         border: {
-          inner: { value: "#3d4f5f" },
+          inner: { value: "#4a6278" },
           outer: { value: "#0E1013" },
         },
         accent: {
@@ -142,13 +142,13 @@ const customConfig = defineConfig({
       shadows: {
         panel: {
           subtle: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 0 0 1px #0a0c10, 0 2px 8px rgba(0, 0, 0, 0.4)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 0 16px rgba(91, 192, 190, 0.02), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(74, 98, 120, 0.4), 0 4px 12px rgba(0, 0, 0, 0.5)",
           },
           medium: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.09), inset 0 0 12px rgba(91, 192, 190, 0.03), 0 0 0 1px #0a0c10, 0 0 0 2px #2a3545, 0 4px 16px rgba(0, 0, 0, 0.5)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.1), inset 0 0 24px rgba(91, 192, 190, 0.04), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(74, 98, 120, 0.5), 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 0, 0, 0.2)",
           },
           strong: {
-            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(91, 192, 190, 0.04), 0 0 0 1px #0a0c10, 0 0 0 2px #344050, 0 8px 24px rgba(0, 0, 0, 0.6)",
+            value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.12), inset 0 0 30px rgba(91, 192, 190, 0.05), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(74, 98, 120, 0.6), 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 0, 0, 0.25)",
           },
         },
         dialogue: {
