@@ -48,8 +48,8 @@ const PlayerStatsCard = () => {
           h="90px"
           border="2px solid"
           borderColor="border.inner"
-          bg="rgba(20, 28, 38, 0.6)"
-          borderRadius="md"
+          bg="bg.steel"
+          borderRadius="4px"
         >
           <Image
             src="/images/avatar.png"

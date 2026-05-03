@@ -21,7 +21,7 @@ export default function ProjectCardBadge({ project }: ProjectCardBadgeProps) {
       color="accent.teal"
       border="1px solid"
       borderColor="accent.teal"
-      borderRadius="8px"
+      borderRadius="4px"
       boxShadow="badge.personal"
       zIndex={1}
     >
