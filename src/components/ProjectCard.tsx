@@ -48,6 +48,7 @@ export default function ProjectCard({
 
   return (
     <GlassPanel
+      cornerAccents={false}
       p={{ base: 2, md: 3 }}
       color="text.primary"
       position="relative"

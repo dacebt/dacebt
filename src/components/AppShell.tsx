@@ -48,6 +48,7 @@ function AppShell() {
         >
           <GlassPanel
             elevation="medium"
+            cornerAccents={false}
             p={2}
             display="flex"
             flexDirection="column"
@@ -70,6 +71,7 @@ function AppShell() {
         >
           <GlassPanel
             elevation="strong"
+            cornerAccents={false}
             p={2}
             display="flex"
             flexDirection="row"

@@ -131,6 +131,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
 			<GlassPanel
 				ref={ref}
 				boxShadow="dialogue.default"
+				cornerAccents={false}
 				position="relative"
 				cursor={onClick ? "pointer" : "default"}
 				onClick={onClick}

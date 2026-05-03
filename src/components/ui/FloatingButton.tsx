@@ -45,6 +45,7 @@ export default function FloatingButton({
       as="button"
       onClick={onClick}
       disabled={disabled}
+      cornerAccents={false}
       {...config}
       p={densityStyle.p}
       w={width}

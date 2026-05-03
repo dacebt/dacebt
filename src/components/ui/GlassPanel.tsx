@@ -5,7 +5,15 @@ interface GlassPanelProps extends BoxProps {
   children: React.ReactNode
   disabled?: boolean
   elevation?: "subtle" | "medium" | "strong"
+  cornerAccents?: boolean
 }
+
+const cornerBracketPositions = [
+  { top: "6px", left: "6px", borderTop: "1.5px solid", borderLeft: "1.5px solid" },
+  { top: "6px", right: "6px", borderTop: "1.5px solid", borderRight: "1.5px solid" },
+  { bottom: "6px", left: "6px", borderBottom: "1.5px solid", borderLeft: "1.5px solid" },
+  { bottom: "6px", right: "6px", borderBottom: "1.5px solid", borderRight: "1.5px solid" },
+] as const
 
 const elevationConfig = {
   subtle: {
@@ -29,7 +37,7 @@ const elevationConfig = {
 }
 
 const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
-  ({ children, bg, border, borderColor, borderRadius, disabled, as, elevation = "medium", isolation: _isolation, ...props }, ref) => {
+  ({ children, bg, border, borderColor, borderRadius, disabled, as, elevation = "medium", cornerAccents = true, isolation: _isolation, ...props }, ref) => {
     const boxProps = as === "button" && disabled !== undefined ? { disabled } : {}
     const elevationStyle = elevationConfig[elevation]
 
@@ -60,6 +68,19 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
         {...boxProps}
         {...props}
       >
+        {cornerAccents &&
+          cornerBracketPositions.map((pos, i) => (
+            <Box
+              key={i}
+              position="absolute"
+              w="14px"
+              h="14px"
+              borderColor="accent.teal"
+              pointerEvents="none"
+              zIndex={2}
+              {...pos}
+            />
+          ))}
         {children}
       </Box>
     )
