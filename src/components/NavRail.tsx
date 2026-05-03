@@ -26,8 +26,8 @@ export default function NavRail() {
       flexDirection={{ base: "row", md: "column" }}
       alignItems="center"
       justifyContent={{ base: "center", md: "flex-start" }}
-      gap={3}
-      py={{ base: 0, md: 4 }}
+      gap={2}
+      py={{ base: 0, md: 3 }}
     >
       {navItems.map(({ label, path, icon }) => {
         const isActive = location.pathname === path
@@ -41,27 +41,26 @@ export default function NavRail() {
               display="flex"
               alignItems="center"
               justifyContent="center"
-              w="48px"
-              h="48px"
-              borderRadius="full"
-              bg={isActive ? "accent.tealAlpha.20" : "rgba(20, 28, 38, 0.6)"}
+              w="46px"
+              h="46px"
+              borderRadius="4px"
+              bg={isActive ? "accent.tealAlpha.15" : "bg.steelAlpha.60"}
               border="1px solid"
               borderColor={isActive ? "accent.teal" : "border.inner"}
               color={isActive ? "accent.teal" : "text.secondary"}
-              transition="all 0.3s ease"
+              transition="all 0.2s ease"
               _hover={{
-                bg: isActive ? "accent.tealAlpha.30" : "accent.tealAlpha.10",
+                bg: isActive ? "accent.tealAlpha.25" : "accent.tealAlpha.8",
                 borderColor: "accent.teal",
-                transform: "scale(1.1)",
+                color: "accent.teal",
+                boxShadow: isActive ? "nav.activeHover" : "nav.inactiveHover",
               }}
               _focus={{
                 outline: "2px solid",
                 outlineColor: "accent.teal",
                 outlineOffset: "2px",
-                bg: isActive ? "accent.tealAlpha.30" : "accent.tealAlpha.10",
-                borderColor: "accent.teal",
               }}
-              boxShadow={isActive ? "nav.indicator" : "none"}
+              boxShadow={isActive ? "nav.active" : "none"}
               textDecoration="none"
             >
               <Icon as={icon} boxSize={5} aria-hidden="true" />
@@ -72,4 +71,3 @@ export default function NavRail() {
     </Box>
   )
 }
-
