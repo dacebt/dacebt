@@ -30,12 +30,14 @@ interface ProjectCardProps {
   project: Project
   index: number
   enableFloat?: boolean
+  onInspect?: () => void
 }
 
 export default function ProjectCard({
   project,
   index,
   enableFloat = true,
+  onInspect,
 }: ProjectCardProps) {
   const availableLinks = Object.entries(project.links).filter(([, url]) => Boolean(url))
   const allLinks: Array<[string, string]> = [...availableLinks] as Array<[string, string]>
@@ -210,8 +212,40 @@ export default function ProjectCard({
         ))}
       </Flex>
 
-      {allLinks.length > 0 && (
-        <Box display="flex" justifyContent="flex-end" gap={1} mt="auto" pt={1.5}>
+      {(allLinks.length > 0 || onInspect) && (
+        <Box display="flex" justifyContent="flex-end" alignItems="center" gap={1} mt="auto" pt={1.5}>
+          {onInspect && (
+            <Box
+              as="button"
+              type="button"
+              onClick={onInspect}
+              px={2}
+              py={1}
+              mr={1}
+              bg="bg.dark"
+              border="1px solid"
+              borderColor="border.inner"
+              borderRadius="sm"
+              color="accent.teal"
+              textStyle="badgeText"
+              letterSpacing="0.5px"
+              textTransform="uppercase"
+              cursor="pointer"
+              transition="all 0.2s ease"
+              _hover={{
+                bg: "bg.steel",
+                borderColor: "accent.teal",
+              }}
+              _focusVisible={{
+                outline: "2px solid",
+                outlineColor: "accent.teal",
+                outlineOffset: "2px",
+              }}
+              aria-label={`Inspect ${project.name}`}
+            >
+              Inspect
+            </Box>
+          )}
           {allLinks.map(([linkType, url]) => {
             const IconComponent = getLinkIcon(linkType)
             const linkLabels: Record<string, string> = {

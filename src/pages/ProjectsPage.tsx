@@ -1,9 +1,13 @@
+import { useState } from "react"
 import { Grid } from "@chakra-ui/react"
-import { projects } from "../data/projects"
+import { projects, type Project } from "../data/projects"
 import PageLayout from "../components/PageLayout"
 import ProjectCard from "../components/ProjectCard"
+import ProjectDetailModal from "../components/ProjectDetailModal"
 
 export default function ProjectsPage() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
   return (
     <PageLayout title="My Projects" subtitle="A collection of my work and experiments">
       {/* Projects grid */}
@@ -20,9 +24,14 @@ export default function ProjectsPage() {
             project={project}
             index={index}
             enableFloat={false}
+            onInspect={() => setSelectedProject(project)}
           />
         ))}
       </Grid>
+      <ProjectDetailModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </PageLayout>
   )
 }
