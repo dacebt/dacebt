@@ -164,8 +164,9 @@ export default function ProjectCard({
         </Box>
       )}
 
-      <Flex flexDirection="column" gap={0.5} mb={1.5}>
-        {project.keyFeatures.map((feature: string, featureIndex: number) => (
+      {!onInspect && (
+        <Flex flexDirection="column" gap={0.5} mb={1.5}>
+          {project.keyFeatures.map((feature: string, featureIndex: number) => (
           <Text
             key={`feature-${featureIndex}`}
             textStyle="smallText"
@@ -210,7 +211,8 @@ export default function ProjectCard({
             {contribution}
           </Text>
         ))}
-      </Flex>
+        </Flex>
+      )}
 
       {(allLinks.length > 0 || onInspect) && (
         <Box display="flex" justifyContent="flex-end" alignItems="center" gap={1} mt="auto" pt={1.5}>
