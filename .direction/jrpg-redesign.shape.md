@@ -3,9 +3,14 @@ slug: jrpg-redesign
 created: 2026-04-28
 appetite: 10 thickenings
 git_strategy: commit-per-thickening on main
+status: completed
+authority: historical
 ---
 
 # JRPG UI Redesign
+
+> This completed delivery shape records its bounded unit. It is not current
+> design authority; [Portfolio Design](../docs/DESIGN.md) governs the interface.
 
 ## Appetite
 

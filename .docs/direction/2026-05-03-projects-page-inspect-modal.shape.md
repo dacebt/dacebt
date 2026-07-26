@@ -1,4 +1,19 @@
+---
+type: shape
+title: Projects page inspect modal redesign
+description: Completed delivery shape for the project inspection modal and trimmed resting cards.
+tags: [wsd, projects, modal]
+timestamp: 2026-05-03
+status: completed
+authority: historical
+completion_commits: [8bb29bf, 0b6455c]
+---
+
 # Shape: Projects page — inspect modal redesign
+
+> This completed delivery shape records its bounded unit. It is not current
+> design authority; [Portfolio Design](../../docs/DESIGN.md) governs the
+> interface.
 
 **Declared:** 2026-05-03
 **Cadence:** Tight (one session)
