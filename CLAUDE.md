@@ -11,14 +11,18 @@ links, and responsive navigation.
 the document's favor, or deliberately amend the affected document in the same
 unit of work.
 
-| Doc | Authority | Covers |
+| Doc | Role | Covers |
 |---|---|---|
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | binding and living | Runtime boundaries, application composition, source ownership, dependency direction |
-| [docs/DESIGN.md](docs/DESIGN.md) | binding and living | Visual language, design tokens, component patterns, responsive behavior, accessibility |
-| [docs/TESTING.md](docs/TESTING.md) | binding and living | Verification tiers, browser acceptance, and completion evidence |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | binding | Runtime boundaries, application composition, source ownership, dependency direction |
+| [docs/DESIGN.md](docs/DESIGN.md) | binding | Visual language, design tokens, component patterns, responsive behavior, accessibility |
+| [docs/TESTING.md](docs/TESTING.md) | binding | Verification tiers, browser acceptance, and completion evidence |
 
 [docs/index.md](docs/index.md) is the bundle root. Delivery state, tasks,
 working knowledge, and decisions live in the external project vault.
+
+The binding documents are also living: when their contract changes, the
+affected document and implementation are reconciled deliberately in the same
+unit of work.
 
 ## Invariant floor
 
@@ -34,11 +38,20 @@ working knowledge, and decisions live in the external project vault.
 
 ## Documentation discipline
 
-`docs/` is a linked OKF bundle. Every non-reserved Markdown document carries
-frontmatter with `type`, `title`, `description`, `tags`, `timestamp`, and
-`authority`. [docs/index.md](docs/index.md) lists every document using its own
-description. Documents use relative Markdown links, and every document has both
-an inbound link from the index and an outbound link.
+`docs/` is an [OKF v0.1](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+bundle: typed Markdown concepts wired into a link graph.
+
+- Every non-reserved Markdown document carries YAML frontmatter with `type`,
+  `title`, `description`, `tags`, `timestamp`, and `authority`.
+- `authority` is one of `binding`, `living`, `descriptive`, or `mixed`. A mixed
+  document names the authority of each section.
+- [docs/index.md](docs/index.md) is reserved, carries no frontmatter, and lists
+  every document using the document's own description.
+- Each file holds one concept. Documents link siblings with relative Markdown
+  links—never wikilinks or bare filename mentions.
+- Every document has an outbound link and an inbound link from the index.
+- Descriptive documentation is written from observable reality, not planned
+  behavior.
 
 ## Decisions
 

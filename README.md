@@ -50,5 +50,5 @@ The binding application structure is defined in
 [Architecture](docs/ARCHITECTURE.md), and the binding interface contract is
 defined in [Design](docs/DESIGN.md).
 
-[CLAUDE.md](CLAUDE.md) declares repository authority. `AGENTS.md` imports that
-router for agent runtimes that load `AGENTS.md`.
+[CLAUDE.md](CLAUDE.md) declares repository authority.
+[AGENTS.md](AGENTS.md) imports that router for agent runtimes that load it.
