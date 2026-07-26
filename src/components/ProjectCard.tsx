@@ -219,7 +219,6 @@ export default function ProjectCard({
           {onInspect && (
             <Box
               as="button"
-              type="button"
               onClick={onInspect}
               px={2}
               py={1}
