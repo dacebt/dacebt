@@ -122,6 +122,12 @@ The browser matrix includes:
   descendant;
 - project-qualified external icon-link names and durable non-contributing
   project text;
+- reduced-motion suppression of computed CSS animations and transitions,
+  immediately readable manually advanced dialogue, immediate Transcript
+  positioning, and a static canvas with no continuous frame loop;
+- representative standard-preference animation names and timing, dialogue
+  streaming and automatic progression, smooth Transcript positioning, and
+  canvas movement;
 - absence of unexpected horizontal page scrolling.
 
 Shared shell, theme, and modal work observes the affected flow at both viewport

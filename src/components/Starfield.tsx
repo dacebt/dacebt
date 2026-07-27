@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import { Box } from "@chakra-ui/react"
+import { prefersReducedMotion } from "../utils/motion"
 
 interface Star {
   x: number
@@ -43,28 +44,18 @@ export default function Starfield() {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      const density = Math.floor((canvas.width * canvas.height) / 4000)
-      starsRef.current = createStars(canvas.width, canvas.height, Math.min(density, 300))
-    }
-
-    resize()
-    window.addEventListener("resize", resize)
-
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const reduceMotion = prefersReducedMotion()
 
     const draw = (time: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       const t = time / 1000
 
       for (const star of starsRef.current) {
-        const twinkle = prefersReduced
+        const twinkle = reduceMotion
           ? star.baseOpacity
           : star.baseOpacity * (0.5 + 0.5 * Math.sin(t * star.twinkleSpeed + star.twinkleOffset))
 
-        const x = prefersReduced
+        const x = reduceMotion
           ? star.x
           : ((star.x + t * star.drift) % canvas.width + canvas.width) % canvas.width
 
@@ -81,14 +72,35 @@ export default function Starfield() {
           ctx.fill()
         }
       }
-
-      animRef.current = requestAnimationFrame(draw)
     }
 
-    animRef.current = requestAnimationFrame(draw)
+    const animate = (time: number) => {
+      draw(time)
+      animRef.current = requestAnimationFrame(animate)
+    }
+
+    const resize = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      const density = Math.floor((canvas.width * canvas.height) / 4000)
+      starsRef.current = createStars(canvas.width, canvas.height, Math.min(density, 300))
+
+      if (reduceMotion) {
+        draw(0)
+      }
+    }
+
+    resize()
+    window.addEventListener("resize", resize)
+
+    if (!reduceMotion) {
+      animRef.current = requestAnimationFrame(animate)
+    }
 
     return () => {
-      cancelAnimationFrame(animRef.current)
+      if (animRef.current) {
+        cancelAnimationFrame(animRef.current)
+      }
       window.removeEventListener("resize", resize)
     }
   }, [])

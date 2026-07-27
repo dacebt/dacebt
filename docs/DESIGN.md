@@ -175,9 +175,23 @@ feature sets.
 ## Motion and interaction
 
 Animation supports hierarchy and feedback without becoming the content.
-Keyframes and reusable motion behavior have a named shared owner. Components
+`src/utils/animations.ts` owns every app-defined named keyframe. Components
 select those behaviors and may vary duration or delay; they do not introduce
-near-duplicate animation definitions.
+near-duplicate definitions.
+
+The browser preference boundary in `src/utils/motion.ts` maps reduced motion
+across three runtime layers:
+
+- the global reduced-motion media query suppresses CSS animations and
+  transitions, including injected keyframes, and disables smooth CSS scrolling;
+- dialogue renders each message in full, disables automatic progression, and
+  retains manual advance, while Transcript positioning uses immediate scrolling;
+- the canvas draws one static atmosphere and does not schedule an animation
+  frame loop.
+
+Without the reduced preference, existing animation names, dialogue typewriter
+and auto-advance timing, smooth Transcript positioning, and canvas motion remain
+unchanged.
 
 Interactive surfaces expose visible hover and keyboard-focus states. Modals,
 dialogue controls, navigation, project inspection, and external links remain

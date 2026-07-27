@@ -3,6 +3,7 @@ import { Box, Text } from "@chakra-ui/react"
 import DialogueBox from "./DialogueBox"
 import ModalShell from "./ui/ModalShell"
 import type { DialogueMessage } from "../hooks/useRPGDialogue"
+import { prefersReducedMotion } from "../utils/motion"
 
 interface TranscriptModalProps {
 	finalFocusEl: () => HTMLElement | null
@@ -33,18 +34,17 @@ export default function TranscriptModal({
 	useEffect(() => {
 		if (!isOpen || hasUserScrolledRef.current) return
 
-		if (scrollRef.current && currentIndex !== undefined) {
-			const element = scrollRef.current.children[currentIndex] as HTMLElement | undefined
-			if (element) {
-				const timeoutId = window.setTimeout(() => {
-					if (!hasUserScrolledRef.current) {
-						element.scrollIntoView({ behavior: "smooth", block: "center" })
-					}
-				}, 100)
-
-				return () => window.clearTimeout(timeoutId)
+		const timeoutId = window.setTimeout(() => {
+			if (!hasUserScrolledRef.current) {
+				const element = scrollRef.current?.children[currentIndex] as HTMLElement | undefined
+				element?.scrollIntoView({
+					behavior: prefersReducedMotion() ? "auto" : "smooth",
+					block: "center",
+				})
 			}
-		}
+		}, 100)
+
+		return () => window.clearTimeout(timeoutId)
 	}, [isOpen, currentIndex])
 
 	return (

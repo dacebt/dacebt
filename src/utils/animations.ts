@@ -54,6 +54,27 @@ export const animations = {
     }
   `,
 
+  blink: `
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+  `,
+
+  bounce: `
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+  `,
+
   borderGlow: `
     @keyframes borderGlow {
       0%, 100% {

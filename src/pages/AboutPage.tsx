@@ -34,7 +34,10 @@ export default function AboutPage() {
 		if (!selectedTopic) return
 
 		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") {
+			const isInsideDialog =
+				event.target instanceof Element && event.target.closest('[role="dialog"]') !== null
+
+			if (event.key === "Escape" && !isInsideDialog) {
 				handleBack()
 			}
 		}

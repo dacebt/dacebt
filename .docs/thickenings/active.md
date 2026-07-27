@@ -1,4 +1,4 @@
-# Thickening: shared Inspect and Transcript modal behavior
+# Thickening: coherent reduced-motion experience
 
 **Started:** 2026-07-27
 **Git strategy:** commit-to-main
@@ -6,33 +6,34 @@
 
 ## Dimension
 
-The complete modal interaction contract shared by the project Inspect view and dialogue Transcript.
+The reduced-motion contract across CSS and injected keyframes, component transitions, dialogue timing, smooth scrolling, and the canvas atmosphere.
 
 ## Observable delta
 
-- before: Inspect uses the accessible `ModalShell`, while Transcript separately implements its own portal, backdrop, Escape listener, close control, and scrolling without dialog semantics, focus containment, background blocking, or focus restoration.
-- after: both features compose the same modal behavior while retaining their own content and Transcript's current-message scrolling.
+- before: floating surfaces and star positions sample the preference, but component transitions, modal/scene fades, cursor and advance animations, typewriter timing, smooth Transcript positioning, and a continuously scheduled canvas loop remain active or independently owned.
+- after: a visitor requesting reduced motion sees complete, usable route and overlay content without nonessential movement, while the standard preference retains the current motion hierarchy.
 
 ## Minimum surface
 
-- `src/components/ui/ModalShell.tsx` and `src/components/ui/modal-shell-styles.ts` — expose only the small composition seams both modal contents need while keeping portal, dialog semantics, focus, outside interaction, scroll prevention, close paths, and bounded body ownership centralized.
-- `src/components/TranscriptModal.tsx` — replace the parallel modal shell with `ModalShell`; retain transcript message rendering, current-message scrolling, user-scroll detection, and message-count content.
-- `src/components/RPGDialogueScene.tsx` and `src/components/RPGDialogueControls.tsx` only if needed to restore focus to the Transcript control through its existing forwarded native button ref.
-- `docs/DESIGN.md`, `docs/TESTING.md`, and affected portfolio vault knowledge — describe the one live modal contract and its browser evidence.
+- `src/utils/motion.ts`, `src/utils/animations.ts`, and `src/index.css` — keep one small preference boundary, one named keyframe owner, and one browser-CSS reduction mapping that covers live component animations and transitions.
+- `src/components/Starfield.tsx` — render a static atmosphere instead of scheduling a continuous reduced-motion loop.
+- `src/hooks/useRPGDialogue.ts`, `src/components/DialogueBox.tsx`, and `src/components/TranscriptModal.tsx` only where required — present dialogue text and Transcript positioning without animated timing under the reduced preference while preserving the standard interaction.
+- Existing component callers — adopt the shared boundary only where global CSS cannot express the behavior; do not redesign animation APIs or visual styling.
+- `docs/DESIGN.md`, `docs/TESTING.md`, and affected portfolio vault knowledge — document the explicit CSS, JavaScript, and canvas mappings and their browser evidence.
 
 ## Verification path
 
 - `wsd-walk --require-probe --expect "Local:"` — Vite reaches the real local entrypoint.
-- In the production preview at desktop and 390-by-844 mobile viewports, open Inspect and Transcript by pointer and keyboard; verify labelled dialog semantics, initial focus, forward and reverse focus containment, blocked background focus/scroll, bounded internal scrolling, and Escape, close-control, and backdrop dismissal.
-- Verify Inspect returns focus to the exact originating card control and Transcript returns focus to its control; preserve Transcript current-message positioning and manual-scroll behavior.
-- Regress long and omitted project sections, every route, horizontal overflow, dialogue advancement, and browser-console output.
-- Run the unchanged live token-resolution verifier, type generation, type-check, lint, and production build.
+- In the production preview, use Playwright's `reducedMotion: "reduce"` at desktop and 390-by-844 mobile viewports. Traverse all four routes and both overlays; confirm nonessential CSS animation/transition is suppressed, dialogue text is immediately readable without automatic motion, Transcript positioning is not smooth, the canvas remains visually static, interaction and focus contracts still work, and there is no horizontal overflow or browser-console output.
+- Repeat representative route, dialogue, selectable-control, canvas, and modal observations with `reducedMotion: "no-preference"`; confirm the standard animation names/timing and dialogue progression remain present.
+- Run the live token-resolution verifier, type generation, type-check, lint, and production build.
+- Receive explicit human acceptance of the running desktop and mobile interface before closing `PORT-007`.
 
 ## Residual risks
 
-- Reduced-motion behavior remains the final mapped capability. Non-invariant sequencing risk because this thickening preserves the existing animation behavior while consolidating modal ownership.
-- `PORT-004` contains superseded opaque/no-blur language. Binding `docs/DESIGN.md` remains authoritative; this thickening closes the interaction defects without restoring obsolete visual direction.
+- Browser automation can prove computed motion state and stable rendered output, but not whether the retained standard motion feels coherent. Invariant verification gap: final human visual acceptance remains required.
+- Operating-system preference changes during an already-open page may exercise a different lifecycle than preference-at-load. Non-invariant browser condition; support live changes only if the existing shared boundary can do so without widening the capability.
 
 ## Notes
 
-Keep feature content feature-owned. Do not introduce a general overlay framework, a second verifier, or reduced-motion changes in this thickening. The intended implementation is Transcript composing the already-proven `ModalShell`, plus only the smallest props required for its footer, scrolling, and focus return.
+Keep this as a finite mapping change. Do not introduce an animation framework, timing registry, observer service, test framework, or structural verifier. Move the two remaining global keyframes into the existing shared owner only if that removes a live parallel path. Functional focus, navigation, and manual dialogue controls must remain unchanged.

@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react"
+import { prefersReducedMotion } from "../utils/motion"
 
 export interface DialogueMessage {
 	/** The dialogue text content */
@@ -64,10 +65,11 @@ export function useRPGDialogue({
 	autoPlay = true,
 	onComplete,
 }: UseRPGDialogueOptions): UseRPGDialogueReturn {
+	const [reduceMotion] = useState(prefersReducedMotion)
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const [displayedText, setDisplayedText] = useState("")
-	const [isStreaming, setIsStreaming] = useState(true)
-	const [isPlaying, setIsPlaying] = useState(autoPlay)
+	const [isStreaming, setIsStreaming] = useState(!reduceMotion)
+	const [isPlaying, setIsPlaying] = useState(reduceMotion ? false : autoPlay)
 
 	const streamingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 	const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -120,7 +122,7 @@ export function useRPGDialogue({
 
 	// Auto-advance timer
 	useEffect(() => {
-		if (isStreaming || !isPlaying || !hasMore) return
+		if (reduceMotion || isStreaming || !isPlaying || !hasMore) return
 
 		autoAdvanceTimerRef.current = setTimeout(() => {
 			setCurrentIndex((prev) => prev + 1)
@@ -133,7 +135,7 @@ export function useRPGDialogue({
 				autoAdvanceTimerRef.current = null
 			}
 		}
-	}, [isStreaming, isPlaying, hasMore, autoAdvanceDelay])
+	}, [reduceMotion, isStreaming, isPlaying, hasMore, autoAdvanceDelay])
 
 	// Call onComplete when finished
 	useEffect(() => {
@@ -168,10 +170,10 @@ export function useRPGDialogue({
 	const next = useCallback(() => {
 		if (hasMore) {
 			clearTimers()
-			setCurrentIndex((prev) => prev + 1)
-			setIsStreaming(true)
+			setCurrentIndex((previousIndex) => previousIndex + 1)
+			setIsStreaming(!reduceMotion)
 		}
-	}, [hasMore, clearTimers])
+	}, [hasMore, reduceMotion, clearTimers])
 
 	// Pause auto-advance
 	const pause = useCallback(() => {
@@ -184,18 +186,20 @@ export function useRPGDialogue({
 
 	// Resume auto-advance
 	const resume = useCallback(() => {
-		setIsPlaying(true)
-	}, [])
+		if (!reduceMotion) {
+			setIsPlaying(true)
+		}
+	}, [reduceMotion])
 
 	// Return to first message
 	const reset = useCallback(() => {
 		clearTimers()
 		setCurrentIndex(0)
 		setDisplayedText("")
-		setIsStreaming(true)
-		setIsPlaying(autoPlay)
+		setIsStreaming(!reduceMotion)
+		setIsPlaying(reduceMotion ? false : autoPlay)
 		onCompleteCalledRef.current = false
-	}, [autoPlay, clearTimers])
+	}, [autoPlay, reduceMotion, clearTimers])
 
 	// Handle click - skip streaming or advance to next
 	const handleClick = useCallback(() => {
@@ -215,7 +219,7 @@ export function useRPGDialogue({
 		currentMessage,
 		currentIndex,
 		totalMessages: messages.length,
-		displayedText,
+		displayedText: reduceMotion ? fullText : displayedText,
 		isStreaming,
 		isPlaying,
 		isComplete,
