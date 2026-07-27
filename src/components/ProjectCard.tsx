@@ -5,6 +5,7 @@ import { FaXmark } from "react-icons/fa6"
 import { type Project } from "../data/projects"
 import ProjectCardBadge from "./ui/ProjectCardBadge"
 import GlassPanel from "./ui/GlassPanel"
+import CompactAction from "./ui/CompactAction"
 import { getAnimation } from "../utils/motion"
 
 const MAX_VISIBLE_TECH = 2
@@ -30,7 +31,7 @@ interface ProjectCardProps {
   project: Project
   index: number
   enableFloat?: boolean
-  onInspect?: () => void
+  onInspect?: (trigger: HTMLButtonElement) => void
 }
 
 export default function ProjectCard({
@@ -217,35 +218,13 @@ export default function ProjectCard({
       {(allLinks.length > 0 || onInspect) && (
         <Box display="flex" justifyContent="flex-end" alignItems="center" gap={1} mt="auto" pt={1.5}>
           {onInspect && (
-            <Box
-              as="button"
-              onClick={onInspect}
-              px={2}
-              py={1}
+            <CompactAction
+              onClick={(event) => onInspect(event.currentTarget)}
               mr={1}
-              bg="bg.dark"
-              border="1px solid"
-              borderColor="border.inner"
-              borderRadius="sm"
-              color="accent.teal"
-              textStyle="badgeText"
-              letterSpacing="0.5px"
-              textTransform="uppercase"
-              cursor="pointer"
-              transition="all 0.2s ease"
-              _hover={{
-                bg: "bg.steel",
-                borderColor: "accent.teal",
-              }}
-              _focusVisible={{
-                outline: "2px solid",
-                outlineColor: "accent.teal",
-                outlineOffset: "2px",
-              }}
               aria-label={`Inspect ${project.name}`}
             >
               Inspect
-            </Box>
+            </CompactAction>
           )}
           {allLinks.map(([linkType, url]) => {
             const IconComponent = getLinkIcon(linkType)

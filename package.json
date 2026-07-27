@@ -9,6 +9,7 @@
     "typegen": "chakra typegen src/theme/index.ts",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
+    "verify:tokens": "node scripts/verify-tokens.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

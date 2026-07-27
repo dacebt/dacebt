@@ -3,7 +3,7 @@ type: specification
 title: Portfolio Design
 description: Binding visual language, styling ownership, component patterns, responsive behavior, and accessibility contract for the portfolio interface.
 tags: [design, chakra-ui, components, accessibility]
-timestamp: 2026-07-25
+timestamp: 2026-07-26
 authority: binding
 ---
 
@@ -51,17 +51,22 @@ roles instead of establishing an unrelated color system.
 
 ## Token contract
 
-`src/theme/index.ts` is the source of truth for the Chakra vocabulary:
+`src/theme/index.ts` is the thin composition root for the Chakra vocabulary.
+Responsibility-focused modules own the individual token, semantic-token,
+text-style, shadow, and recipe definitions that it assembles:
 
 - color tokens describe visual roles rather than individual callers;
-- shadow tokens represent complete supported effects;
+- the complete panel-gradient family is `gradient.panel.subtle`,
+  `gradient.panel.medium`, and `gradient.panel.strong`;
+- `modal.content` is the complete supported modal shadow;
 - text styles represent reusable typography roles;
 - semantic tokens represent complete gradients and computed visual roles;
 - recipes govern reusable Chakra component variants.
 
 A token reference must resolve through Chakra. A token-looking fragment inside
-an arbitrary CSS string is not a token. Composite CSS uses a complete declared
-token, Chakra's token-reference mechanism, or resolved CSS variables.
+an arbitrary or composite CSS string is not a token. Composite token-looking
+strings are unsupported; a component uses a complete declared role, Chakra's
+token-reference mechanism, or resolved CSS variables.
 
 Theme entries are supported interface only when they represent an intentional
 role. Components do not reference undeclared tokens, and unsupported theme
@@ -79,17 +84,29 @@ elevation; they do not rebuild the panel treatment.
 
 `PageLayout` owns route heading composition and the page content frame.
 `FloatingButton` owns the large selectable-card treatment. The tooltip wrapper
-owns tooltip provider behavior. Feature components use these primitives when
-their interaction matches the primitive's contract.
+owns tooltip provider behavior. `CompactAction` is the compact action primitive;
+it forwards its native button ref so feature composition and shared interaction
+owners can retain exact trigger identity and focus control. Feature components
+use these primitives when their interaction matches the primitive's contract.
 
-Portal modals share one behavioral contract even where their content differs:
+`ModalShell` owns the shared portal-modal behavior while modal content remains
+feature-owned:
 
 - a fixed full-screen overlay;
 - a centered panel above application content;
-- a labelled heading and explicit close control;
-- Escape and backdrop-close behavior;
-- bounded, scrollable content;
-- no click-through from the panel to the backdrop.
+- labelled dialog semantics and an explicit close control whose stable
+  accessible label is `Close <title>`;
+- initial focus inside the dialog and final focus restored to the exact trigger;
+- Tab and Shift+Tab containment for the full time the dialog is open;
+- prevention of background and outside interaction;
+- scroll containment that leaves the application's route scroll owner in place;
+- Escape, close-control, and backdrop-close behavior;
+- bounded, scrollable modal content with no panel click-through to the backdrop.
+
+The project Inspect flow composes its project-owned content inside
+`ModalShell`. Transcript remains isolated on its existing modal implementation
+until the mapped Transcript capability adopts this shared contract; content
+ownership does not move into the shell during that migration.
 
 Navigation and external links use semantic link elements. Actions use semantic
 buttons. A visual primitive rendered as an interactive element preserves the

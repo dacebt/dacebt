@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Grid } from "@chakra-ui/react"
 import { projects, type Project } from "../data/projects"
 import PageLayout from "../components/PageLayout"
@@ -7,6 +7,7 @@ import ProjectDetailModal from "../components/ProjectDetailModal"
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const inspectTriggerRef = useRef<HTMLButtonElement | null>(null)
 
   return (
     <PageLayout title="My Projects" subtitle="A collection of my work and experiments">
@@ -24,13 +25,17 @@ export default function ProjectsPage() {
             project={project}
             index={index}
             enableFloat={false}
-            onInspect={() => setSelectedProject(project)}
+            onInspect={(trigger) => {
+              inspectTriggerRef.current = trigger
+              setSelectedProject(project)
+            }}
           />
         ))}
       </Grid>
       <ProjectDetailModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+        finalFocusEl={() => inspectTriggerRef.current}
       />
     </PageLayout>
   )

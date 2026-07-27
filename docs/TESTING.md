@@ -3,7 +3,7 @@ type: specification
 title: Portfolio Testing
 description: Binding verification tiers, browser acceptance matrix, and completion evidence for the portfolio.
 tags: [testing, verification, browser, accessibility]
-timestamp: 2026-07-25
+timestamp: 2026-07-26
 authority: binding
 ---
 
@@ -19,7 +19,7 @@ Evidence is cumulative. A higher tier does not replace a lower one.
 
 | Tier | Evidence | Defends |
 |---|---|---|
-| 1. Static | `npm run type-check`, `npm run lint` | TypeScript contracts, unused code, hook rules, lint policy |
+| 1. Static | `npm run verify:tokens`, `npm run type-check`, `npm run lint` | Resolved theme roles, TypeScript contracts, unused code, hook rules, lint policy |
 | 2. Production | `npm run build` | Chakra type generation, TypeScript build, Vite production bundling |
 | 3. Composed browser | Running application at desktop and mobile viewports | Routing, layout, rendered styling, keyboard and pointer interaction |
 | 4. Human visual | Deliberate inspection of the rendered interface | Visual hierarchy, density, rhythm, legibility, and aesthetic fit |
@@ -35,6 +35,7 @@ The package scripts are the supported executable interface:
 |---|---|
 | `npm run dev` | Start the Vite development server |
 | `npm run typegen` | Generate Chakra theme typings |
+| `npm run verify:tokens` | Prove generated theme declarations and runtime style resolution |
 | `npm run type-check` | Run TypeScript without emitting output |
 | `npm run lint` | Run ESLint |
 | `npm run build` | Generate theme typings, compile TypeScript, and build with Vite |
@@ -61,7 +62,18 @@ npm run build
 ```
 
 Theme vocabulary changes include `npm run typegen` before evaluating TypeScript
-results. The production build already performs this step.
+results. They also include:
+
+```bash
+npm run verify:tokens
+```
+
+Token proof inspects both generated declarations and style resolution. It
+requires complete theme roles to resolve through nested Chakra CSS variables
+and rejects unresolved brace or token fragments. This proof is cumulative with
+type generation, type-checking, linting, and the production build; none of
+those gates substitutes for another. The production build already performs
+type generation.
 
 Documentation-only changes verify document links, named paths, and repository
 state. Static code gates are run when the documentation makes claims about
@@ -85,15 +97,27 @@ The browser matrix includes:
 - a mobile viewport with the bottom navigation rail;
 - pointer activation;
 - keyboard navigation and activation;
-- Escape close behavior for overlays;
-- modal content scrolling;
+- focus containment through forward and reverse traversal;
+- exact-trigger focus restoration after close;
+- Escape, explicit close-control, and backdrop close paths;
+- prevention of background and outside interaction while a modal is open;
+- bounded modal content scrolling without moving the actual nested `AppShell`
+  route scroll owner;
+- long-content and omitted-section project variants;
 - route changes and active navigation state;
 - visible focus treatment;
 - absence of unexpected horizontal page scrolling.
 
-A production-relevant visual walk uses `npm run preview` after a successful
-build. Development-server evidence is sufficient for a bounded implementation
-walk when production bundling is not part of the changed surface.
+Shared shell, theme, and modal work observes the affected flow at both viewport
+arrangements and then checks `/`, `/about`, and `/contact` for regressions in
+addition to `/projects`. A production-relevant visual walk uses
+`npm run preview` after a successful build. Development-server evidence is
+sufficient for a bounded implementation walk when production bundling is not
+part of the changed surface.
+
+Browser evidence records observable interaction and layout behavior. Human
+visual acceptance remains a separate evidence tier and is never inferred from
+browser automation or static gates.
 
 ## Completion evidence
 
