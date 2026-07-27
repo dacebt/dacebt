@@ -5,13 +5,103 @@ import {
 } from "@chakra-ui/react"
 import {
   glassPanelStyles,
-  type GlassPanelElevation,
+  type GlassPanelSurface,
 } from "./glass-panel-styles"
 
-interface GlassPanelProps extends BoxProps {
+type GlassPanelOwnedProperty =
+  | "_before"
+  | "backdropBlur"
+  | "backdropFilter"
+  | "background"
+  | "backgroundColor"
+  | "backgroundImage"
+  | "bg"
+  | "bgColor"
+  | "bgImage"
+  | "border"
+  | "borderBlock"
+  | "borderBlockColor"
+  | "borderBlockEnd"
+  | "borderBlockEndColor"
+  | "borderBlockEndStyle"
+  | "borderBlockEndWidth"
+  | "borderBlockStart"
+  | "borderBlockStartColor"
+  | "borderBlockStartStyle"
+  | "borderBlockStartWidth"
+  | "borderBlockStyle"
+  | "borderBlockWidth"
+  | "borderBottom"
+  | "borderBottomColor"
+  | "borderBottomLeftRadius"
+  | "borderBottomRadius"
+  | "borderBottomRightRadius"
+  | "borderBottomStyle"
+  | "borderBottomWidth"
+  | "borderColor"
+  | "borderEnd"
+  | "borderEndColor"
+  | "borderEndRadius"
+  | "borderEndStyle"
+  | "borderEndWidth"
+  | "borderInline"
+  | "borderInlineColor"
+  | "borderInlineEnd"
+  | "borderInlineEndColor"
+  | "borderInlineEndStyle"
+  | "borderInlineEndWidth"
+  | "borderInlineStart"
+  | "borderInlineStartColor"
+  | "borderInlineStartStyle"
+  | "borderInlineStartWidth"
+  | "borderInlineStyle"
+  | "borderInlineWidth"
+  | "borderLeft"
+  | "borderLeftColor"
+  | "borderLeftRadius"
+  | "borderLeftStyle"
+  | "borderLeftWidth"
+  | "borderRadius"
+  | "borderRight"
+  | "borderRightColor"
+  | "borderRightRadius"
+  | "borderRightStyle"
+  | "borderRightWidth"
+  | "borderStart"
+  | "borderStartColor"
+  | "borderStartRadius"
+  | "borderStartStyle"
+  | "borderStartWidth"
+  | "borderStyle"
+  | "borderTop"
+  | "borderTopColor"
+  | "borderTopLeftRadius"
+  | "borderTopRadius"
+  | "borderTopRightRadius"
+  | "borderTopStyle"
+  | "borderTopWidth"
+  | "borderWidth"
+  | "borderX"
+  | "borderY"
+  | "boxShadow"
+  | "isolation"
+  | "rounded"
+  | "roundedBottom"
+  | "roundedBottomLeft"
+  | "roundedBottomRight"
+  | "roundedEnd"
+  | "roundedLeft"
+  | "roundedRight"
+  | "roundedStart"
+  | "roundedTop"
+  | "roundedTopLeft"
+  | "roundedTopRight"
+  | "shadow"
+
+interface GlassPanelProps extends Omit<BoxProps, GlassPanelOwnedProperty> {
   children: React.ReactNode
   disabled?: boolean
-  elevation?: GlassPanelElevation
+  surface: GlassPanelSurface
   cornerAccents?: boolean
 }
 
@@ -23,24 +113,20 @@ const cornerBracketPositions = [
 ] as const
 
 const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
-  ({ children, bg, border, borderColor, borderRadius, disabled, as, elevation = "medium", cornerAccents = true, isolation: _isolation, ...props }, ref) => {
+  ({ children, disabled, as, surface, cornerAccents = true, ...props }, ref) => {
     const boxProps = as === "button" && disabled !== undefined ? { disabled } : {}
-    const elevationStyle = glassPanelStyles.elevation[elevation]
+    const surfaceStyle = glassPanelStyles.surface[surface]
 
     return (
       <Box
         ref={ref}
         as={as}
         {...glassPanelStyles.base}
-        {...elevationStyle}
-        bg={bg || elevationStyle.bg}
-        border={border || glassPanelStyles.base.border}
-        borderColor={borderColor || glassPanelStyles.base.borderColor}
-        borderRadius={borderRadius || glassPanelStyles.base.borderRadius}
+        {...surfaceStyle}
         _before={{
           ...glassPanelStyles.before,
-          ...elevationStyle._before,
-          borderRadius: borderRadius || "4px",
+          ...surfaceStyle._before,
+          borderRadius: glassPanelStyles.base.borderRadius,
         }}
         {...boxProps}
         {...props}

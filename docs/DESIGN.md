@@ -3,7 +3,7 @@ type: specification
 title: Portfolio Design
 description: Binding visual language, styling ownership, component patterns, responsive behavior, and accessibility contract for the portfolio interface.
 tags: [design, chakra-ui, components, accessibility]
-timestamp: 2026-07-26
+timestamp: 2026-07-27
 authority: binding
 ---
 
@@ -56,6 +56,9 @@ Responsibility-focused modules own the individual token, semantic-token,
 text-style, shadow, and recipe definitions that it assembles:
 
 - color tokens describe visual roles rather than individual callers;
+- the complete surface family is `surface.shell`, `surface.content`,
+  `surface.supporting`, `surface.selectable`, `surface.dialogue`, and
+  `surface.modal`;
 - the complete panel-gradient family is `gradient.panel.subtle`,
   `gradient.panel.medium`, and `gradient.panel.strong`;
 - `modal.content` is the complete supported modal shadow;
@@ -79,15 +82,23 @@ the same unit of work.
 
 `GlassPanel` is the common elevated-surface primitive. It owns surface
 background, border, radius, elevation, blur, gradient overlay, stacking
-isolation, and optional corner accents. Callers choose composition and
-elevation; they do not rebuild the panel treatment.
+isolation, and optional corner accents. Callers choose the `shell`, `content`,
+`supporting`, `selectable`, `dialogue`, or `modal` responsibility; they do not
+choose visual elevation directly or rebuild the panel treatment. Background,
+border, radius, shadow, blur, isolation, and overlay pseudo-element props are
+reserved by the primitive's public contract so a caller cannot override its
+chosen responsibility.
 
-`PageLayout` owns route heading composition and the page content frame.
-`FloatingButton` owns the large selectable-card treatment. The tooltip wrapper
-owns tooltip provider behavior. `CompactAction` is the compact action primitive;
-it forwards its native button ref so feature composition and shared interaction
-owners can retain exact trigger identity and focus control. Feature components
-use these primitives when their interaction matches the primitive's contract.
+`PageLayout` owns route heading composition and the page content frame, including
+the complete `gradient.pageTitle` treatment. `FloatingButton` and the shared
+selectable-panel styles own the resting surface and typography hierarchy used
+by topic, contact, and project panels. Feature owners retain their established
+hover and active treatments until the mapped control-family capability
+converges interaction states. The tooltip wrapper owns tooltip provider behavior.
+`CompactAction` is the compact action primitive; it forwards its native button
+ref so feature composition and shared interaction owners can retain exact
+trigger identity and focus control. Feature components use these primitives
+when their interaction matches the primitive's contract.
 
 `ModalShell` owns the shared portal-modal behavior while modal content remains
 feature-owned:
@@ -105,8 +116,11 @@ feature-owned:
 
 The project Inspect flow composes its project-owned content inside
 `ModalShell`. Transcript remains isolated on its existing modal implementation
-until the mapped Transcript capability adopts this shared contract; content
-ownership does not move into the shell during that migration.
+until the mapped Transcript capability adopts this shared contract. It consumes
+the same modal surface, title, close-control, body, and footer presentation
+roles without moving its behavior or content ownership into the shell.
+`ModalShell` alone adds overscroll containment to its body; Transcript does not
+inherit that behavior before its mapped modal capability.
 
 Navigation and external links use semantic link elements. Actions use semantic
 buttons. A visual primitive rendered as an interactive element preserves the
@@ -114,10 +128,13 @@ native element's keyboard and disabled behavior.
 
 ## Typography and geometry
 
-Theme text styles define typography roles. A component may adjust layout
-geometry responsively, but it does not silently negate the role's case, weight,
-spacing, or hierarchy. A repeated override belongs in the text style or a new
-named role.
+Theme text styles define typography roles. Route headings use `pageTitle` and
+`pageSubtitle`; content and selectable panels use `panelTitle`,
+`supportingText`, and `selectableLabel`; modal composition uses `modalTitle`,
+`sectionLabel`, and `modalBody`. Dialogue and compact metadata retain their
+dedicated roles. A component may adjust layout geometry responsively, but it
+does not silently negate the role's case, weight, spacing, or hierarchy. A
+repeated override belongs in the text style or a new named role.
 
 Chakra's spacing and breakpoint vocabulary governs general layout. Exact pixel
 geometry is reserved for deliberate interface details such as portraits,

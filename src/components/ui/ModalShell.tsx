@@ -44,7 +44,7 @@ export default function ModalShell({
         <Dialog.Positioner {...modalShellStyles.positioner}>
           <Dialog.Content asChild>
             <GlassPanel
-              elevation="strong"
+              surface="modal"
               cornerAccents
               {...modalShellStyles.content}
             >
@@ -63,7 +63,10 @@ export default function ModalShell({
                 </Dialog.CloseTrigger>
               </Dialog.Header>
 
-              <Dialog.Body {...modalShellStyles.body}>
+              <Dialog.Body
+                {...modalShellStyles.body}
+                {...modalShellStyles.scrollContainment}
+              >
                 {children}
               </Dialog.Body>
             </GlassPanel>

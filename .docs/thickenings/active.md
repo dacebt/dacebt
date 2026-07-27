@@ -1,40 +1,37 @@
-# Thickening: Inspect interaction contract
+# Thickening: four-route panel and typography hierarchy
 
-**Started:** 2026-07-26
+**Started:** 2026-07-27
 **Git strategy:** commit-to-main
 **Cadence:** Loose
 
 ## Dimension
 
-The theme-resolved surface, action, and focus contract for the project Inspect interaction.
+The role-owned panel and typography hierarchy across the portfolio's responsive shell, route content, dialogue, project, and modal compositions.
 
 ## Observable delta
 
-- before: Inspect opens a visually styled portal that leaves focus outside the modal, permits background interaction, does not restore the exact trigger, and emits unresolved composite theme values.
-- after: a keyboard user opens a labelled, modal Inspect view through supported theme roles, remains contained within it without moving the route scroll owner, closes through every supported path, and returns focus to the exact Inspect trigger.
+- before: the Inspect path proves resolved surface and text roles, but the remaining four-route composition still mixes shared primitives with caller-local panel, gradient, shadow, and typography treatments that do not express one consistent hierarchy.
+- after: a visitor moving among `/`, `/projects`, `/about`, and `/contact` at desktop and mobile widths sees one coherent hierarchy of shell, content panel, selectable panel, title, supporting text, and modal content roles without changing the routes' existing interactions.
 
 ## Minimum surface
 
-- `src/theme/` — responsibility-focused composition and complete surface, action, and modal roles used by this flow.
-- `src/components/ui/GlassPanel.tsx` — consume declared surface roles without changing its established external contract.
-- `src/components/ui/` — role-named compact-action and modal-shell primitives with native semantics and explicit focus ownership.
-- `src/components/ProjectCard.tsx`, `src/pages/ProjectsPage.tsx`, and `src/components/ProjectDetailModal.tsx` — carry the exact trigger through the controlled Inspect flow and compose project content inside the shared modal behavior.
-- A durable token-resolution verifier and package entrypoint covering the live Inspect theme path.
-- `docs/DESIGN.md`, `docs/TESTING.md`, and the affected portfolio vault knowledge — reconcile the implemented surface, modal, focus, and verification contracts.
+- `src/theme/` — complete the supported surface and typography roles consumed by the four-route composition and keep the composition root responsibility-focused.
+- `src/components/AppShell.tsx`, `src/components/PageLayout.tsx`, `src/components/PlayerStatsCard.tsx`, and `src/components/ui/` — make the shell, route frame, navigation-adjacent panels, page headings, and reusable selectable surfaces consume those roles from their established owners.
+- The home dialogue, project cards and Inspect content, About topic/scene composition, Contact content, and Transcript presentation — migrate caller-local panel and typography treatments needed for the same visible hierarchy while preserving feature-owned content and behavior.
+- The live token-resolution verifier plus `docs/DESIGN.md`, `docs/TESTING.md`, and affected portfolio vault knowledge — prove and document the expanded production path.
 
 ## Verification path
 
-- `wsd-walk --require-probe --expect "Local:"` — Vite reaches its real local entrypoint.
-- In the running `/projects` route at desktop and mobile viewports: focus a specific Inspect control; open a labelled modal with focus inside; cycle Tab and Shift+Tab without escape; confirm background controls and the route scroll owner do not move; close by Escape, close control, and backdrop; and confirm focus returns to the exact original trigger.
-- Exercise long and omitted project sections, modal scrolling, visible focus, horizontal overflow, and a regression observation of `/`, `/about`, and `/contact`.
-- Run the token-resolution verifier, type generation, type-check, lint, and production build.
+- `wsd-walk --require-probe --expect "Local:"` — Vite reaches the real local entrypoint.
+- In the production preview, walk `/`, `/projects`, `/about`, and `/contact` at desktop and 390-by-844 mobile viewports; observe the shell, page-title, content-panel, selectable-panel, supporting-text, dialogue, and modal hierarchy; exercise each route's existing primary interaction; and confirm readable wrapping, visible focus, no clipping or unexpected horizontal overflow, and no browser-console regressions.
+- Run the live token-resolution verifier, type generation, type-check, lint, and production build.
 
 ## Residual risks
 
-- Resolving the currently inert composite shadow may change the modal’s visible depth. Non-invariant visual-tuning risk; the running diff requires explicit visual observation before acceptance.
-- Chakra’s portal and scroll-lock behavior may interact with the application’s nested route scroll container. Non-invariant integration risk; the browser walk must observe the actual `AppShell` scroll owner rather than infer from body locking.
-- The dormant no-Inspect ProjectCard branch remains owned by PORT-005. Non-invariant cleanup concern because no composed application path reaches it.
+- Typography and spacing role adoption may alter line wrapping or content density at intermediate widths. Non-invariant visual-tuning risk; the browser matrix includes the responsive breakpoints and the final PORT-007 human acceptance remains authoritative.
+- The dormant no-Inspect `ProjectCard` branch remains owned by PORT-005. Non-invariant cleanup concern because no composed application path reaches it.
+- Control-family semantics and interaction-state convergence remain the next mapped actor capability; this thickening preserves current control behavior while consolidating the panels and text surrounding it. Non-invariant sequencing risk because that capability has its own complete observable delta and is not required to make this visual hierarchy truthful.
 
 ## Notes
 
-Inspect is the feature’s walking-skeleton path. Transcript remains isolated on its existing implementation until mapped capability 4 adopts the proven modal contract; that capability is the declared removal point for the migration boundary. The current binding translucent-panel direction wins over PORT-004’s stale opaque/no-blur wording.
+Do not migrate Transcript onto `ModalShell` here; capability 4 owns its complete modal behavior. Reuse the resolved Inspect roles where their visual contract matches, and introduce a new role only when the four-route composition demonstrates a distinct responsibility.

@@ -6,6 +6,7 @@ import { type Project } from "../data/projects"
 import ProjectCardBadge from "./ui/ProjectCardBadge"
 import GlassPanel from "./ui/GlassPanel"
 import CompactAction from "./ui/CompactAction"
+import { selectablePanelStyles } from "./ui/selectable-panel-styles"
 import { getAnimation } from "../utils/motion"
 
 const MAX_VISIBLE_TECH = 2
@@ -51,9 +52,10 @@ export default function ProjectCard({
 
   return (
     <GlassPanel
+      surface="selectable"
       cornerAccents={false}
       p={{ base: 2, md: 3 }}
-      color="text.primary"
+      {...selectablePanelStyles.panel}
       position="relative"
       overflow="hidden"
       transition="all 0.3s ease"
@@ -89,10 +91,9 @@ export default function ProjectCard({
         flexWrap="wrap"
       >
         <Text
-          textStyle="projectTitle"
+          textStyle="panelTitle"
           textAlign="left"
           color="text.primary"
-          fontWeight="bold"
           flex="1"
           minW={0}
         >
@@ -111,12 +112,10 @@ export default function ProjectCard({
       </Flex>
 
       <Text
-        textStyle="smallText"
-        color="text.secondary"
+        textStyle="supportingText"
         mb={1.5}
         wordWrap="break-word"
         whiteSpace="normal"
-        lineHeight="1.5"
       >
         {project.shortDescription}
       </Text>

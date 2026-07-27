@@ -16,6 +16,9 @@ export const shadowConfig = defineConfig({
           },
         },
         dialogue: {
+          text: {
+            value: "0 2px 8px {colors.bg.darkAlpha.80}, 0 0 20px {colors.accent.greenAlpha.30}",
+          },
           default: {
             value: "inset 0 0 0 2px {colors.white.alpha.10}, inset 0 0 0 4px {colors.accent.green}, inset 0 0 0 6px {colors.border.outer}, 0 0 0 2px {colors.accent.green}, 0 6px 24px {colors.accent.greenAlpha.25}, 0 12px 48px {colors.black.alpha.50}, 0 0 0 1px {colors.white.alpha.5}",
           },
@@ -39,7 +42,7 @@ export const shadowConfig = defineConfig({
         },
         avatar: {
           frame: {
-            value: "inset 0 0 0 2px {colors.white.alpha.15}, inset 0 0 0 4px {colors.border.outer}, 0 0 0 2px {colors.border.outer}, 0 0 0 4px {colors.border.inner}, 0 2px 8px {colors.black.alpha.30}, 0 4px 16px {colors.black.alpha.20}",
+            value: "inset 0 0 0 2px var(--chakra-colors-white-alpha-15), inset 0 0 0 4px {colors.border.outer}, 0 0 0 2px {colors.border.outer}, 0 0 0 4px {colors.border.inner}, 0 2px 8px var(--chakra-colors-black-alpha-30), 0 4px 16px var(--chakra-colors-black-alpha-20)",
           },
         },
         button: {
@@ -68,14 +71,6 @@ export const shadowConfig = defineConfig({
         badge: {
           personal: {
             value: "0 2px 8px {colors.accent.tealAlpha.20}",
-          },
-        },
-        glowCard: {
-          tealHover: {
-            value: "0 8px 25px {colors.accent.tealAlpha.15}, inset 0 0 0 1px {colors.glow.teal.weak}",
-          },
-          greenHover: {
-            value: "0 8px 25px {colors.accent.greenAlpha.15}, inset 0 0 0 1px {colors.glow.green.weak}",
           },
         },
         bolt: {

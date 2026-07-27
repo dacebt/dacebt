@@ -13,6 +13,14 @@ export const semanticColorConfig = defineConfig({
             control: { value: "{colors.bg.darkAlpha.30}" },
           },
         },
+        surface: {
+          shell: { value: "{colors.bg.steelAlpha.80}" },
+          content: { value: "{colors.bg.steelAlpha.90}" },
+          supporting: { value: "{colors.bg.steelAlpha.60}" },
+          selectable: { value: "{colors.bg.steelAlpha.80}" },
+          dialogue: { value: "{colors.bg.steelAlpha.80}" },
+          modal: { value: "{colors.bg.steelAlpha.90}" },
+        },
         modal: {
           depth: {
             strong: { value: "rgba(0, 0, 0, 0.6)" },
@@ -31,6 +39,9 @@ export const semanticColorConfig = defineConfig({
             strong: {
               value: "linear-gradient(180deg, rgba(90, 140, 220, 0.18) 0%, rgba(55, 100, 180, 0.07) 20%, transparent 50%, rgba(0, 0, 0, 0.25) 100%)",
             },
+          },
+          pageTitle: {
+            value: "linear-gradient(135deg, {colors.text.primary} 0%, {colors.accent.teal} 100%)",
           },
         },
         "glow.teal.weak": {
@@ -77,12 +88,6 @@ export const semanticColorConfig = defineConfig({
         },
         "glow.border.green": {
           value: "{colors.accent.greenAlpha.30}",
-        },
-        "gradient.pageTitle": {
-          value: "linear-gradient(135deg, {colors.text.primary} 0%, {colors.accent.teal} 100%)",
-        },
-        "gradient.projectTitle": {
-          value: "linear-gradient(135deg, {colors.gradient.blue} 0%, {colors.gradient.purple} 100%)",
         },
         "gradient.button.primary": {
           value: "linear-gradient(135deg, {colors.accent.tealAlpha.8} 0%, {colors.bg.steelAlpha.60} 100%)",

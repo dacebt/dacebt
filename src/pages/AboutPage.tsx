@@ -4,6 +4,7 @@ import { FiArrowLeft } from "react-icons/fi"
 import PageLayout from "../components/PageLayout"
 import RPGDialogueScene from "../components/RPGDialogueScene"
 import FloatingButton from "../components/ui/FloatingButton"
+import { selectablePanelStyles } from "../components/ui/selectable-panel-styles"
 import { aboutTopics, type AboutTopic } from "../data/about"
 
 export default function AboutPage() {
@@ -115,22 +116,14 @@ export default function AboutPage() {
 					>
 						{/* Subtle icon placeholder */}
 						<Box
-							w="24px"
-							h="24px"
-							borderRadius="full"
-							bg="accent.tealAlpha.20"
-							border="1px solid"
-							borderColor="accent.tealAlpha.30"
-							display="flex"
-							alignItems="center"
-							justifyContent="center"
+							{...selectablePanelStyles.iconFrame}
 						>
-							<Box w="8px" h="8px" borderRadius="full" bg="accent.teal" opacity={0.8} />
+							<Box {...selectablePanelStyles.indicator} />
 						</Box>
 
 						{/* Label text */}
 						<Text
-							textStyle="buttonLabel"
+							{...selectablePanelStyles.label}
 							_groupHover={{
 								color: "accent.teal",
 							}}

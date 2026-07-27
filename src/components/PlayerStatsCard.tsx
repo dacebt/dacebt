@@ -50,6 +50,7 @@ const PlayerStatsCard = () => {
           borderColor="border.inner"
           bg="bg.steel"
           borderRadius="4px"
+          boxShadow="avatar.frame"
         >
           <Image
             src="/images/avatar.png"
@@ -63,10 +64,10 @@ const PlayerStatsCard = () => {
 
         {/* Player Details */}
         <Box display="flex" flexDirection="column" alignItems="start" gap={1}>
-          <Text textStyle="playerName" color="text.primary">
+          <Text textStyle="panelTitle" color="text.primary">
             David
           </Text>
-          <Text textStyle="playerRole" color="text.muted">
+          <Text textStyle="supportingText" color="text.muted">
             Senior Web Developer
           </Text>
           <Text textStyle="smallTextMedium" color="accent.teal">

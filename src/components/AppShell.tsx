@@ -47,7 +47,7 @@ function AppShell() {
           display={{ base: "none", md: "block" }}
         >
           <GlassPanel
-            elevation="medium"
+            surface="shell"
             cornerAccents={false}
             p={2}
             display="flex"
@@ -70,7 +70,7 @@ function AppShell() {
           p={3}
         >
           <GlassPanel
-            elevation="strong"
+            surface="shell"
             cornerAccents={false}
             p={2}
             display="flex"
@@ -86,7 +86,7 @@ function AppShell() {
         {/* Main Content Surface */}
         <GlassPanel
           gridArea="main"
-          elevation="strong"
+          surface="content"
           p={{ base: 4, md: 6 }}
           minH={0}
           overflowY="auto"
@@ -100,7 +100,7 @@ function AppShell() {
         {/* Footer / Bottom Panel */}
         <GlassPanel
           gridArea="footer"
-          elevation="subtle"
+          surface="supporting"
           p={{ base: 3, md: 4 }}
           minH={{ base: "auto", md: "120px" }}
         >
@@ -112,4 +112,3 @@ function AppShell() {
 }
 
 export default AppShell
-

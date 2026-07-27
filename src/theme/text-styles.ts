@@ -3,33 +3,8 @@ import { defineConfig } from "@chakra-ui/react"
 export const textStyleConfig = defineConfig({
   theme: {
     textStyles: {
-      heading: {
-        description: "Main heading text style",
-        value: {
-          fontSize: { base: "2xl", md: "3xl", lg: "4xl" },
-          fontWeight: "bold",
-          lineHeight: "1.2",
-          letterSpacing: "tight",
-        },
-      },
-      subtitle: {
-        description: "Subtitle text style",
-        value: {
-          fontSize: { base: "lg", md: "xl", lg: "2xl" },
-          fontWeight: "medium",
-          lineHeight: "1.4",
-          color: "text.secondary",
-        },
-      },
-      body: {
-        description: "Body text style",
-        value: {
-          fontSize: { base: "sm", md: "md" },
-          lineHeight: "1.6",
-        },
-      },
-      buttonLabel: {
-        description: "Floating button label text style",
+      selectableLabel: {
+        description: "Selectable panel label text style",
         value: {
           fontSize: { base: "sm", md: "md" },
           fontWeight: "bold",
@@ -53,8 +28,8 @@ export const textStyleConfig = defineConfig({
         value: {
           fontSize: { base: "3xl", md: "4xl", lg: "5xl" },
           fontWeight: "bold",
-          letterSpacing: "0.5px",
-          textTransform: "uppercase",
+          letterSpacing: "normal",
+          textTransform: "none",
           lineHeight: "1.2",
         },
       },
@@ -66,49 +41,41 @@ export const textStyleConfig = defineConfig({
           lineHeight: "1.6",
         },
       },
-      navItem: {
-        description: "Navigation item text style",
+      panelTitle: {
+        description: "Content panel title text style",
         value: {
-          fontSize: "md",
-          fontWeight: "medium",
-          letterSpacing: "normal",
-          textTransform: "uppercase",
-        },
-      },
-      navItemActive: {
-        description: "Active navigation item text style",
-        value: {
-          fontSize: "md",
-          fontWeight: "bold",
-          letterSpacing: "0.5px",
-          textTransform: "uppercase",
-        },
-      },
-      playerName: {
-        description: "Player name text style",
-        value: {
-          fontSize: { base: "sm", md: "md" },
-          fontWeight: "bold",
-          lineHeight: "1.6",
-        },
-      },
-      playerRole: {
-        description: "Player role text style",
-        value: {
-          fontSize: "sm",
-          lineHeight: "1.6",
-        },
-      },
-      projectTitle: {
-        description: "Project card title text style",
-        value: {
-          fontSize: "xl",
+          fontSize: { base: "md", md: "lg" },
           fontWeight: "bold",
           lineHeight: "1.2",
         },
       },
-      speakerLabel: {
-        description: "Dialogue box speaker label text style",
+      supportingText: {
+        description: "Supporting content text style",
+        value: {
+          fontSize: { base: "sm", md: "md" },
+          color: "text.secondary",
+          lineHeight: "1.5",
+        },
+      },
+      modalTitle: {
+        description: "Modal heading text style",
+        value: {
+          fontSize: { base: "xl", md: "2xl" },
+          fontWeight: "bold",
+          letterSpacing: "normal",
+          lineHeight: "1.2",
+        },
+      },
+      modalBody: {
+        description: "Modal content text style",
+        value: {
+          fontSize: { base: "sm", md: "md" },
+          fontWeight: "500",
+          lineHeight: "1.6",
+        },
+      },
+      sectionLabel: {
+        description: "Panel section label text style",
         value: {
           fontSize: "sm",
           fontWeight: "bold",
@@ -121,13 +88,6 @@ export const textStyleConfig = defineConfig({
         value: {
           fontSize: "xs",
           lineHeight: "1.3",
-        },
-      },
-      smallTextBold: {
-        description: "Small text with bold weight",
-        value: {
-          fontSize: "xs",
-          fontWeight: "bold",
         },
       },
       smallTextMedium: {

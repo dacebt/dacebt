@@ -1,6 +1,12 @@
 import type { SystemStyleObject } from "@chakra-ui/react"
 
-export type GlassPanelElevation = "subtle" | "medium" | "strong"
+export type GlassPanelSurface =
+  | "shell"
+  | "content"
+  | "supporting"
+  | "selectable"
+  | "dialogue"
+  | "modal"
 
 export const glassPanelStyles = {
   base: {
@@ -10,26 +16,52 @@ export const glassPanelStyles = {
     position: "relative",
     isolation: "isolate",
   },
-  elevation: {
-    subtle: {
-      bg: "bg.steelAlpha.60",
-      boxShadow: "panel.subtle",
-      backdropFilter: "blur(6px)",
-      _before: {
-        background: "gradient.panel.subtle",
-      },
-    },
-    medium: {
-      bg: "bg.steelAlpha.80",
+  surface: {
+    shell: {
+      bg: "surface.shell",
       boxShadow: "panel.medium",
       backdropFilter: "blur(10px)",
       _before: {
         background: "gradient.panel.medium",
       },
     },
-    strong: {
-      bg: "bg.steelAlpha.90",
+    content: {
+      bg: "surface.content",
       boxShadow: "panel.strong",
+      backdropFilter: "blur(14px)",
+      _before: {
+        background: "gradient.panel.strong",
+      },
+    },
+    supporting: {
+      bg: "surface.supporting",
+      boxShadow: "panel.subtle",
+      backdropFilter: "blur(6px)",
+      _before: {
+        background: "gradient.panel.subtle",
+      },
+    },
+    selectable: {
+      bg: "surface.selectable",
+      boxShadow: "panel.medium",
+      backdropFilter: "blur(10px)",
+      _before: {
+        background: "gradient.panel.medium",
+      },
+    },
+    dialogue: {
+      bg: "surface.dialogue",
+      boxShadow: "dialogue.default",
+      backdropFilter: "blur(10px)",
+      _before: {
+        background: "gradient.panel.medium",
+      },
+    },
+    modal: {
+      bg: "surface.modal",
+      border: "2px solid",
+      borderColor: "accent.tealAlpha.40",
+      boxShadow: "modal.content",
       backdropFilter: "blur(14px)",
       _before: {
         background: "gradient.panel.strong",
@@ -56,7 +88,7 @@ export const glassPanelStyles = {
   },
 } as const satisfies {
   base: SystemStyleObject
-  elevation: Record<GlassPanelElevation, SystemStyleObject>
+  surface: Record<GlassPanelSurface, SystemStyleObject>
   before: SystemStyleObject
   corner: SystemStyleObject
 }

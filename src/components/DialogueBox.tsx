@@ -130,7 +130,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
 		return (
 			<GlassPanel
 				ref={ref}
-				boxShadow="dialogue.default"
+				surface="dialogue"
 				cornerAccents={false}
 				position="relative"
 				cursor={onClick ? "pointer" : "default"}
@@ -174,7 +174,7 @@ const DialogueBox = React.forwardRef<HTMLDivElement, DialogueBoxProps>(
 							overflow="hidden"
 							border="3px solid"
 							borderColor="border.inner"
-							boxShadow="inset 0 0 0 1px rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.4)"
+							boxShadow="avatar.frame"
 							bg="bg.steel"
 							display="flex"
 							alignItems="center"

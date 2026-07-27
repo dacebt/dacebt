@@ -4,6 +4,7 @@ import { FaLinkedin, FaGithub, FaDiscord, FaXTwitter } from "react-icons/fa6"
 import contactData from "../data/contact.json"
 import PageLayout from "../components/PageLayout"
 import FloatingButton from "../components/ui/FloatingButton"
+import { selectablePanelStyles } from "../components/ui/selectable-panel-styles"
 
 const iconMap = {
   linkedin: FaLinkedin,
@@ -47,12 +48,7 @@ export default function ContactPage() {
                 >
                   {/* Icon container with enhanced styling */}
                   <Box
-                    position="relative"
-                    p={2}
-                    borderRadius="md"
-                    bg="accent.tealAlpha.10"
-                    border="1px solid"
-                    borderColor="accent.tealAlpha.20"
+                    {...selectablePanelStyles.iconFrame}
                     _groupHover={{
                       bg: "accent.tealAlpha.20",
                       borderColor: "accent.tealAlpha.40",
@@ -66,9 +62,7 @@ export default function ContactPage() {
 
                   {/* Enhanced text styling */}
                   <Text
-                    textStyle="buttonLabel"
-                    textAlign="center"
-                    textShadow="0 1px 2px black.alpha.50"
+                    {...selectablePanelStyles.label}
                     _groupHover={{
                       color: "accent.teal",
                     }}

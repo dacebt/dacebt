@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .cursor
+.docs/.cache/
 
 # Repository authority files override the machine-global agent/doc ignores.
 !CLAUDE.md

@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react"
 import { Box, Portal, CloseButton, Text } from "@chakra-ui/react"
 import GlassPanel from "./ui/GlassPanel"
 import DialogueBox from "./DialogueBox"
+import { modalShellStyles } from "./ui/modal-shell-styles"
 import type { DialogueMessage } from "../hooks/useRPGDialogue"
 
 interface TranscriptModalProps {
@@ -63,89 +64,49 @@ export default function TranscriptModal({
 		<Portal>
 			{/* Backdrop - z-index 2000 (above other modals) */}
 			<Box
+				{...modalShellStyles.backdrop}
 				position="fixed"
 				top={0}
 				left={0}
 				right={0}
 				bottom={0}
-				bg="black.alpha.80"
-				zIndex={2000}
 				onClick={onClose}
-				animation="fadeIn 0.2s ease-out"
 			/>
 
 			{/* Content - z-index 2001 */}
 			<GlassPanel
-				elevation="strong"
+				surface="modal"
+				{...modalShellStyles.content}
 				position="fixed"
 				top="50%"
 				left="50%"
 				transform="translate(-50%, -50%)"
 				zIndex={2001}
-				w="90vw"
-				maxW="800px"
 				h="85vh"
-				maxH="85vh"
-				overflow="hidden"
-				animation="fadeIn 0.2s ease-out"
-				display="flex"
-				flexDirection="column"
 			>
 				{/* Header */}
 				<Box
-					p={4}
-					borderBottom="1px solid"
-					borderColor="border.inner"
-					display="flex"
-					alignItems="center"
-					justifyContent="space-between"
-					flexShrink={0}
+					{...modalShellStyles.header}
 				>
-					<Text textStyle="pageSubtitle" color="text.primary" fontWeight="bold">
+					<Text {...modalShellStyles.title}>
 						{title}
 					</Text>
 					<CloseButton
 						onClick={onClose}
-						color="text.muted"
 						size="md"
-						bg="black.alpha.30"
-						borderRadius="full"
-						_hover={{
-							color: "text.primary",
-							bg: "accent.tealAlpha.20",
-						}}
-						border="1px solid"
-						borderColor="border.inner"
+						{...modalShellStyles.closeControl}
 					/>
 				</Box>
 
 				{/* Scrollable message list */}
 				<Box
 					ref={scrollRef}
-					flex={1}
-					minH={0}
-					overflowY="auto"
-					p={4}
+					{...modalShellStyles.body}
 					onWheel={() => {
 						hasUserScrolledRef.current = true
 					}}
 					onTouchMove={() => {
 						hasUserScrolledRef.current = true
-					}}
-					css={{
-						"&::-webkit-scrollbar": {
-							width: "8px",
-						},
-						"&::-webkit-scrollbar-track": {
-							background: "transparent",
-						},
-						"&::-webkit-scrollbar-thumb": {
-							background: "var(--chakra-colors-accent-teal-alpha-30)",
-							borderRadius: "4px",
-						},
-						"&::-webkit-scrollbar-thumb:hover": {
-							background: "var(--chakra-colors-accent-teal-alpha-50)",
-						},
 					}}
 				>
 					{messages.map((msg, idx) => (
@@ -174,11 +135,7 @@ export default function TranscriptModal({
 
 				{/* Footer with message count */}
 				<Box
-					p={3}
-					borderTop="1px solid"
-					borderColor="border.inner"
-					textAlign="center"
-					flexShrink={0}
+					{...modalShellStyles.footer}
 				>
 					<Text textStyle="smallText" color="text.muted">
 						{messages.length} {messages.length === 1 ? "message" : "messages"}

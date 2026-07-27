@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react"
 import GlassPanel from "./GlassPanel"
+import { selectablePanelStyles } from "./selectable-panel-styles"
 import { getAnimation } from "../../utils/motion"
 
 interface FloatingButtonProps {
@@ -43,13 +44,14 @@ export default function FloatingButton({
   return (
     <GlassPanel
       as="button"
+      surface="selectable"
       onClick={onClick}
       disabled={disabled}
       cornerAccents={false}
       {...config}
       p={densityStyle.p}
       w={width}
-      color="text.primary"
+      {...selectablePanelStyles.panel}
       position="relative"
       overflow="hidden"
       transition="all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"

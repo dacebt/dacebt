@@ -3,7 +3,7 @@ type: specification
 title: Portfolio Testing
 description: Binding verification tiers, browser acceptance matrix, and completion evidence for the portfolio.
 tags: [testing, verification, browser, accessibility]
-timestamp: 2026-07-26
+timestamp: 2026-07-27
 authority: binding
 ---
 
@@ -70,10 +70,14 @@ npm run verify:tokens
 
 Token proof inspects both generated declarations and style resolution. It
 requires complete theme roles to resolve through nested Chakra CSS variables
-and rejects unresolved brace or token fragments. This proof is cumulative with
-type generation, type-checking, linting, and the production build; none of
-those gates substitutes for another. The production build already performs
-type generation.
+and rejects unresolved brace or token fragments. Its production path includes
+independent exact background, gradient, shadow, blur, and modal-frame
+expectations for all six `GlassPanel` surface responsibilities. It also resolves
+every supported typography role through a live exported style object where one
+exists, plus the page-title gradient, selectable-panel presentation, and shared
+modal presentation. This proof is cumulative with type generation, type-checking,
+linting, and the production build; none of those gates substitutes for another.
+The production build already performs type generation.
 
 Documentation-only changes verify document links, named paths, and repository
 state. Static code gates are run when the documentation makes claims about

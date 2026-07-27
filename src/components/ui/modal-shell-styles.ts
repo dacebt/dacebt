@@ -8,6 +8,8 @@ interface ModalShellStyles {
   title: SystemStyleObject
   closeControl: SystemStyleObject
   body: DialogBodyProps
+  scrollContainment: SystemStyleObject
+  footer: SystemStyleObject
 }
 
 export const modalShellStyles = {
@@ -26,9 +28,6 @@ export const modalShellStyles = {
     maxW: "800px",
     maxH: "85vh",
     overflow: "hidden",
-    border: "2px solid",
-    borderColor: "accent.tealAlpha.40",
-    boxShadow: "modal.content",
     animation: "fadeIn 0.2s ease-out",
     display: "flex",
     flexDirection: "column",
@@ -43,9 +42,8 @@ export const modalShellStyles = {
     flexShrink: 0,
   },
   title: {
-    textStyle: "pageTitle",
+    textStyle: "modalTitle",
     color: "text.primary",
-    fontSize: { base: "xl", md: "2xl" },
   },
   closeControl: {
     color: "text.muted",
@@ -62,7 +60,6 @@ export const modalShellStyles = {
     flex: 1,
     minH: 0,
     overflowY: "auto",
-    overscrollBehaviorY: "contain",
     p: 5,
     css: {
       "&::-webkit-scrollbar": {
@@ -79,5 +76,15 @@ export const modalShellStyles = {
         background: "var(--chakra-colors-accent-teal-alpha-50)",
       },
     },
+  },
+  scrollContainment: {
+    overscrollBehaviorY: "contain",
+  },
+  footer: {
+    p: 3,
+    borderTop: "1px solid",
+    borderColor: "border.inner",
+    textAlign: "center",
+    flexShrink: 0,
   },
 } as const satisfies ModalShellStyles

@@ -10,7 +10,7 @@ export default function DialogueBoxContent({ displayedText, isStreaming }: Dialo
     <Text
       textStyle="dialogue"
       color="text.primary"
-      textShadow="0 2px 8px black.alpha.80, 0 0 20px accent.greenAlpha.30"
+      textShadow="var(--chakra-shadows-dialogue-text)"
       position="relative"
       zIndex={1}
       flex={1}

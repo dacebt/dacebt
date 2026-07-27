@@ -19,7 +19,7 @@ function Section({ label, items }: SectionProps) {
   return (
     <Box mb={5} _last={{ mb: 0 }}>
       <Text
-        textStyle="speakerLabel"
+        textStyle="sectionLabel"
         color="accent.teal"
         mb={2}
         pb={1}
@@ -45,10 +45,8 @@ function Section({ label, items }: SectionProps) {
               ▸
             </Text>
             <Text
-              textStyle="dialogue"
+              textStyle="modalBody"
               color="text.primary"
-              fontSize={{ base: "sm", md: "md" }}
-              lineHeight="1.6"
             >
               {item}
             </Text>
