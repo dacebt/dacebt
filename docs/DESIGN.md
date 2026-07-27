@@ -121,13 +121,12 @@ feature-owned:
 - Escape, close-control, and backdrop-close behavior;
 - bounded, scrollable modal content with no panel click-through to the backdrop.
 
-The project Inspect flow composes its project-owned content inside
-`ModalShell`. Transcript remains isolated on its existing modal implementation
-until the mapped Transcript capability adopts this shared contract. It consumes
-the same modal surface, title, close-control, body, and footer presentation
-roles without moving its behavior or content ownership into the shell.
-`ModalShell` alone adds overscroll containment to its body; Transcript does not
-inherit that behavior before its mapped modal capability.
+The project Inspect and dialogue Transcript flows compose their feature-owned
+content inside `ModalShell`. Transcript uses the shell's body ref and scroll
+intent seam to retain current-message positioning until the user scrolls, and
+uses the shared footer role for its message count. Inspect and Transcript
+openings from a native control restore focus to that exact control. A Transcript
+opened by the T shortcut returns focus to the Transcript control.
 
 Navigation and external links use semantic anchors. Actions use semantic
 buttons with `type="button"`. Selectable buttons preserve the native `disabled`

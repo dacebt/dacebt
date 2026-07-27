@@ -61,6 +61,11 @@ export const modalShellStyles = {
     minH: 0,
     overflowY: "auto",
     p: 5,
+    _focusVisible: {
+      outline: "2px solid",
+      outlineColor: "accent.teal",
+      outlineOffset: "-2px",
+    },
     css: {
       "&::-webkit-scrollbar": {
         width: "8px",
@@ -85,6 +90,7 @@ export const modalShellStyles = {
     borderTop: "1px solid",
     borderColor: "border.inner",
     textAlign: "center",
+    justifyContent: "center",
     flexShrink: 0,
   },
 } as const satisfies ModalShellStyles

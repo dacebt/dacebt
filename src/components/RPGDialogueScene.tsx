@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { Box } from "@chakra-ui/react"
 import DialogueBox from "./DialogueBox"
 import RPGDialogueControls from "./RPGDialogueControls"
@@ -39,6 +39,7 @@ export default function RPGDialogueScene({
 	transcriptTitle = "Transcript",
 }: RPGDialogueSceneProps) {
 	const [isTranscriptOpen, setIsTranscriptOpen] = useState(false)
+	const transcriptTriggerRef = useRef<HTMLButtonElement>(null)
 
 	const {
 		currentMessage,
@@ -59,13 +60,23 @@ export default function RPGDialogueScene({
 	})
 
 	useEffect(() => {
-		if (isTranscriptOpen) return
+		if (!currentMessage) {
+			setIsTranscriptOpen(false)
+		}
+	}, [currentMessage])
+
+	useEffect(() => {
+		if (!currentMessage || isTranscriptOpen) return
 
 		const handleKeyDown = (event: KeyboardEvent) => {
 			const isAdvanceKey = event.key === " " || event.key === "Enter"
 			const isTranscriptKey = event.key === "t" || event.key === "T"
 
-			if ((!isAdvanceKey && !isTranscriptKey) || isControlTarget(event.target)) {
+			if (
+				(!isAdvanceKey && !isTranscriptKey) ||
+				(isTranscriptKey && !showControls) ||
+				isControlTarget(event.target)
+			) {
 				return
 			}
 
@@ -80,7 +91,7 @@ export default function RPGDialogueScene({
 
 		document.addEventListener("keydown", handleKeyDown)
 		return () => document.removeEventListener("keydown", handleKeyDown)
-	}, [isTranscriptOpen, handleClick])
+	}, [currentMessage, isTranscriptOpen, handleClick, showControls])
 
 	const handleTranscriptOpen = useCallback(() => {
 		setIsTranscriptOpen(true)
@@ -129,6 +140,7 @@ export default function RPGDialogueScene({
 						hasMore={hasMore}
 						onTranscriptOpen={handleTranscriptOpen}
 						onSkip={handleSkip}
+						transcriptTriggerRef={transcriptTriggerRef}
 					/>
 				)}
 			</Box>
@@ -159,6 +171,7 @@ export default function RPGDialogueScene({
 
 			{/* Transcript modal */}
 			<TranscriptModal
+				finalFocusEl={() => transcriptTriggerRef.current}
 				isOpen={isTranscriptOpen}
 				onClose={handleTranscriptClose}
 				messages={allMessages}

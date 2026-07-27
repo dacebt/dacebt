@@ -104,11 +104,13 @@ The browser matrix includes:
 - pointer activation;
 - keyboard navigation and activation;
 - focus containment through forward and reverse traversal;
-- exact-trigger focus restoration after close;
+- exact-trigger focus restoration after native-control opening, plus Transcript
+  control focus after a T-shortcut opening;
 - Escape, explicit close-control, and backdrop close paths;
 - prevention of background and outside interaction while a modal is open;
 - bounded modal content scrolling without moving the actual nested `AppShell`
   route scroll owner;
+- current-message Transcript positioning that yields after manual scrolling;
 - long-content and omitted-section project variants;
 - route changes and active navigation state;
 - visible focus treatment;

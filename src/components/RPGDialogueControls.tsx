@@ -1,3 +1,4 @@
+import type { Ref } from "react"
 import { Box, Icon, Text } from "@chakra-ui/react"
 import { FiFileText, FiSkipForward, FiChevronsRight } from "react-icons/fi"
 import CompactAction from "./ui/CompactAction"
@@ -9,6 +10,7 @@ interface RPGDialogueControlsProps {
 	hasMore: boolean
 	onTranscriptOpen: () => void
 	onSkip: () => void
+	transcriptTriggerRef: Ref<HTMLButtonElement>
 }
 
 export default function RPGDialogueControls({
@@ -18,6 +20,7 @@ export default function RPGDialogueControls({
 	hasMore,
 	onTranscriptOpen,
 	onSkip,
+	transcriptTriggerRef,
 }: RPGDialogueControlsProps) {
 	const showSkipButton = isStreaming || hasMore
 	const skipLabel = isStreaming ? "Skip" : "Next"
@@ -34,6 +37,7 @@ export default function RPGDialogueControls({
 			mb={4}
 		>
 			<CompactAction
+				ref={transcriptTriggerRef}
 				onClick={onTranscriptOpen}
 				emphasis="subtle"
 				gap={2}

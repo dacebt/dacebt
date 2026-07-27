@@ -1,4 +1,4 @@
-# Thickening: semantic control families
+# Thickening: shared Inspect and Transcript modal behavior
 
 **Started:** 2026-07-27
 **Git strategy:** commit-to-main
@@ -6,33 +6,33 @@
 
 ## Dimension
 
-The semantic element, accessible-name, and interaction-state contract for navigation, selectable, compact, and icon controls across the four-route interface.
+The complete modal interaction contract shared by the project Inspect view and dialogue Transcript.
 
 ## Observable delta
 
-- before: visually related controls use parallel implementations; mobile dialogue controls lose their names when visible labels hide; the dialogue scene consumes Space and Enter before focused native controls; and each Contact card nests a button inside a link.
-- after: a keyboard or pointer visitor navigates and activates each control family through one truthful native element with a stable accessible name and consistent state treatment, while scene-level shortcuts yield to focused controls.
+- before: Inspect uses the accessible `ModalShell`, while Transcript separately implements its own portal, backdrop, Escape listener, close control, and scrolling without dialog semantics, focus containment, background blocking, or focus restoration.
+- after: both features compose the same modal behavior while retaining their own content and Transcript's current-message scrolling.
 
 ## Minimum surface
 
-- `src/components/ui/` and the supported theme roles — establish role-named navigation, selectable, compact, and icon control presentation without weakening native button/link semantics or the surface responsibilities already accepted.
-- `src/components/NavRail.tsx`, `src/components/ProjectCard.tsx`, `src/components/RPGDialogueControls.tsx`, and `src/components/RPGDialogueScene.tsx` — adopt the shared families, preserve stable names at every breakpoint, and route shortcuts around focused native controls.
-- `src/pages/AboutPage.tsx` and `src/pages/ContactPage.tsx` — keep topic choices as buttons, make each Contact card one semantic external link, and compose the same selectable presentation without nested interactive content.
-- The live token-resolution verifier plus `docs/DESIGN.md`, `docs/TESTING.md`, and affected portfolio vault knowledge — prove and document the complete control path.
+- `src/components/ui/ModalShell.tsx` and `src/components/ui/modal-shell-styles.ts` — expose only the small composition seams both modal contents need while keeping portal, dialog semantics, focus, outside interaction, scroll prevention, close paths, and bounded body ownership centralized.
+- `src/components/TranscriptModal.tsx` — replace the parallel modal shell with `ModalShell`; retain transcript message rendering, current-message scrolling, user-scroll detection, and message-count content.
+- `src/components/RPGDialogueScene.tsx` and `src/components/RPGDialogueControls.tsx` only if needed to restore focus to the Transcript control through its existing forwarded native button ref.
+- `docs/DESIGN.md`, `docs/TESTING.md`, and affected portfolio vault knowledge — describe the one live modal contract and its browser evidence.
 
 ## Verification path
 
 - `wsd-walk --require-probe --expect "Local:"` — Vite reaches the real local entrypoint.
-- In the production preview at desktop and 390-by-844 mobile viewports, traverse navigation, About topics and return control, Contact cards, project Inspect/external icon controls, and Home Transcript/Skip controls by keyboard and pointer; confirm stable accessible names, one native interactive element per control, visible current-route, active-press, and focus states, scene shortcuts that do not preempt focused controls, and no unexpected route or dialogue advancement.
-- Regress Inspect exact-trigger restoration, all four routes, horizontal overflow, and browser-console output.
-- Run the live token-resolution verifier, type generation, type-check, lint, and production build.
+- In the production preview at desktop and 390-by-844 mobile viewports, open Inspect and Transcript by pointer and keyboard; verify labelled dialog semantics, initial focus, forward and reverse focus containment, blocked background focus/scroll, bounded internal scrolling, and Escape, close-control, and backdrop dismissal.
+- Verify Inspect returns focus to the exact originating card control and Transcript returns focus to its control; preserve Transcript current-message positioning and manual-scroll behavior.
+- Regress long and omitted project sections, every route, horizontal overflow, dialogue advancement, and browser-console output.
+- Run the unchanged live token-resolution verifier, type generation, type-check, lint, and production build.
 
 ## Residual risks
 
-- Transcript still uses its existing modal implementation until the next mapped capability. Non-invariant sequencing risk because this control capability preserves that separate behavior rather than claiming modal completeness.
-- Reduced-motion behavior remains the final mapped capability. Non-invariant sequencing risk because control semantics and focus are independently observable without changing animation ownership.
-- Native external-link activation opens third-party destinations. Non-invariant test-environment concern; browser acceptance verifies link semantics and new-tab attributes without depending on external network availability.
+- Reduced-motion behavior remains the final mapped capability. Non-invariant sequencing risk because this thickening preserves the existing animation behavior while consolidating modal ownership.
+- `PORT-004` contains superseded opaque/no-blur language. Binding `docs/DESIGN.md` remains authoritative; this thickening closes the interaction defects without restoring obsolete visual direction.
 
 ## Notes
 
-The three explicitly routed defects are mandatory acceptance cases, not optional cleanup. The completed control inventory also requires exactly one `aria-current="page"` navigation link, project-qualified external-link names, durable text for the non-contributing project state, and explicit `type="button"` plus focus-visible treatment for selectable buttons. Do not migrate Transcript behavior or consolidate motion in this thickening.
+Keep feature content feature-owned. Do not introduce a general overlay framework, a second verifier, or reduced-motion changes in this thickening. The intended implementation is Transcript composing the already-proven `ModalShell`, plus only the smallest props required for its footer, scrolling, and focus return.

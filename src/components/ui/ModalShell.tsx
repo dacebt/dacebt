@@ -1,4 +1,8 @@
-import { useRef, type ReactNode } from "react"
+import {
+  useRef,
+  type ReactNode,
+  type Ref,
+} from "react"
 import {
   CloseButton,
   Dialog,
@@ -8,16 +12,22 @@ import GlassPanel from "./GlassPanel"
 import { modalShellStyles } from "./modal-shell-styles"
 
 interface ModalShellProps {
+  bodyRef?: Ref<HTMLDivElement>
   children: ReactNode
   finalFocusEl: () => HTMLElement | null
+  footer?: ReactNode
+  onBodyScrollIntent?: () => void
   onClose: () => void
   open: boolean
   title: string
 }
 
 export default function ModalShell({
+  bodyRef,
   children,
   finalFocusEl,
+  footer,
+  onBodyScrollIntent,
   onClose,
   open,
   title,
@@ -64,11 +74,35 @@ export default function ModalShell({
               </Dialog.Header>
 
               <Dialog.Body
+                ref={bodyRef}
                 {...modalShellStyles.body}
                 {...modalShellStyles.scrollContainment}
+                aria-label={`${title} scrollable content`}
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  if ([
+                    "ArrowDown",
+                    "ArrowUp",
+                    "End",
+                    "Home",
+                    "PageDown",
+                    "PageUp",
+                    " ",
+                  ].includes(event.key)) {
+                    onBodyScrollIntent?.()
+                  }
+                }}
+                onPointerDown={onBodyScrollIntent}
+                onWheel={onBodyScrollIntent}
+                onTouchMove={onBodyScrollIntent}
               >
                 {children}
               </Dialog.Body>
+              {footer && (
+                <Dialog.Footer {...modalShellStyles.footer}>
+                  {footer}
+                </Dialog.Footer>
+              )}
             </GlassPanel>
           </Dialog.Content>
         </Dialog.Positioner>
