@@ -3,15 +3,24 @@ import {
   Button,
   type ButtonProps,
 } from "@chakra-ui/react"
-import { compactActionStyles } from "./compact-action-styles"
+import {
+  compactActionEmphasisStyles,
+  compactActionStyles,
+} from "./compact-action-styles"
 
-type CompactActionProps = Omit<ButtonProps, "as" | "asChild" | "type">
+type CompactActionEmphasis = "neutral" | "subtle" | "primary"
+
+interface CompactActionProps
+  extends Omit<ButtonProps, "as" | "asChild" | "type"> {
+  emphasis?: CompactActionEmphasis
+}
 
 const CompactAction = React.forwardRef<HTMLButtonElement, CompactActionProps>(
-  ({ children, ...props }, ref) => (
+  ({ children, emphasis = "neutral", ...props }, ref) => (
     <Button
       ref={ref}
       {...compactActionStyles}
+      {...compactActionEmphasisStyles[emphasis]}
       {...props}
       type="button"
     >

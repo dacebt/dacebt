@@ -1,9 +1,9 @@
-import { Box, Grid, Text, Link } from "@chakra-ui/react"
+import { Box, Grid, Icon, Text } from "@chakra-ui/react"
 import { Tooltip } from "../components/ui/tooltip"
 import { FaLinkedin, FaGithub, FaDiscord, FaXTwitter } from "react-icons/fa6"
 import contactData from "../data/contact.json"
 import PageLayout from "../components/PageLayout"
-import FloatingButton from "../components/ui/FloatingButton"
+import SelectableLink from "../components/ui/SelectableLink"
 import { selectablePanelStyles } from "../components/ui/selectable-panel-styles"
 
 const iconMap = {
@@ -16,7 +16,6 @@ const iconMap = {
 export default function ContactPage() {
   return (
     <PageLayout title="Get In Touch" subtitle="Connect with me through any of these platforms" centerContent>
-      {/* Contact cards grid */}
       <Grid
         gridTemplateColumns={{ base: "1fr", sm: "repeat(2, 1fr)" }}
         gap={{ base: 4, md: 6 }}
@@ -26,52 +25,42 @@ export default function ContactPage() {
         justifyItems="center"
       >
         {contactData.map((contact, index) => {
-          const Icon = iconMap[contact.icon as keyof typeof iconMap]
+          const ContactIcon = iconMap[contact.icon as keyof typeof iconMap]
 
           return (
             <Tooltip key={contact.name} content={contact.url}>
-              <Link
+              <SelectableLink
                 href={contact.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                textDecoration="none"
-                display="block"
-                w="100%"
+                size="lg"
+                height="140px"
+                width="100%"
+                index={index}
+                animationDelay={index * 0.5}
+                density="tight"
               >
-                <FloatingButton
-                  size="lg"
-                  height="140px"
-                  width="100%"
-                  index={index}
-                  animationDelay={index * 0.5}
-                  density="tight"
+                <Box
+                  {...selectablePanelStyles.iconFrame}
+                  _groupHover={{
+                    bg: "accent.tealAlpha.20",
+                    borderColor: "accent.tealAlpha.40",
+                  }}
+                  transition="all 0.3s ease"
                 >
-                  {/* Icon container with enhanced styling */}
-                  <Box
-                    {...selectablePanelStyles.iconFrame}
-                    _groupHover={{
-                      bg: "accent.tealAlpha.20",
-                      borderColor: "accent.tealAlpha.40",
-                    }}
-                    transition="all 0.3s ease"
-                  >
-                    <Icon
-                      size={24}
-                    />
-                  </Box>
+                  <Icon as={ContactIcon} boxSize={6} aria-hidden="true" />
+                </Box>
 
-                  {/* Enhanced text styling */}
-                  <Text
-                    {...selectablePanelStyles.label}
-                    _groupHover={{
-                      color: "accent.teal",
-                    }}
-                    transition="color 0.3s ease"
-                  >
-                    {contact.name}
-                  </Text>
-                </FloatingButton>
-              </Link>
+                <Text
+                  {...selectablePanelStyles.label}
+                  _groupHover={{
+                    color: "accent.teal",
+                  }}
+                  transition="color 0.3s ease"
+                >
+                  {contact.name}
+                </Text>
+              </SelectableLink>
             </Tooltip>
           )
         })}

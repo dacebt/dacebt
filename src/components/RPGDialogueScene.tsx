@@ -15,6 +15,20 @@ interface RPGDialogueSceneProps {
 	transcriptTitle?: string
 }
 
+const CONTROL_TARGET_SELECTOR = [
+	"button",
+	"a",
+	"input",
+	"select",
+	"textarea",
+	"summary",
+	'[contenteditable]:not([contenteditable="false"])',
+].join(", ")
+
+function isControlTarget(target: EventTarget | null) {
+	return target instanceof Element && target.closest(CONTROL_TARGET_SELECTOR) !== null
+}
+
 export default function RPGDialogueScene({
 	messages,
 	autoAdvanceDelay = 1500,
@@ -48,10 +62,17 @@ export default function RPGDialogueScene({
 		if (isTranscriptOpen) return
 
 		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === " " || event.key === "Enter") {
+			const isAdvanceKey = event.key === " " || event.key === "Enter"
+			const isTranscriptKey = event.key === "t" || event.key === "T"
+
+			if ((!isAdvanceKey && !isTranscriptKey) || isControlTarget(event.target)) {
+				return
+			}
+
+			if (isAdvanceKey) {
 				event.preventDefault()
 				handleClick()
-			} else if (event.key === "t" || event.key === "T") {
+			} else {
 				event.preventDefault()
 				setIsTranscriptOpen(true)
 			}

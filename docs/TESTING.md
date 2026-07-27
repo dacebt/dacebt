@@ -75,9 +75,11 @@ independent exact background, gradient, shadow, blur, and modal-frame
 expectations for all six `GlassPanel` surface responsibilities. It also resolves
 every supported typography role through a live exported style object where one
 exists, plus the page-title gradient, selectable-panel presentation, and shared
-modal presentation. This proof is cumulative with type generation, type-checking,
-linting, and the production build; none of those gates substitutes for another.
-The production build already performs type generation.
+modal presentation. This proof is cumulative with type generation,
+type-checking, linting, and the production build; none of those gates substitutes
+for another. The production build already performs type generation. Composed
+reachability and semantics remain owned by the production-preview Playwright
+matrix.
 
 Documentation-only changes verify document links, named paths, and repository
 state. Static code gates are run when the documentation makes claims about
@@ -110,6 +112,14 @@ The browser matrix includes:
 - long-content and omitted-section project variants;
 - route changes and active navigation state;
 - visible focus treatment;
+- one visible `aria-current="page"` route link;
+- stable `Transcript` and dynamic `Skip`/`Next` names at mobile width;
+- native-control Space, Enter, and T activation without scene shortcut
+  double-advance;
+- one native external anchor per Contact card, with no nested interactive
+  descendant;
+- project-qualified external icon-link names and durable non-contributing
+  project text;
 - absence of unexpected horizontal page scrolling.
 
 Shared shell, theme, and modal work observes the affected flow at both viewport

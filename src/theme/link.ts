@@ -10,43 +10,40 @@ export const linkRecipe = defineRecipe({
   },
   variants: {
     variant: {
-      nav: {
-        display: "flex",
-        alignItems: "center",
-        px: 4,
-        py: 3,
-        borderRadius: "sm",
-        position: "relative",
-        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-        bg: "transparent",
-        borderLeft: "3px solid transparent",
-        borderColor: "accent.teal",
-        textDecoration: "none",
-        _hover: {
-          bg: "accent.tealAlpha.8",
-          transform: "translateX(4px)",
-          boxShadow: "nav.inactiveHover",
-        },
-      },
-      icon: {
+      route: {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        p: 2,
-        borderRadius: "md",
-        bg: "accent.tealAlpha.10",
+        w: "46px",
+        h: "46px",
+        borderRadius: "4px",
         border: "1px solid",
-        borderColor: "accent.tealAlpha.20",
-        color: "accent.teal",
-        textDecoration: "none",
+        bg: "bg.steelAlpha.60",
+        borderColor: "border.inner",
+        color: "text.secondary",
+        boxShadow: "none",
         transition: "all 0.2s ease",
+        textDecoration: "none",
         _hover: {
-          bg: "accent.tealAlpha.20",
+          bg: "accent.tealAlpha.8",
           borderColor: "accent.teal",
-          transform: "scale(1.05)",
+          color: "accent.teal",
+          boxShadow: "nav.inactiveHover",
+        },
+        _currentPage: {
+          bg: "accent.tealAlpha.15",
+          borderColor: "accent.teal",
+          color: "accent.teal",
+          boxShadow: "nav.active",
+          _hover: {
+            bg: "accent.tealAlpha.25",
+            borderColor: "accent.teal",
+            color: "accent.teal",
+            boxShadow: "nav.activeHover",
+          },
         },
       },
-      iconSmall: {
+      projectIcon: {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -66,4 +63,3 @@ export const linkRecipe = defineRecipe({
     },
   },
 })
-

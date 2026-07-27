@@ -1,4 +1,4 @@
-# Thickening: four-route panel and typography hierarchy
+# Thickening: semantic control families
 
 **Started:** 2026-07-27
 **Git strategy:** commit-to-main
@@ -6,32 +6,33 @@
 
 ## Dimension
 
-The role-owned panel and typography hierarchy across the portfolio's responsive shell, route content, dialogue, project, and modal compositions.
+The semantic element, accessible-name, and interaction-state contract for navigation, selectable, compact, and icon controls across the four-route interface.
 
 ## Observable delta
 
-- before: the Inspect path proves resolved surface and text roles, but the remaining four-route composition still mixes shared primitives with caller-local panel, gradient, shadow, and typography treatments that do not express one consistent hierarchy.
-- after: a visitor moving among `/`, `/projects`, `/about`, and `/contact` at desktop and mobile widths sees one coherent hierarchy of shell, content panel, selectable panel, title, supporting text, and modal content roles without changing the routes' existing interactions.
+- before: visually related controls use parallel implementations; mobile dialogue controls lose their names when visible labels hide; the dialogue scene consumes Space and Enter before focused native controls; and each Contact card nests a button inside a link.
+- after: a keyboard or pointer visitor navigates and activates each control family through one truthful native element with a stable accessible name and consistent state treatment, while scene-level shortcuts yield to focused controls.
 
 ## Minimum surface
 
-- `src/theme/` — complete the supported surface and typography roles consumed by the four-route composition and keep the composition root responsibility-focused.
-- `src/components/AppShell.tsx`, `src/components/PageLayout.tsx`, `src/components/PlayerStatsCard.tsx`, and `src/components/ui/` — make the shell, route frame, navigation-adjacent panels, page headings, and reusable selectable surfaces consume those roles from their established owners.
-- The home dialogue, project cards and Inspect content, About topic/scene composition, Contact content, and Transcript presentation — migrate caller-local panel and typography treatments needed for the same visible hierarchy while preserving feature-owned content and behavior.
-- The live token-resolution verifier plus `docs/DESIGN.md`, `docs/TESTING.md`, and affected portfolio vault knowledge — prove and document the expanded production path.
+- `src/components/ui/` and the supported theme roles — establish role-named navigation, selectable, compact, and icon control presentation without weakening native button/link semantics or the surface responsibilities already accepted.
+- `src/components/NavRail.tsx`, `src/components/ProjectCard.tsx`, `src/components/RPGDialogueControls.tsx`, and `src/components/RPGDialogueScene.tsx` — adopt the shared families, preserve stable names at every breakpoint, and route shortcuts around focused native controls.
+- `src/pages/AboutPage.tsx` and `src/pages/ContactPage.tsx` — keep topic choices as buttons, make each Contact card one semantic external link, and compose the same selectable presentation without nested interactive content.
+- The live token-resolution verifier plus `docs/DESIGN.md`, `docs/TESTING.md`, and affected portfolio vault knowledge — prove and document the complete control path.
 
 ## Verification path
 
 - `wsd-walk --require-probe --expect "Local:"` — Vite reaches the real local entrypoint.
-- In the production preview, walk `/`, `/projects`, `/about`, and `/contact` at desktop and 390-by-844 mobile viewports; observe the shell, page-title, content-panel, selectable-panel, supporting-text, dialogue, and modal hierarchy; exercise each route's existing primary interaction; and confirm readable wrapping, visible focus, no clipping or unexpected horizontal overflow, and no browser-console regressions.
+- In the production preview at desktop and 390-by-844 mobile viewports, traverse navigation, About topics and return control, Contact cards, project Inspect/external icon controls, and Home Transcript/Skip controls by keyboard and pointer; confirm stable accessible names, one native interactive element per control, visible current-route, active-press, and focus states, scene shortcuts that do not preempt focused controls, and no unexpected route or dialogue advancement.
+- Regress Inspect exact-trigger restoration, all four routes, horizontal overflow, and browser-console output.
 - Run the live token-resolution verifier, type generation, type-check, lint, and production build.
 
 ## Residual risks
 
-- Typography and spacing role adoption may alter line wrapping or content density at intermediate widths. Non-invariant visual-tuning risk; the browser matrix includes the responsive breakpoints and the final PORT-007 human acceptance remains authoritative.
-- The dormant no-Inspect `ProjectCard` branch remains owned by PORT-005. Non-invariant cleanup concern because no composed application path reaches it.
-- Control-family semantics and interaction-state convergence remain the next mapped actor capability; this thickening preserves current control behavior while consolidating the panels and text surrounding it. Non-invariant sequencing risk because that capability has its own complete observable delta and is not required to make this visual hierarchy truthful.
+- Transcript still uses its existing modal implementation until the next mapped capability. Non-invariant sequencing risk because this control capability preserves that separate behavior rather than claiming modal completeness.
+- Reduced-motion behavior remains the final mapped capability. Non-invariant sequencing risk because control semantics and focus are independently observable without changing animation ownership.
+- Native external-link activation opens third-party destinations. Non-invariant test-environment concern; browser acceptance verifies link semantics and new-tab attributes without depending on external network availability.
 
 ## Notes
 
-Do not migrate Transcript onto `ModalShell` here; capability 4 owns its complete modal behavior. Reuse the resolved Inspect roles where their visual contract matches, and introduce a new role only when the four-route composition demonstrates a distinct responsibility.
+The three explicitly routed defects are mandatory acceptance cases, not optional cleanup. The completed control inventory also requires exactly one `aria-current="page"` navigation link, project-qualified external-link names, durable text for the non-contributing project state, and explicit `type="button"` plus focus-visible treatment for selectable buttons. Do not migrate Transcript behavior or consolidate motion in this thickening.

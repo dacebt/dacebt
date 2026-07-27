@@ -1,5 +1,6 @@
-import { Box, Button, Text } from "@chakra-ui/react"
+import { Box, Icon, Text } from "@chakra-ui/react"
 import { FiFileText, FiSkipForward, FiChevronsRight } from "react-icons/fi"
+import CompactAction from "./ui/CompactAction"
 
 interface RPGDialogueControlsProps {
 	currentIndex: number
@@ -20,7 +21,7 @@ export default function RPGDialogueControls({
 }: RPGDialogueControlsProps) {
 	const showSkipButton = isStreaming || hasMore
 	const skipLabel = isStreaming ? "Skip" : "Next"
-	const skipIcon = isStreaming ? <FiSkipForward /> : <FiChevronsRight />
+	const SkipIcon = isStreaming ? FiSkipForward : FiChevronsRight
 
 	return (
 		<Box
@@ -32,61 +33,35 @@ export default function RPGDialogueControls({
 			py={2}
 			mb={4}
 		>
-			{/* Transcript button - left */}
-			<Button
+			<CompactAction
 				onClick={onTranscriptOpen}
-				size="sm"
-				bg="accent.tealAlpha.10"
-				color="text.secondary"
-				border="1px solid"
-				borderColor="border.inner"
-				borderRadius="md"
-				display="flex"
-				alignItems="center"
+				emphasis="subtle"
 				gap={2}
-				_hover={{
-					bg: "accent.tealAlpha.20",
-					color: "text.primary",
-					borderColor: "accent.teal",
-				}}
-				transition="all 0.2s ease"
+				aria-label="Transcript"
 			>
-				<FiFileText />
+				<Icon as={FiFileText} aria-hidden="true" />
 				<Text as="span" display={{ base: "none", md: "inline" }}>
 					Transcript
 				</Text>
-			</Button>
+			</CompactAction>
 
-			{/* Progress indicator - center */}
 			<Text textStyle="progressText" color="text.muted">
 				{currentIndex + 1} / {totalMessages}
 			</Text>
 
-			{/* Skip buttons - right */}
 			<Box display="flex" gap={2}>
-				{/* Skip/Next button */}
 				{showSkipButton && (
-					<Button
+					<CompactAction
 						onClick={onSkip}
-						size="sm"
-						bg="accent.tealAlpha.15"
-						color="text.primary"
-						border="1px solid"
-						borderColor="accent.teal"
-						borderRadius="md"
-						display="flex"
-						alignItems="center"
+						emphasis="primary"
 						gap={1}
-						_hover={{
-							bg: "accent.tealAlpha.25",
-						}}
-						transition="all 0.2s ease"
+						aria-label={skipLabel}
 					>
 						<Text as="span" display={{ base: "none", md: "inline" }}>
 							{skipLabel}
 						</Text>
-						{skipIcon}
-					</Button>
+						<Icon as={SkipIcon} aria-hidden="true" />
+					</CompactAction>
 				)}
 			</Box>
 		</Box>

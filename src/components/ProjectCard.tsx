@@ -28,6 +28,23 @@ const getLinkIcon = (linkType: string) => {
   }
 }
 
+const getProjectLinkLabel = (projectName: string, linkType: string) => {
+  switch (linkType) {
+    case "github":
+      return `View ${projectName} on GitHub`
+    case "website":
+      return `Visit ${projectName} website`
+    case "demo":
+      return `View ${projectName} demo`
+    case "documentation":
+      return `View ${projectName} documentation`
+    case "company":
+      return `Visit ${projectName} company website`
+    default:
+      return `Open ${projectName} link`
+  }
+}
+
 interface ProjectCardProps {
   project: Project
   index: number
@@ -100,14 +117,20 @@ export default function ProjectCard({
           {project.name}
         </Text>
         {!project.currentlyContributing && (
-          <Tooltip content="Currently not contributing">
-            <Icon
-              as={FaXmark}
-              boxSize={3}
-              color="text.muted"
-              opacity={0.6}
-            />
-          </Tooltip>
+          <Flex alignItems="center" gap={1} color="text.muted">
+            <Tooltip content="Currently not contributing">
+              <Box display="flex" aria-hidden="true">
+                <Icon
+                  as={FaXmark}
+                  boxSize={3}
+                  opacity={0.6}
+                />
+              </Box>
+            </Tooltip>
+            <Text textStyle="smallText">
+              Not contributing
+            </Text>
+          </Flex>
         )}
       </Flex>
 
@@ -227,27 +250,26 @@ export default function ProjectCard({
           )}
           {allLinks.map(([linkType, url]) => {
             const IconComponent = getLinkIcon(linkType)
-            const linkLabels: Record<string, string> = {
-              github: "View on GitHub",
-              website: "Visit Website",
-              demo: "View Demo",
-              documentation: "View Documentation",
-              company: project.company || "Visit Company Website",
-            }
+            const linkLabel = getProjectLinkLabel(project.name, linkType)
 
             return (
               <Tooltip
                 key={`${project.name}-${linkType}`}
-                content={linkLabels[linkType] || "Open Link"}
+                content={linkLabel}
               >
                 <Link
                   href={url}
-                  variant="iconSmall"
+                  variant="projectIcon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={linkLabels[linkType] || "Open Link"}
+                  aria-label={linkLabel}
                 >
-                  <Icon as={IconComponent} boxSize={3} color="accent.teal" />
+                  <Icon
+                    as={IconComponent}
+                    boxSize={3}
+                    color="accent.teal"
+                    aria-hidden="true"
+                  />
                 </Link>
               </Tooltip>
             )

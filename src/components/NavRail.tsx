@@ -1,6 +1,5 @@
 import { Box, Icon, Link } from "@chakra-ui/react"
-import { Link as RouterLink, useLocation } from "react-router-dom"
-import type { LinkProps as RouterLinkProps } from "react-router-dom"
+import { Link as RouterLink, matchPath, useLocation } from "react-router-dom"
 import { FaHome, FaFolderOpen, FaUser, FaEnvelope } from "react-icons/fa"
 import { Tooltip } from "./ui/tooltip"
 
@@ -29,45 +28,26 @@ export default function NavRail() {
       gap={2}
       py={{ base: 0, md: 3 }}
     >
-      {navItems.map(({ label, path, icon }) => {
-        const isActive = location.pathname === path
-
-        return (
-          <Tooltip key={path} content={label}>
-            <Link
-              as={RouterLink}
-              {...({ to: path } as RouterLinkProps)}
+      {navItems.map(({ label, path, icon }) => (
+        <Tooltip key={path} content={label}>
+          <Link asChild variant="route">
+            <RouterLink
+              to={path}
               aria-label={label}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              w="46px"
-              h="46px"
-              borderRadius="4px"
-              bg={isActive ? "accent.tealAlpha.15" : "bg.steelAlpha.60"}
-              border="1px solid"
-              borderColor={isActive ? "accent.teal" : "border.inner"}
-              color={isActive ? "accent.teal" : "text.secondary"}
-              transition="all 0.2s ease"
-              _hover={{
-                bg: isActive ? "accent.tealAlpha.25" : "accent.tealAlpha.8",
-                borderColor: "accent.teal",
-                color: "accent.teal",
-                boxShadow: isActive ? "nav.activeHover" : "nav.inactiveHover",
-              }}
-              _focus={{
-                outline: "2px solid",
-                outlineColor: "accent.teal",
-                outlineOffset: "2px",
-              }}
-              boxShadow={isActive ? "nav.active" : "none"}
-              textDecoration="none"
+              aria-current={
+                matchPath(
+                  { path, end: true, caseSensitive: false },
+                  location.pathname,
+                )
+                  ? "page"
+                  : undefined
+              }
             >
               <Icon as={icon} boxSize={5} aria-hidden="true" />
-            </Link>
-          </Tooltip>
-        )
-      })}
+            </RouterLink>
+          </Link>
+        </Tooltip>
+      ))}
     </Box>
   )
 }

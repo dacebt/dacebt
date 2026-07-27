@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from "react"
-import { Box, Grid, Text, Button } from "@chakra-ui/react"
+import { Box, Grid, Icon, Text } from "@chakra-ui/react"
 import { FiArrowLeft } from "react-icons/fi"
 import PageLayout from "../components/PageLayout"
 import RPGDialogueScene from "../components/RPGDialogueScene"
-import FloatingButton from "../components/ui/FloatingButton"
+import CompactAction from "../components/ui/CompactAction"
+import SelectableButton from "../components/ui/SelectableButton"
 import { selectablePanelStyles } from "../components/ui/selectable-panel-styles"
 import { aboutTopics, type AboutTopic } from "../data/about"
 
@@ -12,18 +13,14 @@ export default function AboutPage() {
 
 	const handleTopicClick = useCallback((topic: AboutTopic) => {
 		setSelectedTopic(topic)
-		// Push state so browser back returns to grid without modifying the URL
 		window.history.pushState({ topicId: topic.id }, "", window.location.pathname)
 	}, [])
 
 	const handleBack = useCallback(() => {
 		setSelectedTopic(null)
-		// Go back in history to remove the topic hash
 		window.history.back()
 	}, [])
 
-
-	// Handle browser back button
 	useEffect(() => {
 		const handlePopState = () => {
 			setSelectedTopic(null)
@@ -33,9 +30,6 @@ export default function AboutPage() {
 		return () => window.removeEventListener("popstate", handlePopState)
 	}, [])
 
-
-
-	// Handle Escape key to go back
 	useEffect(() => {
 		if (!selectedTopic) return
 
@@ -49,36 +43,20 @@ export default function AboutPage() {
 		return () => document.removeEventListener("keydown", handleKeyDown)
 	}, [selectedTopic, handleBack])
 
-	// Show dialogue scene when topic is selected
 	if (selectedTopic) {
 		return (
 			<Box h="100%" display="flex" flexDirection="column">
-				{/* Back button */}
 				<Box pb={2}>
-					<Button
+					<CompactAction
 						onClick={handleBack}
-						size="sm"
-						bg="accent.tealAlpha.10"
-						color="text.secondary"
-						border="1px solid"
-						borderColor="border.inner"
-						borderRadius="md"
-						display="flex"
-						alignItems="center"
+						emphasis="subtle"
 						gap={2}
-						_hover={{
-							bg: "accent.tealAlpha.20",
-							color: "text.primary",
-							borderColor: "accent.teal",
-						}}
-						transition="all 0.2s ease"
 					>
-						<FiArrowLeft />
+						<Icon as={FiArrowLeft} aria-hidden="true" />
 						<Text as="span">Back to Topics</Text>
-					</Button>
+					</CompactAction>
 				</Box>
 
-				{/* Dialogue scene */}
 				<Box flex={1}>
 					<RPGDialogueScene
 						messages={selectedTopic.messages}
@@ -91,7 +69,6 @@ export default function AboutPage() {
 		)
 	}
 
-	// Show topic selection grid
 	return (
 		<PageLayout title="About Me" subtitle="Click on any topic to learn more about me">
 			<Grid
@@ -104,7 +81,7 @@ export default function AboutPage() {
 				pt={4}
 			>
 				{aboutTopics.map((topic, index) => (
-					<FloatingButton
+					<SelectableButton
 						key={topic.id}
 						onClick={() => handleTopicClick(topic)}
 						size="lg"
@@ -114,14 +91,12 @@ export default function AboutPage() {
 						animationDelay={index * 0.3}
 						density="tight"
 					>
-						{/* Subtle icon placeholder */}
 						<Box
 							{...selectablePanelStyles.iconFrame}
 						>
 							<Box {...selectablePanelStyles.indicator} />
 						</Box>
 
-						{/* Label text */}
 						<Text
 							{...selectablePanelStyles.label}
 							_groupHover={{
@@ -131,7 +106,7 @@ export default function AboutPage() {
 						>
 							{topic.label}
 						</Text>
-					</FloatingButton>
+					</SelectableButton>
 				))}
 			</Grid>
 		</PageLayout>
