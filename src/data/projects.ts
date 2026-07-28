@@ -483,8 +483,8 @@ const decentUi = createProject({
   tags: ["decent", "design", "chakra", "storybook"],
 })
 
-const speedWiki = createProject({
-  name: "speed-wiki",
+const wikipediaSpeedrun = createProject({
+  name: "Wikipedia Speedrun",
   currentlyContributing: true,
   shortDescription:
     "A multiplayer Wikipedia race where players join a room by code and click their way from a shared starting article to a goal article, refereed by an authoritative Cloudflare Durable Object",
@@ -640,15 +640,15 @@ const caffeinate = createProject({
 
 // Projects data
 export const projects: Project[] = [
-  speedWiki,
   agentBeacon,
   bitCraftOnlineProjectTool,
+  caffeinate,
   bcCodexNews,
   ebtPlugins,
-  caffeinate,
   ebtGamesDesignLibrary,
   ninefoldProject,
   wordtraceProject,
+  wikipediaSpeedrun,
   ghBrickbreak,
   decentApp,
   sarcophagusProtocol,
