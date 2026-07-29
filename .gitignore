@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# skeleton-walker probe config (local, per-machine)
+.wsd/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
