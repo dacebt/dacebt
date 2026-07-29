@@ -11,10 +11,11 @@ const PlayerStatsCard = () => {
     
     const totalMonths = years * 12 + months
     const fullYears = Math.floor(totalMonths / 12)
-    
-    // If we're in first 6 months of year (Jan-Jun), show "Over X years"
-    // If we're in second 6 months (Jul-Dec), show "Close to X+1 years"
-    if (now.getMonth() < 6) {
+    const monthsSinceAnniversary = totalMonths % 12
+
+    // Measured from the August anniversary, not the calendar year: in the
+    // first half show the year reached, in the second half the one approaching.
+    if (monthsSinceAnniversary < 6) {
       return `Over ${fullYears} years`
     } else {
       return `Close to ${fullYears + 1} years`
