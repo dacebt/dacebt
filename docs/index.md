@@ -9,6 +9,8 @@ the code is wrong, and both are reconciled in the same unit of work.
 - [Testing](TESTING.md) — Binding verification tiers, browser acceptance matrix, and completion evidence for the portfolio.
 
 The root [CLAUDE.md](../CLAUDE.md) declares how these documents govern code.
-Public repository orientation remains in [README.md](../README.md). Delivery
-state, tasks, working knowledge, and decisions live in the external project
-vault.
+This repository is `dacebt/dacebt`, so [README.md](../README.md) renders as
+David's public GitHub profile page. It presents his professional profile and
+selected projects, and is not repository orientation—repository setup,
+verification, and structure are owned by the documents above. Delivery state,
+tasks, working knowledge, and decisions live in the external project vault.
