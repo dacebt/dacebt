@@ -8,6 +8,11 @@ export interface ProjectLinks {
   documentation?: string
 }
 
+export interface ProjectPrimaryDestination {
+  label: string
+  url: string
+}
+
 export interface Project {
   name: string
   shortDescription: string
@@ -17,6 +22,7 @@ export interface Project {
   company?: string
   companyUrl?: string
   links: ProjectLinks
+  primaryDestination?: ProjectPrimaryDestination
   technologies: string[]
   keyFeatures: string[]
   contributions: string[]
@@ -40,6 +46,10 @@ const decentApp = createProject({
     github: "https://github.com/decentdao/decent-interface",
     website: "https://www.app.decent.org",
     documentation: "https://docs.decentdao.org/app",
+  },
+  primaryDestination: {
+    label: "Open App",
+    url: "https://www.app.decent.org",
   },
   technologies: [
     "React",
@@ -88,6 +98,10 @@ const sarcophagusProtocol = createProject({
     website: "https://sarcophagus.io",
     demo: "https://app.sarcophagus.io/dashboard",
   },
+  primaryDestination: {
+    label: "Open App",
+    url: "https://app.sarcophagus.io/dashboard",
+  },
   technologies: ["React", "TypeScript", "ethers", "Arweave", "Chakra UI"],
   keyFeatures: ["Onchain dead man's switch", "Encrypted payloads stored on Arweave"],
   contributions: [
@@ -107,6 +121,10 @@ const bitCraftOnlineProjectTool = createProject({
   links: {
     github: "https://github.com/dacebt/bccodex",
     website: "https://bccodex.com",
+  },
+  primaryDestination: {
+    label: "Open App",
+    url: "https://bccodex.com",
   },
   technologies: [
     "React 18.2",
@@ -170,6 +188,10 @@ const bcCodexNews = createProject({
   links: {
     github: "https://github.com/dacebt/bc-news-workers",
     website: "https://news.bccodex.com",
+  },
+  primaryDestination: {
+    label: "Read News",
+    url: "https://news.bccodex.com",
   },
   technologies: [
     "Cloudflare Workers",
@@ -326,6 +348,10 @@ const ninefoldProject = createProject({
   links: {
     website: "https://ninefold.epicbadtiming.com",
   },
+  primaryDestination: {
+    label: "Play",
+    url: "https://ninefold.epicbadtiming.com",
+  },
   technologies: [
     "React 19",
     "TypeScript 5",
@@ -370,6 +396,10 @@ const wordtraceProject = createProject({
   type: "personal",
   links: {
     website: "https://wordtrace.epicbadtiming.com",
+  },
+  primaryDestination: {
+    label: "Play",
+    url: "https://wordtrace.epicbadtiming.com",
   },
   technologies: [
     "React 19",
@@ -492,6 +522,10 @@ const wikipediaSpeedrun = createProject({
   links: {
     github: "https://github.com/dacebt/speed-wiki",
     website: "https://speed-wiki.epicbadtiming.com",
+  },
+  primaryDestination: {
+    label: "Play",
+    url: "https://speed-wiki.epicbadtiming.com",
   },
   technologies: [
     "TypeScript",

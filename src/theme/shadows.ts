@@ -63,16 +63,6 @@ export const shadowConfig = defineConfig({
             value: "0 0 8px {colors.accent.greenAlpha.30}",
           },
         },
-        card: {
-          projectHover: {
-            value: "0 8px 25px {colors.accent.tealAlpha.15}",
-          },
-        },
-        badge: {
-          personal: {
-            value: "0 2px 8px {colors.accent.tealAlpha.20}",
-          },
-        },
         bolt: {
           frame: {
             value: "inset 0 1px 2px {colors.white.alpha.40}, inset 0 -1px 2px {colors.black.alpha.60}, 0 2px 4px {colors.black.alpha.30}, 0 0 0 1px {colors.black.alpha.20}",

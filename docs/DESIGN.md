@@ -3,7 +3,7 @@ type: specification
 title: Portfolio Design
 description: Binding visual language, styling ownership, component patterns, responsive behavior, and accessibility contract for the portfolio interface.
 tags: [design, chakra-ui, components, accessibility]
-timestamp: 2026-07-27
+timestamp: 2026-07-30
 authority: binding
 ---
 
@@ -61,6 +61,9 @@ text-style, shadow, and recipe definitions that it assembles:
   `surface.modal`;
 - the complete panel-gradient family is `gradient.panel.subtle`,
   `gradient.panel.medium`, and `gradient.panel.strong`;
+- project-card internals use the exact `projectCard.control`,
+  `projectCard.chip`, `projectCard.divider`, and `projectCard.chipBorder`
+  roles plus `gradient.projectCard.primary`;
 - `modal.content` is the complete supported modal shadow;
 - text styles represent reusable typography roles;
 - semantic tokens represent complete gradients and computed visual roles;
@@ -103,9 +106,32 @@ component-owned state hooks, and owned presentation are not public.
 presentations used by Inspect, Back, Transcript, and Skip/Next actions. It
 forwards its native button ref so feature composition and shared interaction
 owners can retain exact trigger identity and focus control.
-The Link recipe owns route-navigation and project icon-link presentation. The
-tooltip wrapper owns supplemental tooltip behavior; a tooltip is never the sole
-accessible name or state description.
+Project cards compose the selectable `GlassPanel` without corner accents or a
+page-wide fixed height. Their Header Utility presents a teal `Personal project`
+eyebrow only for personal work, the project title, negative-only
+contribution state, and a 42px icon-only GitHub action in a divided header. Its
+internal composition uses the `projectCardEyebrow`, `projectCardTitle`,
+`projectCardSummary`, `projectCardChip`, and `projectCardAction` text roles,
+1rem card padding, and a 0.75rem vertical rhythm. The card is an `article`
+containing a semantic `header`, `h3`, and `footer`; its technology chips form a
+labelled `group` named `Featured technologies`. It ends in paired 42px actions
+where the gradient-backed primary
+`Inspect project` control takes the remaining width and the raised, bordered
+configured destination keeps its natural width; both labels remain on one line.
+The project grid uses content-bounded auto-fill tracks that target a 300px
+minimum when the container permits and shrink to the available width on
+narrower mobile viewports. Under that constraint, the footer wraps the
+configured destination below Inspect rather than overflowing; at card widths of
+300px or more, the actions retain the prototype's paired row. Incomplete final
+rows retain the same track width as preceding rows. Each grid row is
+content-sized by its tallest card; sibling cards stretch to that row height and
+their actions align at the bottom. `GlassPanel` remains the sole owner of the
+outer surface and depth; feature hover may transform the card but cannot replace
+that primitive-owned depth.
+The Link recipe owns route navigation, the `projectIcon` GitHub header action,
+and the `projectAction` bordered secondary destination. The tooltip wrapper
+owns supplemental tooltip behavior; a tooltip is never the sole accessible
+name or state description.
 
 `ModalShell` owns the shared portal-modal behavior while modal content remains
 feature-owned:
@@ -126,30 +152,37 @@ content inside `ModalShell`. Transcript uses the shell's body ref and scroll
 intent seam to retain current-message positioning until the user scrolls, and
 uses the shared footer role for its message count. Inspect and Transcript
 openings from a native control restore focus to that exact control. A Transcript
-opened by the T shortcut returns focus to the Transcript control.
+opened by the T shortcut returns focus to the Transcript control. The Projects
+route owns the selected project and exact Inspect trigger; each card passes the
+activated button back to that owner.
 
 Navigation and external links use semantic anchors. Actions use semantic
 buttons with `type="button"`. Selectable buttons preserve the native `disabled`
 attribute and behavior. Each Contact card is one external anchor with no nested
 interactive descendant and uses `target="_blank"` with
-`rel="noopener noreferrer"`. Project icon links use project-qualified
-accessible names while their icons remain decorative. Exactly one visible
-navigation link identifies the current route with `aria-current="page"`.
+`rel="noopener noreferrer"`. Project GitHub icons are decorative and their
+anchors use project-qualified accessible names. Repeated Inspect and configured
+destination controls retain their visible label at the start of a
+project-qualified accessible name. Exactly one visible navigation link
+identifies the current route with `aria-current="page"`.
 
 Dialogue Transcript and Skip/Next controls retain explicit `Transcript`,
 `Skip`, or `Next` names when their visible labels hide at the mobile breakpoint;
 their icons are decorative. The scene-level Space, Enter, and T shortcuts yield
 when the event target is inside a button, anchor, input, select, textarea,
 summary, or editable region, so native control activation is not duplicated.
-Non-contributing project state is written as durable text; its X icon is
-decorative and its tooltip is supplemental.
+Non-contributing project state is written as durable `Not contributing` text;
+contributing projects do not render a positive state.
 
 ## Typography and geometry
 
 Theme text styles define typography roles. Route headings use `pageTitle` and
 `pageSubtitle`; content and selectable panels use `panelTitle`,
 `supportingText`, and `selectableLabel`; modal composition uses `modalTitle`,
-`sectionLabel`, and `modalBody`. Dialogue and compact metadata retain their
+`sectionLabel`, and `modalBody`. Project cards use the exact prototype-specific
+`projectCardEyebrow`, `projectCardTitle`, `projectCardSummary`,
+`projectCardChip`, and `projectCardAction` roles rather than shared panel or
+supporting-text approximations. Dialogue and compact metadata retain their
 dedicated roles. A component may adjust layout geometry responsively, but it
 does not silently negate the role's case, weight, spacing, or hierarchy. A
 repeated override belongs in the text style or a new named role.

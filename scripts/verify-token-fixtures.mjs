@@ -55,6 +55,38 @@ export function createTypographyFixtures({
     ["pageSubtitle", pageLayoutStyles.subtitle, ["fontSize", "color", "lineHeight"]],
     ["panelTitle", { textStyle: "panelTitle" }, ["fontSize", "fontWeight", "lineHeight"]],
     ["supportingText", { textStyle: "supportingText" }, ["fontSize", "color", "lineHeight"]],
+    [
+      "projectCardEyebrow",
+      { textStyle: "projectCardEyebrow" },
+      ["fontSize", "fontWeight", "lineHeight", "letterSpacing", "textTransform"],
+    ],
+    [
+      "projectCardTitle",
+      { textStyle: "projectCardTitle" },
+      ["fontSize", "fontWeight", "lineHeight", "letterSpacing"],
+    ],
+    [
+      "projectCardSummary",
+      { textStyle: "projectCardSummary" },
+      ["fontSize", "fontWeight", "lineHeight", "color"],
+    ],
+    [
+      "projectCardChip",
+      { textStyle: "projectCardChip" },
+      ["fontSize", "fontWeight", "lineHeight"],
+    ],
+    [
+      "projectCardAction",
+      { textStyle: "projectCardAction" },
+      [
+        "fontSize",
+        "fontWeight",
+        "lineHeight",
+        "letterSpacing",
+        "textTransform",
+        "whiteSpace",
+      ],
+    ],
     ["selectableLabel", selectablePanelStyles.label, ["fontSize", "fontWeight", "textTransform"]],
     ["modalTitle", modalShellStyles.title, ["fontSize", "fontWeight", "lineHeight"]],
     ["sectionLabel", { textStyle: "sectionLabel" }, ["fontSize", "fontWeight", "textTransform"]],

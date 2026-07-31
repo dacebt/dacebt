@@ -28,6 +28,12 @@ export const semanticColorConfig = defineConfig({
           },
           edge: { value: "rgba(255, 255, 255, 0.1)" },
         },
+        projectCard: {
+          control: { value: "rgba(40, 48, 57, 0.96)" },
+          chip: { value: "rgba(10, 10, 10, 0.62)" },
+          divider: { value: "rgba(93, 122, 148, 0.52)" },
+          chipBorder: { value: "rgba(93, 122, 148, 0.70)" },
+        },
         gradient: {
           panel: {
             subtle: {
@@ -38,6 +44,11 @@ export const semanticColorConfig = defineConfig({
             },
             strong: {
               value: "linear-gradient(180deg, rgba(90, 140, 220, 0.18) 0%, rgba(55, 100, 180, 0.07) 20%, transparent 50%, rgba(0, 0, 0, 0.25) 100%)",
+            },
+          },
+          projectCard: {
+            primary: {
+              value: "linear-gradient(180deg, rgba(91, 192, 190, 0.22), rgba(91, 192, 190, 0.08))",
             },
           },
           pageTitle: {

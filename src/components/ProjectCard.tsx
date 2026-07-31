@@ -1,281 +1,195 @@
-import { Box, Text, Icon, Flex, Link } from "@chakra-ui/react"
-import { Tooltip } from "./ui/tooltip"
-import { FaGithub, FaExternalLinkAlt, FaPlay, FaBook, FaBuilding } from "react-icons/fa"
-import { FaXmark } from "react-icons/fa6"
+import { Box, Flex, Icon, Link, Text } from "@chakra-ui/react"
+import { FaGithub } from "react-icons/fa"
 import { type Project } from "../data/projects"
-import ProjectCardBadge from "./ui/ProjectCardBadge"
-import GlassPanel from "./ui/GlassPanel"
 import CompactAction from "./ui/CompactAction"
-import { selectablePanelStyles } from "./ui/selectable-panel-styles"
-import { getAnimation } from "../utils/motion"
+import GlassPanel from "./ui/GlassPanel"
+import { Tooltip } from "./ui/tooltip"
 
-const MAX_VISIBLE_TECH = 2
-
-const getLinkIcon = (linkType: string) => {
-  switch (linkType) {
-    case "github":
-      return FaGithub
-    case "website":
-      return FaExternalLinkAlt
-    case "demo":
-      return FaPlay
-    case "documentation":
-      return FaBook
-    case "company":
-      return FaBuilding
-    default:
-      return FaExternalLinkAlt
-  }
-}
-
-const getProjectLinkLabel = (projectName: string, linkType: string) => {
-  switch (linkType) {
-    case "github":
-      return `View ${projectName} on GitHub`
-    case "website":
-      return `Visit ${projectName} website`
-    case "demo":
-      return `View ${projectName} demo`
-    case "documentation":
-      return `View ${projectName} documentation`
-    case "company":
-      return `Visit ${projectName} company website`
-    default:
-      return `Open ${projectName} link`
-  }
-}
+const MAX_VISIBLE_TECH = 3
 
 interface ProjectCardProps {
   project: Project
-  index: number
-  enableFloat?: boolean
-  onInspect?: (trigger: HTMLButtonElement) => void
+  onInspect: (trigger: HTMLButtonElement) => void
 }
 
-export default function ProjectCard({
-  project,
-  index,
-  enableFloat = true,
-  onInspect,
-}: ProjectCardProps) {
-  const availableLinks = Object.entries(project.links).filter(([, url]) => Boolean(url))
-  const allLinks: Array<[string, string]> = [...availableLinks] as Array<[string, string]>
-  if (project.companyUrl) {
-    allLinks.push(["company", project.companyUrl])
-  }
-
+export default function ProjectCard({ project, onInspect }: ProjectCardProps) {
   const visibleTech = project.technologies.slice(0, MAX_VISIBLE_TECH)
   const remainingTechCount = project.technologies.length - visibleTech.length
+  const githubLabel = `View ${project.name} on GitHub`
 
   return (
     <GlassPanel
+      as="article"
       surface="selectable"
       cornerAccents={false}
-      p={{ base: 2, md: 3 }}
-      {...selectablePanelStyles.panel}
-      position="relative"
-      overflow="hidden"
-      transition="all 0.3s ease"
+      p={4}
+      transition="transform 0.2s ease"
       _hover={{
-        borderColor: "accent.teal",
         transform: "translateY(-2px)",
-        boxShadow: "0 4px 12px var(--chakra-colors-black-alpha-20)",
       }}
-      animation={enableFloat ? getAnimation(`float ${6 + index}s ease-in-out infinite`) : undefined}
-      style={enableFloat ? {
-        animationDelay: `${index * 0.2}s`,
-      } : undefined}
       w="100%"
       h="100%"
       textAlign="left"
       wordWrap="break-word"
       whiteSpace="normal"
-      display="flex"
-      flexDirection="column"
-      opacity={project.currentlyContributing ? 1 : 0.85}
     >
-      {project.type === "personal" && (
-        <Box position="absolute" bottom={0} left={0} zIndex={1}>
-          <ProjectCardBadge project={project} />
-        </Box>
-      )}
-
-      <Flex
-        alignItems="center"
-        justifyContent="space-between"
-        mb={2}
-        gap={2}
-        flexWrap="wrap"
-      >
-        <Text
-          textStyle="panelTitle"
-          textAlign="left"
-          color="text.primary"
-          flex="1"
-          minW={0}
+      <Flex direction="column" gap={3} h="100%">
+        <Flex
+          as="header"
+          alignItems="flex-start"
+          justifyContent="space-between"
+          gap={3}
+          pb="0.65rem"
+          borderBottom="1px solid"
+          borderColor="projectCard.divider"
         >
-          {project.name}
-        </Text>
-        {!project.currentlyContributing && (
-          <Flex alignItems="center" gap={1} color="text.muted">
-            <Tooltip content="Currently not contributing">
-              <Box display="flex" aria-hidden="true">
-                <Icon
-                  as={FaXmark}
-                  boxSize={3}
-                  opacity={0.6}
-                />
-              </Box>
-            </Tooltip>
-            <Text textStyle="smallText">
-              Not contributing
+          <Box flex="1" minW={0}>
+            {project.type === "personal" && (
+              <Text
+                textStyle="projectCardEyebrow"
+                color="accent.teal"
+                mb={1}
+              >
+                Personal project
+              </Text>
+            )}
+            <Text
+              as="h3"
+              textStyle="projectCardTitle"
+              color="text.primary"
+              overflowWrap="anywhere"
+            >
+              {project.name}
             </Text>
+            {!project.currentlyContributing && (
+              <Text textStyle="smallText" color="text.muted" mt={1}>
+                Not contributing
+              </Text>
+            )}
+          </Box>
+          {project.links.github && (
+            <Tooltip content={githubLabel}>
+              <Link
+                href={project.links.github}
+                variant="projectIcon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={githubLabel}
+              >
+                <Icon
+                  as={FaGithub}
+                  boxSize="17px"
+                  aria-hidden="true"
+                />
+              </Link>
+            </Tooltip>
+          )}
+        </Flex>
+
+        <Text
+          textStyle="projectCardSummary"
+          overflowWrap="anywhere"
+        >
+          {project.shortDescription}
+        </Text>
+
+        {visibleTech.length > 0 && (
+          <Flex
+            flexWrap="wrap"
+            gap="0.45rem"
+            minW={0}
+            role="group"
+            aria-label="Featured technologies"
+          >
+            {visibleTech.map((tech: string, techIndex: number) => (
+              <Tooltip key={`${project.name}-tech-${techIndex}`} content={tech}>
+                <Text
+                  as="span"
+                  textStyle="projectCardChip"
+                  px="0.55rem"
+                  py="0.35rem"
+                  bg="projectCard.chip"
+                  border="1px solid"
+                  borderColor="projectCard.chipBorder"
+                  borderRadius="sm"
+                  color="accent.teal"
+                  cursor="default"
+                  display="inline-block"
+                  maxW="100%"
+                  overflowWrap="anywhere"
+                >
+                  {tech}
+                </Text>
+              </Tooltip>
+            ))}
+            {remainingTechCount > 0 && (
+              <Tooltip content={project.technologies.slice(MAX_VISIBLE_TECH).join(", ")}>
+                <Text
+                  as="span"
+                  textStyle="projectCardChip"
+                  px="0.55rem"
+                  py="0.35rem"
+                  bg="projectCard.chip"
+                  border="1px solid"
+                  borderColor="projectCard.chipBorder"
+                  borderRadius="sm"
+                  color="accent.teal"
+                  cursor="default"
+                  display="inline-block"
+                  flexShrink={0}
+                >
+                  +{remainingTechCount}
+                </Text>
+              </Tooltip>
+            )}
           </Flex>
         )}
-      </Flex>
 
-      <Text
-        textStyle="supportingText"
-        mb={1.5}
-        wordWrap="break-word"
-        whiteSpace="normal"
-      >
-        {project.shortDescription}
-      </Text>
-
-      {visibleTech.length > 0 && (
-        <Box mb={1.5}>
-          {visibleTech.map((tech: string, techIndex: number) => (
-            <Tooltip key={`${project.name}-tech-${techIndex}`} content={tech}>
-              <Text
-                as="span"
-                textStyle="smallText"
-                px={1.5}
-                py={0.5}
-                bg="bg.dark"
-                border="1px solid"
-                borderColor="border.inner"
-                borderRadius="sm"
-                color="accent.teal"
-                mr={1}
-                cursor="default"
-                display="inline-block"
-              >
-                {tech}
-              </Text>
-            </Tooltip>
-          ))}
-          {remainingTechCount > 0 && (
-            <Tooltip content={project.technologies.slice(MAX_VISIBLE_TECH).join(", ")}>
-              <Text
-                as="span"
-                textStyle="smallText"
-                px={1.5}
-                py={0.5}
-                bg="bg.dark"
-                border="1px solid"
-                borderColor="border.outer"
-                borderRadius="sm"
-                color="text.muted"
-                cursor="default"
-                display="inline-block"
-              >
-                +{remainingTechCount}
-              </Text>
-            </Tooltip>
-          )}
-        </Box>
-      )}
-
-      {!onInspect && (
-        <Flex flexDirection="column" gap={0.5} mb={1.5}>
-          {project.keyFeatures.map((feature: string, featureIndex: number) => (
-          <Text
-            key={`feature-${featureIndex}`}
-            textStyle="smallText"
-            color="text.secondary"
-            mb={0.25}
-            wordWrap="break-word"
-            whiteSpace="normal"
-            lineHeight="1.4"
-            fontSize="xs"
+        <Box mt="auto" pt="0.15rem">
+          <Flex
+            as="footer"
+            alignItems="stretch"
+            gap="0.55rem"
+            flexWrap="wrap"
+            minW={0}
           >
-            <Text as="span" opacity={0.6} fontSize="xs" mr={1}>⭐</Text>
-            {feature}
-          </Text>
-        ))}
-        {project.metrics.map((metric: string, metricIndex: number) => (
-          <Text
-            key={`metric-${metricIndex}`}
-            textStyle="smallText"
-            color="accent.tealAlpha.90"
-            mb={0.25}
-            wordWrap="break-word"
-            whiteSpace="normal"
-            lineHeight="1.4"
-            fontSize="xs"
-          >
-            <Text as="span" opacity={0.6} fontSize="xs" mr={1}>📊</Text>
-            {metric}
-          </Text>
-        ))}
-        {project.contributions.map((contribution: string, contributionIndex: number) => (
-          <Text
-            key={`contribution-${contributionIndex}`}
-            textStyle="smallText"
-            color="text.secondary"
-            mb={0.25}
-            wordWrap="break-word"
-            whiteSpace="normal"
-            lineHeight="1.4"
-            fontSize="xs"
-          >
-            <Text as="span" opacity={0.6} fontSize="xs" mr={1}>🤝</Text>
-            {contribution}
-          </Text>
-        ))}
-        </Flex>
-      )}
-
-      {(allLinks.length > 0 || onInspect) && (
-        <Box display="flex" justifyContent="flex-end" alignItems="center" gap={1} mt="auto" pt={1.5}>
-          {onInspect && (
             <CompactAction
+              emphasis="primary"
+              textStyle="projectCardAction"
+              bg="gradient.projectCard.primary"
+              borderColor="accent.teal"
+              color="accent.teal"
+              flex="1"
+              minW="max-content"
+              minH="42px"
+              px="0.8rem"
+              py="0.65rem"
+              letterSpacing="0.05em"
+              whiteSpace="nowrap"
+              _hover={{
+                bg: "gradient.projectCard.primary",
+                borderColor: "accent.teal",
+                color: "accent.teal",
+              }}
               onClick={(event) => onInspect(event.currentTarget)}
-              mr={1}
-              aria-label={`Inspect ${project.name}`}
+              aria-label={`Inspect project ${project.name}`}
             >
-              Inspect
+              Inspect project
             </CompactAction>
-          )}
-          {allLinks.map(([linkType, url]) => {
-            const IconComponent = getLinkIcon(linkType)
-            const linkLabel = getProjectLinkLabel(project.name, linkType)
-
-            return (
-              <Tooltip
-                key={`${project.name}-${linkType}`}
-                content={linkLabel}
+            {project.primaryDestination && (
+              <Link
+                href={project.primaryDestination.url}
+                variant="projectAction"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.primaryDestination.label} for ${project.name}`}
               >
-                <Link
-                  href={url}
-                  variant="projectIcon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={linkLabel}
-                >
-                  <Icon
-                    as={IconComponent}
-                    boxSize={3}
-                    color="accent.teal"
-                    aria-hidden="true"
-                  />
-                </Link>
-              </Tooltip>
-            )
-          })}
+                {project.primaryDestination.label}
+              </Link>
+            )}
+          </Flex>
         </Box>
-      )}
+      </Flex>
     </GlassPanel>
   )
 }

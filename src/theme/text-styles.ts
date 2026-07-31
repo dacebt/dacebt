@@ -49,6 +49,53 @@ export const textStyleConfig = defineConfig({
           lineHeight: "1.2",
         },
       },
+      projectCardEyebrow: {
+        description: "Project card personal-work eyebrow text style",
+        value: {
+          fontSize: "0.7rem",
+          fontWeight: "600",
+          lineHeight: "1.3",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+        },
+      },
+      projectCardTitle: {
+        description: "Project card title text style",
+        value: {
+          fontSize: "1.2rem",
+          fontWeight: "600",
+          lineHeight: "1.2",
+          letterSpacing: "0.01em",
+        },
+      },
+      projectCardSummary: {
+        description: "Project card summary text style",
+        value: {
+          fontSize: "0.95rem",
+          fontWeight: "normal",
+          lineHeight: "1.55",
+          color: "text.primary",
+        },
+      },
+      projectCardChip: {
+        description: "Project card technology chip text style",
+        value: {
+          fontSize: "0.76rem",
+          fontWeight: "normal",
+          lineHeight: "1.3",
+        },
+      },
+      projectCardAction: {
+        description: "Project card action text style",
+        value: {
+          fontSize: "0.76rem",
+          fontWeight: "600",
+          lineHeight: "1.3",
+          letterSpacing: "0.05em",
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+        },
+      },
       supportingText: {
         description: "Supporting content text style",
         value: {

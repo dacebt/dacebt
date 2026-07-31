@@ -56,12 +56,15 @@ function requireNestedReference(errors, declarations, name, reference) {
 
 function rejectFragments(errors, label, values) {
   for (const value of values) {
+    const normalizedValue = value.replaceAll("\\.", ".")
     if (
       value.includes("{") ||
       value.includes("}") ||
       value.includes("colors.") ||
       value.includes("colors\\.") ||
-      /\b(?:bg|border|accent|text|gradient|modal|surface)\.[\w.-]+/.test(value)
+      /\b(?:bg|border|accent|text|gradient|modal|projectCard|surface)\.[\w.-]+/.test(
+        normalizedValue,
+      )
     ) {
       errors.push(`${label} contains an unresolved token fragment: ${value}`)
     }
@@ -113,6 +116,14 @@ try {
   ])
   const system = themeModule.default || themeModule
   const errors = []
+  const linkRecipe = system.cva(system.getRecipe("link"))
+  const escapedFragmentErrors = []
+  rejectFragments(escapedFragmentErrors, "escaped fragment self-fixture", [
+    "projectCard\\.control",
+  ])
+  if (escapedFragmentErrors.length === 0) {
+    errors.push("escaped fragment self-fixture was not rejected")
+  }
 
   const declarations = collectDeclarations(system.getTokenCss())
   const roleDeclarationNames = [
@@ -136,9 +147,14 @@ try {
     "--chakra-colors-accent-teal-alpha-40",
     "--chakra-colors-text-primary",
     "--chakra-colors-text-muted",
+    "--chakra-colors-project-card-control",
+    "--chakra-colors-project-card-chip",
+    "--chakra-colors-project-card-divider",
+    "--chakra-colors-project-card-chip-border",
     "--chakra-colors-gradient-panel-subtle",
     "--chakra-colors-gradient-panel-medium",
     "--chakra-colors-gradient-panel-strong",
+    "--chakra-colors-gradient-project-card-primary",
     "--chakra-colors-gradient-page-title",
     "--chakra-colors-modal-depth-strong",
     "--chakra-colors-modal-depth-medium",
@@ -228,6 +244,41 @@ try {
   }
 
   const liveStyleFixtures = [
+    [
+      "Link projectIcon recipe",
+      linkRecipe({ variant: "projectIcon" }),
+      ["var(--chakra-colors-project-card-control)"],
+    ],
+    [
+      "Link projectAction recipe",
+      linkRecipe({ variant: "projectAction" }),
+      ["var(--chakra-colors-project-card-control)"],
+    ],
+    [
+      "project card control",
+      { background: "projectCard.control" },
+      ["var(--chakra-colors-project-card-control)"],
+    ],
+    [
+      "project card chip",
+      { background: "projectCard.chip" },
+      ["var(--chakra-colors-project-card-chip)"],
+    ],
+    [
+      "project card divider",
+      { borderColor: "projectCard.divider" },
+      ["var(--chakra-colors-project-card-divider)"],
+    ],
+    [
+      "project card chip border",
+      { borderColor: "projectCard.chipBorder" },
+      ["var(--chakra-colors-project-card-chip-border)"],
+    ],
+    [
+      "project card primary gradient",
+      { background: "gradient.projectCard.primary" },
+      ["var(--chakra-colors-gradient-project-card-primary)"],
+    ],
     ["GlassPanel base", glassPanelModule.glassPanelStyles.base],
     ["GlassPanel overlay", glassPanelModule.glassPanelStyles.before],
     ["GlassPanel corner", glassPanelModule.glassPanelStyles.corner],
@@ -243,8 +294,8 @@ try {
       .map(([name, style]) => [`page layout ${name}`, style]),
   ]
 
-  for (const [label, style] of liveStyleFixtures) {
-    const result = verifyStyle(errors, system, label, style)
+  for (const [label, style, expectedValues = []] of liveStyleFixtures) {
+    const result = verifyStyle(errors, system, label, style, expectedValues)
     verifiedCssValueCount += result.values.length
   }
 
