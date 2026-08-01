@@ -10,12 +10,7 @@ export default function HomePage() {
 			display="flex"
 			flexDirection="column"
 		>
-			<RPGDialogueScene
-				messages={welcomeMessages}
-				autoAdvanceDelay={2000}
-				autoPlay={true}
-				transcriptTitle="Welcome"
-			/>
+			<RPGDialogueScene messages={welcomeMessages} autoAdvanceDelay={2000} />
 		</Box>
 	)
 }

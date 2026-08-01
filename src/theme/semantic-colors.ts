@@ -18,8 +18,18 @@ export const semanticColorConfig = defineConfig({
           content: { value: "{colors.bg.steelAlpha.90}" },
           supporting: { value: "{colors.bg.steelAlpha.60}" },
           selectable: { value: "{colors.bg.steelAlpha.80}" },
-          dialogue: { value: "{colors.bg.steelAlpha.80}" },
           modal: { value: "{colors.bg.steelAlpha.90}" },
+        },
+        dialogueEntry: {
+          surface: {
+            default: { value: "{colors.bg.steel}" },
+            current: { value: "{colors.bg.steelAlpha.80}" },
+          },
+          depth: {
+            default: { value: "rgba(0, 0, 0, 0.2)" },
+            current: { value: "rgba(0, 0, 0, 0.3)" },
+          },
+          edge: { value: "rgba(255, 255, 255, 0.05)" },
         },
         modal: {
           depth: {
@@ -88,12 +98,6 @@ export const semanticColorConfig = defineConfig({
         "shadow.layer.4": {
           value: "{colors.black.alpha.40}",
         },
-        "shadow.dialogue.active": {
-          value: "{colors.accent.greenAlpha.40}",
-        },
-        "shadow.dialogue.default": {
-          value: "{colors.accent.greenAlpha.25}",
-        },
         "glow.border.teal": {
           value: "{colors.accent.tealAlpha.30}",
         },
@@ -105,9 +109,6 @@ export const semanticColorConfig = defineConfig({
         },
         "gradient.button.primaryHover": {
           value: "linear-gradient(135deg, {colors.accent.tealAlpha.15} 0%, {colors.bg.steelAlpha.80} 100%)",
-        },
-        "gradient.dialogue.bg": {
-          value: "linear-gradient(135deg, {colors.bg.darkAlpha.95} 0%, {colors.bg.steelAlpha.90} 100%)",
         },
         "gradient.background.decorative1": {
           value: "linear-gradient(135deg, {colors.accent.tealAlpha.10} 0%, {colors.accent.tealAlpha.5} 100%)",

@@ -1,35 +1,36 @@
 import { Box, Text } from "@chakra-ui/react"
 
 interface DialogueBoxContentProps {
-  displayedText: string
-  isStreaming: boolean
+	displayedText: string
+	isStreaming: boolean
 }
 
-export default function DialogueBoxContent({ displayedText, isStreaming }: DialogueBoxContentProps) {
-  return (
-    <Text
-      textStyle="dialogue"
-      color="text.primary"
-      textShadow="var(--chakra-shadows-dialogue-text)"
-      position="relative"
-      zIndex={1}
-      flex={1}
-      fontFamily="var(--chakra-fonts-body)"
-      whiteSpace="pre-wrap"
-    >
-      {displayedText}
-      {isStreaming && (
-        <Box
-          as="span"
-          w="2px"
-          h="1.2em"
-          bg="accent.green"
-          ml="2px"
-          display="inline-block"
-          animation="blink 1s infinite"
-          verticalAlign="text-bottom"
-        />
-      )}
-    </Text>
-  )
+export default function DialogueBoxContent({
+	displayedText,
+	isStreaming,
+}: DialogueBoxContentProps) {
+	return (
+		<Text
+			textStyle="dialogue"
+			color="text.primary"
+			position="relative"
+			zIndex={1}
+			whiteSpace="pre-wrap"
+		>
+			{displayedText}
+			{isStreaming && (
+				<Box
+					as="span"
+					aria-hidden="true"
+					data-dialogue-cursor
+					display="inline-block"
+					w="2px"
+					h="1.05em"
+					ml="3px"
+					verticalAlign="-0.11em"
+					animation="blink 780ms steps(1) infinite"
+				/>
+			)}
+		</Text>
+	)
 }

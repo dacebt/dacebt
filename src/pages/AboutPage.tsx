@@ -64,8 +64,6 @@ export default function AboutPage() {
 					<RPGDialogueScene
 						messages={selectedTopic.messages}
 						autoAdvanceDelay={1500}
-						autoPlay={true}
-						transcriptTitle={selectedTopic.label}
 					/>
 				</Box>
 			</Box>

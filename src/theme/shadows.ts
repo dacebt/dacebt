@@ -15,15 +15,12 @@ export const shadowConfig = defineConfig({
             value: "inset 0 1px 0 0 rgba(255, 255, 255, 0.2), inset 0 0 30px rgba(60, 100, 160, 0.05), 0 0 0 1px #0a0c10, 0 0 0 2px rgba(58, 78, 96, 0.85), 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 0, 0, 0.25)",
           },
         },
-        dialogue: {
-          text: {
-            value: "0 2px 8px {colors.bg.darkAlpha.80}, 0 0 20px {colors.accent.greenAlpha.30}",
-          },
+        dialogueEntry: {
           default: {
-            value: "inset 0 0 0 2px {colors.white.alpha.10}, inset 0 0 0 4px {colors.accent.green}, inset 0 0 0 6px {colors.border.outer}, 0 0 0 2px {colors.accent.green}, 0 6px 24px {colors.accent.greenAlpha.25}, 0 12px 48px {colors.black.alpha.50}, 0 0 0 1px {colors.white.alpha.5}",
+            value: "0 8px 18px {colors.dialogueEntry.depth.default}, inset 0 1px 0 {colors.dialogueEntry.edge}",
           },
-          hover: {
-            value: "inset 0 0 0 2px {colors.white.alpha.15}, inset 0 0 0 4px {colors.accent.green}, inset 0 0 0 6px {colors.border.outer}, 0 0 0 3px {colors.accent.green}, 0 8px 32px {colors.accent.greenAlpha.40}, 0 16px 64px {colors.black.alpha.60}, 0 0 0 1px {colors.white.alpha.10}",
+          current: {
+            value: "0 11px 26px {colors.dialogueEntry.depth.current}, 0 0 22px {colors.accent.tealAlpha.8}, inset 0 1px 0 {colors.dialogueEntry.edge}",
           },
         },
         nav: {
@@ -56,11 +53,6 @@ export const shadowConfig = defineConfig({
         modal: {
           content: {
             value: "0 20px 60px {colors.modal.depth.strong}, 0 8px 25px {colors.modal.depth.medium}, 0 0 40px {colors.accent.tealAlpha.15}, inset 0 0 0 1px {colors.modal.edge}",
-          },
-        },
-        speaker: {
-          label: {
-            value: "0 0 8px {colors.accent.greenAlpha.30}",
           },
         },
         bolt: {

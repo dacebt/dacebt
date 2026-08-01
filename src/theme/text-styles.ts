@@ -151,13 +151,6 @@ export const textStyleConfig = defineConfig({
           fontWeight: "semibold",
         },
       },
-      progressText: {
-        description: "Progress indicator text style",
-        value: {
-          fontSize: "sm",
-          fontWeight: "medium",
-        },
-      },
     },
   },
 })

@@ -41,6 +41,19 @@ export const animations = {
     }
   `,
 
+  messageEnter: `
+    @keyframes messageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  `,
+
   slideIn: `
     @keyframes slideIn {
       from {
@@ -58,20 +71,6 @@ export const animations = {
     @keyframes blink {
       0%, 50% { opacity: 1; }
       51%, 100% { opacity: 0; }
-    }
-  `,
-
-  bounce: `
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-10px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
     }
   `,
 

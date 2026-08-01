@@ -1,5 +1,5 @@
-import { useState, useCallback, useEffect, useRef } from "react"
-import { prefersReducedMotion } from "../utils/motion"
+import { useCallback, useEffect, useReducer, useSyncExternalStore } from "react"
+import { prefersReducedMotion, subscribeReducedMotion } from "../utils/motion"
 
 export interface DialogueMessage {
 	/** The dialogue text content */
@@ -13,224 +13,175 @@ export interface DialogueMessage {
 interface UseRPGDialogueOptions {
 	/** Array of dialogue messages to display sequentially */
 	messages: DialogueMessage[]
-	/** Delay in ms after streaming completes before auto-advancing (default: 1500) */
+	/** Delay after a completed line before the next message appears */
 	autoAdvanceDelay?: number
-	/** Delay in ms per character for typewriter effect (default: 30) */
+	/** Delay in ms per character for the typewriter effect (default: 30) */
 	streamingSpeed?: number
-	/** Whether to automatically advance through messages (default: true) */
-	autoPlay?: boolean
-	/** Callback when all messages have been shown */
-	onComplete?: () => void
 }
 
 interface UseRPGDialogueReturn {
-	/** Current message being displayed */
-	currentMessage: DialogueMessage | null
-	/** Index of current message */
+	/** Messages the visitor has reached */
+	visibleMessages: DialogueMessage[]
+	/** Index of the message currently being presented */
 	currentIndex: number
-	/** Total number of messages */
-	totalMessages: number
-	/** Currently displayed portion of text (for typewriter effect) */
+	/** Currently displayed portion of the active message */
 	displayedText: string
-	/** Whether typewriter animation is active */
+	/** Whether the active message is still streaming */
 	isStreaming: boolean
-	/** Whether auto-advance is enabled */
-	isPlaying: boolean
-	/** Whether all messages have been shown and final message is complete */
-	isComplete: boolean
-	/** Whether there are more messages after current */
-	hasMore: boolean
-	/** All messages (for transcript) */
-	allMessages: DialogueMessage[]
-	/** Skip to end of current message's text */
-	skipStreaming: () => void
-	/** Jump to final message, fully rendered */
-	skipToEnd: () => void
-	/** Manually advance to next message */
-	next: () => void
-	/** Pause auto-advance */
-	pause: () => void
-	/** Resume auto-advance */
-	resume: () => void
-	/** Return to first message */
-	reset: () => void
-	/** Handle click - skip streaming or advance */
-	handleClick: () => void
+	/** Skip the active stream or append the next message */
+	handleAdvance: () => void
 }
+
+interface DialogueState {
+	currentIndex: number
+	displayedText: string
+	isStreaming: boolean
+}
+
+type DialogueAction =
+	| { type: "stream"; index: number; text: string }
+	| { type: "complete"; index: number; text: string }
+	| { type: "next"; index: number; text: string; isStreaming: boolean }
+
+function dialogueReducer(state: DialogueState, action: DialogueAction): DialogueState {
+	if (action.type === "next") {
+		return {
+			currentIndex: action.index,
+			displayedText: action.text,
+			isStreaming: action.isStreaming,
+		}
+	}
+
+	if (state.currentIndex !== action.index) {
+		return state
+	}
+
+	if (action.type === "complete") {
+		return {
+			...state,
+			displayedText: action.text,
+			isStreaming: false,
+		}
+	}
+
+	if (!state.isStreaming) {
+		return state
+	}
+
+	return {
+		...state,
+		displayedText: action.text,
+	}
+}
+
+const stableServerSnapshotFalse = () => false
 
 export function useRPGDialogue({
 	messages,
 	autoAdvanceDelay = 1500,
 	streamingSpeed = 30,
-	autoPlay = true,
-	onComplete,
 }: UseRPGDialogueOptions): UseRPGDialogueReturn {
-	const [reduceMotion] = useState(prefersReducedMotion)
-	const [currentIndex, setCurrentIndex] = useState(0)
-	const [displayedText, setDisplayedText] = useState("")
-	const [isStreaming, setIsStreaming] = useState(!reduceMotion)
-	const [isPlaying, setIsPlaying] = useState(reduceMotion ? false : autoPlay)
+	const reduceMotion = useSyncExternalStore(
+		subscribeReducedMotion,
+		prefersReducedMotion,
+		stableServerSnapshotFalse,
+	)
+	const [state, dispatch] = useReducer(dialogueReducer, undefined, (): DialogueState => ({
+		currentIndex: 0,
+		displayedText: reduceMotion ? (messages[0]?.message ?? "") : "",
+		isStreaming: !reduceMotion && messages.length > 0,
+	}))
 
-	const streamingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
-	const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-	const onCompleteCalledRef = useRef(false)
-
-	const currentMessage = messages[currentIndex] ?? null
+	const currentMessage = messages[state.currentIndex]
 	const fullText = currentMessage?.message ?? ""
-	const hasMore = currentIndex < messages.length - 1
-	const isComplete = currentIndex === messages.length - 1 && !isStreaming
+	const displayedText = reduceMotion ? fullText : state.displayedText
+	const isStreaming = state.isStreaming && !reduceMotion
+	const hasMore = state.currentIndex < messages.length - 1
+	const visibleMessages = messages.slice(0, Math.min(state.currentIndex + 1, messages.length))
 
-	// Clear timers helper
-	const clearTimers = useCallback(() => {
-		if (streamingIntervalRef.current) {
-			clearInterval(streamingIntervalRef.current)
-			streamingIntervalRef.current = null
-		}
-		if (autoAdvanceTimerRef.current) {
-			clearTimeout(autoAdvanceTimerRef.current)
-			autoAdvanceTimerRef.current = null
-		}
-	}, [])
+	useEffect(() => {
+		if (!reduceMotion || !currentMessage || !state.isStreaming) return
 
-	// Typewriter effect
+		dispatch({
+			type: "complete",
+			index: state.currentIndex,
+			text: fullText,
+		})
+	}, [currentMessage, fullText, reduceMotion, state.currentIndex, state.isStreaming])
+
 	useEffect(() => {
 		if (!currentMessage || !isStreaming) return
 
-		setDisplayedText("")
-		let charIndex = 0
+		if (state.displayedText.length >= fullText.length) {
+			dispatch({
+				type: "complete",
+				index: state.currentIndex,
+				text: fullText,
+			})
+			return
+		}
 
-		streamingIntervalRef.current = setInterval(() => {
-			if (charIndex < fullText.length) {
-				setDisplayedText(fullText.slice(0, charIndex + 1))
-				charIndex++
-			} else {
-				setIsStreaming(false)
-				if (streamingIntervalRef.current) {
-					clearInterval(streamingIntervalRef.current)
-					streamingIntervalRef.current = null
-				}
-			}
+		const timeoutId = window.setTimeout(() => {
+			dispatch({
+				type: "stream",
+				index: state.currentIndex,
+				text: fullText.slice(0, state.displayedText.length + 1),
+			})
 		}, streamingSpeed)
 
-		return () => {
-			if (streamingIntervalRef.current) {
-				clearInterval(streamingIntervalRef.current)
-				streamingIntervalRef.current = null
-			}
-		}
-	}, [currentIndex, currentMessage, fullText, streamingSpeed, isStreaming])
+		return () => window.clearTimeout(timeoutId)
+	}, [
+		currentMessage,
+		fullText,
+		state.currentIndex,
+		state.displayedText,
+		isStreaming,
+		streamingSpeed,
+	])
 
-	// Auto-advance timer
-	useEffect(() => {
-		if (reduceMotion || isStreaming || !isPlaying || !hasMore) return
-
-		autoAdvanceTimerRef.current = setTimeout(() => {
-			setCurrentIndex((prev) => prev + 1)
-			setIsStreaming(true)
-		}, autoAdvanceDelay)
-
-		return () => {
-			if (autoAdvanceTimerRef.current) {
-				clearTimeout(autoAdvanceTimerRef.current)
-				autoAdvanceTimerRef.current = null
-			}
-		}
-	}, [reduceMotion, isStreaming, isPlaying, hasMore, autoAdvanceDelay])
-
-	// Call onComplete when finished
-	useEffect(() => {
-		if (isComplete && !onCompleteCalledRef.current && onComplete) {
-			onCompleteCalledRef.current = true
-			onComplete()
-		}
-	}, [isComplete, onComplete])
-
-	// Reset onComplete flag when messages change
-	useEffect(() => {
-		onCompleteCalledRef.current = false
-	}, [messages])
-
-	// Skip to end of current message
 	const skipStreaming = useCallback(() => {
-		clearTimers()
-		setDisplayedText(fullText)
-		setIsStreaming(false)
-	}, [fullText, clearTimers])
+		if (!currentMessage || !isStreaming) return
 
-	// Jump to final message, fully rendered
-	const skipToEnd = useCallback(() => {
-		clearTimers()
-		const lastIndex = messages.length - 1
-		setCurrentIndex(lastIndex)
-		setDisplayedText(messages[lastIndex]?.message ?? "")
-		setIsStreaming(false)
-	}, [messages, clearTimers])
+		dispatch({
+			type: "complete",
+			index: state.currentIndex,
+			text: fullText,
+		})
+	}, [currentMessage, fullText, isStreaming, state.currentIndex])
 
-	// Manually advance to next message
 	const next = useCallback(() => {
-		if (hasMore) {
-			clearTimers()
-			setCurrentIndex((previousIndex) => previousIndex + 1)
-			setIsStreaming(!reduceMotion)
-		}
-	}, [hasMore, reduceMotion, clearTimers])
+		if (isStreaming || !hasMore) return
 
-	// Pause auto-advance
-	const pause = useCallback(() => {
-		setIsPlaying(false)
-		if (autoAdvanceTimerRef.current) {
-			clearTimeout(autoAdvanceTimerRef.current)
-			autoAdvanceTimerRef.current = null
-		}
-	}, [])
+		const nextIndex = state.currentIndex + 1
+		dispatch({
+			type: "next",
+			index: nextIndex,
+			text: reduceMotion ? (messages[nextIndex]?.message ?? "") : "",
+			isStreaming: !reduceMotion,
+		})
+	}, [hasMore, isStreaming, messages, reduceMotion, state.currentIndex])
 
-	// Resume auto-advance
-	const resume = useCallback(() => {
-		if (!reduceMotion) {
-			setIsPlaying(true)
-		}
-	}, [reduceMotion])
+	useEffect(() => {
+		if (reduceMotion || isStreaming || !hasMore) return
 
-	// Return to first message
-	const reset = useCallback(() => {
-		clearTimers()
-		setCurrentIndex(0)
-		setDisplayedText("")
-		setIsStreaming(!reduceMotion)
-		setIsPlaying(reduceMotion ? false : autoPlay)
-		onCompleteCalledRef.current = false
-	}, [autoPlay, reduceMotion, clearTimers])
+		const timeoutId = window.setTimeout(next, autoAdvanceDelay)
+		return () => window.clearTimeout(timeoutId)
+	}, [autoAdvanceDelay, hasMore, isStreaming, next, reduceMotion])
 
-	// Handle click - skip streaming or advance to next
-	const handleClick = useCallback(() => {
+	const handleAdvance = useCallback(() => {
 		if (isStreaming) {
 			skipStreaming()
-		} else if (hasMore) {
-			next()
+			return
 		}
-	}, [isStreaming, hasMore, skipStreaming, next])
 
-	// Cleanup on unmount
-	useEffect(() => {
-		return () => clearTimers()
-	}, [clearTimers])
+		next()
+	}, [isStreaming, next, skipStreaming])
 
 	return {
-		currentMessage,
-		currentIndex,
-		totalMessages: messages.length,
-		displayedText: reduceMotion ? fullText : displayedText,
+		visibleMessages,
+		currentIndex: state.currentIndex,
+		displayedText,
 		isStreaming,
-		isPlaying,
-		isComplete,
-		hasMore,
-		allMessages: messages,
-		skipStreaming,
-		skipToEnd,
-		next,
-		pause,
-		resume,
-		reset,
-		handleClick,
+		handleAdvance,
 	}
 }

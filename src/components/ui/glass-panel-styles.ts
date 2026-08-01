@@ -5,7 +5,6 @@ export type GlassPanelSurface =
   | "content"
   | "supporting"
   | "selectable"
-  | "dialogue"
   | "modal"
 
 export const glassPanelStyles = {
@@ -44,14 +43,6 @@ export const glassPanelStyles = {
     selectable: {
       bg: "surface.selectable",
       boxShadow: "panel.medium",
-      backdropFilter: "blur(10px)",
-      _before: {
-        background: "gradient.panel.medium",
-      },
-    },
-    dialogue: {
-      bg: "surface.dialogue",
-      boxShadow: "dialogue.default",
       backdropFilter: "blur(10px)",
       _before: {
         background: "gradient.panel.medium",

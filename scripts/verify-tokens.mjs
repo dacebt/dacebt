@@ -1,96 +1,23 @@
 import { createServer } from "vite"
 import {
+  dialogueRoleDeclarationNames,
+  dialogueStyleFixtures,
+  verifyDialogueTokenContract,
+} from "./verify-dialogue-token-contract.mjs"
+import {
+  collectDeclarations,
+  collectStrings,
+  findObject,
+  hasProperty,
+  rejectFragments,
+  requireDeclaration,
+  requireNestedReference,
+  verifyStyle,
+} from "./verify-token-helpers.mjs"
+import {
   createTypographyFixtures,
   surfaceExpectations,
 } from "./verify-token-fixtures.mjs"
-
-function collectDeclarations(value, declarations = {}) {
-  if (!value || typeof value !== "object") return declarations
-
-  for (const [key, child] of Object.entries(value)) {
-    if (key.startsWith("--chakra-") && typeof child === "string") {
-      declarations[key] = child
-      continue
-    }
-    collectDeclarations(child, declarations)
-  }
-
-  return declarations
-}
-
-function collectStrings(value, strings = []) {
-  if (typeof value === "string") {
-    strings.push(value)
-    return strings
-  }
-  if (!value || typeof value !== "object") return strings
-
-  for (const child of Object.values(value)) collectStrings(child, strings)
-  return strings
-}
-
-function findObject(value, key) {
-  if (!value || typeof value !== "object") return undefined
-  if (Object.hasOwn(value, key)) return value[key]
-
-  for (const child of Object.values(value)) {
-    const found = findObject(child, key)
-    if (found) return found
-  }
-
-  return undefined
-}
-
-function requireDeclaration(errors, declarations, name) {
-  if (!Object.hasOwn(declarations, name)) {
-    errors.push(`missing generated declaration ${name}`)
-  }
-}
-
-function requireNestedReference(errors, declarations, name, reference) {
-  const value = declarations[name] || ""
-  if (!value.includes(`var(${reference})`)) {
-    errors.push(`${name} does not contain nested Chakra variable ${reference}`)
-  }
-}
-
-function rejectFragments(errors, label, values) {
-  for (const value of values) {
-    const normalizedValue = value.replaceAll("\\.", ".")
-    if (
-      value.includes("{") ||
-      value.includes("}") ||
-      value.includes("colors.") ||
-      value.includes("colors\\.") ||
-      /\b(?:bg|border|accent|text|gradient|modal|projectCard|surface)\.[\w.-]+/.test(
-        normalizedValue,
-      )
-    ) {
-      errors.push(`${label} contains an unresolved token fragment: ${value}`)
-    }
-  }
-}
-
-function hasProperty(value, key) {
-  if (!value || typeof value !== "object") return false
-  if (Object.hasOwn(value, key)) return true
-
-  return Object.values(value).some((child) => hasProperty(child, key))
-}
-
-function verifyStyle(errors, system, label, style, expectedValues = []) {
-  const css = system.css(style)
-  const values = collectStrings(css)
-  rejectFragments(errors, label, values)
-
-  for (const expected of expectedValues) {
-    if (!values.includes(expected)) {
-      errors.push(`${label} did not resolve expected CSS value ${expected}`)
-    }
-  }
-
-  return { css, values }
-}
 
 const loader = await createServer({
   appType: "custom",
@@ -139,7 +66,6 @@ try {
     "--chakra-colors-surface-content",
     "--chakra-colors-surface-supporting",
     "--chakra-colors-surface-selectable",
-    "--chakra-colors-surface-dialogue",
     "--chakra-colors-surface-modal",
     "--chakra-colors-border-inner",
     "--chakra-colors-accent-teal",
@@ -162,7 +88,6 @@ try {
     "--chakra-shadows-panel-subtle",
     "--chakra-shadows-panel-medium",
     "--chakra-shadows-panel-strong",
-    "--chakra-shadows-dialogue-text",
     "--chakra-shadows-avatar-frame",
     "--chakra-shadows-modal-content",
   ]
@@ -170,6 +95,11 @@ try {
   for (const name of roleDeclarationNames) {
     requireDeclaration(errors, declarations, name)
   }
+  verifyDialogueTokenContract(errors, declarations)
+  const allRoleDeclarationNames = [
+    ...roleDeclarationNames,
+    ...dialogueRoleDeclarationNames,
+  ]
 
   requireNestedReference(
     errors,
@@ -184,7 +114,7 @@ try {
     "--chakra-colors-bg-dark-alpha-30",
   )
 
-  const roleDeclarations = roleDeclarationNames
+  const roleDeclarations = allRoleDeclarationNames
     .map((name) => declarations[name])
     .filter((value) => typeof value === "string")
   rejectFragments(errors, "generated portfolio role declarations", roleDeclarations)
@@ -194,7 +124,6 @@ try {
     "--chakra-colors-surface-content": "--chakra-colors-bg-steel-alpha-90",
     "--chakra-colors-surface-supporting": "--chakra-colors-bg-steel-alpha-60",
     "--chakra-colors-surface-selectable": "--chakra-colors-bg-steel-alpha-80",
-    "--chakra-colors-surface-dialogue": "--chakra-colors-bg-steel-alpha-80",
     "--chakra-colors-surface-modal": "--chakra-colors-bg-steel-alpha-90",
   }
 
@@ -215,18 +144,6 @@ try {
       declarations,
       "--chakra-shadows-modal-content",
       name,
-    )
-  }
-
-  for (const reference of [
-    "--chakra-colors-bg-dark-alpha-80",
-    "--chakra-colors-accent-green-alpha-30",
-  ]) {
-    requireNestedReference(
-      errors,
-      declarations,
-      "--chakra-shadows-dialogue-text",
-      reference,
     )
   }
 
@@ -279,6 +196,7 @@ try {
       { background: "gradient.projectCard.primary" },
       ["var(--chakra-colors-gradient-project-card-primary)"],
     ],
+    ...dialogueStyleFixtures,
     ["GlassPanel base", glassPanelModule.glassPanelStyles.base],
     ["GlassPanel overlay", glassPanelModule.glassPanelStyles.before],
     ["GlassPanel corner", glassPanelModule.glassPanelStyles.corner],
@@ -340,7 +258,7 @@ try {
     process.exitCode = 1
   } else {
     console.log(
-      `Portfolio role token verification passed (${roleDeclarationNames.length} declarations, ${Object.keys(surfaceExpectations).length} surfaces, ${typographyFixtures.length} typography roles, ${verifiedCssValueCount} generated CSS values)`,
+      `Portfolio role token verification passed (${allRoleDeclarationNames.length} declarations, ${Object.keys(surfaceExpectations).length} surfaces, ${typographyFixtures.length} typography roles, ${verifiedCssValueCount} generated CSS values)`,
     )
   }
 } finally {

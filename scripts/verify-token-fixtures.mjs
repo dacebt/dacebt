@@ -23,12 +23,6 @@ export const surfaceExpectations = {
     "var(--chakra-shadows-panel-medium)",
     "blur(10px)",
   ],
-  dialogue: [
-    "var(--chakra-colors-surface-dialogue)",
-    "var(--chakra-colors-gradient-panel-medium)",
-    "var(--chakra-shadows-dialogue-default)",
-    "blur(10px)",
-  ],
   modal: [
     "var(--chakra-colors-surface-modal)",
     "var(--chakra-colors-gradient-panel-strong)",
@@ -95,6 +89,5 @@ export function createTypographyFixtures({
     ["smallText", { textStyle: "smallText" }, ["fontSize", "lineHeight"]],
     ["smallTextMedium", { textStyle: "smallTextMedium" }, ["fontSize", "fontWeight"]],
     ["badgeText", compactActionStyles, ["fontSize", "fontWeight"]],
-    ["progressText", { textStyle: "progressText" }, ["fontSize", "fontWeight"]],
   ]
 }
