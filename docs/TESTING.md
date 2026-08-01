@@ -113,7 +113,7 @@ The browser matrix includes:
 - route changes and active navigation state;
 - visible focus treatment;
 - one visible `aria-current="page"` route link;
-- absence of the prototype's Skip, Next, and Complete production controls;
+- absence of Skip, Next, and Complete dialogue controls;
 - scene-level Space and Enter acceleration without duplicate activation inside
   native controls;
 - one native external anchor per Contact card, with no nested interactive
@@ -146,19 +146,16 @@ and at exactly 390-by-844 mobile. The evidence demonstrates all of the following
   streaming text, without character-by-character announcements;
 - speaker names remain visible, David retains teal treatment, other speakers
   retain green treatment, and the active entry remains visually identifiable;
-- Transcript UI, the `T` shortcut, message count, progress indication, and the
-  prototype's action controls are absent;
+- Transcript UI, the `T` shortcut, message count, progress indication, and
+  dialogue action controls are absent;
 - reduced motion reveals each active entry immediately, suppresses dialogue
   cursor, entry animation, and timed advance, and preserves manual one-entry
   scene advance;
 - About Back, browser-back, and Escape return behavior remain operable; and
 - neither desktop nor mobile introduces horizontal overflow.
 
-Human visual acceptance compares the running dialogue surface with
-`prototypes/chat-interface.html` while confirming that the surrounding Home and
-About page composition is unchanged. The prototype's wrapper, specimen
-scroller, all prototype controls, diagnostic copy, shortened messages, and raw
-palette are not production requirements.
+Human visual acceptance inspects the running dialogue surface while confirming
+that the surrounding Home and About page composition is unchanged.
 
 Shared shell, theme, and modal work observes the affected flow at both viewport
 arrangements and then checks `/`, `/about`, and `/contact` for regressions in

@@ -28,6 +28,9 @@ dist-ssr
 .cursor
 .docs/.cache/
 
+# Local browser automation artifacts
+.playwright-mcp/
+
 # Repository authority files override the machine-global agent/doc ignores.
 !CLAUDE.md
 !AGENTS.md

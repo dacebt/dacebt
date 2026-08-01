@@ -165,7 +165,7 @@ The Home and About dialogue flow is a compact, cumulative conversation log:
   distinct current-message marker or treatment;
 - David uses teal speaker and edge treatment while every other speaker uses
   green treatment; the current entry retains the raised steel-blue dialogue
-  surface established by the approved prototype;
+  surface established for the compact log;
 - short histories occupy the available route-content height and align to its
   bottom through minimum-height and flex-end composition;
 - long histories grow through the existing `AppShell` route scroller, whose
@@ -180,7 +180,7 @@ The Home and About dialogue flow is a compact, cumulative conversation log:
   skip-or-advance behavior without being required for progression.
 
 The dialogue log does not expose a Transcript modal, message count, progress
-indicator, prototype action controls, or `T` shortcut. Space and Enter scene
+indicator, dialogue action controls, or `T` shortcut. Space and Enter scene
 shortcuts yield when the event target is an interactive or editable control. The
 About scene retains its visible Back action, browser-back behavior, and Escape
 return to topic selection.
@@ -195,8 +195,8 @@ destination controls retain their visible label at the start of a
 project-qualified accessible name. Exactly one visible navigation link
 identifies the current route with `aria-current="page"`.
 
-Dialogue does not render the standalone prototype's Skip, Next, or Complete
-controls. Its optional Space and Enter acceleration preserves native behavior
+Dialogue does not render Skip, Next, or Complete controls. Its optional Space
+and Enter acceleration preserves native behavior
 when focus is inside a button, anchor, form control, summary, or editable region.
 Non-contributing project state is written as durable `Not contributing` text;
 contributing projects do not render a positive state.

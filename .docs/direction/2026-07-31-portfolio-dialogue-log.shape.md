@@ -29,8 +29,7 @@
 - Editorial changes to Home or About copy, profile facts, contact data, or the
   separate PORT-003 content review.
 - Changes to Projects, project inspection, Contact, or unrelated shared controls.
-- Introducing an automated test framework or tracking the standalone HTML
-  prototype as production application source.
+- Introducing an automated test framework.
 
 ## Known risks
 
@@ -45,7 +44,7 @@
 ## Success signal
 
 On `/` and every `/about` topic at desktop and mobile widths, only reached
-messages accumulate in the approved bottom-pinned dialogue log; prototype
+messages accumulate in the approved bottom-pinned dialogue log; dialogue action
 controls are absent, automatic progression retains the original timing,
 appending after overflow does not change the route viewport's scroll position,
 Transcript and progress UI are absent, surrounding page layout is unchanged,
@@ -55,5 +54,5 @@ running result.
 ## Notes
 
 This is one vertical capability. It needs no capability map or domain model.
-The approved standalone prototype is a visual reference for the dialogue surface.
-Its specimen controls are for prototype inspection and are not production UX.
+Visual acceptance applies to the running application; shaping artifacts are not
+production source.
