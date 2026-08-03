@@ -2,7 +2,7 @@ import { type DialogueMessage } from "../hooks/useRPGDialogue"
 
 export const welcomeMessages: DialogueMessage[] = [
   {
-    message: "Welcome to my portfolio! My name is David Colon and I am a web developer!",
+    message: "Welcome to my portfolio! My name is David Colon and I am a Senior Full Stack Developer!",
     speaker: "David",
     image: "/images/avatar.png",
   },

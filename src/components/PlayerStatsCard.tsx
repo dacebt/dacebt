@@ -69,7 +69,7 @@ const PlayerStatsCard = () => {
             David
           </Text>
           <Text textStyle="supportingText" color="text.muted">
-            Senior Web Developer
+            Senior Full Stack Developer
           </Text>
           <Text textStyle="smallTextMedium" color="accent.teal">
             {experience} experience

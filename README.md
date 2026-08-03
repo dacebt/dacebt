@@ -1,10 +1,10 @@
-# Senior Full-Stack Engineer | AI Systems & Developer Tooling
+# Senior Full Stack Developer | AI Systems & Developer Tooling
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://davidacolon.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/david-a-colon/)
 [![X](https://img.shields.io/badge/X-Follow-111111?logo=x)](https://x.com/epicbadtiming)
 
-I'm a senior full-stack engineer focused on AI development systems, developer
+I'm a Senior Full Stack Developer focused on AI development systems, developer
 tooling, and polished product experiences. I build both the infrastructure that
 helps coding agents work reliably and the applications produced with those
 workflows.
