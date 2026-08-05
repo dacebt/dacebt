@@ -1,4 +1,4 @@
-name: Update GitHub Breakout Game
+name: Update GitHub Showcase
 
 on:
   schedule:
@@ -25,13 +25,12 @@ jobs:
       - name: Install gh-brickbreak
         run: pip install git+https://github.com/dacebt/gh-brickbreak.git
 
-      - name: Generate game
+      - name: Generate showcase
         run: |
           gh-brickbreak dacebt \
             --token ${{ secrets.GITHUB_TOKEN }} \
-            --output github-breakout.gif \
-            --strategy follow \
-            --fps 40
+            --mode showcase \
+            --output github-breakout.gif
 
       - name: Push to output branch (keeps main clean)
         run: |
@@ -39,5 +38,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git add github-breakout.gif
           git diff --staged --quiet && exit 0
-          git commit -m "Update breakout game [skip ci]"
+          git commit -m "Update contribution showcase [skip ci]"
           git push --force origin HEAD:breakout-output
