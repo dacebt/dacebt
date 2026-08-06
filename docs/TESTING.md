@@ -20,7 +20,7 @@ Evidence is cumulative. A higher tier does not replace a lower one.
 | Tier | Evidence | Defends |
 |---|---|---|
 | 1. Static | `npm run verify:tokens`, `npm run type-check`, `npm run lint` | Resolved theme roles, TypeScript contracts, unused code, hook rules, lint policy |
-| 2. Production | `npm run build`, `npm run verify:bundle` | Chakra type generation, TypeScript build, Vite production bundling, route-local chunk boundaries and size budgets |
+| 2. Production | `npm run build`, `npm run verify:bundle`, `npm run verify:deployment-assets` | Chakra type generation, TypeScript build, Vite production bundling, route-local chunk boundaries and size budgets, deployment asset hygiene |
 | 3. Composed browser | Running application at desktop and mobile viewports | Routing, layout, rendered styling, keyboard and pointer interaction |
 | 4. Human visual | Deliberate inspection of the rendered interface | Visual hierarchy, density, rhythm, legibility, and aesthetic fit |
 
@@ -40,6 +40,7 @@ The package scripts are the supported executable interface:
 | `npm run lint` | Run ESLint |
 | `npm run build` | Generate theme typings, compile TypeScript, and build with Vite |
 | `npm run verify:bundle` | Audit production route chunk graphs and gzip budgets with an in-memory Vite build |
+| `npm run verify:deployment-assets` | Build into isolated temporary output and audit removed deployment assets |
 | `npm run preview` | Serve the production bundle locally |
 
 `npm run dev` is a valid project entrypoint and may be started when composed
@@ -67,6 +68,20 @@ Bundle or build-configuration changes also pass:
 ```bash
 npm run verify:bundle
 ```
+
+Deployment asset changes also pass:
+
+```bash
+npm run verify:deployment-assets
+```
+
+The deployment asset audit requires
+`public/images/github-breakout.gif`, `public/images/home_screenshot.png`, and
+`public/images/logo_unsized.png` to remain absent. It performs a fresh Vite
+production build in a unique operating-system temporary directory, rejects the
+corresponding `images/` paths in the built output, recursively reports total
+output bytes, and removes the temporary output on success or failure. A passing
+audit ends with `deployment asset hygiene verified`.
 
 The bundle audit requires exactly one entry chunk, keeps every page module out
 of its complete static closure, limits that closure to 680,000 raw bytes, and

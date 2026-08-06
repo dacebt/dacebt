@@ -10,6 +10,7 @@
     "type-check": "tsc -b --noEmit",
     "lint": "eslint .",
     "verify:bundle": "node scripts/verify-bundle.mjs",
+    "verify:deployment-assets": "node scripts/verify-deployment-assets.mjs",
     "verify:tokens": "node scripts/verify-tokens.mjs",
     "preview": "vite preview"
   },

@@ -9,6 +9,7 @@ the code is wrong, and both are reconciled in the same unit of work.
 - [Testing](TESTING.md) — Binding verification tiers, browser acceptance matrix, and completion evidence for the portfolio.
 - [Direction](direction/index.md) — Persistent WSD session boundaries and direction artifacts.
 - [Portfolio bundle performance](direction/2026-08-05-portfolio-bundle-performance.shape.md) — Session boundaries, cadence, and success signal for auditing and improving the portfolio production bundle.
+- [Active thickening](thickenings/active.md) — Active WSD thickening for excluding confirmed-unreferenced public assets from production output.
 
 The root [CLAUDE.md](../CLAUDE.md) declares how these documents govern code.
 This repository is `dacebt/dacebt`, so [README.md](../README.md) renders as
