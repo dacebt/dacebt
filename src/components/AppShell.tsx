@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { Suspense, useEffect } from "react"
 import { Box, Grid } from "@chakra-ui/react"
 import { Outlet } from "react-router-dom"
 import GlassPanel from "./ui/GlassPanel"
@@ -94,7 +94,15 @@ function AppShell() {
           display="flex"
           flexDirection="column"
         >
-          <Outlet />
+          <Suspense
+            fallback={(
+              <Box role="status" color="fg.muted" p={4} textAlign="center">
+                Loading interface…
+              </Box>
+            )}
+          >
+            <Outlet />
+          </Suspense>
         </GlassPanel>
 
         {/* Footer / Bottom Panel */}

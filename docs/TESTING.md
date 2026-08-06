@@ -20,7 +20,7 @@ Evidence is cumulative. A higher tier does not replace a lower one.
 | Tier | Evidence | Defends |
 |---|---|---|
 | 1. Static | `npm run verify:tokens`, `npm run type-check`, `npm run lint` | Resolved theme roles, TypeScript contracts, unused code, hook rules, lint policy |
-| 2. Production | `npm run build` | Chakra type generation, TypeScript build, Vite production bundling |
+| 2. Production | `npm run build`, `npm run verify:bundle` | Chakra type generation, TypeScript build, Vite production bundling, route-local chunk boundaries and size budgets |
 | 3. Composed browser | Running application at desktop and mobile viewports | Routing, layout, rendered styling, keyboard and pointer interaction |
 | 4. Human visual | Deliberate inspection of the rendered interface | Visual hierarchy, density, rhythm, legibility, and aesthetic fit |
 
@@ -39,6 +39,7 @@ The package scripts are the supported executable interface:
 | `npm run type-check` | Run TypeScript without emitting output |
 | `npm run lint` | Run ESLint |
 | `npm run build` | Generate theme typings, compile TypeScript, and build with Vite |
+| `npm run verify:bundle` | Audit production route chunk graphs and gzip budgets with an in-memory Vite build |
 | `npm run preview` | Serve the production bundle locally |
 
 `npm run dev` is a valid project entrypoint and may be started when composed
@@ -60,6 +61,45 @@ theme contract also pass:
 ```bash
 npm run build
 ```
+
+Bundle or build-configuration changes also pass:
+
+```bash
+npm run verify:bundle
+```
+
+The bundle audit requires exactly one entry chunk, keeps every page module out
+of its complete static closure, limits that closure to 680,000 raw bytes, and
+requires four distinct dynamic page entries. It measures the complete
+static entry closure plus the complete route-owned reachable chunk graph for
+each route. The conservative route-owned traversal is independently rooted at
+every chunk in the static entry closure and at the selected route entry; it does
+not depend on the route chunk importing back to the entry. It includes static
+imports and nested dynamic imports, and rejects any other page module found
+anywhere in that graph while excluding only dynamic edges from the actual sole
+entry chunk to one of the four recognized route-entry chunk filenames as router
+boundaries. Static imports are always traversed, and every other route-reachable
+dynamic descendant is followed and budgeted, including non-route dynamic edges
+from the entry chunk and dynamic edges from other chunks in its static closure.
+The audit merges and deduplicates the entry closure with each route-owned graph,
+then budgets that conservative combined graph. Every combined route graph must
+remain below the original 720,471-byte raw baseline. Home must remain at or
+below 200,000 gzip bytes; Projects, About, and Contact must each remain below
+214,305 gzip bytes. A passing audit prints the entry closure and every combined
+route graph, followed by `route-local production chunks verified`.
+
+These budgets are grounded in the former single-chunk baseline of 720.47 kB
+raw and 214.31 kB gzip. Route deferral measured a 664.05 kB raw / 195.05 kB gzip
+shared entry and these conservative combined route graphs: Home 670.11/197.67, Projects
+696.29/207.23, About 688.32/204.87, and Contact 671.48/198.69 kB raw/gzip.
+Vite's `chunkSizeWarningLimit` is 680 kB as a deliberate shared-entry budget
+above the measured 664.05 kB entry; the warning threshold is not itself an
+optimization claim.
+
+The bundle graph audit is intentionally conservative and is not an exact model
+of arbitrary runtime loading. Production-preview browser observation remains
+the evidence for actual fresh-route loading and in-application navigation
+behavior.
 
 Theme vocabulary changes include `npm run typegen` before evaluating TypeScript
 results. They also include:
@@ -101,6 +141,9 @@ The browser matrix includes:
 
 - a desktop viewport with the left navigation rail;
 - a mobile viewport with the bottom navigation rail;
+- direct production-preview entry to all four routes at both viewports;
+- in-application navigation across all four lazy route boundaries, including
+  loading behavior while the mounted `AppShell` remains available;
 - pointer activation;
 - keyboard navigation and activation;
 - Inspect focus containment through forward and reverse traversal;

@@ -32,7 +32,10 @@ Production output is a static bundle in `dist/`.
 ## Application composition
 
 `src/main.tsx` mounts the application under React strict mode and the custom
-Chakra `Provider`. `src/App.tsx` owns the route table.
+Chakra `Provider`. `src/App.tsx` owns the route table. Each page module is a
+`React.lazy` route boundary under its existing `BrowserRouter` path. `AppShell`
+stays mounted across route changes and owns the `Suspense` loading boundary
+around its `Outlet`.
 
 | Route | Page | User surface |
 |---|---|---|
@@ -43,8 +46,9 @@ Chakra `Provider`. `src/App.tsx` owns the route table.
 | unmatched | `HomePage` | Stable fallback |
 
 All routes render through `AppShell`. The shell owns the starfield, responsive
-navigation, scrollable route outlet, and player-stats panel. Pages own
-route-specific composition; the shell does not own page content.
+navigation, scrollable route outlet, route-loading presentation, and
+player-stats panel. Pages own route-specific composition; the shell does not
+own page content.
 
 ## Source ownership
 
@@ -87,8 +91,8 @@ defined in [DESIGN.md](DESIGN.md); feature components use those contracts
 without creating a second theme layer.
 
 The project has no automated test runner. Its verification boundary is defined
-in [TESTING.md](TESTING.md), including the distinction between static gates and
-composed browser evidence.
+in [TESTING.md](TESTING.md), including the distinction between static gates,
+the production-bundle audit, and composed browser evidence.
 
 ## See also
 
