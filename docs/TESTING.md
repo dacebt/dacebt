@@ -103,12 +103,13 @@ below 200,000 gzip bytes; Projects, About, and Contact must each remain below
 214,305 gzip bytes. A passing audit prints the entry closure and every combined
 route graph, followed by `route-local production chunks verified`.
 
-These budgets are grounded in the former single-chunk baseline of 720.47 kB
-raw and 214.31 kB gzip. Route deferral measured a 664.05 kB raw / 195.05 kB gzip
-shared entry and these conservative combined route graphs: Home 670.11/197.67, Projects
-696.29/207.23, About 688.32/204.87, and Contact 671.48/198.69 kB raw/gzip.
+These budgets are grounded in the former single-chunk baseline of 720,471 raw
+and 214,305 gzip bytes. Route deferral with shell-preserving failure recovery
+measured a 666,976 raw / 195,854 gzip byte shared entry and these conservative
+combined route graphs in raw/gzip bytes: Home 673,031/198,473; Projects
+696,807/206,916; About 688,834/204,555; and Contact 674,402/199,493.
 Vite's `chunkSizeWarningLimit` is 680 kB as a deliberate shared-entry budget
-above the measured 664.05 kB entry; the warning threshold is not itself an
+above the measured 666,976-byte entry; the warning threshold is not itself an
 optimization claim.
 
 The bundle graph audit is intentionally conservative and is not an exact model
@@ -156,6 +157,11 @@ The browser matrix includes:
 
 - a desktop viewport with the left navigation rail;
 - a mobile viewport with the bottom navigation rail;
+- a production-preview route-failure walk at both viewport arrangements that
+  aborts the requested lazy route chunk, observes the generic recovery alert
+  and Reload page action while navigation and player stats remain mounted,
+  then proves pathname navigation clears the failure and a separate one-shot
+  abort followed by reload retries and renders the original route;
 - direct production-preview entry to all four routes at both viewports;
 - in-application navigation across all four lazy route boundaries, including
   loading behavior while the mounted `AppShell` remains available;

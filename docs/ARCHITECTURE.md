@@ -34,8 +34,12 @@ Production output is a static bundle in `dist/`.
 `src/main.tsx` mounts the application under React strict mode and the custom
 Chakra `Provider`. `src/App.tsx` owns the route table. Each page module is a
 `React.lazy` route boundary under its existing `BrowserRouter` path. `AppShell`
-stays mounted across route changes and owns the `Suspense` loading boundary
-around its `Outlet`.
+stays mounted across route changes and owns the route-content boundary around
+its `Suspense` loading boundary and `Outlet`. A rejected route import or route
+render failure replaces only the current route content with a generic recovery
+alert. Navigation, player stats, and the rest of the shell remain mounted;
+changing pathname resets the failure, while Reload page retries the current
+pathname.
 
 | Route | Page | User surface |
 |---|---|---|
@@ -46,9 +50,9 @@ around its `Outlet`.
 | unmatched | `HomePage` | Stable fallback |
 
 All routes render through `AppShell`. The shell owns the starfield, responsive
-navigation, scrollable route outlet, route-loading presentation, and
-player-stats panel. Pages own route-specific composition; the shell does not
-own page content.
+navigation, scrollable route outlet, route-loading and route-failure
+presentation, and player-stats panel. Pages own route-specific composition; the
+shell does not own page content.
 
 ## Source ownership
 

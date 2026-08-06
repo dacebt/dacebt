@@ -1,13 +1,15 @@
 import { Suspense, useEffect } from "react"
 import { Box, Grid } from "@chakra-ui/react"
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import GlassPanel from "./ui/GlassPanel"
 import NavRail from "./NavRail"
 import PlayerStatsCard from "./PlayerStatsCard"
+import RouteContentBoundary from "./RouteContentBoundary"
 import Starfield from "./Starfield"
 import { injectAllAnimations } from "../utils/animations"
 
 function AppShell() {
+  const location = useLocation()
 
   useEffect(() => {
     injectAllAnimations()
@@ -94,15 +96,17 @@ function AppShell() {
           display="flex"
           flexDirection="column"
         >
-          <Suspense
-            fallback={(
-              <Box role="status" color="fg.muted" p={4} textAlign="center">
-                Loading interface…
-              </Box>
-            )}
-          >
-            <Outlet />
-          </Suspense>
+          <RouteContentBoundary key={location.pathname}>
+            <Suspense
+              fallback={(
+                <Box role="status" color="text.muted" p={4} textAlign="center">
+                  Loading interface…
+                </Box>
+              )}
+            >
+              <Outlet />
+            </Suspense>
+          </RouteContentBoundary>
         </GlassPanel>
 
         {/* Footer / Bottom Panel */}
